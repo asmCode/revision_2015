@@ -1,0 +1,17 @@
+#version 400
+
+layout (location = 0) in vec3 a_position;
+layout (location = 1) in mat4 a_transform;
+layout (location = 5) in float a_glowPower;
+
+uniform mat4 u_viewProjMatrix;
+
+varying float o_glowPower;
+
+void main()
+{	
+	vec4 worldPosition = a_transform * vec4(a_position, 1.0);
+	o_glowPower = a_glowPower;
+		
+	gl_Position = u_viewProjMatrix * worldPosition;
+}

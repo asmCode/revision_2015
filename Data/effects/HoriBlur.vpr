@@ -1,0 +1,30 @@
+#version 400
+
+layout (location = 0) in vec2 a_position;
+
+uniform float u_texelSize;
+
+varying vec2 v_coords[15];
+
+void main()
+{
+	vec2 coords = a_position * 0.5f + 0.5f;
+
+	v_coords[ 0] = coords + vec2(-u_texelSize * 7, 0.0);
+    v_coords[ 1] = coords + vec2(-u_texelSize * 6, 0.0);
+    v_coords[ 2] = coords + vec2(-u_texelSize * 5, 0.0);
+    v_coords[ 3] = coords + vec2(-u_texelSize * 4, 0.0);
+    v_coords[ 4] = coords + vec2(-u_texelSize * 3, 0.0);
+    v_coords[ 5] = coords + vec2(-u_texelSize * 2, 0.0);
+    v_coords[ 6] = coords + vec2(-u_texelSize * 1, 0.0);
+	v_coords[ 7] = coords;
+    v_coords[ 8] = coords + vec2( u_texelSize * 1, 0.0);
+    v_coords[ 9] = coords + vec2( u_texelSize * 2, 0.0);
+    v_coords[10] = coords + vec2( u_texelSize * 3, 0.0);
+    v_coords[11] = coords + vec2( u_texelSize * 4, 0.0);
+    v_coords[12] = coords + vec2( u_texelSize * 5, 0.0);
+    v_coords[13] = coords + vec2( u_texelSize * 6, 0.0);
+    v_coords[14] = coords + vec2( u_texelSize * 7, 0.0);
+
+	gl_Position = vec4(a_position.x, a_position.y, 0, 1);
+}

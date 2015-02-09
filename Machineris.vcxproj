@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{500791BB-7682-45E4-9A11-319AC9963C9C}</ProjectGuid>
+    <RootNamespace>Machineris</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)Output\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>Burb</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>CityGrid</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\stuff\River Wash 2014 Demo\Code\Framework;d:\stuff\we-can_2013-demo\code\zip\;D:\stuff\River Wash 2014 Demo\Code\Ext;D:\stuff\River Wash 2014 Demo\Code\Ext\glew-1.9.0\include;d:\stuff\River Wash 2014 Demo\Code\zip\contrib\minizip\;d:\stuff\River Wash 2014 Demo\Code\zip;D:\stuff\River Wash 2014 Demo\Code\Framework\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;libpng15.lib;zlib.lib;jpeg.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>D:\stuff\we-can_2013-demo\code\Ext\zlib;D:\stuff\we-can_2013-demo\code\Ext\jpeglib;D:\stuff\we-can_2013-demo\code\Ext\bass;D:\stuff\we-can_2013-demo\code\Ext\libpng;D:\stuff\we-can_2013-demo\code\Ext\tinyxml;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;libpng15.lib;zlib.lib;jpeg.lib;bass.lib;$(OutDir)GraphicsLibrary.lib;c:\users\szymon\documents\visual studio 2012\Projects\Win32Project1\Debug\Win32Project1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>D:\stuff\we-can_2013-demo\code\Ext\zlib;D:\stuff\we-can_2013-demo\code\Ext\jpeglib;D:\stuff\we-can_2013-demo\code\Ext\bass;D:\stuff\we-can_2013-demo\code\Ext\libpng;D:\stuff\we-can_2013-demo\code\Ext\tinyxml;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>rem if exist "$(OutDir)Data" goto DontNeedToCopyData
+rem echo === Data doesn%27t exist, creating and copying ===
+robocopy "$(ProjectDir)\Data" "$(OutDir)Data" /E /XD ".svn" /NJH /NJS /NP
+copy "$(ProjectDir)setup.png" "$(OutDir)"
+goto End
+
+:Dupa
+echo =================== chuaj= ====================
+goto End
+
+:DontNeedToCopyData
+echo === Data exists, dont need to copy ===
+goto End
+
+:End
+exit /B 0
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimCameraManager.cpp" />
+    <ClCompile Include="AssemblingScene.cpp" />
+    <ClCompile Include="BasicLightingEffect.cpp" />
+    <ClCompile Include="Billboard.cpp" />
+    <ClCompile Include="DebugUtils.cpp" />
+    <ClCompile Include="GameObjects\BlinkStatic.cpp" />
+    <ClCompile Include="SceneElement\CustomSceneElement.cpp" />
+    <ClCompile Include="Scenes\SynchTestScene.cpp" />
+    <ClCompile Include="SynchEventsLoader.cpp" />
+    <ClCompile Include="SynchEvent.cpp" />
+    <ClCompile Include="DemoUtils.cpp" />
+    <ClCompile Include="DistortParticleHandler.cpp" />
+    <ClCompile Include="Dream.cpp" />
+    <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
+    <ClCompile Include="Framework\Graphics\Animation.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="Framework\Graphics\AnimationData.cpp" />
+    <ClCompile Include="Framework\Graphics\AnimationLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\BoundingBox.cpp" />
+    <ClCompile Include="Framework\Graphics\BoundingSphere.cpp" />
+    <ClCompile Include="Framework\Graphics\Color.cpp" />
+    <ClCompile Include="Framework\Graphics\Content\Content.cpp" />
+    <ClCompile Include="Framework\Graphics\DepthTexture.cpp" />
+    <ClCompile Include="Framework\Graphics\FontLetter.cpp" />
+    <ClCompile Include="Framework\Graphics\FontRenderer.cpp" />
+    <ClCompile Include="Framework\Graphics\Framebuffer.cpp" />
+    <ClCompile Include="Framework\Graphics\ImageLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\ImageUtils.cpp" />
+    <ClCompile Include="Framework\Graphics\Material.cpp" />
+    <ClCompile Include="Framework\Graphics\MaterialLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\Mesh.cpp" />
+    <ClCompile Include="Framework\Graphics\MeshPart.cpp" />
+    <ClCompile Include="Framework\Graphics\Model.cpp" />
+    <ClCompile Include="Framework\Graphics\ModelLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\Shader.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedMeshData.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedMeshLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedVertex.cpp" />
+    <ClCompile Include="Framework\Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="Framework\Graphics\TexPart.cpp" />
+    <ClCompile Include="Framework\Graphics\Texture.cpp" />
+    <ClCompile Include="Framework\Graphics\TextureLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\Vertex.cpp" />
+    <ClCompile Include="Framework\Graphics\VertexInformation.cpp" />
+    <ClCompile Include="Framework\IO\BinaryReader.cpp" />
+    <ClCompile Include="Framework\IO\BinaryWriter.cpp" />
+    <ClCompile Include="Framework\IO\Win32\Path.cpp" />
+    <ClCompile Include="Framework\Math\Animation\Keyframe.cpp" />
+    <ClCompile Include="Framework\Math\Animation\AnimationCurve.cpp" />
+    <ClCompile Include="Framework\Math\Animation\BackOut.cpp" />
+    <ClCompile Include="Framework\Math\Animation\LinearCurve.cpp" />
+    <ClCompile Include="Framework\Math\Animation\QuarticOut.cpp" />
+    <ClCompile Include="Framework\Math\MathUtils.cpp" />
+    <ClCompile Include="Framework\Math\Matrix.cpp" />
+    <ClCompile Include="Framework\UserInput\Input.cpp" />
+    <ClCompile Include="Framework\Utils\Log.cpp" />
+    <ClCompile Include="Framework\Utils\Randomizer.cpp" />
+    <ClCompile Include="Framework\Utils\StringUtils.cpp" />
+    <ClCompile Include="Framework\XML\XMLLoader.cpp" />
+    <ClCompile Include="Framework\XML\XMLNode.cpp" />
+    <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjects\Guy.cpp" />
+    <ClCompile Include="GameObjects\Ribbon.cpp" />
+    <ClCompile Include="GameObjects\Static.cpp" />
+    <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
+    <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
+    <ClCompile Include="GraphicsLibrary\OpenglWindow.cpp" />
+    <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
+    <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
+    <ClCompile Include="GraphicsLog.cpp" />
+    <ClCompile Include="Materials\BaseGlowTransparencySpecullar.cpp" />
+    <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
+    <ClCompile Include="Materials\SkinnedGlowTransparencySpecullar.cpp" />
+    <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
+    <ClCompile Include="MeshUtils.cpp" />
+    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="RenderableSort.cpp" />
+    <ClCompile Include="Ribbon\Modificators\BlinkAtStartAndEnd.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurve.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveDestroy.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveFullDestination.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveFullSource.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveSource.cpp" />
+    <ClCompile Include="SceneElement\GuyData.cpp" />
+    <ClCompile Include="SceneElement\RibbonData.cpp" />
+    <ClCompile Include="SceneElement\StaticData.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
+    <ClCompile Include="ScenesManager.cpp" />
+    <ClCompile Include="Scenes\BaseScene.cpp" />
+    <ClCompile Include="Scenes\GlowTestScene.cpp" />
+    <ClCompile Include="Scenes\GuySceneTest.cpp" />
+    <ClCompile Include="Scenes\Scene01.cpp" />
+    <ClCompile Include="Scenes\Scene02.cpp" />
+    <ClCompile Include="Scenes\Scene03.cpp" />
+    <ClCompile Include="Scenes\Scene04.cpp" />
+    <ClCompile Include="Scenes\Scene05.cpp" />
+    <ClCompile Include="Scenes\Scene06.cpp" />
+    <ClCompile Include="Scenes\Scene07.cpp" />
+    <ClCompile Include="Scenes\Scene08.cpp" />
+    <ClCompile Include="Scenes\Scene09.cpp" />
+    <ClCompile Include="SceneUtils.cpp" />
+    <ClCompile Include="SkinnedMesh.cpp" />
+    <ClCompile Include="SkinnedRibbonMesh.cpp" />
+    <ClCompile Include="StaticTriangledMesh.cpp" />
+    <ClCompile Include="SynchEventSort.cpp" />
+    <ClCompile Include="SynchManager.cpp" />
+    <ClCompile Include="TriangledMesh.cpp" />
+    <ClCompile Include="ParticlesManager.cpp" />
+    <ClCompile Include="Particles\Particle.cpp" />
+    <ClCompile Include="Particles\ParticleEmmiter.cpp" />
+    <ClCompile Include="Renderable.cpp" />
+    <ClCompile Include="GeometryBatch.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
+    <ClCompile Include="PropertySignal.cpp" />
+    <ClCompile Include="Scenes\Test1Scene.cpp" />
+    <ClCompile Include="ShadowMappingTest.cpp" />
+    <ClCompile Include="Blur.cpp" />
+    <ClCompile Include="DemoController.cpp" />
+    <ClCompile Include="DrawingRoutines.cpp" />
+    <ClCompile Include="ManCam.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="PropertyManager.cpp" />
+    <ClCompile Include="StartDialog.cpp" />
+    <ClCompile Include="StartNormalMode.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="TrianglesRibbon.cpp" />
+    <ClCompile Include="UniqueTriangledMesh.cpp" />
+    <ClCompile Include="Utils\Stopwatch.cpp" />
+    <ClCompile Include="VectorGraphics.cpp" />
+    <ClCompile Include="VertexDataBufferTransform.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="zip\ioapi.c" />
+    <ClCompile Include="zip\iowin32.c" />
+    <ClCompile Include="zip\mztools.c" />
+    <ClCompile Include="zip\unzip.c" />
+    <ClCompile Include="zip\zip.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimationClips\IAnimationClip.h" />
+    <ClInclude Include="AnimCameraManager.h" />
+    <ClInclude Include="AssemblingScene.h" />
+    <ClInclude Include="BaseMesh.h" />
+    <ClInclude Include="BasicLightingEffect.h" />
+    <ClInclude Include="Billboard.h" />
+    <ClInclude Include="CameraMode.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="DebugUtils.h" />
+    <ClInclude Include="GameObjects\BlinkStatic.h" />
+    <ClInclude Include="SceneElement\CustomSceneElement.h" />
+    <ClInclude Include="Scenes\SynchTestScene.h" />
+    <ClInclude Include="SynchEventsLoader.h" />
+    <ClInclude Include="SynchEvent.h" />
+    <ClInclude Include="DemoOptions.h" />
+    <ClInclude Include="DemoUtils.h" />
+    <ClInclude Include="DistortParticleHandler.h" />
+    <ClInclude Include="Dream.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
+    <ClInclude Include="Framework\Graphics\Animation.h" />
+    <ClInclude Include="Framework\Graphics\AnimationData.h" />
+    <ClInclude Include="Framework\Graphics\AnimationLoader.h" />
+    <ClInclude Include="Framework\Graphics\BoundingBox.h" />
+    <ClInclude Include="Framework\Graphics\BoundingSphere.h" />
+    <ClInclude Include="Framework\Graphics\Content\Content.h" />
+    <ClInclude Include="Framework\Graphics\Content\IContentObserver.h" />
+    <ClInclude Include="Framework\Graphics\DepthTexture.h" />
+    <ClInclude Include="Framework\Graphics\FontLetter.h" />
+    <ClInclude Include="Framework\Graphics\FontRenderer.h" />
+    <ClInclude Include="Framework\Graphics\Framebuffer.h" />
+    <ClInclude Include="Framework\Graphics\IGraphicsEngine.h" />
+    <ClInclude Include="Framework\Graphics\ImageLoader.h" />
+    <ClInclude Include="Framework\Graphics\ImageUtils.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\IInterpolator.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\IKeysContainer.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\Interpolator.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\InterpolatorFactory.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\KeyFrame.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\LinearInterpolator.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\StateInterpolator.h" />
+    <ClInclude Include="Framework\Graphics\Interpolators\TCBInterpolator.h" />
+    <ClInclude Include="Framework\Graphics\Material.h" />
+    <ClInclude Include="Framework\Graphics\MaterialLoader.h" />
+    <ClInclude Include="Framework\Graphics\Mesh.h" />
+    <ClInclude Include="Framework\Graphics\MeshPart.h" />
+    <ClInclude Include="Framework\Graphics\Model.h" />
+    <ClInclude Include="Framework\Graphics\ModelLoader.h" />
+    <ClInclude Include="Framework\Graphics\Shader.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedMeshData.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedMeshLoader.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedVertex.h" />
+    <ClInclude Include="Framework\Graphics\SpriteBatch.h" />
+    <ClInclude Include="Framework\Graphics\Texture.h" />
+    <ClInclude Include="Framework\Graphics\TextureLoader.h" />
+    <ClInclude Include="Framework\Graphics\VertexAttrib.h" />
+    <ClInclude Include="Framework\Graphics\VertexAttribBit.h" />
+    <ClInclude Include="Framework\Graphics\VertexInformation.h" />
+    <ClInclude Include="Framework\Graphics\VertexPC2NT.h" />
+    <ClInclude Include="Framework\Graphics\VertexPCNT.h" />
+    <ClInclude Include="Framework\Graphics\VertexPC2N.h" />
+    <ClInclude Include="Framework\Graphics\VertexPCN.h" />
+    <ClInclude Include="Framework\Graphics\Vertex.h" />
+    <ClInclude Include="Framework\Graphics\VertexPN.h" />
+    <ClInclude Include="Framework\Graphics\VertexP.h" />
+    <ClInclude Include="Framework\Graphics\VertexType.h" />
+    <ClInclude Include="Framework\IO\BinaryReader.h" />
+    <ClInclude Include="Framework\IO\BinaryWriter.h" />
+    <ClInclude Include="Framework\IO\Path.h" />
+    <ClInclude Include="Framework\Math\Animation\Custom\BlinkCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\Custom\QuadBlinkCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\ExpOut.h" />
+    <ClInclude Include="Framework\Math\Animation\Keyframe.h" />
+    <ClInclude Include="Framework\Math\Animation\AnimationCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\BackOut.h" />
+    <ClInclude Include="Framework\Math\Animation\IAnimationCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\LinearCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\QuadIn.h" />
+    <ClInclude Include="Framework\Math\Animation\QuadOut.h" />
+    <ClInclude Include="Framework\Math\Animation\QuarticOut.h" />
+    <ClInclude Include="Framework\Math\MathUtils.h" />
+    <ClInclude Include="Framework\Math\Matrix.h" />
+    <ClInclude Include="Framework\Math\Plane.h" />
+    <ClInclude Include="Framework\Math\Quat.h" />
+    <ClInclude Include="Framework\Math\Vec2.h" />
+    <ClInclude Include="Framework\Math\Vec3.h" />
+    <ClInclude Include="Framework\Math\Vec4.h" />
+    <ClInclude Include="Framework\UserInput\Input.h" />
+    <ClInclude Include="Framework\UserInput\KeyCode.h" />
+    <ClInclude Include="Framework\Utils\Log.h" />
+    <ClInclude Include="Framework\Utils\Randomizer.h" />
+    <ClInclude Include="Framework\Utils\StringUtils.h" />
+    <ClInclude Include="Framework\XML\XMLLoader.h" />
+    <ClInclude Include="Framework\XML\XMLNode.h" />
+    <ClInclude Include="Frustum.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjects\Guy.h" />
+    <ClInclude Include="GameObjects\Ribbon.h" />
+    <ClInclude Include="GameObjects\Static.h" />
+    <ClInclude Include="GraphicsEngine.h" />
+    <ClInclude Include="GraphicsLibrary\AnimCamera.h" />
+    <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
+    <ClInclude Include="GraphicsLibrary\ICamera.h" />
+    <ClInclude Include="GraphicsLibrary\IGlContextService.h" />
+    <ClInclude Include="GraphicsLibrary\IKeyboardCallback.h" />
+    <ClInclude Include="GraphicsLibrary\OpenglWindow.h" />
+    <ClInclude Include="GraphicsLibrary\PosKey.h" />
+    <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
+    <ClInclude Include="GraphicsLibrary\TimeControl.h" />
+    <ClInclude Include="GraphicsLog.h" />
+    <ClInclude Include="Materials\BaseGlowTransparencySpecullar.h" />
+    <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
+    <ClInclude Include="Materials\SkinnedGlowTransparencySpecullar.h" />
+    <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />
+    <ClInclude Include="MeshUtils.h" />
+    <ClInclude Include="Quad.h" />
+    <ClInclude Include="RenderableSort.h" />
+    <ClInclude Include="Ribbon\IRibbonCurveBuilder.h" />
+    <ClInclude Include="Ribbon\Modificators\BlinkAtStartAndEnd.h" />
+    <ClInclude Include="Ribbon\Modificators\ITriangleModificator.h" />
+    <ClInclude Include="Ribbon\RibbonCurve.h" />
+    <ClInclude Include="Ribbon\RibbonCurveDestination.h" />
+    <ClInclude Include="Ribbon\RibbonCurveDestroy.h" />
+    <ClInclude Include="Ribbon\RibbonCurveFullDestination.h" />
+    <ClInclude Include="Ribbon\RibbonCurveFullSource.h" />
+    <ClInclude Include="Ribbon\RibbonCurveSource.h" />
+    <ClInclude Include="SceneElement\Destination.h" />
+    <ClInclude Include="SceneElement\FloatKey.h" />
+    <ClInclude Include="SceneElement\GuyData.h" />
+    <ClInclude Include="SceneElement\IntKey.h" />
+    <ClInclude Include="SceneElement\Key.h" />
+    <ClInclude Include="SceneElement\Material.h" />
+    <ClInclude Include="SceneElement\Path.h" />
+    <ClInclude Include="SceneElement\RibbonData.h" />
+    <ClInclude Include="SceneElement\Source.h" />
+    <ClInclude Include="SceneElement\StaticData.h" />
+    <ClInclude Include="SceneElement\StaticDestination.h" />
+    <ClInclude Include="SceneElement\StaticSource.h" />
+    <ClInclude Include="SceneLoader.h" />
+    <ClInclude Include="ScenesManager.h" />
+    <ClInclude Include="Scenes\GlowTestScene.h" />
+    <ClInclude Include="Scenes\GuySceneTest.h" />
+    <ClInclude Include="Scenes\Scene01.h" />
+    <ClInclude Include="Scenes\Scene02.h" />
+    <ClInclude Include="Scenes\Scene03.h" />
+    <ClInclude Include="Scenes\Scene04.h" />
+    <ClInclude Include="Scenes\Scene05.h" />
+    <ClInclude Include="Scenes\Scene06.h" />
+    <ClInclude Include="Scenes\Scene07.h" />
+    <ClInclude Include="Scenes\Scene08.h" />
+    <ClInclude Include="Scenes\Scene09.h" />
+    <ClInclude Include="SceneUtils.h" />
+    <ClInclude Include="SkinnedMesh.h" />
+    <ClInclude Include="SkinnedRibbonMesh.h" />
+    <ClInclude Include="SynchEventSort.h" />
+    <ClInclude Include="SynchManager.h" />
+    <ClInclude Include="TriangleDataColorGlow.h" />
+    <ClInclude Include="TriangleDataGlow.h" />
+    <ClInclude Include="TriangleDataTransformColorGlow.h" />
+    <ClInclude Include="StaticTriangledMesh.h" />
+    <ClInclude Include="TriangleDataTransformGlow.h" />
+    <ClInclude Include="TriangledMesh.h" />
+    <ClInclude Include="ParticlesManager.h" />
+    <ClInclude Include="Particles\IParticleHandler.h" />
+    <ClInclude Include="Particles\Particle.h" />
+    <ClInclude Include="Particles\ParticleEmmiter.h" />
+    <ClInclude Include="Renderable.h" />
+    <ClInclude Include="GeometryBatch.h" />
+    <ClInclude Include="GlassPart.h" />
+    <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="PropertySignal.h" />
+    <ClInclude Include="Scenes\BaseScene.h" />
+    <ClInclude Include="Scenes\Test1Scene.h" />
+    <ClInclude Include="ShadowMappingTest.h" />
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="Blur.h" />
+    <ClInclude Include="DemoController.h" />
+    <ClInclude Include="DrawingRoutines.h" />
+    <ClInclude Include="ManCam.h" />
+    <ClInclude Include="MemoryLeak.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="PropertyManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="StartDialog.h" />
+    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TrianglesRibbon.h" />
+    <ClInclude Include="UniqueTriangledMesh.h" />
+    <ClInclude Include="Utils\Stopwatch.h" />
+    <ClInclude Include="VectorGraphics.h" />
+    <ClInclude Include="VertexDataBufferTransform.h" />
+    <ClInclude Include="XmlWriter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rw09.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\effects\Add.fpr" />
+    <None Include="Data\effects\Add.vpr" />
+    <None Include="Data\effects\Black.fpr" />
+    <None Include="Data\effects\Black.vpr" />
+    <None Include="Data\effects\Blit.fpr" />
+    <None Include="Data\effects\Blit.vpr" />
+    <None Include="Data\effects\BlitOpacity.fpr" />
+    <None Include="Data\effects\BlitOpacity.vpr" />
+    <None Include="Data\effects\Color.fpr" />
+    <None Include="Data\effects\Color.vpr" />
+    <None Include="Data\effects\Diff.fpr" />
+    <None Include="Data\effects\Diff.vpr" />
+    <None Include="Data\effects\DiffLightMap.fpr" />
+    <None Include="Data\effects\DiffLightMap.vpr" />
+    <None Include="Data\effects\DiffNorm.fpr" />
+    <None Include="Data\effects\DiffNorm.vpr" />
+    <None Include="Data\effects\DiffNormLightmap.fpr" />
+    <None Include="Data\effects\DiffNormLightmap.vpr" />
+    <None Include="Data\effects\Distortion.fpr" />
+    <None Include="Data\effects\Distortion.vpr" />
+    <None Include="Data\effects\DistortParticle.fpr" />
+    <None Include="Data\effects\DistortParticle.vpr" />
+    <None Include="Data\effects\Downsample.fpr" />
+    <None Include="Data\effects\Downsample.vpr" />
+    <None Include="Data\effects\HoriBlur.fpr" />
+    <None Include="Data\effects\HoriBlur.vpr" />
+    <None Include="Data\effects\Skinned.fpr" />
+    <None Include="Data\effects\Skinned.vpr" />
+    <None Include="Data\effects\SkinnedRibbon.fpr" />
+    <None Include="Data\effects\SkinnedRibbon.vpr" />
+    <None Include="Data\effects\SpecularBlur.fpr" />
+    <None Include="Data\effects\SpecularBlur.vpr" />
+    <None Include="Data\effects\Sprite.fpr" />
+    <None Include="Data\effects\Sprite.vpr" />
+    <None Include="Data\effects\StaticSpecularBlur.fpr" />
+    <None Include="Data\effects\StaticSpecularBlur.vpr" />
+    <None Include="Data\effects\VertBlur.fpr" />
+    <None Include="Data\effects\VertBlur.vpr" />
+    <None Include="Data\effects\Water.fpr" />
+    <None Include="Data\effects\Water.vpr" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="icons\icon16.png" />
+    <Image Include="icons\icon32.png" />
+    <Image Include="icons\icon48.png" />
+    <Image Include="icons\icon64.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
