@@ -61,7 +61,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>D:\stuff\River Wash 2014 Demo\Code\Framework;d:\stuff\we-can_2013-demo\code\zip\;D:\stuff\River Wash 2014 Demo\Code\Ext;D:\stuff\River Wash 2014 Demo\Code\Ext\glew-1.9.0\include;d:\stuff\River Wash 2014 Demo\Code\zip\contrib\minizip\;d:\stuff\River Wash 2014 Demo\Code\zip;D:\stuff\River Wash 2014 Demo\Code\Framework\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\stuff\Revision 2015\Code\Framework;d:\stuff\we-can_2013-demo\code\zip\;D:\stuff\Revision 2015\Code\Ext;D:\stuff\Revision 2015\Code\Ext\glew-1.9.0\include;d:\stuff\Revision 2015\Code\zip\contrib\minizip\;d:\stuff\Revision 2015\Code\zip;D:\stuff\Revision 2015\Code\Framework\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;libpng15.lib;zlib.lib;jpeg.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -125,6 +125,7 @@ exit /B 0
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="GameObjects\BlinkStatic.cpp" />
     <ClCompile Include="SceneElement\CustomSceneElement.cpp" />
+    <ClCompile Include="Scenes\RevisionTest01.cpp" />
     <ClCompile Include="Scenes\SynchTestScene.cpp" />
     <ClCompile Include="SynchEventsLoader.cpp" />
     <ClCompile Include="SynchEvent.cpp" />
@@ -272,6 +273,7 @@ exit /B 0
     <ClInclude Include="DebugUtils.h" />
     <ClInclude Include="GameObjects\BlinkStatic.h" />
     <ClInclude Include="SceneElement\CustomSceneElement.h" />
+    <ClInclude Include="Scenes\RevisionTest01.h" />
     <ClInclude Include="Scenes\SynchTestScene.h" />
     <ClInclude Include="SynchEventsLoader.h" />
     <ClInclude Include="SynchEvent.h" />

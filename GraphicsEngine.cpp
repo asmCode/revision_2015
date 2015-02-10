@@ -133,6 +133,8 @@ void GraphicsEngine::SetRenderables(const std::vector<Renderable*>& renderables)
 
 void GraphicsEngine::RenderGameObjects()
 {
+	return;
+
 	m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
@@ -324,6 +326,8 @@ void GraphicsEngine::SortRenderables(
 
 void GraphicsEngine::RenderFullScreenTexture(Texture* texture, float opacity)
 {
+	return;
+
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
@@ -337,6 +341,26 @@ void GraphicsEngine::RenderFullScreenTexture(Texture* texture, float opacity)
 	m_blitOpacityShader->SetParameter("u_opacity", opacity);
 
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
+
+	Quad::Setup();
+	m_quad->Draw();
+	Quad::Clean();
+}
+
+void GraphicsEngine::RenderTexture(uint32_t textureId, float opacity, int x, int y, int width, int height)
+{
+	glViewport(x, y, width, height);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDepthMask(false);
+	glColorMask(true, true, true, true);
+	glDisable(GL_DEPTH_TEST);
+	//glEnable(GL_BLEND);
+	glDisable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	m_blitOpacityShader->UseProgram();
+	m_blitOpacityShader->SetTextureParameter("u_tex", 0, textureId);
+	m_blitOpacityShader->SetParameter("u_opacity", opacity);
 
 	Quad::Setup();
 	m_quad->Draw();

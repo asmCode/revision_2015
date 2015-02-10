@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 
 class GameObject;
 class Renderable;
@@ -21,6 +22,7 @@ public:
 	void RenderGameObjects();
 
 	void RenderFullScreenTexture(Texture* texture, float opacity);
+	void RenderTexture(uint32_t textureId, float opacity, int x, int y, int width, int height);
 
 private:
 	int m_screenWidth;

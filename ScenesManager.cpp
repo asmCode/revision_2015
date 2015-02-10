@@ -9,6 +9,7 @@
 #include "Scenes/Scene08.h"
 #include "Scenes/Scene09.h"
 #include "Scenes/SynchTestScene.h"
+#include "Scenes/RevisionTest01.h"
 
 ScenesManager::ScenesManager() :
 	m_isSceneChanged(false),
@@ -30,7 +31,7 @@ void ScenesManager::Initialize()
 	m_scenes.push_back(new Scene09());
 	*/
 
-	m_scenes.push_back(new SynchTestScene());
+	m_scenes.push_back(new RevisionTest01());
 
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;
