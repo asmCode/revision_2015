@@ -33,11 +33,11 @@ void RevisionTest01::InitializeSubScene()
 
 void RevisionTest01::Initialize()
 {
-	m_depthTexture = new DepthTexture(128, 128);
+	m_depthTexture = new DepthTexture(256, 256);
 
 	m_colorTexture = new Texture(
-		128,
-		128,
+		256,
+		256,
 		32,
 		NULL,
 		Texture::Wrap_ClampToEdge,
@@ -46,7 +46,7 @@ void RevisionTest01::Initialize()
 		false);
 
 	m_depthFramebuffer = new Framebuffer();
-	m_depthFramebuffer->Initialize(128, 128, 32);
+	m_depthFramebuffer->Initialize(256, 256, 32);
 	m_depthFramebuffer->BindFramebuffer();
 	m_depthFramebuffer->AttachColorTexture(m_colorTexture->GetId());
 	m_depthFramebuffer->AttachDepthTexture(m_depthTexture->GetId());
@@ -74,7 +74,7 @@ void RevisionTest01::Draw()
 		DemoController::GetInstance()->m_view);
 
 	//m_mainFrame->BindFramebuffer();
-	glViewport(0, 0, 128, 128);
+	glViewport(0, 0, 256, 256);
 
 	GLenum enabledBuffers[1];
 	enabledBuffers[0] = GL_COLOR_ATTACHMENT0;
@@ -88,12 +88,11 @@ void RevisionTest01::Draw()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
 
-	DrawingRoutines::DrawBlack(m_face->m_meshParts);
+	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
-	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_colorTexture->GetId(), 1.0f, 0, 0, 128, 128);
-	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_depthTexture->GetId(), 1.0f, 128, 0, 128, 128);
+	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_colorTexture->GetId(), 1.0f, 0, 0, 256, 256);
 }
 
 void RevisionTest01::NotifySynchEvent(SynchEvent* synchEvent)

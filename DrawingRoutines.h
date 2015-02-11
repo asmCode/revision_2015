@@ -43,6 +43,8 @@ private:
 	// only black objects with opacity
 	static Shader *m_blackShader;
 
+	static Shader *m_depthByZShader;
+
 	// only black objects for shadowmap
 	static Shader *m_shadowMapShader;
 
@@ -75,6 +77,7 @@ public:
 	static void DrawWithMaterial(std::vector<MeshPart*> &meshParts);
 	static void DrawWithMaterialAndShadowMap(std::vector<MeshPart*> &meshParts, uint32_t shadowMapId);
 	static void DrawBlack(std::vector<MeshPart*> &meshParts);
+	static void DrawDepthByZ(std::vector<MeshPart*> &meshParts);
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
 
 	static void DrawWithMaterial(Renderable* renderable);

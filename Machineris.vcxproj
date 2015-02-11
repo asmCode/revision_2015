@@ -469,6 +469,8 @@ exit /B 0
     <None Include="Data\effects\BlitOpacity.vpr" />
     <None Include="Data\effects\Color.fpr" />
     <None Include="Data\effects\Color.vpr" />
+    <None Include="Data\effects\DepthByZ.fpr" />
+    <None Include="Data\effects\DepthByZ.vpr" />
     <None Include="Data\effects\Diff.fpr" />
     <None Include="Data\effects\Diff.vpr" />
     <None Include="Data\effects\DiffLightMap.fpr" />
