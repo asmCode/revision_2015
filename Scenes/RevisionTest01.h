@@ -9,6 +9,7 @@ class Texture;
 class Mesh;
 class MeshPart;
 class Model;
+class PlaneMesh;
 
 class RevisionTest01 : public BaseScene
 {
@@ -28,4 +29,5 @@ private:
 	Texture* m_colorTexture;
 
 	Model* m_face;
+	PlaneMesh* m_planeMesh;
 };

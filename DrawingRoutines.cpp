@@ -1,6 +1,7 @@
 #include "DrawingRoutines.h"
 
 #include "Renderable.h"
+#include "IDrawable.h"
 #include "BasicLightingEffect.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
@@ -210,13 +211,13 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		glDisableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex == NULL &&
-	 	 	 meshPart->m_lightmap != NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex == NULL &&
+		meshPart->m_lightmap != NULL &&
+		material->opacityTex == NULL)
 	{
 		assert(VertexInformation::HasAttrib(meshPart->m_vertexType, VertexAttrib::Coords2));
 
@@ -241,9 +242,9 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex != NULL &&
-	 	 	 (meshPart == NULL || meshPart->m_lightmap == NULL) &&
-			 material->opacityTex == NULL)
+		material->normalTex != NULL &&
+		(meshPart == NULL || meshPart->m_lightmap == NULL) &&
+		material->opacityTex == NULL)
 	{
 		m_diffNormShader->UseProgram();
 		m_diffNormShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
@@ -266,13 +267,13 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		glDisableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glEnableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex == NULL &&
-		 	 material->normalTex == NULL &&
-			 (meshPart == NULL || meshPart->m_lightmap == NULL) &&
-			 material->opacityTex == NULL)
+		material->normalTex == NULL &&
+		(meshPart == NULL || meshPart->m_lightmap == NULL) &&
+		material->opacityTex == NULL)
 	{
 		m_colorShader->UseProgram();
 		m_colorShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
@@ -288,20 +289,20 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		m_colorShader->SetParameter("u_specularColor", material->specularColor);
 		m_colorShader->SetParameter("u_glossiness", material->glossiness * 256.0f);
 		m_colorShader->SetParameter("u_specularLevel", material->specularLevel);
-		
+
 		glEnableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
 		//glEnableVertexAttribArray(3);
 		glDisableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex != NULL &&
-			 (meshPart != NULL && meshPart->m_lightmap) != NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex != NULL &&
+		(meshPart != NULL && meshPart->m_lightmap) != NULL &&
+		material->opacityTex == NULL)
 	{
 		assert(VertexInformation::HasAttrib(meshPart->m_vertexType, VertexAttrib::Coords2));
 
@@ -317,13 +318,13 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		m_diffNormLightmapShader->SetParameter("u_opacity", material->Opacity());
 		m_diffNormLightmapShader->SetParameter("u_glossiness", material->glossiness * 256.0f);
 		m_diffNormLightmapShader->SetParameter("u_specularLevel", material->specularLevel);
-		
+
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glEnableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else
@@ -387,41 +388,41 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 
 	for (uint32_t i = 0; i < meshParts.size(); i++)
 	{
-		if (!meshParts[i]->IsVisible())
-			continue;
+	if (!meshParts[i]->IsVisible())
+	continue;
 
-		if (meshParts[i]->GetMaterial() == NULL)
-		{
-			//assert(false);
-			meshParts[i]->material = new Material();
-		}
+	if (meshParts[i]->GetMaterial() == NULL)
+	{
+	//assert(false);
+	meshParts[i]->material = new Material();
+	}
 
-		m_sm_colorShader->UseProgram();
+	m_sm_colorShader->UseProgram();
 
-		m_sm_colorShader->SetParameter("u_biasScale", demo->m_biasScale);
-		m_sm_colorShader->SetParameter("u_biasClamp", demo->m_biasClamp);
+	m_sm_colorShader->SetParameter("u_biasScale", demo->m_biasScale);
+	m_sm_colorShader->SetParameter("u_biasClamp", demo->m_biasClamp);
 
-		m_sm_colorShader->SetTextureParameter("u_shadowMap", 0, shadowMapId);
-		m_sm_colorShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
-		if (meshParts[i]->m_parentNode != NULL)
-			m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshParts[i]->m_parentNode->Transform());
-		else
-			m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshParts[i]->mesh->Transform());
-		m_sm_colorShader->SetMatrixParameter("u_lightViewProj", lightViewProj);
-		m_sm_colorShader->SetParameter("u_lightPosition", m_lightPosition);
-		m_sm_colorShader->SetParameter("u_eyePosition", m_eyePosition);
-		m_sm_colorShader->SetParameter("u_diffuseColor", meshParts[i]->material->diffuseColor);
-		m_sm_colorShader->SetParameter("u_specularColor", meshParts[i]->material->specularColor);
-		m_sm_colorShader->SetParameter("u_glossiness", meshParts[i]->material->glossiness * 256.0f);
-		m_sm_colorShader->SetParameter("u_specularLevel", meshParts[i]->material->specularLevel);
-		
-		glEnableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
-		glEnableVertexAttribArray(3);
-		glDisableVertexAttribArray(4);
+	m_sm_colorShader->SetTextureParameter("u_shadowMap", 0, shadowMapId);
+	m_sm_colorShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
+	if (meshParts[i]->m_parentNode != NULL)
+	m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshParts[i]->m_parentNode->Transform());
+	else
+	m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshParts[i]->mesh->Transform());
+	m_sm_colorShader->SetMatrixParameter("u_lightViewProj", lightViewProj);
+	m_sm_colorShader->SetParameter("u_lightPosition", m_lightPosition);
+	m_sm_colorShader->SetParameter("u_eyePosition", m_eyePosition);
+	m_sm_colorShader->SetParameter("u_diffuseColor", meshParts[i]->material->diffuseColor);
+	m_sm_colorShader->SetParameter("u_specularColor", meshParts[i]->material->specularColor);
+	m_sm_colorShader->SetParameter("u_glossiness", meshParts[i]->material->glossiness * 256.0f);
+	m_sm_colorShader->SetParameter("u_specularLevel", meshParts[i]->material->specularLevel);
 
-		meshParts[i]->Draw();
+	glEnableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
+
+	meshParts[i]->Draw();
 	}
 
 	*/
@@ -467,13 +468,13 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 		glDisableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex == NULL &&
-	 	 	 meshPart->m_lightmap != NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex == NULL &&
+		meshPart->m_lightmap != NULL &&
+		material->opacityTex == NULL)
 	{
 		assert(VertexInformation::HasAttrib(meshPart->m_vertexType, VertexAttrib::Coords2));
 
@@ -498,9 +499,9 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex != NULL &&
-	 	 	 meshPart->m_lightmap == NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex != NULL &&
+		meshPart->m_lightmap == NULL &&
+		material->opacityTex == NULL)
 	{
 		m_sm_diffNormShader->UseProgram();
 		m_sm_diffNormShader->SetMatrixParameter("u_lightViewProj", lightViewProj); // shadow map
@@ -525,13 +526,13 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 		glDisableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glEnableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex == NULL &&
-		 	 material->normalTex == NULL &&
-	 	 	 meshPart->m_lightmap == NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex == NULL &&
+		meshPart->m_lightmap == NULL &&
+		material->opacityTex == NULL)
 	{
 		m_colorShader->UseProgram();
 		m_colorShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
@@ -544,19 +545,19 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 		m_colorShader->SetParameter("u_specularColor", material->specularColor);
 		m_colorShader->SetParameter("u_glossiness", material->glossiness * 256.0f);
 		m_colorShader->SetParameter("u_specularLevel", material->specularLevel);
-		
+
 		glEnableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else if (material->diffuseTex != NULL &&
-		 	 material->normalTex != NULL &&
-	 	 	 meshPart->m_lightmap != NULL &&
-			 material->opacityTex == NULL)
+		material->normalTex != NULL &&
+		meshPart->m_lightmap != NULL &&
+		material->opacityTex == NULL)
 	{
 		assert(VertexInformation::HasAttrib(meshPart->m_vertexType, VertexAttrib::Coords2));
 
@@ -577,13 +578,13 @@ bool DrawingRoutines::SetupShaderShadowMap(Material *material, MeshPart *meshPar
 		m_sm_diffNormLightmapShader->SetParameter("u_opacity", material->Opacity());
 		m_sm_diffNormLightmapShader->SetParameter("u_glossiness", material->glossiness * 256.0f);
 		m_sm_diffNormLightmapShader->SetParameter("u_specularLevel", material->specularLevel);
-		
+
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
 		glEnableVertexAttribArray(3);
 		glEnableVertexAttribArray(4);
-		
+
 		return true;
 	}
 	else
@@ -637,6 +638,25 @@ void DrawingRoutines::DrawBlack(std::vector<MeshPart*> &meshParts)
 	}
 }
 
+void DrawingRoutines::DrawBlack(IDrawable* drawable)
+{
+	m_blackShader->UseProgram();
+
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glDepthMask(true);
+
+	m_blackShader->SetMatrixParameter("u_mvp", m_viewProjMatrix);
+
+	glEnableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
+
+	drawable->Draw();
+}
+
 void DrawingRoutines::DrawDepthByZ(std::vector<MeshPart*> &meshParts)
 {
 	m_depthByZShader->UseProgram();
@@ -665,7 +685,7 @@ void DrawingRoutines::DrawDepthByZ(std::vector<MeshPart*> &meshParts)
 void DrawingRoutines::DrawShadowMap(std::vector<MeshPart*> &meshParts)
 {
 	sm::Matrix lightViewProj = m_lightProjMatrix * m_lightViewMatrix;
-	
+
 	m_shadowMapShader->UseProgram();
 
 	for (uint32_t i = 0; i < meshParts.size(); i++)
@@ -680,7 +700,7 @@ void DrawingRoutines::DrawShadowMap(std::vector<MeshPart*> &meshParts)
 		glDisableVertexAttribArray(2);
 		glDisableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
-		
+
 		meshParts[i]->Draw();
 	}
 }
@@ -702,7 +722,7 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(true);
 	glDisable(GL_BLEND);
-		
+
 	/*
 	m_specularColored->UseProgram();
 	m_specularColored->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);

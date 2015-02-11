@@ -124,6 +124,7 @@ exit /B 0
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="GameObjects\BlinkStatic.cpp" />
+    <ClCompile Include="PlaneMesh.cpp" />
     <ClCompile Include="SceneElement\CustomSceneElement.cpp" />
     <ClCompile Include="Scenes\RevisionTest01.cpp" />
     <ClCompile Include="Scenes\SynchTestScene.cpp" />
@@ -272,6 +273,8 @@ exit /B 0
     <ClInclude Include="common.h" />
     <ClInclude Include="DebugUtils.h" />
     <ClInclude Include="GameObjects\BlinkStatic.h" />
+    <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="PlaneMesh.h" />
     <ClInclude Include="SceneElement\CustomSceneElement.h" />
     <ClInclude Include="Scenes\RevisionTest01.h" />
     <ClInclude Include="Scenes\SynchTestScene.h" />

@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdint.h>
 
+class IDrawable;
 class Shader;
 class Model;
 class MeshPart;
@@ -79,6 +80,8 @@ public:
 	static void DrawBlack(std::vector<MeshPart*> &meshParts);
 	static void DrawDepthByZ(std::vector<MeshPart*> &meshParts);
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
+
+	static void DrawBlack(IDrawable* drawable);
 
 	static void DrawWithMaterial(Renderable* renderable);
 

@@ -1,4 +1,5 @@
 #include "RevisionTest01.h"
+#include "../PlaneMesh.h"
 #include "../GameObject.h"
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
@@ -54,6 +55,9 @@ void RevisionTest01::Initialize()
 
 	m_face = Content::Instance->Get<Model>("face");
 	assert(m_face != NULL);
+
+	m_planeMesh = new PlaneMesh();
+	m_planeMesh->Initialize(64, 64);
 }
 
 bool RevisionTest01::Update(float time, float deltaTime)
@@ -88,7 +92,8 @@ void RevisionTest01::Draw()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
 
-	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts);
+	//DrawingRoutines::DrawDepthByZ(m_face->m_meshParts);
+	DrawingRoutines::DrawBlack(m_planeMesh);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
