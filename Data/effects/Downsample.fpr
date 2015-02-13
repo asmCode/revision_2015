@@ -27,15 +27,14 @@ void main()
 	
 	*/
 	
-	float w4 = 0.20417995557165622;
-	float w8 = 0.12384140315297386;
-	float w16 = 0.07511360795411207;
+	float w8 = 0.123317;
+	float w16 = 0.077847;
 
 	FragColor  = texture2D(u_tex, v_coords[0]) * w16;
 	FragColor += texture2D(u_tex, v_coords[1]) * w8;
 	FragColor += texture2D(u_tex, v_coords[2]) * w16;
 	FragColor += texture2D(u_tex, v_coords[3]) * w8;
-	FragColor += texture2D(u_tex, v_coords[4]) * w4;
+	FragColor += texture2D(u_tex, v_coords[4]) * 0.195346;
 	FragColor += texture2D(u_tex, v_coords[5]) * w8;
 	FragColor += texture2D(u_tex, v_coords[6]) * w16;
 	FragColor += texture2D(u_tex, v_coords[7]) * w8;

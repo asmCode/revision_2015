@@ -657,7 +657,7 @@ void DrawingRoutines::DrawBlack(IDrawable* drawable)
 	drawable->Draw();
 }
 
-void DrawingRoutines::DrawDepthByZ(std::vector<MeshPart*> &meshParts)
+void DrawingRoutines::DrawDepthByZ(std::vector<MeshPart*> &meshParts, float maxDepthValue, float discardMinDepthValue)
 {
 	m_depthByZShader->UseProgram();
 
@@ -671,6 +671,8 @@ void DrawingRoutines::DrawDepthByZ(std::vector<MeshPart*> &meshParts)
 		glDepthMask(true);
 
 		m_depthByZShader->SetMatrixParameter("u_mvp", m_viewProjMatrix * meshParts[i]->mesh->Transform());
+		m_depthByZShader->SetParameter("u_maxDepthValue", maxDepthValue);
+		m_depthByZShader->SetParameter("u_discardMinDepthValue", discardMinDepthValue);
 
 		glEnableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);

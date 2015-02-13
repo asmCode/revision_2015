@@ -2,10 +2,17 @@
 
 layout( location = 0 ) out vec4 FragColor;
 
+uniform float u_maxDepthValue;
+uniform float u_discardMinDepthValue;
+
 varying float vDepth;
 
 void main()
-{		
+{
+	if (vDepth < u_discardMinDepthValue)
+		discard;
+
+	float depth = clamp(vDepth, 0, u_maxDepthValue);
 	FragColor = vec4(vDepth, vDepth, vDepth, 1);
 }
 

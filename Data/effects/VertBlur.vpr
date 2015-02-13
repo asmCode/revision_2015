@@ -4,27 +4,43 @@ layout (location = 0) in vec2 a_position;
 
 uniform float u_texelSize;
 
-varying vec2 v_coords[15];
+varying vec2 v_coords[31];
 
 void main()
 {
 	vec2 coords = a_position * 0.5f + 0.5f;
 
-	v_coords[ 0] = coords + vec2(0.0, -u_texelSize * 7);
-    v_coords[ 1] = coords + vec2(0.0, -u_texelSize * 6);
-    v_coords[ 2] = coords + vec2(0.0, -u_texelSize * 5);
-    v_coords[ 3] = coords + vec2(0.0, -u_texelSize * 4);
-    v_coords[ 4] = coords + vec2(0.0, -u_texelSize * 3);
-    v_coords[ 5] = coords + vec2(0.0, -u_texelSize * 2);
-    v_coords[ 6] = coords + vec2(0.0, -u_texelSize * 1);
-	v_coords[ 7] = coords;
-    v_coords[ 8] = coords + vec2(0.0, u_texelSize * 1);
-    v_coords[ 9] = coords + vec2(0.0, u_texelSize * 2);
-    v_coords[10] = coords + vec2(0.0, u_texelSize * 3);
-    v_coords[11] = coords + vec2(0.0, u_texelSize * 4);
-    v_coords[12] = coords + vec2(0.0, u_texelSize * 5);
-    v_coords[13] = coords + vec2(0.0, u_texelSize * 6);
-    v_coords[14] = coords + vec2(0.0, u_texelSize * 7);
+	v_coords[ 0] = coords + vec2(0.0, u_texelSize * -15);
+	v_coords[ 1] = coords + vec2(0.0, u_texelSize * -14);
+	v_coords[ 2] = coords + vec2(0.0, u_texelSize * -13);
+	v_coords[ 3] = coords + vec2(0.0, u_texelSize * -12);
+	v_coords[ 4] = coords + vec2(0.0, u_texelSize * -11);
+	v_coords[ 5] = coords + vec2(0.0, u_texelSize * -10);
+	v_coords[ 6] = coords + vec2(0.0, u_texelSize * -9);
+	v_coords[ 7] = coords + vec2(0.0, u_texelSize * -8);
+	v_coords[ 8] = coords + vec2(0.0, u_texelSize * -7);
+	v_coords[ 9] = coords + vec2(0.0, u_texelSize * -6);
+	v_coords[10] = coords + vec2(0.0, u_texelSize * -5);
+	v_coords[11] = coords + vec2(0.0, u_texelSize * -4);
+	v_coords[12] = coords + vec2(0.0, u_texelSize * -3);
+	v_coords[13] = coords + vec2(0.0, u_texelSize * -2);
+	v_coords[14] = coords + vec2(0.0, u_texelSize * -1);
+	v_coords[15] = coords + vec2(0.0, u_texelSize * 0);
+	v_coords[16] = coords + vec2(0.0, u_texelSize * 1);
+	v_coords[17] = coords + vec2(0.0, u_texelSize * 2);
+	v_coords[18] = coords + vec2(0.0, u_texelSize * 3);
+	v_coords[19] = coords + vec2(0.0, u_texelSize * 4);
+	v_coords[20] = coords + vec2(0.0, u_texelSize * 5);
+	v_coords[21] = coords + vec2(0.0, u_texelSize * 6);
+	v_coords[22] = coords + vec2(0.0, u_texelSize * 7);
+	v_coords[23] = coords + vec2(0.0, u_texelSize * 8);
+	v_coords[24] = coords + vec2(0.0, u_texelSize * 9);
+	v_coords[25] = coords + vec2(0.0, u_texelSize * 10);
+	v_coords[26] = coords + vec2(0.0, u_texelSize * 11);
+	v_coords[27] = coords + vec2(0.0, u_texelSize * 12);
+	v_coords[28] = coords + vec2(0.0, u_texelSize * 13);
+	v_coords[29] = coords + vec2(0.0, u_texelSize * 14);
+	v_coords[30] = coords + vec2(0.0, u_texelSize * 15);
 
 	gl_Position = vec4(a_position.x, a_position.y, 0, 1);
 }

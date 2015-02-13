@@ -4,25 +4,48 @@ layout (location = 0) out vec4 FragColor;
 
 uniform sampler2D u_tex;
 
-varying vec2 v_coords[15];
+varying vec2 v_coords[31];
 
 void main()
 {
-    FragColor  = texture2D(u_tex, v_coords[ 0]) * 0.0044299121055113265;
-    FragColor += texture2D(u_tex, v_coords[ 1]) * 0.00895781211794;
-    FragColor += texture2D(u_tex, v_coords[ 2]) * 0.0215963866053;
-    FragColor += texture2D(u_tex, v_coords[ 3]) * 0.0443683338718;
-    FragColor += texture2D(u_tex, v_coords[ 4]) * 0.0776744219933;
-    FragColor += texture2D(u_tex, v_coords[ 5]) * 0.115876621105;
-    FragColor += texture2D(u_tex, v_coords[ 6]) * 0.147308056121;
-    FragColor += texture2D(u_tex, v_coords[ 7]) * 0.159576912161;
-    FragColor += texture2D(u_tex, v_coords[ 8]) * 0.147308056121;
-    FragColor += texture2D(u_tex, v_coords[ 9]) * 0.115876621105;
-    FragColor += texture2D(u_tex, v_coords[10]) * 0.0776744219933;
-    FragColor += texture2D(u_tex, v_coords[11]) * 0.0443683338718;
-    FragColor += texture2D(u_tex, v_coords[12]) * 0.0215963866053;
-    FragColor += texture2D(u_tex, v_coords[13]) * 0.00895781211794;
-    FragColor += texture2D(u_tex, v_coords[14]) * 0.0044299121055113265;
+	vec4 centerColor = texture2D(u_tex, v_coords[15]);
+	if (centerColor.x >= 0.095)
+	{
+		FragColor = centerColor;
+		return;
+	}
+
+	FragColor  = texture2D(u_tex, v_coords[ 0]) * 0.000899237300;
+	FragColor += texture2D(u_tex, v_coords[ 1]) * 0.001602971000;
+	FragColor += texture2D(u_tex, v_coords[ 2]) * 0.002745762000;
+	FragColor += texture2D(u_tex, v_coords[ 3]) * 0.004519446000;
+	FragColor += texture2D(u_tex, v_coords[ 4]) * 0.007148143000;
+	FragColor += texture2D(u_tex, v_coords[ 5]) * 0.010863930000;
+	FragColor += texture2D(u_tex, v_coords[ 6]) * 0.015865950000;
+	FragColor += texture2D(u_tex, v_coords[ 7]) * 0.022264950000;
+	FragColor += texture2D(u_tex, v_coords[ 8]) * 0.030022890000;
+	FragColor += texture2D(u_tex, v_coords[ 9]) * 0.038903950000;
+	FragColor += texture2D(u_tex, v_coords[10]) * 0.048441920000;
+	FragColor += texture2D(u_tex, v_coords[11]) * 0.057961150000;
+	FragColor += texture2D(u_tex, v_coords[12]) * 0.066640850000;
+	FragColor += texture2D(u_tex, v_coords[13]) * 0.073624720000;
+	FragColor += texture2D(u_tex, v_coords[14]) * 0.078161500000;
+	FragColor += texture2D(u_tex, v_coords[15]) * 0.079735030000;
+	FragColor += texture2D(u_tex, v_coords[16]) * 0.078161520000;
+	FragColor += texture2D(u_tex, v_coords[17]) * 0.073624330000;
+	FragColor += texture2D(u_tex, v_coords[18]) * 0.066639880000;
+	FragColor += texture2D(u_tex, v_coords[19]) * 0.057961120000;
+	FragColor += texture2D(u_tex, v_coords[20]) * 0.048443070000;
+	FragColor += texture2D(u_tex, v_coords[21]) * 0.038905070000;
+	FragColor += texture2D(u_tex, v_coords[22]) * 0.030023890000;
+	FragColor += texture2D(u_tex, v_coords[23]) * 0.022264140000;
+	FragColor += texture2D(u_tex, v_coords[24]) * 0.015863920000;
+	FragColor += texture2D(u_tex, v_coords[25]) * 0.010862370000;
+	FragColor += texture2D(u_tex, v_coords[26]) * 0.007147024000;
+	FragColor += texture2D(u_tex, v_coords[27]) * 0.004518677000;
+	FragColor += texture2D(u_tex, v_coords[28]) * 0.002745253000;
+	FragColor += texture2D(u_tex, v_coords[29]) * 0.001602653000;
+	FragColor += texture2D(u_tex, v_coords[30]) * 0.000899045200;
 	
-	FragColor *= 2.0;
+	//FragColor *= 1.0;
 }

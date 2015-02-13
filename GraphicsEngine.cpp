@@ -209,7 +209,7 @@ void GraphicsEngine::RenderGameObjects()
 
 	Downsample(m_glowTexture);
 
-	Blur(m_downsampledGlowTexture);
+	Blur(m_downsampledGlowTexture, m_blurTextureStep1, m_blurTextureStep2);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 	//glDrawBuffer(GL_COLOR_ATTACHMENT0);
@@ -239,7 +239,10 @@ void GraphicsEngine::RenderGameObjects()
 
 void GraphicsEngine::Downsample(Texture* srcTexture)
 {
-	glViewport(0, 0, m_screenWidth / 2, m_screenHeight / 2);
+	int sourceWidth = srcTexture->GetWidth();
+	int sourceHeight = srcTexture->GetHeight();
+
+	glViewport(0, 0, sourceWidth / 2, sourceHeight / 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
@@ -248,18 +251,18 @@ void GraphicsEngine::Downsample(Texture* srcTexture)
 
 	m_downsampleShader->UseProgram();
 	m_downsampleShader->SetTextureParameter("u_tex", 0, srcTexture->GetId());
-	m_downsampleShader->SetParameter("u_texelSize", 1.0f / (float)m_screenWidth, 1.0f / (float)m_screenHeight);
+	m_downsampleShader->SetParameter("u_texelSize", 1.0f / (float)sourceWidth, 1.0f / (float)sourceHeight);
 
 	Quad::Setup();
 	m_quad->Draw();
 	Quad::Clean();
 }
 
-void GraphicsEngine::Blur(Texture* srcTexture)
+void GraphicsEngine::Blur(Texture* srcTexture, Texture* interTexture, Texture* dstTexture)
 {
-	m_halfFrame->AttachColorTexture(m_blurTextureStep1->GetId());
+	m_halfFrame->AttachColorTexture(interTexture->GetId());
 
-	glViewport(0, 0, m_screenWidth / 2, m_screenHeight / 2);
+	glViewport(0, 0, dstTexture->GetWidth(), dstTexture->GetHeight());
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
@@ -267,17 +270,17 @@ void GraphicsEngine::Blur(Texture* srcTexture)
 
 	m_horiBlurShader->UseProgram();
 	m_horiBlurShader->SetTextureParameter("u_tex", 0, srcTexture->GetId());
-	m_horiBlurShader->SetParameter("u_texelSize", 1.0f / (float)srcTexture->GetWidth());
+	m_horiBlurShader->SetParameter("u_texelSize", 1.0f / (float)dstTexture->GetWidth());
 
 	Quad::Setup();
 	m_quad->Draw();
 	Quad::Clean();
 
-	m_halfFrame->AttachColorTexture(m_blurTextureStep2->GetId());
+	m_halfFrame->AttachColorTexture(dstTexture->GetId());
 
 	m_vertBlurShader->UseProgram();
-	m_vertBlurShader->SetTextureParameter("u_tex", 0, m_blurTextureStep1->GetId());
-	m_vertBlurShader->SetParameter("u_texelSize", 1.0f / (float)srcTexture->GetHeight());
+	m_vertBlurShader->SetTextureParameter("u_tex", 0, interTexture->GetId());
+	m_vertBlurShader->SetParameter("u_texelSize", 1.0f / (float)dstTexture->GetHeight());
 
 	Quad::Setup();
 	m_quad->Draw();

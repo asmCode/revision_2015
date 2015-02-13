@@ -78,7 +78,7 @@ public:
 	static void DrawWithMaterial(std::vector<MeshPart*> &meshParts);
 	static void DrawWithMaterialAndShadowMap(std::vector<MeshPart*> &meshParts, uint32_t shadowMapId);
 	static void DrawBlack(std::vector<MeshPart*> &meshParts);
-	static void DrawDepthByZ(std::vector<MeshPart*> &meshParts);
+	static void DrawDepthByZ(std::vector<MeshPart*> &meshParts, float maxDepthValue = 1.0f, float discardMinDepthValue = 0.0f);
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
 
 	static void DrawBlack(IDrawable* drawable);

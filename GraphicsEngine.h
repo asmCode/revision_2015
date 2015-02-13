@@ -24,6 +24,9 @@ public:
 	void RenderFullScreenTexture(Texture* texture, float opacity);
 	void RenderTexture(uint32_t textureId, float opacity, int x, int y, int width, int height);
 
+	void Downsample(Texture* srcTexture);
+	void Blur(Texture* srcTexture, Texture* interTexture, Texture* dstTexture);
+
 private:
 	int m_screenWidth;
 	int m_screenHeight;
@@ -48,9 +51,6 @@ private:
 
 	std::vector<Renderable*> m_solidRenderables;
 	std::vector<Renderable*> m_transparentRenderables;
-
-	void Downsample(Texture* srcTexture);
-	void Blur(Texture* srcTexture);
 
 	void DrawGlow(
 		const std::vector<Renderable*>& solid,

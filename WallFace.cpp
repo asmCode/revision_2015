@@ -22,10 +22,10 @@ WallFace::~WallFace()
 		delete m_planeMesh;
 }
 
-void WallFace::Initialize()
+void WallFace::Initialize(int resolution)
 {
 	m_planeMesh = new PlaneMesh();
-	m_planeMesh->Initialize(128, 128);
+	m_planeMesh->Initialize(resolution, resolution);
 
 	m_wallFaceShader = Content::Instance->Get<Shader>("WallFace");
 	assert(m_wallFaceShader != NULL);
@@ -40,7 +40,7 @@ void WallFace::SetMvpMatrix(const sm::Matrix& mvp)
 {
 }
 
-void WallFace::Draw(Texture* depth, const sm::Matrix& mvp)
+void WallFace::Draw(Texture* depth, Texture* smooth, const sm::Matrix& mvp)
 {
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
@@ -50,6 +50,7 @@ void WallFace::Draw(Texture* depth, const sm::Matrix& mvp)
 	m_wallFaceShader->UseProgram();
 
 	m_wallFaceShader->SetTextureParameter("u_depthTex", 0, depth->GetId());
+	m_wallFaceShader->SetTextureParameter("u_smoothTex", 1, smooth->GetId());
 	m_wallFaceShader->SetMatrixParameter("u_mvp", mvp);
 
 	m_planeMesh->Setup();
