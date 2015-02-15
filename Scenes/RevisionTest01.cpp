@@ -19,9 +19,17 @@
 #include "../SynchEvent.h"
 #include <Utils/Log.h>
 
+#include <UserInput/Input.h>
+
 #include "../Renderable.h"
 
-Texture* smooth;
+float faceX;
+float faceY;
+float faceZ;
+
+float faceRotX;
+float faceRotY;
+float faceRotZ;
 
 void RevisionTest01::InitializeSubScene()
 {
@@ -89,9 +97,6 @@ void RevisionTest01::Initialize()
 	m_face = Content::Instance->Get<Model>("face");
 	assert(m_face != NULL);
 
-	smooth = Content::Instance->Get<Texture>("smooth");
-	assert(smooth != NULL);
-
 	m_wallFace = new WallFace();
 	m_wallFace->Initialize(FaceResolution);
 }
@@ -99,6 +104,39 @@ void RevisionTest01::Initialize()
 bool RevisionTest01::Update(float time, float deltaTime)
 {
 	this->BaseScene::Update(time, deltaTime);
+
+	float moveSpeed = deltaTime * 0.1f;
+	float rotateSpeed = deltaTime * 1.0f;
+
+	if (Input::GetKey(KeyCode_Up))
+		faceY += moveSpeed;
+	if (Input::GetKey(KeyCode_Down))
+		faceY -= moveSpeed;
+
+	if (Input::GetKey(KeyCode_Right))
+		faceX += moveSpeed;
+	if (Input::GetKey(KeyCode_Left))
+		faceX -= moveSpeed;
+
+	if (Input::GetKey(KeyCode_P))
+		faceZ += moveSpeed;
+	if (Input::GetKey(KeyCode_L))
+		faceZ -= moveSpeed;
+
+	if (Input::GetKey(KeyCode_NumPad7))
+		faceRotY += rotateSpeed;
+	if (Input::GetKey(KeyCode_NumPad4))
+		faceRotY -= rotateSpeed;
+
+	if (Input::GetKey(KeyCode_NumPad8))
+		faceRotX += rotateSpeed;
+	if (Input::GetKey(KeyCode_NumPad5))
+		faceRotX -= rotateSpeed;
+
+	if (Input::GetKey(KeyCode_NumPad9))
+		faceRotZ += rotateSpeed;
+	if (Input::GetKey(KeyCode_NumPad6))
+		faceRotZ -= rotateSpeed;
 
 	Draw();
 
@@ -115,7 +153,7 @@ void RevisionTest01::Draw()
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	DrawFace(0.1f);
+	DrawFace(0.2f);
 
 	DemoController::GetInstance()->m_graphicsEngine->Blur(m_colorTexture, m_interBlurTexture, m_blurTexture);
 
@@ -124,7 +162,7 @@ void RevisionTest01::Draw()
 	glDepthMask(true);
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	DrawFace(1.0f, 0.1f);
+	DrawFace(1.0f, 0.2f);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
@@ -136,15 +174,21 @@ void RevisionTest01::Draw()
 	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_blurTexture->GetId(), 1.0f, FaceResolution, 0, FaceResolution, FaceResolution);
 
 	glViewport(0, 0, DemoController::GetInstance()->width, DemoController::GetInstance()->height);
-	m_wallFace->Draw(m_blurTexture, smooth, DemoController::GetInstance()->m_viewProj);
+	m_wallFace->Draw(m_blurTexture, DemoController::GetInstance()->m_viewProj);
 	//m_wallFace->Draw(m_colorTexture, smooth, DemoController::GetInstance()->m_viewProj);
 }
 
 void RevisionTest01::DrawFace(float maxDepthValue, float discardMinDepthValue)
 {
-	DrawingRoutines::SetViewProjMatrix(
-		sm::Matrix::Ortho2DMatrix(-0.7f, 0.7f, -0.7f, 0.7f) *
-		sm::Matrix::TranslateMatrix(0, 0, 1));
+	sm::Matrix viewProj =
+		sm::Matrix::Ortho2DMatrix(-0.6f, 0.6f, -0.6f, 0.6f) *
+		sm::Matrix::TranslateMatrix(0, 0, 1);
+
+	sm::Matrix world =
+		sm::Matrix::TranslateMatrix(faceX, faceY, faceZ) *
+		sm::Matrix::RotateAxisMatrix(faceRotX, 1, 0, 0) *
+		sm::Matrix::RotateAxisMatrix(faceRotY, 0, 1, 0) *
+		sm::Matrix::RotateAxisMatrix(faceRotZ, 0, 0, 1);
 
 	//m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, FaceResolution, FaceResolution);
@@ -159,7 +203,7 @@ void RevisionTest01::DrawFace(float maxDepthValue, float discardMinDepthValue)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
 
-	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts, maxDepthValue, discardMinDepthValue);
+	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts, world, viewProj, maxDepthValue, discardMinDepthValue);
 }
 
 void RevisionTest01::NotifySynchEvent(SynchEvent* synchEvent)

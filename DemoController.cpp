@@ -526,10 +526,10 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
-	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_Num1))
+	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::SaveCamera(&manCam, 0);
 
-	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_Num1))
+	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::LoadCamera(&manCam, 0);
 
 	m_scenesManager->Update(time);

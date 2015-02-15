@@ -42,16 +42,27 @@ bool Input::Constructor()
 	Input::m_keyMap[KeyCode_Y] = 'Y';
 	Input::m_keyMap[KeyCode_Z] = 'Z';
 
-	Input::m_keyMap[KeyCode_Num0] = '0';
-	Input::m_keyMap[KeyCode_Num1] = '1';
-	Input::m_keyMap[KeyCode_Num2] = '2';
-	Input::m_keyMap[KeyCode_Num3] = '3';
-	Input::m_keyMap[KeyCode_Num4] = '4';
-	Input::m_keyMap[KeyCode_Num5] = '5';
-	Input::m_keyMap[KeyCode_Num6] = '6';
-	Input::m_keyMap[KeyCode_Num7] = '7';
-	Input::m_keyMap[KeyCode_Num8] = '8';
-	Input::m_keyMap[KeyCode_Num9] = '9';
+	Input::m_keyMap[KeyCode_0] = '0';
+	Input::m_keyMap[KeyCode_1] = '1';
+	Input::m_keyMap[KeyCode_2] = '2';
+	Input::m_keyMap[KeyCode_3] = '3';
+	Input::m_keyMap[KeyCode_4] = '4';
+	Input::m_keyMap[KeyCode_5] = '5';
+	Input::m_keyMap[KeyCode_6] = '6';
+	Input::m_keyMap[KeyCode_7] = '7';
+	Input::m_keyMap[KeyCode_8] = '8';
+	Input::m_keyMap[KeyCode_9] = '9';
+
+	Input::m_keyMap[KeyCode_NumPad0] = VK_NUMPAD0;
+	Input::m_keyMap[KeyCode_NumPad1] = VK_NUMPAD1;
+	Input::m_keyMap[KeyCode_NumPad2] = VK_NUMPAD2;
+	Input::m_keyMap[KeyCode_NumPad3] = VK_NUMPAD3;
+	Input::m_keyMap[KeyCode_NumPad4] = VK_NUMPAD4;
+	Input::m_keyMap[KeyCode_NumPad5] = VK_NUMPAD5;
+	Input::m_keyMap[KeyCode_NumPad6] = VK_NUMPAD6;
+	Input::m_keyMap[KeyCode_NumPad7] = VK_NUMPAD7;
+	Input::m_keyMap[KeyCode_NumPad8] = VK_NUMPAD8;
+	Input::m_keyMap[KeyCode_NumPad9] = VK_NUMPAD9;
 
 	Input::m_keyMap[KeyCode_Escape] = VK_ESCAPE;
 	Input::m_keyMap[KeyCode_LShift] = VK_LSHIFT;
