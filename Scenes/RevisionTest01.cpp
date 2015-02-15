@@ -54,7 +54,8 @@ void RevisionTest01::Initialize()
 		Texture::Wrap_ClampToEdge,
 		Texture::Filter_Linear,
 		Texture::Filter_Linear,
-		false);
+		false,
+		true);
 
 	/*
 	m_halfColorTexture = new Texture(
@@ -76,7 +77,8 @@ void RevisionTest01::Initialize()
 		Texture::Wrap_ClampToEdge,
 		Texture::Filter_Linear,
 		Texture::Filter_Linear,
-		false);
+		false,
+		true);
 
 	m_interBlurTexture = new Texture(
 		FaceResolution,
@@ -86,7 +88,8 @@ void RevisionTest01::Initialize()
 		Texture::Wrap_ClampToEdge,
 		Texture::Filter_Linear,
 		Texture::Filter_Linear,
-		false);
+		false,
+		true);
 
 	m_depthFramebuffer = new Framebuffer();
 	m_depthFramebuffer->Initialize(FaceResolution, FaceResolution, 32);
@@ -153,7 +156,8 @@ void RevisionTest01::Draw()
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	DrawFace(0.2f);
+	//DrawFace(0.2f);
+	DrawFace(1.0f);
 
 	DemoController::GetInstance()->m_graphicsEngine->Blur(m_colorTexture, m_interBlurTexture, m_blurTexture);
 
@@ -162,7 +166,7 @@ void RevisionTest01::Draw()
 	glDepthMask(true);
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	DrawFace(1.0f, 0.2f);
+	//DrawFace(1.0f, 0.2f);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
@@ -174,7 +178,7 @@ void RevisionTest01::Draw()
 	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_blurTexture->GetId(), 1.0f, FaceResolution, 0, FaceResolution, FaceResolution);
 
 	glViewport(0, 0, DemoController::GetInstance()->width, DemoController::GetInstance()->height);
-	m_wallFace->Draw(m_blurTexture, DemoController::GetInstance()->m_viewProj);
+	m_wallFace->Draw(m_blurTexture->GetId(), DemoController::GetInstance()->m_viewProj);
 	//m_wallFace->Draw(m_colorTexture, smooth, DemoController::GetInstance()->m_viewProj);
 }
 

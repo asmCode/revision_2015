@@ -8,12 +8,14 @@ varying vec2 v_coords[31];
 
 void main()
 {
+/*
 	vec4 centerColor = texture2D(u_tex, v_coords[15]);
 	if (centerColor.x >= 0.195)
 	{
 		FragColor = centerColor;
 		return;
 	}
+*/
 
 	FragColor  = texture2D(u_tex, v_coords[ 0]) * 0.000000553049;
 	FragColor += texture2D(u_tex, v_coords[ 1]) * 0.000002730504;

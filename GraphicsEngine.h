@@ -7,6 +7,7 @@ class GameObject;
 class Renderable;
 class Framebuffer;
 class Texture;
+class BaseTexture;
 class Quad;
 class Shader;
 
@@ -25,7 +26,7 @@ public:
 	void RenderTexture(uint32_t textureId, float opacity, int x, int y, int width, int height);
 
 	void Downsample(Texture* srcTexture);
-	void Blur(Texture* srcTexture, Texture* interTexture, Texture* dstTexture);
+	void Blur(BaseTexture* srcTexture, BaseTexture* interTexture, BaseTexture* dstTexture);
 
 private:
 	int m_screenWidth;

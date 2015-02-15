@@ -40,7 +40,7 @@ void WallFace::SetMvpMatrix(const sm::Matrix& mvp)
 {
 }
 
-void WallFace::Draw(Texture* depth, const sm::Matrix& mvp)
+void WallFace::Draw(uint32_t texId, const sm::Matrix& mvp)
 {
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
@@ -49,7 +49,7 @@ void WallFace::Draw(Texture* depth, const sm::Matrix& mvp)
 
 	m_wallFaceShader->UseProgram();
 
-	m_wallFaceShader->SetTextureParameter("u_depthTex", 0, depth->GetId());
+	m_wallFaceShader->SetTextureParameter("u_depthTex", 0, texId);
 	m_wallFaceShader->SetMatrixParameter("u_mvp", mvp);
 
 	m_planeMesh->Setup();

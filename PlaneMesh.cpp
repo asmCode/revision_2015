@@ -92,7 +92,7 @@ void PlaneMesh::CreateIndicesBuffer(int horiCount, int vertCount)
 
 void PlaneMesh::Draw()
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);

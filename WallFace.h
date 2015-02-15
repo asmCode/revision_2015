@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Math/Matrix.h>
+#include <stdint.h>
 
 class Texture;
 class Shader;
@@ -16,7 +17,7 @@ public:
 
 	void SetMvpMatrix(const sm::Matrix& mvp);
 	void Update(float time, float deltaTime);
-	void Draw(Texture* depth, const sm::Matrix& mvp);
+	void Draw(uint32_t texId, const sm::Matrix& mvp);
 
 private:
 	PlaneMesh* m_planeMesh;

@@ -9,6 +9,7 @@
 #include <Graphics/Framebuffer.h>
 #include <Graphics/SpriteBatch.h>
 #include <Graphics/Texture.h>
+#include <Graphics/BaseTexture.h>
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Content/Content.h>
@@ -258,7 +259,7 @@ void GraphicsEngine::Downsample(Texture* srcTexture)
 	Quad::Clean();
 }
 
-void GraphicsEngine::Blur(Texture* srcTexture, Texture* interTexture, Texture* dstTexture)
+void GraphicsEngine::Blur(BaseTexture* srcTexture, BaseTexture* interTexture, BaseTexture* dstTexture)
 {
 	m_halfFrame->AttachColorTexture(interTexture->GetId());
 

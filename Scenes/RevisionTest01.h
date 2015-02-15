@@ -9,6 +9,7 @@ class Mesh;
 class MeshPart;
 class Model;
 class WallFace;
+class DepthTexture;
 
 class RevisionTest01 : public BaseScene
 {
@@ -29,7 +30,6 @@ private:
 
 	Framebuffer* m_depthFramebuffer;
 	Texture* m_colorTexture;
-	//Texture* m_halfColorTexture;
 	Texture* m_interBlurTexture;
 	Texture* m_blurTexture;
 
