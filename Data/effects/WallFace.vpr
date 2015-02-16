@@ -3,21 +3,22 @@
 layout (location = 0) in vec3 a_position;
 
 uniform sampler2D u_depthTex;
-uniform mat4 u_mvp;
+uniform mat4 u_worldMatrix;
+uniform mat4 u_viewProjMatrix;
+uniform vec3 u_lightPosition;
 
-varying vec3 v_color;
+varying vec2 v_coords;
 varying vec3 v_normal;
+varying vec3 v_lightDirection;
 
 const float c_texelSize = 1.0 / 128.0;
 const ivec3 c_texOffset = ivec3(-1, 0, 1);
 
 void main()
 {
-	v_color = vec3(1, 1, 1);
-
 	vec2 coords = a_position.xy + vec2(0.5, 0.5);
 
-	//vec2 coords = a_position.xy + vec2(0.5, 0.5);
+	v_coords = (a_position.xy * vec2(4.0 / 10, 4.0/5.0)) + vec2(0.5, 0.5);
 
 	float depthC = clamp(texture2D(u_depthTex, coords).x, 0, 1);
 	float depthL = clamp(textureOffset(u_depthTex, coords, c_texOffset.xy).x, 0, 1);
@@ -30,7 +31,10 @@ void main()
 	vec3 normalL = normalize(vec3(size, 0, depthR - depthL));
 	vec3 normalB = normalize(vec3(0, size, depthT - depthB));
 
-	v_normal = normalize(cross(normalL, normalB));
+	v_normal = mat3(u_worldMatrix) * normalize(cross(normalL, normalB));
 
-	gl_Position = u_mvp * vec4(a_position.x, a_position.y, depthC, 1.0);
+	vec4 worldPosition = u_worldMatrix * vec4(a_position.xy, depthC, 1.0);
+	v_lightDirection = u_lightPosition - worldPosition.xyz;
+
+	gl_Position = u_viewProjMatrix * worldPosition;
 }

@@ -17,7 +17,12 @@ public:
 
 	void SetMvpMatrix(const sm::Matrix& mvp);
 	void Update(float time, float deltaTime);
-	void Draw(uint32_t texId, const sm::Matrix& mvp);
+	void Draw(
+		uint32_t texId,
+		int32_t diffTexId,
+		const sm::Matrix& world,
+		const sm::Matrix& viewProj,
+		const sm::Vec3& lightPosition);
 
 private:
 	PlaneMesh* m_planeMesh;

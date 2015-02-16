@@ -35,4 +35,7 @@ private:
 
 	Model* m_face;
 	WallFace* m_wallFace;
+
+	Model* m_room;
+	Texture* m_wall1Tex;
 };

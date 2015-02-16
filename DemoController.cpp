@@ -551,8 +551,6 @@ bool DemoController::Update(float time, float seconds)
 		activeScene->NotifySynchEvent(synchEvent);
 	}
 
-	activeScene->Update(time, seconds);
-
 #if MAN_CAM
 	manCam.Process(seconds);
 	m_activeCamera = &manCam;
@@ -570,6 +568,8 @@ bool DemoController::Update(float time, float seconds)
 		m_activeCamera->GetFarClip());
 
 	m_viewProj = m_proj * m_view;
+
+	activeScene->Update(time, seconds);
 	return true;
 
 	camerasFactoryAnimation->Update(time, sm::Matrix::Identity, seconds);
@@ -1388,6 +1388,7 @@ void DemoController::OnKeyDown(int keyCode)
 		Log::LogT("");
 		break;
 
+		/*
 	case 'L':
 		Log::LogT("Light");
 		for (uint32_t i = 0; i < 16; i++)
@@ -1395,6 +1396,7 @@ void DemoController::OnKeyDown(int keyCode)
 			Log::LogT("lightTransform.a[%d] = %.4ff;", i, m_view.a[i]);
 		}
 		Log::LogT("");
+		*/
 		break;
 
 	case 'B':

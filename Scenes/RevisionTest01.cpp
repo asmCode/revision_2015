@@ -102,6 +102,12 @@ void RevisionTest01::Initialize()
 
 	m_wallFace = new WallFace();
 	m_wallFace->Initialize(FaceResolution);
+
+	m_room = Content::Instance->Get<Model>("room");
+	assert(m_room != NULL);
+
+	m_wall1Tex = Content::Instance->Get<Texture>("wall1");
+	assert(m_wall1Tex != NULL);
 }
 
 bool RevisionTest01::Update(float time, float deltaTime)
@@ -126,19 +132,19 @@ bool RevisionTest01::Update(float time, float deltaTime)
 	if (Input::GetKey(KeyCode_L))
 		faceZ -= moveSpeed;
 
-	if (Input::GetKey(KeyCode_NumPad7))
+	if (Input::GetKey(KeyCode_NumPad6))
 		faceRotY += rotateSpeed;
 	if (Input::GetKey(KeyCode_NumPad4))
 		faceRotY -= rotateSpeed;
 
-	if (Input::GetKey(KeyCode_NumPad8))
+	if (Input::GetKey(KeyCode_NumPad2))
 		faceRotX += rotateSpeed;
-	if (Input::GetKey(KeyCode_NumPad5))
+	if (Input::GetKey(KeyCode_NumPad8))
 		faceRotX -= rotateSpeed;
 
-	if (Input::GetKey(KeyCode_NumPad9))
+	if (Input::GetKey(KeyCode_NumPad7))
 		faceRotZ += rotateSpeed;
-	if (Input::GetKey(KeyCode_NumPad6))
+	if (Input::GetKey(KeyCode_NumPad9))
 		faceRotZ -= rotateSpeed;
 
 	Draw();
@@ -148,6 +154,12 @@ bool RevisionTest01::Update(float time, float deltaTime)
 
 void RevisionTest01::Draw()
 {	
+	if (DemoController::GetInstance() == NULL)
+		return;
+
+	if (DemoController::GetInstance()->m_activeCamera == NULL)
+		return;
+
 	m_depthFramebuffer->BindFramebuffer();
 	m_depthFramebuffer->AttachColorTexture(m_colorTexture->GetId());
 
@@ -178,8 +190,15 @@ void RevisionTest01::Draw()
 	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_blurTexture->GetId(), 1.0f, FaceResolution, 0, FaceResolution, FaceResolution);
 
 	glViewport(0, 0, DemoController::GetInstance()->width, DemoController::GetInstance()->height);
-	m_wallFace->Draw(m_blurTexture->GetId(), DemoController::GetInstance()->m_viewProj);
+	m_wallFace->Draw(
+		m_blurTexture->GetId(),
+		m_wall1Tex->GetId(),
+		sm::Matrix::TranslateMatrix(0.0, 2.5f, -9.999f) * sm::Matrix::ScaleMatrix(4.0f, 4.0f, 4.0f),
+		DemoController::GetInstance()->m_viewProj,
+		DemoController::GetInstance()->m_activeCamera->GetPosition());
 	//m_wallFace->Draw(m_colorTexture, smooth, DemoController::GetInstance()->m_viewProj);
+
+	DrawingRoutines::DrawWithMaterial(m_room->m_meshParts);
 }
 
 void RevisionTest01::DrawFace(float maxDepthValue, float discardMinDepthValue)

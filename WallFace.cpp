@@ -40,7 +40,12 @@ void WallFace::SetMvpMatrix(const sm::Matrix& mvp)
 {
 }
 
-void WallFace::Draw(uint32_t texId, const sm::Matrix& mvp)
+void WallFace::Draw(
+	uint32_t texId,
+	int32_t diffTexId,
+	const sm::Matrix& world,
+	const sm::Matrix& viewProj,
+	const sm::Vec3& lightPosition)
 {
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
@@ -50,7 +55,10 @@ void WallFace::Draw(uint32_t texId, const sm::Matrix& mvp)
 	m_wallFaceShader->UseProgram();
 
 	m_wallFaceShader->SetTextureParameter("u_depthTex", 0, texId);
-	m_wallFaceShader->SetMatrixParameter("u_mvp", mvp);
+	m_wallFaceShader->SetTextureParameter("u_diffTex", 1, diffTexId);
+	m_wallFaceShader->SetMatrixParameter("u_worldMatrix", world);
+	m_wallFaceShader->SetMatrixParameter("u_viewProjMatrix", viewProj);
+	m_wallFaceShader->SetParameter("u_lightPosition", lightPosition);
 
 	m_planeMesh->Setup();
 	m_planeMesh->Draw();

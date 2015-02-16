@@ -167,7 +167,7 @@ sm::Vec3 ManCam::GetPosition()
 
 float ManCam::GetFov(float time)
 {
-	return rad(60.0f);
+	return rad(90.0f);
 }
 
 float ManCam::GetFocal(float time)
