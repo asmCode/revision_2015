@@ -33,9 +33,14 @@ private:
 	Texture* m_interBlurTexture;
 	Texture* m_blurTexture;
 
+	Texture* m_noiseTexture[3];
+
 	Model* m_face;
 	WallFace* m_wallFace;
 
 	Model* m_room;
 	Texture* m_wall1Tex;
+
+	int m_noiseTexIndex;
+	float m_noiseTexIndexChangeTime;
 };

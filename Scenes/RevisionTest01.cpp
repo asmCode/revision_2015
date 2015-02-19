@@ -46,6 +46,8 @@ void RevisionTest01::InitializeSubScene()
 
 void RevisionTest01::Initialize()
 {
+	m_noiseTexIndex = 0;
+	m_noiseTexIndexChangeTime = 0.0f;
 	m_colorTexture = new Texture(
 		FaceResolution,
 		FaceResolution,
@@ -108,10 +110,25 @@ void RevisionTest01::Initialize()
 
 	m_wall1Tex = Content::Instance->Get<Texture>("wall1");
 	assert(m_wall1Tex != NULL);
+
+	m_noiseTexture[0] = Content::Instance->Get<Texture>("tv_noise1");
+	assert(m_noiseTexture[0] != NULL);
+	m_noiseTexture[1] = Content::Instance->Get<Texture>("tv_noise2");
+	assert(m_noiseTexture[1] != NULL);
+	m_noiseTexture[2] = Content::Instance->Get<Texture>("tv_noise3");
+	assert(m_noiseTexture[2] != NULL);
 }
 
 bool RevisionTest01::Update(float time, float deltaTime)
 {
+	m_noiseTexIndexChangeTime += deltaTime;
+	if (m_noiseTexIndexChangeTime > 0.06f)
+	{
+		m_noiseTexIndexChangeTime = 0;
+		m_noiseTexIndex++;
+		m_noiseTexIndex %= 3;
+	}
+
 	this->BaseScene::Update(time, deltaTime);
 
 	float moveSpeed = deltaTime * 0.1f;
@@ -168,8 +185,8 @@ void RevisionTest01::Draw()
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//DrawFace(0.2f);
-	DrawFace(1.0f);
+	DrawFace(0.2f);
+	//DrawFace(1.0f);
 
 	DemoController::GetInstance()->m_graphicsEngine->Blur(m_colorTexture, m_interBlurTexture, m_blurTexture);
 
@@ -178,7 +195,7 @@ void RevisionTest01::Draw()
 	glDepthMask(true);
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	//DrawFace(1.0f, 0.2f);
+	DrawFace(1.0f, 0.2f);
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
@@ -193,6 +210,7 @@ void RevisionTest01::Draw()
 	m_wallFace->Draw(
 		m_blurTexture->GetId(),
 		m_wall1Tex->GetId(),
+		m_noiseTexture[m_noiseTexIndex]->GetId(),
 		sm::Matrix::TranslateMatrix(0.0, 2.5f, -9.999f) * sm::Matrix::ScaleMatrix(4.0f, 4.0f, 4.0f),
 		DemoController::GetInstance()->m_viewProj,
 		DemoController::GetInstance()->m_activeCamera->GetPosition());

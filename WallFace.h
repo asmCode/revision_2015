@@ -20,6 +20,7 @@ public:
 	void Draw(
 		uint32_t texId,
 		int32_t diffTexId,
+		int32_t noiseTexId,
 		const sm::Matrix& world,
 		const sm::Matrix& viewProj,
 		const sm::Vec3& lightPosition);

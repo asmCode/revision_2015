@@ -3,8 +3,11 @@
 layout( location = 0 ) out vec4 FragColor;
 
 uniform sampler2D u_diffTex;
+uniform sampler2D u_noiseTex;
 
+varying float v_depth;
 varying vec2 v_coords;
+varying vec2 v_coords2;
 varying vec3 v_normal;
 varying vec3 v_lightDirection;
 
@@ -16,6 +19,8 @@ void main()
 
 	float diffValue = max(dot(lightDirection, normal), 0.0);
 
-	FragColor = texture2D(u_diffTex, v_coords) * diffValue;
+	vec4 texColor = mix(texture2D(u_diffTex, v_coords), texture2D(u_noiseTex, v_coords2 * vec2(3, 3)), smoothstep(0.05, 0.2, v_depth));
+
+	FragColor = texColor * diffValue;
 }
 

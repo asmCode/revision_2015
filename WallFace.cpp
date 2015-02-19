@@ -43,6 +43,7 @@ void WallFace::SetMvpMatrix(const sm::Matrix& mvp)
 void WallFace::Draw(
 	uint32_t texId,
 	int32_t diffTexId,
+	int32_t noiseTexId,
 	const sm::Matrix& world,
 	const sm::Matrix& viewProj,
 	const sm::Vec3& lightPosition)
@@ -56,6 +57,7 @@ void WallFace::Draw(
 
 	m_wallFaceShader->SetTextureParameter("u_depthTex", 0, texId);
 	m_wallFaceShader->SetTextureParameter("u_diffTex", 1, diffTexId);
+	m_wallFaceShader->SetTextureParameter("u_noiseTex", 2, noiseTexId);
 	m_wallFaceShader->SetMatrixParameter("u_worldMatrix", world);
 	m_wallFaceShader->SetMatrixParameter("u_viewProjMatrix", viewProj);
 	m_wallFaceShader->SetParameter("u_lightPosition", lightPosition);
