@@ -1,0 +1,10 @@
+#version 400
+
+layout (location = 0) in vec3 a_position;
+
+uniform mat4 u_builtin_worldViewProj;
+
+void main()
+{	
+	gl_Position = u_builtin_worldViewProj * vec4(a_position, 1.0);
+}

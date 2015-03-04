@@ -34,6 +34,8 @@ public:
 	void SetMatrixParameter(const char *name, int count, const sm::Matrix* matrix);
 
 	void LinkProgram();
+
+	bool HasUniform(const std::string& name);
 	
 public:
 	GLuint m_programId;

@@ -44,7 +44,7 @@ protected:
 	Animation* m_camerasAnimation;
 	ICamera* m_activeCamera;
 
-	virtual void InitializeSubScene() = 0;
+	virtual void InitializeSubScene() {};
 
 	void LoadCameras();
 

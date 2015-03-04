@@ -11,11 +11,12 @@
 #include <Graphics/Content/Content.h>
 
 Static::Static(const std::string& sceneName, SceneElement::StaticData* staticData) :
+	GameObject("Static"),
 	m_mesh(NULL)
 {
 	assert(staticData != NULL);
-	assert(staticData->Material != NULL);
-	assert(staticData->Material->UseSolid || staticData->Material->UseWire);
+//	assert(staticData->Material != NULL);
+//	assert(staticData->Material->UseSolid || staticData->Material->UseWire);
 
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
@@ -28,11 +29,12 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
 
-	m_mesh->SetGlowPower(staticData->Material->SolidGlowPower);
+	//m_mesh->SetGlowPower(staticData->Material->SolidGlowPower);
 
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(glowSpecullarShader != NULL);
 
+	/*
 	if (staticData->Material->UseSolid)
 	{
 		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
@@ -53,6 +55,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 		Renderable* renderable = new Renderable(m_mesh, material, staticData->Order);
 		m_renderables.push_back(renderable);
 	}
+	*/
 }
 
 Static::~Static()

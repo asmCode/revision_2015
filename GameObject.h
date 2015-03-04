@@ -2,6 +2,7 @@
 
 #include <Math/Matrix.h>
 #include <vector>
+#include "Transform.h"
 
 class Renderable;
 
@@ -10,7 +11,9 @@ class GameObject
 public:
 	sm::Matrix WorldMatrix;
 
-	GameObject();
+	Transform Transform;
+
+	GameObject(const std::string& name);
 	virtual ~GameObject();
 
 	const std::vector<Renderable*>& GetRenderables() const;
@@ -21,6 +24,8 @@ public:
 	bool IsActive() const;
 
 	const std::string& GetName() const;
+
+	void AddRenderable(Renderable* renderable);
 
 protected:
 	std::vector<Renderable*> m_renderables;

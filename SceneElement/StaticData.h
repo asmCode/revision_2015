@@ -4,7 +4,7 @@
 
 namespace SceneElement
 {
-	class Material;
+	//class Material;
 
 	class StaticData
 	{
@@ -12,7 +12,7 @@ namespace SceneElement
 		StaticData();
 
 		std::string MeshName;
-		Material* Material;
+		//Material* Material;
 		int Order;
 	};
 }

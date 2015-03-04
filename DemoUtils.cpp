@@ -65,14 +65,18 @@ std::string DemoUtils::ToText(const sm::Vec4& value, const std::string& separato
 sm::Vec3 DemoUtils::ParseVector3(const std::string& vectorStr, const std::string& separator)
 {
 	sm::Vec3 vec;
-	sscanf(vectorStr.c_str(), "%f;%f;%f", &vec.x, &vec.y, &vec.z);
+	char mask[32];
+	sprintf(mask, "%%f%s%%f%s%%f", separator.c_str(), separator.c_str(), separator.c_str());
+	sscanf(vectorStr.c_str(), mask, &vec.x, &vec.y, &vec.z);
 	return vec;
 }
 
 sm::Vec4 DemoUtils::ParseVector4(const std::string& vectorStr, const std::string& separator)
 {
 	sm::Vec4 vec;
-	sscanf(vectorStr.c_str(), "%f;%f;%f;%f", &vec.x, &vec.y, &vec.z, &vec.w);
+	char mask[32];
+	sprintf(mask, "%%f%s%%f%s%%f%s%%f", separator.c_str(), separator.c_str(), separator.c_str(), separator.c_str());
+	sscanf(vectorStr.c_str(), mask, &vec.x, &vec.y, &vec.z, &vec.w);
 	return vec;
 }
 

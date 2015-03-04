@@ -12,6 +12,7 @@
 #include <Graphics/BaseTexture.h>
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
+#include <Graphics/BuiltInShaderParams.h>
 #include <Graphics/Content/Content.h>
 #include <GL/glew.h>
 #include <algorithm>
@@ -134,21 +135,21 @@ void GraphicsEngine::SetRenderables(const std::vector<Renderable*>& renderables)
 
 void GraphicsEngine::RenderGameObjects()
 {
-	return;
-
-	m_mainFrame->BindFramebuffer();
+	//m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
+	/*
 	GLenum enabledBuffers[2];
 	enabledBuffers[0] = GL_COLOR_ATTACHMENT0;
 	enabledBuffers[1] = GL_COLOR_ATTACHMENT1;
 	glDrawBuffers(2, enabledBuffers);
+	*/
 
 	glDepthMask(true);
-	glColorMaski(0, true, true, true, true);
-	glColorMaski(1, true, true, true, true);
+	glColorMask(true, true, true, true);
+	//glColorMaski(0, true, true, true, true);
+	//glColorMaski(1, true, true, true, true);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
 	for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
@@ -170,6 +171,8 @@ void GraphicsEngine::RenderGameObjects()
 		material->SetupMaterial();
 		m_transparentRenderables[i]->Draw();
 	}
+
+	return;
 
 	/*
 	m_halfFrame->BindFramebuffer();
@@ -203,6 +206,7 @@ void GraphicsEngine::RenderGameObjects()
 	Quad::Clean();
 	*/
 
+	/*
 	m_halfFrame->BindFramebuffer();
 	m_halfFrame->AttachColorTexture(m_downsampledGlowTexture->GetId());
 
@@ -219,6 +223,7 @@ void GraphicsEngine::RenderGameObjects()
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
 	glDisable(GL_DEPTH_TEST);
+	*/
 
 #if 0
 	m_blitShader->UseProgram();

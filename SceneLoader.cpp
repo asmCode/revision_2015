@@ -7,6 +7,8 @@
 #include "GameObjects/Guy.h"
 #include "GameObjects/BlinkStatic.h"
 #include "Scenes/BaseScene.h"
+#include "../GeoMeshProxy.h"
+#include "../Renderable.h"
 
 #include "SceneElement/RibbonData.h"
 #include "SceneElement/Source.h"
@@ -22,6 +24,14 @@
 #include "SceneElement/StaticData.h"
 #include "SceneElement/CustomSceneElement.h"
 
+#include <Graphics/Content/Content.h>
+#include <Graphics/Model.h>
+#include <Graphics/MeshPart.h>
+#include <Graphics/Material.h>
+#include <Graphics/Shader.h>
+
+#include <Utils/StringUtils.h>
+
 #include <XML/XMLNode.h>
 #include <XML/XMLLoader.h>
 
@@ -30,8 +40,12 @@
 
 #include <map>
 
+#include "Parameter.h"
+
 bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 {
+	m_loadingScene = scene;
+
 	Log::LogT("Loading scene %s ===================================", sceneName.c_str());
 
 	Stopwatch stopwatch(true);
@@ -53,33 +67,25 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 	{
 		for (uint32_t i = 0; i < materialsNode->GetChildrenCount(); i++)
 		{
-			SceneElement::Material* material = LoadMaterial(materialsNode->GetChild(i));
+			Material* material = LoadMaterial(materialsNode->GetChild(i));
 			if (material != NULL)
-				m_materials[material->Name] = material;
+				m_materials[material->GetName()] = material;
 		}
 	}
 
 	Log::LogT("Loading materials time: %.2f", stopwatch.GetTime());
 	stopwatch.ResetAndStart();
 
-	XMLNode* ribbonsNode = node->GetChild("Ribbons");
-	if (ribbonsNode == NULL)
-		return false;
+	XMLNode* gameObjectsNode = node->GetChild("GameObjects");
+	if (gameObjectsNode != NULL)
+		LoadGameObjects(sceneName, gameObjectsNode);
 
-	for (uint32_t i = 0; i < ribbonsNode->GetChildrenCount(); i++)
-	{
-		SceneElement::RibbonData* ribbonData = LoadRibbon(ribbonsNode->GetChild(i));
-		if (ribbonData == NULL)
-			continue;
-
-		Ribbon* ribbon = CreateRibbonFromData(scene->m_name, ribbonData);
-		if (ribbon != NULL)
-			scene->m_gameObjects.push_back(ribbon);
-	}
+	return true;
 
 	Log::LogT("Loading ribbons time: %.2f", stopwatch.GetTime());
 	stopwatch.ResetAndStart();
 
+	/*
 	XMLNode* staticMeshesNode = node->GetChild("StaticMeshes");
 	if (staticMeshesNode != NULL)
 	{
@@ -88,12 +94,9 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 			SceneElement::StaticData* staticData = LoadStatic(staticMeshesNode->GetChild(i));
 			if (staticData == NULL)
 				continue;
-
-			Static* staticMesh = CreateStaticFromData(scene->m_name, staticData);
-			if (staticMesh != NULL)
-				scene->m_gameObjects.push_back(staticMesh);
 		}
 	}
+	*/
 
 	Log::LogT("Loading static time: %.2f", stopwatch.GetTime());
 	stopwatch.ResetAndStart();
@@ -134,70 +137,6 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 	return true;
 }
 
-SceneElement::RibbonData* SceneLoader::LoadRibbon(XMLNode* node)
-{
-	assert(node->GetName() == "Ribbon");
-
-	SceneElement::RibbonData* ribbon = new SceneElement::RibbonData();
-
-	XMLNode* sourceNode = node->GetChild("Source");
-	if (sourceNode != NULL)
-		ribbon->Source = LoadSource(sourceNode);
-
-	XMLNode* destinationNode = node->GetChild("Destination");
-	if (destinationNode != NULL)
-		ribbon->Destination = LoadDestination(destinationNode);
-
-	XMLNode* staticSourceNode = node->GetChild("StaticSource");
-	if (staticSourceNode != NULL)
-		ribbon->StaticSource = LoadStaticSource(staticSourceNode);
-
-	XMLNode* staticDestinationNode = node->GetChild("StaticDestination");
-	if (staticDestinationNode != NULL)
-		ribbon->StaticDestination = LoadStaticDestination(staticDestinationNode);
-
-	XMLNode* pathNode = node->GetChild("Path");
-	if (pathNode != NULL)
-		ribbon->Path = LoadPath(pathNode);
-
-	return ribbon;
-}
-
-SceneElement::Source* SceneLoader::LoadSource(XMLNode* node)
-{
-	SceneElement::Source* source = new SceneElement::Source();
-	source->MeshName = node->GetAttribAsString("mesh_name");
-	source->Material = FindMaterial(node->GetAttribAsString("material_name"));
-	source->Destroy = node->GetAttribAsBool("destroy");
-	source->Stay = node->GetAttribAsBool("stay");
-	return source;
-}
-
-SceneElement::Destination* SceneLoader::LoadDestination(XMLNode* node)
-{
-	SceneElement::Destination* destination = new SceneElement::Destination();
-	destination->MeshName = node->GetAttribAsString("mesh_name");
-	destination->Material = FindMaterial(node->GetAttribAsString("material_name"));
-	destination->Stay = node->GetAttribAsBool("stay");
-	return destination;
-}
-
-SceneElement::StaticSource* SceneLoader::LoadStaticSource(XMLNode* node)
-{
-	SceneElement::StaticSource* source = new SceneElement::StaticSource();
-	source->MeshName = node->GetAttribAsString("mesh_name");
-	source->Material = FindMaterial(node->GetAttribAsString("material_name"));
-	return source;
-}
-
-SceneElement::StaticDestination* SceneLoader::LoadStaticDestination(XMLNode* node)
-{
-	SceneElement::StaticDestination* destination = new SceneElement::StaticDestination();
-	destination->MeshName = node->GetAttribAsString("mesh_name");
-	destination->Material = FindMaterial(node->GetAttribAsString("material_name"));
-	return destination;
-}
-
 SceneElement::Path* SceneLoader::LoadPath(XMLNode* node)
 {
 	SceneElement::Path* path = new SceneElement::Path();
@@ -236,23 +175,12 @@ SceneElement::Key* SceneLoader::LoadKey(XMLNode* node)
 	return key;
 }
 
-SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
-{
-	SceneElement::StaticData* data = new SceneElement::StaticData();
-	data->MeshName = node->GetAttribAsString("mesh_name");
-	data->Order = node->GetAttribAsInt32("order");
-	data->Material = FindMaterial(node->GetAttribAsString("material_name"));
-
-	return data;
-}
-
 SceneElement::CustomSceneElement* SceneLoader::LoadCustomSceneElement(XMLNode* elementNode)
 {
 	SceneElement::CustomSceneElement* data = new SceneElement::CustomSceneElement();
 	data->Type = elementNode->GetName();
 	data->Id = elementNode->GetAttribAsString("id");
 	data->MeshName = elementNode->GetAttribAsString("mesh_name");
-	data->Material = FindMaterial(elementNode->GetAttribAsString("material_name"));
 
 	return data;
 }
@@ -264,7 +192,7 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 	SceneElement::GuyData* guyData = new SceneElement::GuyData();
 	guyData->Id = node->GetAttribAsString("id");
 	guyData->RibbonName = node->GetAttribAsString("ribbon_name");
-	guyData->Material = FindMaterial(node->GetAttribAsString("material_name"));
+	//guyData->Material = FindMaterial(node->GetAttribAsString("material_name"));
 
 	XMLNode* path = node->GetChild("Path");
 	if (path != NULL)
@@ -277,57 +205,44 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 	return guyData;
 }
 
-SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
+Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 {
 	assert(materialNode->GetName() == "Material");
 
-	SceneElement::Material* material = new SceneElement::Material();
-	material->Diffuse.Set(0.5f, 0.5f, 0.5f);
-	material->Opacity = 1.0f;
-	material->UseSolid = true;
-	material->UseWire = true;
-	material->SolidGlowPower = 1.0f;
-	material->SolidGlowMultiplier = 1.0f;
-	material->WireGlowPower = 1.0f;
-	material->WireGlowMultiplier = 1.0f;
+	Material* material = new Material();
 
-	XMLNode* paramNode = NULL;
+	std::string shaderName = materialNode->GetAttribAsString("shader");
 
-	paramNode = materialNode->GetChild("Name");
-	if (paramNode != NULL)
-		material->Name = paramNode->GetAttribAsString("value");
+	Shader* shader = Content::Instance->Get<Shader>(shaderName);
+	if (shader == NULL)
+		return NULL;
+
+	material->name = materialNode->GetAttribAsString("name");
+	material->SetShader(shader);
 	
-	paramNode = materialNode->GetChild("Diffuse");
-	if (paramNode != NULL)
-		material->Diffuse = DemoUtils::ParseVector3(paramNode->GetAttribAsString("value"));
+	XMLNode* parametersNode = materialNode->GetChild("Parameters");
+	if (parametersNode != NULL)
+	{
+		for (uint32_t i = 0; i < parametersNode->GetChildrenCount(); i++)
+		{
+			Parameter parameter = LoadParameter(parametersNode->GetChild(i));
 
-	paramNode = materialNode->GetChild("Opacity");
-	if (paramNode != NULL)
-		material->Opacity = paramNode->GetAttribAsFloat("value");
+			switch (parameter.GetType())
+			{
+			case Parameter::Type_Float:
+				material->SetParameter(parameter.GetName(), parameter.GetFloat());
+				break;
 
-	paramNode = materialNode->GetChild("UseSolid");
-	if (paramNode != NULL)
-		material->UseSolid = paramNode->GetAttribAsBool("value");
+			case Parameter::Type_Vec3:
+				material->SetParameter(parameter.GetName(), parameter.GetVec3());
+				break;
 
-	paramNode = materialNode->GetChild("UseWire");
-	if (paramNode != NULL)
-		material->UseWire = paramNode->GetAttribAsBool("value");
-
-	paramNode = materialNode->GetChild("SolidGlowPower");
-	if (paramNode != NULL)
-		material->SolidGlowPower = paramNode->GetAttribAsFloat("value");
-
-	paramNode = materialNode->GetChild("SolidGlowMultiplier");
-	if (paramNode != NULL)
-		material->SolidGlowMultiplier = paramNode->GetAttribAsFloat("value");
-
-	paramNode = materialNode->GetChild("WireGlowPower");
-	if (paramNode != NULL)
-		material->WireGlowPower = paramNode->GetAttribAsFloat("value");
-
-	paramNode = materialNode->GetChild("WireGlowMultiplier");
-	if (paramNode != NULL)
-		material->WireGlowMultiplier = paramNode->GetAttribAsFloat("value");
+			case Parameter::Type_Vec4:
+				material->SetParameter(parameter.GetName(), parameter.GetVec4());
+				break;
+			}
+		}
+	}
 
 	return material;
 }
@@ -359,16 +274,6 @@ void SceneLoader::LoadFloatKeys(XMLNode* node, std::vector<SceneElement::FloatKe
 	}
 }
 
-Ribbon* SceneLoader::CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon)
-{
-	return new Ribbon(sceneName, ribbon);
-}
-
-Static* SceneLoader::CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData)
-{
-	return new Static(sceneName, staticData);
-}
-
 Guy* SceneLoader::CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData)
 {
 	return new Guy(sceneName, guyData);
@@ -382,11 +287,97 @@ GameObject* SceneLoader::CreateElementFromData(const std::string& sceneName, Sce
 	return NULL;
 }
 
-SceneElement::Material* SceneLoader::FindMaterial(const std::string& materialName)
+Material* SceneLoader::FindMaterial(const std::string& materialName)
 {
-	std::map<std::string, SceneElement::Material*>::iterator it = m_materials.find(materialName);
+	std::map<std::string, Material*>::iterator it = m_materials.find(materialName);
 	if (it == m_materials.end())
 		return NULL;
 
 	return it->second;
+}
+
+void SceneLoader::LoadGameObjects(const std::string& sceneName, XMLNode* node)
+{
+	if (node == NULL)
+		return;
+
+	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+	{
+		GameObject* gameObject = LoadGameObject(sceneName, node->GetChild(i));
+		if (gameObject != NULL)
+			m_loadingScene->m_gameObjects.push_back(gameObject);
+	}
+}
+
+GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* node)
+{
+	if (node == NULL)
+		return NULL;
+
+	GameObject* gameObject = new GameObject(node->GetAttribAsString("name"));
+
+	XMLNode* transformNode = node->GetChild("Transform");
+	if (transformNode != NULL)
+	{
+		sm::Vec3 position = DemoUtils::ParseVector3(transformNode->GetAttribAsString("position", "0,0,0"), ",");
+		sm::Vec4 rotation = DemoUtils::ParseVector4(transformNode->GetAttribAsString("rotation", "0,1,0,0"), ",");
+		sm::Vec3 scale = DemoUtils::ParseVector3(transformNode->GetAttribAsString("scale", "1,1,1"), ",");
+
+		gameObject->Transform.SetPosition(position);
+		gameObject->Transform.SetRotation(rotation);
+		gameObject->Transform.SetScale(scale);
+	}
+
+	XMLNode* modelNode = node->GetChild("Model");
+	if (modelNode != NULL)
+	{
+		std::string modelName = modelNode->GetAttribAsString("name");
+		std::string materialName = modelNode->GetAttribAsString("material");
+
+		Model* model = Content::Instance->Get<Model>(modelName);
+		assert(model != NULL);
+
+		Material* material = FindMaterial(materialName);
+		if (material == NULL)
+			material = FindMaterial("ErrorMaterial");
+
+		for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
+		{
+			GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
+			Renderable* renderable = new Renderable(geoMeshProxy, material);
+			gameObject->AddRenderable(renderable);
+		}
+	}
+
+	return gameObject;
+}
+
+Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)
+{
+	assert(parameterNode != NULL);
+	assert(parameterNode->GetName() == "Parameter");
+	
+	std::string name = parameterNode->GetAttribAsString("name");
+	std::string typeString = parameterNode->GetAttribAsString("type");
+	std::string valueString = parameterNode->GetAttribAsString("value");
+
+	Parameter parameter(name);
+
+	if (typeString == "float")
+	{
+		float value = StringUtils::ParseFloat(valueString);
+		parameter.SetFloat(value);
+	}
+	else if (typeString == "vec3")
+	{
+		sm::Vec3 value = DemoUtils::ParseVector3(valueString, ",");
+		parameter.SetVec3(value);
+	}
+	if (typeString == "vec4")
+	{
+		sm::Vec4 value = DemoUtils::ParseVector4(valueString, ",");
+		parameter.SetVec4(value);
+	}
+
+	return parameter;
 }

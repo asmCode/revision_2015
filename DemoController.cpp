@@ -31,6 +31,7 @@
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
+#include <Graphics/BuiltInShaderParams.h>
 #include "PropertySignal.h"
 #include "DrawingRoutines.h"
 #include "Billboard.h"
@@ -812,6 +813,12 @@ bool DemoController::Draw(float time, float seconds)
 	DrawingRoutines::SetLightPosition(m_activeCamera->GetPosition());
 
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
+
+	BuiltInShaderParams::m_paramWorld = sm::Matrix::Identity;
+	BuiltInShaderParams::m_paramView = m_view;
+	BuiltInShaderParams::m_paramProj = m_proj;
+	BuiltInShaderParams::m_paramViewProj = m_viewProj;
+	BuiltInShaderParams::m_paramWorldViewProj = m_viewProj;
 
 	m_graphicsEngine->RenderGameObjects();
 

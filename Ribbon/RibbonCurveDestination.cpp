@@ -38,8 +38,8 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestination::CreateCurve(
 
 	curve->SmoothTangents();
 
-	curve->GetKeyframe(curve->GetKeysCount() - 1).LeftTangent = 0.0f;
-	curve->GetKeyframe(curve->GetKeysCount() - 1).RightTangent = 0.0f;
+	curve->GetKeyframe(curve->GetKeysCount() - 1).LeftTangent = sm::Vec3(0.0f, 0.0f, 0.0f);
+	curve->GetKeyframe(curve->GetKeysCount() - 1).RightTangent = sm::Vec3(0.0f, 0.0f, 0.0f);
 
 	return curve;
 }

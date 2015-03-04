@@ -19,7 +19,9 @@ void Renderable::Draw()
 {
 	assert(m_mesh != NULL);
 
+	m_mesh->Setup();
 	m_mesh->Draw();
+	m_mesh->Clean();
 }
 
 void Renderable::SetMesh(BaseMesh* mesh)

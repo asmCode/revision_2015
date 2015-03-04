@@ -27,6 +27,7 @@
 #include <Graphics/Content/Content.h>
 
 Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonData) :
+	GameObject("Ribbon"),
 	m_decomposeAndFly(NULL),
 	m_composeFromRibbon(NULL),
 	m_staticSource(NULL),

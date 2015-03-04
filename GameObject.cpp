@@ -2,7 +2,8 @@
 #include "Renderable.h"
 #include <stddef.h>
 
-GameObject::GameObject() :
+GameObject::GameObject(const std::string& name) :
+	m_name(name),
 	WorldMatrix(sm::Matrix::Identity),
 	m_isActive(true)
 {
@@ -33,4 +34,9 @@ bool GameObject::IsActive() const
 const std::string& GameObject::GetName() const
 {
 	return m_name;
+}
+
+void GameObject::AddRenderable(Renderable* renderable)
+{
+	m_renderables.push_back(renderable);
 }

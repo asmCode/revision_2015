@@ -24,7 +24,7 @@ namespace sm
 			this->z = 0;
 		}
 
-		Vec3(float value)
+		explicit Vec3(float value)
 		{
 			this->x = value;
 			this->y = value;

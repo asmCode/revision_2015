@@ -48,3 +48,9 @@ void StringUtils::Split(const std::string src, const std::string &separator, std
 	result.push_back(_src);
 }
 
+float StringUtils::ParseFloat(const std::string& str)
+{
+	float value;
+	sscanf(str.c_str(), "%f", &value);
+	return value;
+}

@@ -6,12 +6,13 @@
 #include <Animation/QuadIn.h>
 
 BlinkStatic::BlinkStatic(const std::string& sceneName, SceneElement::CustomSceneElement* data) :
+	GameObject("BlinkStatic"),
 	m_duration(1.0f),
 	m_time(0.0f),
 	m_isBlinking(false)
 {
 	SceneElement::StaticData* staticData = new SceneElement::StaticData();
-	staticData->Material = data->Material;
+//	staticData->Material = data->Material;
 	staticData->MeshName = data->MeshName;
 	staticData->Order = 0;
 

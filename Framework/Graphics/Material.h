@@ -4,8 +4,12 @@
 #include <Math\Vec3.h>
 #include <Math\Vec4.h>
 #include <string>
+#include <map>
+#include <stdint.h>
 
 #include "Texture.h"
+#include "BuiltInShaderParams.h"
+#include "../../Parameter.h"
 //#include "CubeTexture.h"
 
 class Shader;
@@ -13,9 +17,12 @@ class Shader;
 class Material
 {
 private:
+	typedef std::map<std::string, Parameter> ParametersMap;
 
 public:
 	std::string name;
+
+	const std::string& GetName() const;
 	
 	sm::Vec4 diffuseColor;
 	sm::Vec3 specularColor;
@@ -48,11 +55,22 @@ public:
 
 	virtual bool IsOpacity() const;
 
+	void SetShader(Shader* shader);
+	void SetParameter(const std::string& name, float value);
+	void SetParameter(const std::string& name, const sm::Vec3& value);
+	void SetParameter(const std::string& name, const sm::Vec4& value);
+
+	bool HasBuiltInShaderParam(BuiltInShaderParams::ParamFlag paramFlag);
+
 protected:
 	Shader* m_shader;
 
+	uint32_t m_builtInShaderParams;
+
+	ParametersMap m_parameters;
+
 	virtual void SetupRenderState() {};
-	virtual void SetupShader() {};
+	virtual void SetupShader();
 };
 
 #endif // MATERIAL

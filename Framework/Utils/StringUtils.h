@@ -14,6 +14,8 @@ public:
 	static std::string ToNarrow(const std::wstring &str);
 
 	static void Split(const std::string src, const std::string &separator, std::vector<std::string> &result);
+
+	static float ParseFloat(const std::string& str);
 };
 
 #endif // STRING_UTILS_H

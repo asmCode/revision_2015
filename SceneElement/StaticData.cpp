@@ -2,8 +2,8 @@
 
 namespace SceneElement
 {
-	StaticData::StaticData() :
-		Material(NULL)
+	StaticData::StaticData() //:
+	//	Material(NULL)
 	{
 	}
 }

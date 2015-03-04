@@ -230,3 +230,7 @@ bool Shader::ValidateProgram(GLuint programId)
     return status == GL_TRUE;
 }
 
+bool Shader::HasUniform(const std::string& name)
+{
+	return glGetUniformLocation(m_programId, name.c_str()) != -1;
+}

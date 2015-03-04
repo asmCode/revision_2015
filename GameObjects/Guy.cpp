@@ -31,6 +31,7 @@ void DrawSegment2(Animation* root)
 Shader* shader;
 
 Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
+	GameObject("Guy"),
 	m_positionCurve(NULL),
 	m_mesh(NULL),
 	m_meshRibbon(NULL)

@@ -10,6 +10,8 @@
 #include "Scenes/Scene09.h"
 #include "Scenes/SynchTestScene.h"
 #include "Scenes/RevisionTest01.h"
+#include "SceneLoader.h"
+#include "Scenes/BaseScene.h"
 
 ScenesManager::ScenesManager() :
 	m_isSceneChanged(false),
@@ -31,7 +33,11 @@ void ScenesManager::Initialize()
 	m_scenes.push_back(new Scene09());
 	*/
 
-	m_scenes.push_back(new RevisionTest01());
+	BaseScene* baseScene = new BaseScene();
+	SceneLoader sceneLoader;
+	sceneLoader.LoadFromFile(baseScene, "NewEngineTest");
+
+	m_scenes.push_back(baseScene);
 
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;
