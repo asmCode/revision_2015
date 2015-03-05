@@ -6,6 +6,7 @@
 
 class Renderable;
 class Light;
+class Behaviour;
 
 class GameObject
 {
@@ -31,8 +32,12 @@ public:
 	void SetLight(Light* light);
 	Light* GetLight() const;
 
+	void AddBehaviour(Behaviour* behaviour);
+	const std::vector<Behaviour*>& GetBehaviours() const;
+
 protected:
 	std::vector<Renderable*> m_renderables;
+	std::vector<Behaviour*> m_behaviours;
 
 	Light* m_light;
 

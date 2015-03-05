@@ -52,3 +52,13 @@ Light* GameObject::GetLight() const
 {
 	return m_light;
 }
+
+void GameObject::AddBehaviour(Behaviour* behaviour)
+{
+	m_behaviours.push_back(behaviour);
+}
+
+const std::vector<Behaviour*>& GameObject::GetBehaviours() const
+{
+	return m_behaviours;
+}

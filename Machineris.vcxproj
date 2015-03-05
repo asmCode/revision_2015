@@ -121,6 +121,7 @@ exit /B 0
     <ClCompile Include="AnimCameraManager.cpp" />
     <ClCompile Include="AssemblingScene.cpp" />
     <ClCompile Include="BasicLightingEffect.cpp" />
+    <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
@@ -276,6 +277,7 @@ exit /B 0
     <ClInclude Include="AssemblingScene.h" />
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
+    <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
