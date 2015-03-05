@@ -15,6 +15,8 @@ FuturisEngine::~FuturisEngine()
 
 bool FuturisEngine::Initialize()
 {
+	m_behavioursManager = new BehavioursManager();
+
 	return true;
 }
 

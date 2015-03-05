@@ -59,6 +59,7 @@ class FontRenderer;
 class DistortParticleHandler;
 class GameObject;
 class GraphicsEngine;
+class FuturisEngine;
 
 #define demo DemoController::GetInstance()
 
@@ -77,6 +78,8 @@ class DemoController :
 public:
 	static const float GlowBufferWidthRatio;
 	static const float GlowBufferHeightRatio;
+
+	FuturisEngine* m_engine;
 
 	std::vector<GameObject*> m_gameObjects;
 
@@ -310,4 +313,6 @@ public:
 	Texture* m_endScreen;
 	Texture* m_startScreen;
 	Texture* m_mask;
+
+	void RegisterBehaviours();
 };

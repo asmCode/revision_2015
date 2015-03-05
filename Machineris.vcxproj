@@ -282,6 +282,7 @@ exit /B 0
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\FuturisEngine.h" />
     <ClInclude Include="IBehaviourFactory.h" />

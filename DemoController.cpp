@@ -26,6 +26,11 @@
 #include "SynchManager.h"
 #include "SynchEvent.h"
 #include "Light.h"
+#include "FuturisEngine/FuturisEngine.h"
+#include "FuturisEngine/BehavioursManager.h"
+
+#include "Behaviours/Jump.h"
+#include "Behaviours/JumpFactory.h"
 
 #include "ScenesManager.h"
 
@@ -119,7 +124,8 @@ DemoController::DemoController() :
 	m_scenesManager(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
-	m_synchManager(NULL)
+	m_synchManager(NULL),
+	m_engine(NULL)
 {
 	flaps = 0;
 	firstupdate = true;
@@ -313,8 +319,22 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	m_scenes.push_back(new Scene03());
 
 	m_activeScene = m_scenes[5];*/
+
+	m_engine = new FuturisEngine();
+	m_engine->Initialize();
+
+	RegisterBehaviours();
 	
 	return true;
+}
+
+void DemoController::RegisterBehaviours()
+{
+	BehavioursManager* behavioursManager = m_engine->GetBehavioursManager();
+
+	behavioursManager->RegisterBehaviour("Jump", new JumpFactory());
+
+	behavioursManager->CreateBehaviour("Jump", NULL);
 }
 
 Animation *anim;
@@ -529,6 +549,8 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
+	m_engine->GetBehavioursManager()->UpdateBehaviours();
+
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::SaveCamera(&manCam, 0);
 

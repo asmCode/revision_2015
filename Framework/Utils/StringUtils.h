@@ -19,4 +19,3 @@ public:
 };
 
 #endif // STRING_UTILS_H
-

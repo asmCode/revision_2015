@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+class GameObject;
 class Behaviour;
 class IBehaviourFactory;
 
@@ -14,7 +15,7 @@ public:
 	~BehavioursManager();
 
 	void RegisterBehaviour(const std::string& name, IBehaviourFactory* factory);
-	Behaviour* CreateBehaviour(const std::string& name);
+	Behaviour* CreateBehaviour(const std::string& name, GameObject *gameObject);
 	void UpdateBehaviours();
 
 private:
