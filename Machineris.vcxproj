@@ -122,6 +122,8 @@ exit /B 0
     <ClCompile Include="AssemblingScene.cpp" />
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Behaviours\Jump.cpp" />
+    <ClCompile Include="Behaviours\JumpFactory.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
@@ -278,6 +280,9 @@ exit /B 0
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="IBehaviourFactory.h" />
+    <ClInclude Include="Behaviours\Jump.h" />
+    <ClInclude Include="Behaviours\JumpFactory.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
