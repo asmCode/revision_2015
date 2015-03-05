@@ -129,6 +129,7 @@ exit /B 0
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="Framework\Graphics\BaseTexture.cpp" />
     <ClCompile Include="Framework\Graphics\BuiltInShaderParams.cpp" />
+    <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
     <ClCompile Include="FuturisEngine\FuturisEngine.cpp" />
     <ClCompile Include="GeoMeshProxy.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -281,6 +282,7 @@ exit /B 0
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\FuturisEngine.h" />
     <ClInclude Include="IBehaviourFactory.h" />
     <ClInclude Include="Behaviours\Jump.h" />
