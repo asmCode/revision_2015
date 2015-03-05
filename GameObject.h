@@ -5,6 +5,7 @@
 #include "Transform.h"
 
 class Renderable;
+class Light;
 
 class GameObject
 {
@@ -27,8 +28,13 @@ public:
 
 	void AddRenderable(Renderable* renderable);
 
+	void SetLight(Light* light);
+	Light* GetLight() const;
+
 protected:
 	std::vector<Renderable*> m_renderables;
+
+	Light* m_light;
 
 	bool m_isActive;
 	std::string m_name;

@@ -13,6 +13,8 @@ public:
 	void SetRotation(const sm::Vec4& rotation);
 	void SetScale(const sm::Vec3& scale);
 
+	const sm::Vec3& GetPosition() const;
+
 	const sm::Matrix& GetMatrix();
 
 private:

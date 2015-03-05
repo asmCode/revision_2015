@@ -25,6 +25,7 @@
 #include "Utils/Stopwatch.h"
 #include "SynchManager.h"
 #include "SynchEvent.h"
+#include "Light.h"
 
 #include "ScenesManager.h"
 
@@ -485,6 +486,7 @@ bool DemoController::LoadContent(const char *basePath)
 	BaseScene* scene = m_scenesManager->GetActiveScene();
 
 	m_graphicsEngine->SetRenderables(scene->GetRenderables());
+	m_graphicsEngine->SetLights(scene->GetLights());
 
 	Log::LogT("Loaded all assets in %.2f s", loadContentStopwatch.GetTime());
 

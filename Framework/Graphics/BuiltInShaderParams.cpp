@@ -13,6 +13,7 @@ sm::Matrix BuiltInShaderParams::m_paramView;
 sm::Matrix BuiltInShaderParams::m_paramProj;
 sm::Matrix BuiltInShaderParams::m_paramViewProj;
 sm::Matrix BuiltInShaderParams::m_paramWorldViewProj;
+sm::Vec3 BuiltInShaderParams::m_paramPointLightPosition;
 
 BuiltInShaderParams::Params BuiltInShaderParams::GetShaderParams(Shader* shader)
 {
@@ -28,6 +29,8 @@ BuiltInShaderParams::Params BuiltInShaderParams::GetShaderParams(Shader* shader)
 		params |= BuiltInShaderParams::ParamFlag_ViewProj;
 	if (shader->HasUniform("u_builtin_worldViewProj"))
 		params |= BuiltInShaderParams::ParamFlag_WorldViewProj;
+	if (shader->HasUniform("u_builtin_pointLightPosition"))
+		params |= BuiltInShaderParams::ParamFlag_PointLightPosition;
 
 	return params;
 }
@@ -48,4 +51,7 @@ void BuiltInShaderParams::SetShaderBuiltInParams(Shader* shader, Params params)
 
 	if ((params & BuiltInShaderParams::ParamFlag_WorldViewProj) == BuiltInShaderParams::ParamFlag_WorldViewProj)
 		shader->SetMatrixParameter("u_builtin_worldViewProj", m_paramWorldViewProj);
+
+	if ((params & BuiltInShaderParams::ParamFlag_PointLightPosition) == BuiltInShaderParams::ParamFlag_PointLightPosition)
+		shader->SetParameter("u_builtin_pointLightPosition", m_paramPointLightPosition);
 }

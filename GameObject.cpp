@@ -1,11 +1,13 @@
 #include "GameObject.h"
 #include "Renderable.h"
+#include "Light.h"
 #include <stddef.h>
 
 GameObject::GameObject(const std::string& name) :
 	m_name(name),
 	WorldMatrix(sm::Matrix::Identity),
-	m_isActive(true)
+	m_isActive(true),
+	m_light(NULL)
 {
 }
 
@@ -39,4 +41,14 @@ const std::string& GameObject::GetName() const
 void GameObject::AddRenderable(Renderable* renderable)
 {
 	m_renderables.push_back(renderable);
+}
+
+void GameObject::SetLight(Light* light)
+{
+	m_light = light;
+}
+
+Light* GameObject::GetLight() const
+{
+	return m_light;
 }

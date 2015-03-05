@@ -29,6 +29,7 @@
 #include <Graphics/MeshPart.h>
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
+#include "Light.h"
 
 #include <Utils/StringUtils.h>
 
@@ -347,6 +348,13 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* n
 			Renderable* renderable = new Renderable(geoMeshProxy, material);
 			gameObject->AddRenderable(renderable);
 		}
+	}
+
+	XMLNode* lightlNode = node->GetChild("Light");
+	if (lightlNode != NULL)
+	{
+		Light* light = new Light(gameObject);
+		gameObject->SetLight(light);
 	}
 
 	return gameObject;

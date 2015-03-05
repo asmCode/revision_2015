@@ -3,6 +3,7 @@
 #include <vector>
 
 class GameObject;
+class Light;
 class Renderable;
 class ICamera;
 class Animation;
@@ -26,6 +27,7 @@ public:
 
 	const std::vector<GameObject*>& GetGameObjects() const;
 	const std::vector<Renderable*>& GetRenderables() const;
+	const std::vector<Light*>& GetLights() const;
 
 	virtual ICamera* GetCamera() const;
 
@@ -39,6 +41,7 @@ protected:
 
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<Renderable*> m_renderables;
+	std::vector<Light*> m_lights;
 
 	AnimCameraManager* m_camerasManager;
 	Animation* m_camerasAnimation;

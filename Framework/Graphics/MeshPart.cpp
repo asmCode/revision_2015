@@ -140,15 +140,6 @@ void MeshPart::SetupVertexPointers()
 	5 - Tangent
 	*/
 
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
-	glDisableVertexAttribArray(3);
-	glDisableVertexAttribArray(4);
-	glDisableVertexAttribArray(5);
-	glDisableVertexAttribArray(6);
-	glDisableVertexAttribArray(7);
-
 	if (m_vertexType == VertexType::PN)
 	{
 		uint32_t stride = VertexInformation::GetStride(m_vertexType);

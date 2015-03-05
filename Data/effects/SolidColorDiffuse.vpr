@@ -5,6 +5,7 @@ layout (location = 3) in vec3 a_normal;
 
 uniform mat4 u_builtin_world;
 uniform mat4 u_builtin_viewProj;
+uniform vec3 u_builtin_pointLightPosition;
 
 varying vec3 o_normal;
 varying vec3 o_lightDirection;
@@ -14,8 +15,7 @@ void main()
 	vec4 worldPosition = u_builtin_world * vec4(a_position, 1.0);
 	o_normal = mat3(u_builtin_world) * a_normal;
 	
-	//o_lightDirection = u_builtin_lightPosition - worldPosition.xyz;
-	o_lightDirection = vec3(1, 0, 0);
+	o_lightDirection = u_builtin_pointLightPosition - worldPosition.xyz;
 	
 	gl_Position = u_builtin_viewProj * worldPosition;
 }

@@ -27,6 +27,11 @@ void Transform::SetScale(const sm::Vec3& scale)
 	m_isDirty = true;
 }
 
+const sm::Vec3& Transform::GetPosition() const
+{
+	return m_position;
+}
+
 const sm::Matrix& Transform::GetMatrix()
 {
 	if (m_isDirty)

@@ -5,6 +5,7 @@
 
 class GameObject;
 class Renderable;
+class Light;
 class Framebuffer;
 class Texture;
 class BaseTexture;
@@ -20,6 +21,7 @@ public:
 	void Initialize();
 
 	void SetRenderables(const std::vector<Renderable*>& renderables);
+	void SetLights(const std::vector<Light*>& lights);
 	void RenderGameObjects();
 
 	void RenderFullScreenTexture(Texture* texture, float opacity);
@@ -52,6 +54,7 @@ private:
 
 	std::vector<Renderable*> m_solidRenderables;
 	std::vector<Renderable*> m_transparentRenderables;
+	std::vector<Light*> m_lights;
 
 	void DrawGlow(
 		const std::vector<Renderable*>& solid,

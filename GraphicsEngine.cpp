@@ -3,6 +3,7 @@
 #include "Renderable.h"
 #include "DrawingRoutines.h"
 #include "Quad.h"
+#include "Light.h"
 #include "RenderableSort.h"
 #include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
@@ -133,8 +134,16 @@ void GraphicsEngine::SetRenderables(const std::vector<Renderable*>& renderables)
 	SortRenderables(renderables, m_solidRenderables, m_transparentRenderables);
 }
 
+void GraphicsEngine::SetLights(const std::vector<Light*>& lights)
+{
+	m_lights.insert(m_lights.begin(), lights.begin(), lights.end());
+}
+
 void GraphicsEngine::RenderGameObjects()
 {
+	if (m_lights.size() > 0)
+		BuiltInShaderParams::m_paramPointLightPosition = m_lights[0]->GetGameObject()->Transform.GetPosition();
+
 	//m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
