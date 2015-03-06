@@ -34,7 +34,7 @@ private:
 	std::string m_name;
 	Type m_type;
 
-	union ValueUniton
+	union ValueUnion
 	{
 		float Float;
 		struct
