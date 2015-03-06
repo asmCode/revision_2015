@@ -166,6 +166,8 @@ void GraphicsEngine::RenderGameObjects()
 		if (!m_solidRenderables[i]->IsActive())
 			continue;
 
+		BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
+
 		Material* material = m_solidRenderables[i]->GetMaterial();
 		material->SetupMaterial();
 		m_solidRenderables[i]->Draw();

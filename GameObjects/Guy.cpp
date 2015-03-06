@@ -72,7 +72,7 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 			SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
 			material->SetGlowMultiplier(guyData->Material->SolidGlowMultiplier);
 
-			Renderable* renderable = new Renderable(m_mesh, material);
+			Renderable* renderable = new Renderable(NULL, m_mesh, material);
 			m_renderables.push_back(renderable);
 		}
 
@@ -82,7 +82,7 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 			material->SetGlowMultiplier(guyData->Material->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			Renderable* renderable = new Renderable(m_mesh, material);
+			Renderable* renderable = new Renderable(NULL, m_mesh, material);
 			m_renderables.push_back(renderable);
 		}
 		///////////////////
@@ -136,7 +136,7 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 			SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_meshRibbon);
 			material->SetGlowMultiplier(guyData->Material->SolidGlowMultiplier);
 
-			Renderable* renderable = new Renderable(m_meshRibbon, material);
+			Renderable* renderable = new Renderable(NULL, m_meshRibbon, material);
 			m_renderables.push_back(renderable);
 		}
 
@@ -146,7 +146,7 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 			material->SetGlowMultiplier(guyData->Material->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			Renderable* renderable = new Renderable(m_meshRibbon, material);
+			Renderable* renderable = new Renderable(NULL, m_meshRibbon, material);
 			m_renderables.push_back(renderable);
 		}
 		///////////////////

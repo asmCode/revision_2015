@@ -352,7 +352,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
 			{
 				GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
-				Renderable* renderable = new Renderable(geoMeshProxy, material);
+				Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material);
 				gameObject->AddRenderable(renderable);
 			}
 		}

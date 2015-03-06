@@ -118,7 +118,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 				material->SetGlowMultiplier(ribbonData->Source->Material->SolidGlowMultiplier);
 				material->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
 
-				m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material, order);
+				m_decomposeAndFlyRenderable = new Renderable(NULL, m_decomposeAndFly->GetMesh(), material, order);
 				m_renderables.push_back(m_decomposeAndFlyRenderable);
 			}
 
@@ -129,7 +129,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 				material->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
 				material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-				m_decomposeAndFlyRenderableWire = new Renderable(m_decomposeAndFly->GetMesh(), material, order);
+				m_decomposeAndFlyRenderableWire = new Renderable(NULL, m_decomposeAndFly->GetMesh(), material, order);
 				m_renderables.push_back(m_decomposeAndFlyRenderableWire);
 			}
 		}
@@ -164,7 +164,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 				material->SetGlowMultiplier(ribbonData->Destination->Material->SolidGlowMultiplier);
 				material->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 
-				m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material, order);
+				m_composeFromRibbonRenderable = new Renderable(NULL, m_composeFromRibbon->GetMesh(), material, order);
 				m_renderables.push_back(m_composeFromRibbonRenderable);
 			}
 
@@ -175,7 +175,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 				material->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 				material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-				m_composeFromRibbonRenderableWire = new Renderable(m_composeFromRibbon->GetMesh(), material, order);
+				m_composeFromRibbonRenderableWire = new Renderable(NULL, m_composeFromRibbon->GetMesh(), material, order);
 				m_renderables.push_back(m_composeFromRibbonRenderableWire);
 			}
 		}
@@ -204,7 +204,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(materialData->SolidGlowMultiplier);
 			material->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity));
 
-			m_staticSourceRenderable = new Renderable(m_staticSource, material, order);
+			m_staticSourceRenderable = new Renderable(NULL, m_staticSource, material, order);
 			m_renderables.push_back(m_staticSourceRenderable);
 		}
 
@@ -215,7 +215,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity));
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_staticSourceRenderableWire = new Renderable(m_staticSource, material, order);
+			m_staticSourceRenderableWire = new Renderable(NULL, m_staticSource, material, order);
 			m_renderables.push_back(m_staticSourceRenderableWire);
 		}
 	}
@@ -243,7 +243,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(materialData->SolidGlowMultiplier);
 			material->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity));
 
-			m_staticDestinationRenderable = new Renderable(m_staticDestination, material, order);
+			m_staticDestinationRenderable = new Renderable(NULL, m_staticDestination, material, order);
 			m_renderables.push_back(m_staticDestinationRenderable);
 		}
 
@@ -254,7 +254,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity));
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_staticDestinationRenderableWire = new Renderable(m_staticDestination, material, order);
+			m_staticDestinationRenderableWire = new Renderable(NULL, m_staticDestination, material, order);
 			m_renderables.push_back(m_staticDestinationRenderableWire);
 		}
 	}

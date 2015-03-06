@@ -1,15 +1,16 @@
 #pragma once
 
+#include "../Component.h"
 #include <Math/Matrix.h>
 
 class BaseMesh;
 class Material;
+class GameObject;
 
-
-class Renderable
+class Renderable : public Component
 {
 public:
-	Renderable(BaseMesh *mesh, Material* material, int order = 0);
+	Renderable(GameObject* gameObject, BaseMesh *mesh, Material* material, int order = 0);
 	virtual ~Renderable();
 
 	virtual void Draw();

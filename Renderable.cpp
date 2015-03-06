@@ -2,7 +2,8 @@
 #include "BaseMesh.h"
 #include <Graphics/Material.h>
 
-Renderable::Renderable(BaseMesh *mesh, Material* material, int order) :
+Renderable::Renderable(GameObject* gameObject, BaseMesh *mesh, Material* material, int order) :
+	Component(gameObject),
 	Transform(sm::Matrix::Identity),
 	m_mesh(mesh),
 	m_material(material),
