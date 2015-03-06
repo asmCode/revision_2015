@@ -9,6 +9,10 @@
 #include "Scenes/BaseScene.h"
 #include "../GeoMeshProxy.h"
 #include "../Renderable.h"
+#include "DemoController.h"
+#include "FuturisEngine/FuturisEngine.h"
+#include "FuturisEngine/BehavioursManager.h"
+#include "Behaviour.h"
 
 #include "SceneElement/RibbonData.h"
 #include "SceneElement/Source.h"
@@ -310,54 +314,93 @@ void SceneLoader::LoadGameObjects(const std::string& sceneName, XMLNode* node)
 	}
 }
 
-GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* node)
+GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* gameObjectNode)
 {
-	if (node == NULL)
+	if (gameObjectNode == NULL)
 		return NULL;
 
-	GameObject* gameObject = new GameObject(node->GetAttribAsString("name"));
+	GameObject* gameObject = new GameObject(gameObjectNode->GetAttribAsString("name"));
 
-	XMLNode* transformNode = node->GetChild("Transform");
-	if (transformNode != NULL)
+	for (uint32_t i = 0; i < gameObjectNode->GetChildrenCount(); i++)
 	{
-		sm::Vec3 position = DemoUtils::ParseVector3(transformNode->GetAttribAsString("position", "0,0,0"), ",");
-		sm::Vec4 rotation = DemoUtils::ParseVector4(transformNode->GetAttribAsString("rotation", "0,1,0,0"), ",");
-		sm::Vec3 scale = DemoUtils::ParseVector3(transformNode->GetAttribAsString("scale", "1,1,1"), ",");
+		XMLNode* node = gameObjectNode->GetChild(i);
+		if (node == NULL)
+			continue;
 
-		gameObject->Transform.SetPosition(position);
-		gameObject->Transform.SetRotation(rotation);
-		gameObject->Transform.SetScale(scale);
-	}
-
-	XMLNode* modelNode = node->GetChild("Model");
-	if (modelNode != NULL)
-	{
-		std::string modelName = modelNode->GetAttribAsString("name");
-		std::string materialName = modelNode->GetAttribAsString("material");
-
-		Model* model = Content::Instance->Get<Model>(modelName);
-		assert(model != NULL);
-
-		Material* material = FindMaterial(materialName);
-		if (material == NULL)
-			material = FindMaterial("ErrorMaterial");
-
-		for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
+		if (node->GetName() == "Transform")
 		{
-			GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
-			Renderable* renderable = new Renderable(geoMeshProxy, material);
-			gameObject->AddRenderable(renderable);
+			sm::Vec3 position = DemoUtils::ParseVector3(node->GetAttribAsString("position", "0,0,0"), ",");
+			sm::Vec4 rotation = DemoUtils::ParseVector4(node->GetAttribAsString("rotation", "0,1,0,0"), ",");
+			sm::Vec3 scale = DemoUtils::ParseVector3(node->GetAttribAsString("scale", "1,1,1"), ",");
+
+			gameObject->Transform.SetPosition(position);
+			gameObject->Transform.SetRotation(rotation);
+			gameObject->Transform.SetScale(scale);
+		}
+		else if (node->GetName() == "Model")
+		{
+			std::string modelName = node->GetAttribAsString("name");
+			std::string materialName = node->GetAttribAsString("material");
+
+			Model* model = Content::Instance->Get<Model>(modelName);
+			assert(model != NULL);
+
+			Material* material = FindMaterial(materialName);
+			if (material == NULL)
+				material = FindMaterial("ErrorMaterial");
+
+			for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
+			{
+				GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
+				Renderable* renderable = new Renderable(geoMeshProxy, material);
+				gameObject->AddRenderable(renderable);
+			}
+		}
+		else if (node->GetName() == "Light")
+		{
+			Light* light = new Light(gameObject);
+			gameObject->SetLight(light);
+		}
+		else if (node->GetName() == "Behaviour")
+		{
+			std::string behaviourName = node->GetAttribAsString("name");
+
+			std::vector<Parameter> parameters;
+			LoadParameters(node, parameters);
+
+			Behaviour* behaviour = DemoController::GetInstance()->m_engine->GetBehavioursManager()->CreateBehaviour(behaviourName, gameObject);
+			
+			for (uint32_t i = 0; i < parameters.size(); i++)
+			{
+				if (parameters[i].GetType() == Parameter::Type_Float)
+					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetFloat());
+				else if (parameters[i].GetType() == Parameter::Type_Vec3)
+					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec3());
+				else if (parameters[i].GetType() == Parameter::Type_Vec4)
+					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec4());
+			}
+
+			gameObject->AddBehaviour(behaviour);
 		}
 	}
 
-	XMLNode* lightlNode = node->GetChild("Light");
-	if (lightlNode != NULL)
-	{
-		Light* light = new Light(gameObject);
-		gameObject->SetLight(light);
-	}
-
 	return gameObject;
+}
+
+void SceneLoader::LoadParameters(XMLNode* parentNode, std::vector<Parameter>& parameters)
+{
+	if (parentNode == NULL)
+		return;
+
+	XMLNode* parametersNode = parentNode->GetChild("Parameters");
+	if (parametersNode == NULL)
+		return;
+
+	for (uint32_t i = 0; i < parametersNode->GetChildrenCount(); i++)
+	{
+		Parameter parameter = LoadParameter(parametersNode->GetChild(i));
+		parameters.push_back(parameter);
+	}
 }
 
 Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)

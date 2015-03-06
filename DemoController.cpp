@@ -333,13 +333,6 @@ void DemoController::RegisterBehaviours()
 	BehavioursManager* behavioursManager = m_engine->GetBehavioursManager();
 
 	behavioursManager->RegisterBehaviour("Jump", new JumpFactory());
-
-	Behaviour* jump = behavioursManager->CreateBehaviour("Jump", NULL);
-
-	jump->SetParameter("f", 1.0f);
-	jump->SetParameter("v", sm::Vec3(1, 2, 3));
-
-	delete behavioursManager;
 }
 
 Animation *anim;

@@ -51,5 +51,6 @@ private:
 
 	Material* FindMaterial(const std::string& materialName);
 
+	void LoadParameters(XMLNode* parentNode, std::vector<Parameter>& parameters);
 	Parameter LoadParameter(XMLNode* parameterNode);
 };
