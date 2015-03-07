@@ -28,6 +28,7 @@
 #include "Light.h"
 #include "FuturisEngine/FuturisEngine.h"
 #include "FuturisEngine/BehavioursManager.h"
+#include "FuturisEngine/Screen.h"
 
 #include "Behaviours/Jump.h"
 #include "Behaviours/JumpFactory.h"
@@ -223,6 +224,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	tmp_progress = 0.0f;
 
 	frustum = new Frustum();
+
+	Screen::Width = width;
+	Screen::Height = height;
 
 	this->width = width;
 	this->height = height;

@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Renderable.h"
 #include "Light.h"
+#include "Camera.h"
 #include <stddef.h>
 
 GameObject::GameObject(const std::string& name) :
@@ -51,6 +52,16 @@ void GameObject::SetLight(Light* light)
 Light* GameObject::GetLight() const
 {
 	return m_light;
+}
+
+void GameObject::SetCamera(Camera* camera)
+{
+	m_camera = camera;
+}
+
+Camera* GameObject::GetCamera() const
+{
+	return m_camera;
 }
 
 void GameObject::AddBehaviour(Behaviour* behaviour)

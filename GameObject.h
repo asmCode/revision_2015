@@ -6,6 +6,7 @@
 
 class Renderable;
 class Light;
+class Camera;
 class Behaviour;
 
 class GameObject
@@ -32,6 +33,9 @@ public:
 	void SetLight(Light* light);
 	Light* GetLight() const;
 
+	void SetCamera(Camera* camera);
+	Camera* GetCamera() const;
+
 	void AddBehaviour(Behaviour* behaviour);
 	const std::vector<Behaviour*>& GetBehaviours() const;
 
@@ -40,6 +44,7 @@ protected:
 	std::vector<Behaviour*> m_behaviours;
 
 	Light* m_light;
+	Camera* m_camera;
 
 	bool m_isActive;
 	std::string m_name;
