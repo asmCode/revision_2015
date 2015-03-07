@@ -15,6 +15,10 @@ public:
 
 	const sm::Vec3& GetPosition() const;
 
+	sm::Vec3 GetForward();
+	sm::Vec3 GetRight();
+	sm::Vec3 GetUp();
+
 	const sm::Matrix& GetMatrix();
 
 private:

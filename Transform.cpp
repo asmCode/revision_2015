@@ -32,6 +32,30 @@ const sm::Vec3& Transform::GetPosition() const
 	return m_position;
 }
 
+sm::Vec3 Transform::GetForward()
+{
+	if (m_isDirty)
+		UpdateMatrix();
+
+	return sm::Vec3(m_matrix.a[8], m_matrix.a[9], m_matrix.a[10]);
+}
+
+sm::Vec3 Transform::GetRight()
+{
+	if (m_isDirty)
+		UpdateMatrix();
+
+	return sm::Vec3(m_matrix.a[0], m_matrix.a[1], m_matrix.a[2]);
+}
+
+sm::Vec3 Transform::GetUp()
+{
+	if (m_isDirty)
+		UpdateMatrix();
+
+	return sm::Vec3(m_matrix.a[4], m_matrix.a[5], m_matrix.a[6]);
+}
+
 const sm::Matrix& Transform::GetMatrix()
 {
 	if (m_isDirty)
