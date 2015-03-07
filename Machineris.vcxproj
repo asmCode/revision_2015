@@ -135,6 +135,7 @@ exit /B 0
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
     <ClCompile Include="FuturisEngine\ParameterPointer.cpp" />
     <ClCompile Include="FuturisEngine\Screen.cpp" />
+    <ClCompile Include="FuturisEngine\Time.cpp" />
     <ClCompile Include="GeoMeshProxy.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
@@ -293,6 +294,7 @@ exit /B 0
     <ClInclude Include="FuturisEngine\ParametersContainer.h" />
     <ClInclude Include="FuturisEngine\ParameterPointer.h" />
     <ClInclude Include="FuturisEngine\Screen.h" />
+    <ClInclude Include="FuturisEngine\Time.h" />
     <ClInclude Include="IBehaviourFactory.h" />
     <ClInclude Include="Behaviours\Jump.h" />
     <ClInclude Include="Behaviours\JumpFactory.h" />

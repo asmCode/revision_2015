@@ -71,7 +71,7 @@ void Camera::SetProjectionType(ProjectionType projectionType)
 
 const sm::Matrix& Camera::GetViewMatrix()
 {
-	m_view = m_gameObject->Transform.GetMatrix().GetInversed();
+	m_view = m_gameObject->Transform.GetMatrix().GetInversed(); // TODO: optymalizacja!!
 
 	return m_view;
 }

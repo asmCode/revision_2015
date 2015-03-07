@@ -29,6 +29,7 @@
 #include "FuturisEngine/FuturisEngine.h"
 #include "FuturisEngine/BehavioursManager.h"
 #include "FuturisEngine/Screen.h"
+#include "FuturisEngine/Time.h"
 
 #include "Behaviours/Jump.h"
 #include "Behaviours/JumpFactory.h"
@@ -552,6 +553,9 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
+	Time::TimeLeft = time;
+	Time::DeltaTime = seconds;
+
 	m_engine->GetBehavioursManager()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
