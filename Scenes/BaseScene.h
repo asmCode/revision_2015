@@ -4,6 +4,7 @@
 
 class GameObject;
 class Light;
+class Camera;
 class Renderable;
 class ICamera;
 class Animation;
@@ -28,6 +29,7 @@ public:
 	const std::vector<GameObject*>& GetGameObjects() const;
 	const std::vector<Renderable*>& GetRenderables() const;
 	const std::vector<Light*>& GetLights() const;
+	const std::vector<Camera*>& GetCameras() const;
 
 	virtual ICamera* GetCamera() const;
 
@@ -42,6 +44,7 @@ protected:
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<Renderable*> m_renderables;
 	std::vector<Light*> m_lights;
+	std::vector<Camera*> m_cameras;
 
 	AnimCameraManager* m_camerasManager;
 	Animation* m_camerasAnimation;

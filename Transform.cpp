@@ -43,9 +43,9 @@ const sm::Matrix& Transform::GetMatrix()
 void Transform::UpdateMatrix()
 {
 	m_matrix =
-		sm::Matrix::ScaleMatrix(m_scale) *
+		sm::Matrix::TranslateMatrix(m_position) *
 		sm::Matrix::RotateAxisMatrix(m_rotation.w, m_rotation.x, m_rotation.y, m_rotation.z) *
-		sm::Matrix::TranslateMatrix(m_position);
+		sm::Matrix::ScaleMatrix(m_scale);
 
 	m_isDirty = false;
 }

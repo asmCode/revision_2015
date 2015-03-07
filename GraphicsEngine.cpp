@@ -4,6 +4,7 @@
 #include "DrawingRoutines.h"
 #include "Quad.h"
 #include "Light.h"
+#include "Camera.h"
 #include "RenderableSort.h"
 #include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
@@ -139,13 +140,27 @@ void GraphicsEngine::SetLights(const std::vector<Light*>& lights)
 	m_lights.insert(m_lights.begin(), lights.begin(), lights.end());
 }
 
+void GraphicsEngine::SetCameras(const std::vector<Camera*>& cameras)
+{
+	m_cameras.insert(m_cameras.begin(), cameras.begin(), cameras.end());
+}
+
 void GraphicsEngine::RenderGameObjects()
 {
 	if (m_lights.size() > 0)
 		BuiltInShaderParams::m_paramPointLightPosition = m_lights[0]->GetGameObject()->Transform.GetPosition();
 
+	if (m_cameras.size() > 0)
+	{
+		BuiltInShaderParams::m_paramView = m_cameras[0]->GetViewMatrix();
+		BuiltInShaderParams::m_paramProj = m_cameras[0]->GetProjMatrix();
+		BuiltInShaderParams::m_paramViewProj = m_cameras[0]->GetViewProjMatrix();
+	}
+
 	//m_mainFrame->BindFramebuffer();
-	glViewport(0, 0, m_screenWidth, m_screenHeight);
+	//glViewport(0, 0, m_screenWidth, m_screenHeight);
+
+	m_cameras[0]->Setup();
 
 	/*
 	GLenum enabledBuffers[2];

@@ -8,7 +8,8 @@ GameObject::GameObject(const std::string& name) :
 	m_name(name),
 	WorldMatrix(sm::Matrix::Identity),
 	m_isActive(true),
-	m_light(NULL)
+	m_light(NULL),
+	m_camera(NULL)
 {
 }
 

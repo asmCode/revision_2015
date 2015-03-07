@@ -6,7 +6,7 @@
 
 const Camera::ClearFlag Camera::DefaultClearFlag = Camera::ClearFlag_ColorAndDepth;
 const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionType_Perspective;
-const float Camera::DefaultFov = 3.1415f / 3.0f;
+const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
 const float Camera::DefaultNearPlane = 0.1f;
 const float Camera::DefaultFarPlane = 100.0f;
 
@@ -82,7 +82,7 @@ const sm::Matrix& Camera::GetProjMatrix()
 	{
 		m_proj = sm::Matrix::PerspectiveMatrix(
 			m_horizontalFov,
-			(float)m_viewportRect.Width / (float)m_viewportRect.Height,
+			GetAspect(),
 			m_nearPlane,
 			m_farPlane);
 	}
@@ -112,4 +112,11 @@ void Camera::Setup()
 		(int)((float)Screen::Height * m_viewportRect.Y),
 		(int)((float)Screen::Width * m_viewportRect.Width),
 		(int)((float)Screen::Height * m_viewportRect.Height));
+}
+
+float Camera::GetAspect() const
+{
+	return
+		((float)Screen::Width * m_viewportRect.Width) /
+		((float)Screen::Height * m_viewportRect.Height);
 }

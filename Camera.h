@@ -58,4 +58,6 @@ private:
 	sm::Matrix m_view;
 	sm::Matrix m_proj;
 	sm::Matrix m_viewProj;
+
+	float GetAspect() const;
 };

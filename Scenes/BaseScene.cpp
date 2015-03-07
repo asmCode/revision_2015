@@ -29,6 +29,11 @@ const std::vector<Light*>& BaseScene::GetLights() const
 	return m_lights;
 }
 
+const std::vector<Camera*>& BaseScene::GetCameras() const
+{
+	return m_cameras;
+}
+
 ICamera* BaseScene::GetCamera() const
 {
 	return m_activeCamera;
@@ -48,6 +53,10 @@ bool BaseScene::Initialize()
 		Light* light = m_gameObjects[i]->GetLight();
 		if (light != NULL)
 			m_lights.push_back(light);
+
+		Camera* camera = m_gameObjects[i]->GetCamera();
+		if (camera != NULL)
+			m_cameras.push_back(camera);
 	}
 
 	return true;

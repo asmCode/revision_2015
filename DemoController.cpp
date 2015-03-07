@@ -509,6 +509,7 @@ bool DemoController::LoadContent(const char *basePath)
 
 	m_graphicsEngine->SetRenderables(scene->GetRenderables());
 	m_graphicsEngine->SetLights(scene->GetLights());
+	m_graphicsEngine->SetCameras(scene->GetCameras());
 
 	Log::LogT("Loaded all assets in %.2f s", loadContentStopwatch.GetTime());
 
