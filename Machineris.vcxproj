@@ -122,6 +122,8 @@ exit /B 0
     <ClCompile Include="AssemblingScene.cpp" />
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Behaviours\FppCamera.cpp" />
+    <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
     <ClCompile Include="Behaviours\Jump.cpp" />
     <ClCompile Include="Behaviours\JumpFactory.cpp" />
     <ClCompile Include="Billboard.cpp" />
@@ -287,6 +289,8 @@ exit /B 0
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Behaviours\FppCamera.h" />
+    <ClInclude Include="Behaviours\FppCameraFactory.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />

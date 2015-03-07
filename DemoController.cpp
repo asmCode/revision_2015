@@ -33,6 +33,7 @@
 
 #include "Behaviours/Jump.h"
 #include "Behaviours/JumpFactory.h"
+#include "Behaviours/FppCameraFactory.h"
 
 #include "ScenesManager.h"
 
@@ -338,6 +339,7 @@ void DemoController::RegisterBehaviours()
 	BehavioursManager* behavioursManager = m_engine->GetBehavioursManager();
 
 	behavioursManager->RegisterBehaviour("Jump", new JumpFactory());
+	behavioursManager->RegisterBehaviour("FppCamera", new FppCameraFactory());
 }
 
 Animation *anim;
