@@ -1,10 +1,23 @@
 #include "Camera.h"
 #include "GameObject.h"
 #include "FuturisEngine/Screen.h"
+#include <Math/MathUtils.h>
 #include <GL/glew.h>
 
+const Camera::ClearFlag Camera::DefaultClearFlag = Camera::ClearFlag_ColorAndDepth;
+const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionType_Perspective;
+const float Camera::DefaultFov = 3.1415f / 3.0f;
+const float Camera::DefaultNearPlane = 0.1f;
+const float Camera::DefaultFarPlane = 100.0f;
+
 Camera::Camera(GameObject* gameObject) :
-	Component(gameObject)
+	Component(gameObject),
+	m_clearFlag(DefaultClearFlag),
+	m_projectionType(DefaultProjectionType),
+	m_horizontalFov(DefaultFov),
+	m_nearPlane(DefaultNearPlane),
+	m_farPlane(DefaultFarPlane),
+	m_viewportRect(0, 0, 1, 1)
 {
 }
 

@@ -41,12 +41,18 @@ public:
 	void Setup();
 
 private:
+	static const ClearFlag DefaultClearFlag;
+	static const ProjectionType DefaultProjectionType;
+	static const float DefaultFov;
+	static const float DefaultNearPlane;
+	static const float DefaultFarPlane;
+
 	ClearFlag m_clearFlag;
 	ProjectionType m_projectionType;
 
 	float m_horizontalFov;
-	float m_farPlane;
 	float m_nearPlane;
+	float m_farPlane;
 	sm::Rect<float> m_viewportRect;
 
 	sm::Matrix m_view;

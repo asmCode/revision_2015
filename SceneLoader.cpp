@@ -34,6 +34,7 @@
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
 #include "Light.h"
+#include "Camera.h"
 
 #include <Utils/StringUtils.h>
 
@@ -360,6 +361,11 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 		{
 			Light* light = new Light(gameObject);
 			gameObject->SetLight(light);
+		}
+		else if (node->GetName() == "Camera")
+		{
+			Camera* camera = new Camera(gameObject);
+			gameObject->SetCamera(camera);
 		}
 		else if (node->GetName() == "Behaviour")
 		{
