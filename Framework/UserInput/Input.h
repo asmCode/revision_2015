@@ -19,7 +19,7 @@ private:
 
 	static int m_keyMap[KeyCode::Count];
 
-	// user do simulate static constructor
+	// use do simulate static constructor
 	static bool m_constructorTrigger;
 
 	static bool Constructor();

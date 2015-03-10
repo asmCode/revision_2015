@@ -6,7 +6,7 @@ ManCam::ManCam()
 
 	position.Set(0, 0, 0);
 
-	position.Set(0, 0, 2);
+	position.Set(0, 0, 4);
 
 	yaw = 0.0f;
 	pitch = 0.0f;
@@ -167,7 +167,7 @@ sm::Vec3 ManCam::GetPosition()
 
 float ManCam::GetFov(float time)
 {
-	return rad(90.0f);
+	return rad(60.0f);
 }
 
 float ManCam::GetFocal(float time)

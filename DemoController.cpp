@@ -297,35 +297,6 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	Billboard::Initialize();
 
- //m_lightViewMatrix.a[0] = 0.8616f;
- //m_lightViewMatrix.a[1] = 0.2764f;
- //m_lightViewMatrix.a[2] = -0.4257f;
- //m_lightViewMatrix.a[3] = 0.0000f;
- //m_lightViewMatrix.a[4] = 0.0000f;
- //m_lightViewMatrix.a[5] = 0.8387f;
- //m_lightViewMatrix.a[6] = 0.5446f;
- //m_lightViewMatrix.a[7] = 0.0000f;
- //m_lightViewMatrix.a[8] = 0.5075f;
- //m_lightViewMatrix.a[9] = -0.4693f;
- //m_lightViewMatrix.a[10] = 0.7226f;
- //m_lightViewMatrix.a[11] = 0.0000f;
- //m_lightViewMatrix.a[12] = -0.0708f;
- //m_lightViewMatrix.a[13] = 1.4161f;
- //m_lightViewMatrix.a[14] = -7.5742f;
- //m_lightViewMatrix.a[15] = 1.0000f;
-
-	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
-
-	/*m_scenes.push_back(new Test1Scene());
-	m_scenes.push_back(new GlowTestScene());
-	m_scenes.push_back(new BoneAnimTestScene());
-	m_scenes.push_back(new GuySceneTest());
-	m_scenes.push_back(new CamsTestScene());
-	m_scenes.push_back(new Scene01());
-	m_scenes.push_back(new Scene03());
-
-	m_activeScene = m_scenes[5];*/
-
 	m_engine = new FuturisEngine();
 	m_engine->Initialize();
 
@@ -1009,7 +980,7 @@ bool DemoController::Draw(float time, float seconds)
 	DrawText(fpsText, 4, height - 180, 255, 0, 0);
 #endif
 
-	VectorGraphics::SetViewProjMatrix(m_viewProj);
+	VectorGraphics::SetViewProjMatrix(BuiltInShaderParams::m_paramViewProj);
 	GraphicsLog::DrawAndClear();
 
 	glWnd ->SwapBuffers();

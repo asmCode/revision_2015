@@ -4,6 +4,7 @@
 
 #include "Vec3.h"
 #include "Vec4.h"
+#include "Quat.h"
 
 //[0] [4] [8]  [12]     [0]
 //[1] [5] [9]  [13]     [1]
@@ -226,6 +227,35 @@ namespace sm
 			return matrix;
 		}
 
+		static Matrix Rotate(const Quat& rotation)
+		{
+			Matrix matrix;
+
+			float w = rotation.s;
+			float x = rotation.v.x;
+			float y = rotation.v.y;
+			float z = rotation.v.z;
+			
+			matrix.a[0] = 1.0f - 2.0f * y * y - 2 * z * z;
+			matrix.a[1] = 2.0f * x * y + 2.0f * z * w;
+			matrix.a[2] = 2.0f * x * z - 2.0f * y * w;
+			matrix.a[3] = 0.0f;
+			matrix.a[4] = 2.0f * x * y - 2.0f * z * w;
+			matrix.a[5] = 1.0f - 2.0f * x * x - 2.0f * z * z;
+			matrix.a[6] = 2.0f * y * z + 2.0f * x * w;
+			matrix.a[7] = 0.0f;
+			matrix.a[8] = 2.0f * x * z + 2.0f * y * w;
+			matrix.a[9] = 2.0f * y * z - 2.0f * x * w;
+			matrix.a[10] = 1.0f - 2.0f * x * x - 2.0f * y * y;
+			matrix.a[11] = 0.0f;
+			matrix.a[12] = 0.0f;
+			matrix.a[13] = 0.0f;
+			matrix.a[14] = 0.0f;
+			matrix.a[15] = 1.0f;
+
+			return matrix;
+		}
+
 		static Matrix PerspectiveMatrix(float fovH, float aspect, float znear, float zfar)
 		{
 			Matrix matrix = Identity;
@@ -335,27 +365,7 @@ namespace sm
 			a[(column * 4) + row] = value;
 		}
 
-		static Matrix CreateLookAt(const sm::Vec3 &direction, const sm::Vec3 &up)
-		{
-			sm::Matrix rot = sm::Matrix::Identity;
-
-			sm::Vec3 right = (direction * up).GetNormalized();
-			sm::Vec3 yAxis = right * direction;
-
-			rot.a[0] = right.x;
-			rot.a[1] = right.y;
-			rot.a[2] = right.z;
-
-			rot.a[4] = up.x;
-			rot.a[5] = up.y;
-			rot.a[6] = up.z;
-
-			rot.a[8] = direction.x;
-			rot.a[9] = direction.y;
-			rot.a[10] = direction.z;
-
-			return rot;
-		}
+		static Matrix CreateLookAt(const sm::Vec3 &forward, const sm::Vec3 &worldUp = sm::Vec3(0, 1, 0));
 	};
 }
 

@@ -6,6 +6,8 @@
 
 namespace sm
 {
+	class Matrix;
+
 	class Quat
 	{
 	private:
@@ -90,16 +92,14 @@ namespace sm
 
 		void RotateToQuat(float a, float x, float y, float z)
 		{
-			v.Set(x, y, z);
-			v = v * sinf(a/2.0f);
+			v = sm::Vec3(x, y, z) * sinf(a/2.0f);
 			s = cosf(a/2.0f);
 			Normalize();
 		}
 
-		void RotateToQuat(float a, Vec3 axis)
+		void RotateToQuat(float a, const Vec3& axis)
 		{
-			v = axis;
-			v = v * sinf(a / 2.0f);
+			v = axis * sinf(a / 2.0f);
 			s = cosf(a / 2.0f);
 			Normalize();
 		}
@@ -143,5 +143,9 @@ namespace sm
 
 			return ret.v;
 		}
+
+		static Quat FromAngleAxis(float angle, const sm::Vec3& axis);
+		static Quat FromOrtogonalMatrix(const sm::Matrix& matrix);
+		static Quat FromToRotate(const sm::Vec3& from, const sm::Vec3& to);
 	};
 }

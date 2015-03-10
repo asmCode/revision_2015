@@ -132,6 +132,7 @@ exit /B 0
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="Framework\Graphics\BaseTexture.cpp" />
     <ClCompile Include="Framework\Graphics\BuiltInShaderParams.cpp" />
+    <ClCompile Include="Framework\Math\Quat.cpp" />
     <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
     <ClCompile Include="FuturisEngine\FuturisEngine.cpp" />
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
