@@ -60,14 +60,7 @@ sm::Vec3 Transform::GetUp()
 
 void Transform::SetForward(const sm::Vec3& forward)
 {
-	sm::Vec3 forwardProjXZ = sm::Vec3(forward.x, 0, forward.z).GetNormalized();
-
-	GraphicsLog::AddSegment(GetPosition(), GetPosition() + forwardProjXZ * 0.5f, sm::Vec3(1, 1, 0));
-
-	sm::Quat rotationX = sm::Quat::FromToRotate(sm::Vec3(0, 0, 1), forwardProjXZ);
-	sm::Quat rotationY = sm::Quat::FromToRotate(forwardProjXZ, forward);
-
-	SetRotation(rotationX * rotationY);
+	SetRotation(sm::Quat::LookRotation(forward));
 }
 
 const sm::Matrix& Transform::GetMatrix()

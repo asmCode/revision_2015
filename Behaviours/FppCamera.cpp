@@ -50,37 +50,18 @@ void FppCamera::Update()
 
 	m_gameObject->Transform.SetPosition(position);
 
-	/*
-	sm::Vec3 axis(12, 31, -43);
-	axis.Normalize();
-
-	sm::Quat quat;
-	quat.RotateToQuat(0.342f, axis);
-	
-	sm::Matrix m1 = sm::Matrix::RotateAxisMatrix(0.342f, axis);
-	sm::Matrix m2 = sm::Matrix::Rotate(quat);
-	int d = 0;
-	*/
-
-	//sm::Vec3 forward = m_gameObject->Transform.GetForward();
-	sm::Vec3 forward = sm::Vec3(0, 0, 1);
 	sm::Quat rotation =
 		sm::Quat::FromAngleAxis(angleY, sm::Vec3(0, 1, 0)) *
 		sm::Quat::FromAngleAxis(angleX, sm::Vec3(1, 0, 0));
 
-	sm::Quat cipla = rotation;
-	cipla.Normalize();
-
-	forward = cipla.Rotate(forward);
-	forward.Normalize();
-
-//	forward = sm::Quat::FromAngleAxis(angleX, sm::Vec3(1, 0, 0)).Rotate(sm::Vec3(0, 0, 1)).GetNormalized();
-//	forward = sm::Quat::FromAngleAxis(angleY, sm::Vec3(0, 1, 0)).Rotate(forward).GetNormalized();
+	sm::Vec3 forward = rotation.Rotate(sm::Vec3(0, 0, 1));
 
 	m_gameObject->Transform.SetForward(forward);
 
+	/*
 	GraphicsLog::AddSegment(position, position + forward);
-	//GraphicsLog::AddSegment(position, position + m_gameObject->Transform.GetForward(), sm::Vec3(0, 0, 1));
+	GraphicsLog::AddSegment(position, position + m_gameObject->Transform.GetForward(), sm::Vec3(0, 0, 1));
 	GraphicsLog::AddSegment(position, position + m_gameObject->Transform.GetUp(), sm::Vec3(0, 1, 0));
 	GraphicsLog::AddSegment(position, position + m_gameObject->Transform.GetRight(), sm::Vec3(1, 0, 0));
+	*/
 }

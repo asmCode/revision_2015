@@ -30,11 +30,35 @@ namespace sm
 	}
 	*/
 
+	Quat Quat::operator * (const Quat& q)
+	{
+		Quat quat;
+
+		quat.s = s * q.s - v.x * q.v.x - v.y * q.v.y - v.z * q.v.z;
+		quat.v.x = s * q.v.x + v.x * q.s - v.y * q.v.z + v.z * q.v.y;
+		quat.v.y = s * q.v.y + v.x * q.v.z + v.y * q.s - v.z * q.v.x;
+		quat.v.z = s * q.v.z - v.x * q.v.y + v.y * q.v.x + v.z * q.s;
+
+		return quat;
+	}
+
 	Quat Quat::FromToRotate(const sm::Vec3& from, const sm::Vec3& to)
 	{
-		sm::Vec3 axis = (to * from).GetNormalized();
+		sm::Vec3 axis = (from * to).GetNormalized();
 		float angle = sm::Vec3::GetAngle(from, to);
 
 		return Quat::FromAngleAxis(angle, axis);
+	}
+
+	Quat Quat::LookRotation(const sm::Vec3& direction, const sm::Vec3& up)
+	{
+		Quat quat = FromToRotate(sm::Vec3(0, 0, 1), direction);
+
+		sm::Vec3 oldRight = quat.Rotate(sm::Vec3(1, 0, 0));
+		sm::Vec3 newRight = (direction * up).GetNormalized();
+
+		quat = FromToRotate(oldRight, newRight) * quat;
+
+		return quat;
 	}
 }

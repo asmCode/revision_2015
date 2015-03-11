@@ -236,6 +236,8 @@ namespace sm
 			float y = rotation.v.y;
 			float z = rotation.v.z;
 			
+			
+			/*
 			matrix.a[0] = 1.0f - 2.0f * y * y - 2 * z * z;
 			matrix.a[1] = 2.0f * x * y + 2.0f * z * w;
 			matrix.a[2] = 2.0f * x * z - 2.0f * y * w;
@@ -252,6 +254,26 @@ namespace sm
 			matrix.a[13] = 0.0f;
 			matrix.a[14] = 0.0f;
 			matrix.a[15] = 1.0f;
+			*/
+			
+			
+			matrix.a[0] = 1.0f - 2.0f * y * y - 2.0f * z * z;
+			matrix.a[1] = 2.0f * x * y - 2.0f * z * w;
+			matrix.a[2] = 2.0f * x * z + 2.0f * y * w;
+			matrix.a[3] = 0.0f;
+			matrix.a[4] = 2.0f * x * y + 2.0f * z * w;
+			matrix.a[5] = 1.0f - 2.0f * x * x - 2.0f * z * z;
+			matrix.a[6] = 2.0f * y * z - 2.0f * x * w;
+			matrix.a[7] = 0.0f;
+			matrix.a[8] = 2.0f * x * z - 2.0f * y * w;
+			matrix.a[9] = 2.0f * y * z + 2.0f * x * w;
+			matrix.a[10] = 1.0f - 2.0f * x * x - 2.0f * y * y;
+			matrix.a[11] = 0.0f;
+			matrix.a[12] = 0.0f;
+			matrix.a[13] = 0.0f;
+			matrix.a[14] = 0.0f;
+			matrix.a[15] = 1.0f;
+			
 
 			return matrix;
 		}

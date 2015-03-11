@@ -53,17 +53,7 @@ namespace sm
 			return ret;
 		}
 
-		Quat operator * (Quat q)
-		{
-			Quat ret;
-			Vec3 v1, v2, v3;
-			v1 = v * q.s;
-			v2 = q.v * s;
-			v3 = v * q.v;
-			ret.v = v1 + v2 + v3;
-			ret.s = (s * q.s) - Vec3::Dot(v, q.v);
-			return ret;
-		}
+		Quat operator * (const Quat& q);
 
 		Quat operator * (float s)
 		{
@@ -147,5 +137,6 @@ namespace sm
 		static Quat FromAngleAxis(float angle, const sm::Vec3& axis);
 		static Quat FromOrtogonalMatrix(const sm::Matrix& matrix);
 		static Quat FromToRotate(const sm::Vec3& from, const sm::Vec3& to);
+		static Quat LookRotation(const sm::Vec3& direction, const sm::Vec3& up = sm::Vec3(0, 1, 0));
 	};
 }
