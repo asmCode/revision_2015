@@ -58,5 +58,9 @@ enum KeyCode
 	KeyCode_LShift,
 	KeyCode_LCtrl,
 
+	KeyCode_Mouse0,
+	KeyCode_Mouse1,
+	KeyCode_Mouse2,
+
 	Count
 };

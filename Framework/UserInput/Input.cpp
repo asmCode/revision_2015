@@ -68,6 +68,10 @@ bool Input::Constructor()
 	Input::m_keyMap[KeyCode_LShift] = VK_LSHIFT;
 	Input::m_keyMap[KeyCode_LCtrl] = VK_LCONTROL;
 
+	Input::m_keyMap[KeyCode_Mouse0] = VK_LBUTTON;
+	Input::m_keyMap[KeyCode_Mouse1] = VK_MBUTTON;
+	Input::m_keyMap[KeyCode_Mouse2] = VK_RBUTTON;
+
 	return true;
 }
 
@@ -110,3 +114,10 @@ bool Input::GetKeyUp(KeyCode keyCode)
 	return m_justReleased[keyCode];
 }
 
+sm::Point<int> Input::GetMousePosition()
+{
+	POINT mousePosition;
+	GetCursorPos(&mousePosition);
+
+	return sm::Point<int>((int)mousePosition.x, (int)mousePosition.y);
+}
