@@ -12,8 +12,6 @@ class Behaviour;
 class GameObject
 {
 public:
-	sm::Matrix WorldMatrix;
-
 	Transform Transform;
 
 	GameObject(const std::string& name);

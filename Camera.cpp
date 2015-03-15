@@ -7,8 +7,8 @@
 const Camera::ClearFlag Camera::DefaultClearFlag = Camera::ClearFlag_ColorAndDepth;
 const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionType_Perspective;
 const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
-const float Camera::DefaultNearPlane = 0.1f;
-const float Camera::DefaultFarPlane = 100.0f;
+const float Camera::DefaultNearPlane = 1.0f;
+const float Camera::DefaultFarPlane = 1000.0f;
 
 Camera::Camera(GameObject* gameObject) :
 	Component(gameObject),

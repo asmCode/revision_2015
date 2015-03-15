@@ -12,6 +12,7 @@
 #include "Scenes/RevisionTest01.h"
 #include "SceneLoader.h"
 #include "Scenes/BaseScene.h"
+#include "../Environment.h"
 
 ScenesManager::ScenesManager() :
 	m_isSceneChanged(false),
@@ -33,9 +34,12 @@ void ScenesManager::Initialize()
 	m_scenes.push_back(new Scene09());
 	*/
 
-	BaseScene* baseScene = new BaseScene();
+	//BaseScene* baseScene = new BaseScene();
 	SceneLoader sceneLoader;
-	sceneLoader.LoadFromFile(baseScene, "eee");
+
+	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\NewEngineTest.scene";
+	sceneLoader.LoadAdditive(sceneFileName);
+	BaseScene* baseScene = sceneLoader.BuildScene();
 
 	m_scenes.push_back(baseScene);
 

@@ -30,7 +30,24 @@ class SceneLoader
 public:
 	bool LoadFromFile(BaseScene* scene, const std::string& sceneName);
 
+	// Doladowuje dane ze sceny z innego pliku xml.
+	bool LoadAdditive(const std::string& filename);
+	BaseScene* BuildScene();
+
 private:
+	class Object
+	{
+	public:
+		Object(XMLNode* xmlNode, const std::string& sceneName) :
+			XMLNode(xmlNode),
+			SceneName(sceneName)
+		{
+		}
+
+		XMLNode* XMLNode;
+		std::string SceneName;
+	};
+
 	BaseScene* m_loadingScene;
 
 	std::map<std::string, Material*> m_materials;
@@ -53,4 +70,8 @@ private:
 
 	void LoadParameters(XMLNode* parentNode, std::vector<Parameter>& parameters);
 	Parameter LoadParameter(XMLNode* parameterNode);
+
+	std::vector<Object> m_materialNodes;
+	std::vector<Object> m_gameObjectNodes;
 };
+

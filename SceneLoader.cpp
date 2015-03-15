@@ -38,6 +38,8 @@
 #include "Light.h"
 #include "Camera.h"
 
+
+#include <IO/Path.h>
 #include <Utils/StringUtils.h>
 
 #include <XML/XMLNode.h>
@@ -60,33 +62,46 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 
 	std::string path = Environment::GetInstance()->GetBasePath() + "Scenes\\" + sceneName + ".scene";
 
-	XMLNode* node = XMLLoader::LoadFromFile(path);
-	if (node == NULL)
+	XMLNode* rootNode = XMLLoader::LoadFromFile(path);
+	if (rootNode == NULL)
 		return false;
 
 	Log::LogT("Loading xml time: %.2f", stopwatch.GetTime());
 
-	stopwatch.ResetAndStart();
+	scene->m_name = rootNode->GetAttribAsString("name");
 
-	scene->m_name = node->GetAttribAsString("name");
-
-	XMLNode* materialsNode = node->GetChild("Materials");
-	if (materialsNode != NULL)
+	for (uint32_t rootIndex = 0; rootIndex < rootNode->GetChildrenCount(); rootIndex++)
 	{
-		for (uint32_t i = 0; i < materialsNode->GetChildrenCount(); i++)
+		XMLNode* node = rootNode->GetChild(rootIndex);
+		if (node == NULL)
+			continue;
+
+		if (node->GetName() == "IncludeScene")
 		{
-			Material* material = LoadMaterial(materialsNode->GetChild(i));
-			if (material != NULL)
-				m_materials[material->GetName()] = material;
+
+		}
+		else if (node->GetName() == "Materials")
+		{
+			stopwatch.ResetAndStart();
+
+			for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+			{
+				Material* material = LoadMaterial(node->GetChild(i));
+				if (material != NULL)
+					m_materials[material->GetName()] = material;
+			}
+
+			Log::LogT("Loading materials time: %.2f", stopwatch.GetTime());
+		}
+		else if (node->GetName() == "GameObjects")
+		{
+			stopwatch.ResetAndStart();
+
+			LoadGameObjects(sceneName, node);
+
+			Log::LogT("Loading GameObjects time: %.2f", stopwatch.GetTime());
 		}
 	}
-
-	Log::LogT("Loading materials time: %.2f", stopwatch.GetTime());
-	stopwatch.ResetAndStart();
-
-	XMLNode* gameObjectsNode = node->GetChild("GameObjects");
-	if (gameObjectsNode != NULL)
-		LoadGameObjects(sceneName, gameObjectsNode);
 
 	return true;
 
@@ -105,7 +120,7 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 		}
 	}
 	*/
-
+	/*
 	Log::LogT("Loading static time: %.2f", stopwatch.GetTime());
 	stopwatch.ResetAndStart();
 
@@ -143,6 +158,7 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 	}
 
 	return true;
+	*/
 }
 
 SceneElement::Path* SceneLoader::LoadPath(XMLNode* node)
@@ -388,9 +404,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 		else if (node->GetName() == "Camera")
 		{
 			Camera* camera = new Camera(gameObject);
-			camera->SetFov(node->GetAttribAsFloat("fov"));
-			camera->SetNearPlane(node->GetAttribAsFloat("near_plane"));
-			camera->SetFarPlane(node->GetAttribAsFloat("far_plane"));
+			camera->SetFov(node->GetAttribAsFloat("fov", Camera::DefaultFov));
+			camera->SetNearPlane(node->GetAttribAsFloat("near_plane", Camera::DefaultNearPlane));
+			camera->SetFarPlane(node->GetAttribAsFloat("far_plane", Camera::DefaultFarPlane));
 
 			gameObject->SetCamera(camera);
 		}
@@ -465,3 +481,77 @@ Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)
 
 	return parameter;
 }
+
+bool SceneLoader::LoadAdditive(const std::string& filename)
+{
+	Path scenePath(filename);
+
+	std::string sceneName = scenePath.GetFilename();
+
+	std::vector<XMLNode*> includeNodes;
+
+	XMLNode* rootNode = XMLLoader::LoadFromFile(filename);
+
+	for (uint32_t rootIndex = 0; rootIndex < rootNode->GetChildrenCount(); rootIndex++)
+	{
+		XMLNode* node = rootNode->GetChild(rootIndex);
+		if (node == NULL)
+			continue;
+
+		if (node->GetName() == "IncludeScene")
+		{
+			includeNodes.push_back(node);
+		}
+		else if (node->GetName() == "Materials")
+		{
+			for (uint32_t materialIndex = 0; materialIndex < node->GetChildrenCount(); materialIndex++)
+			{
+				XMLNode* materialNode = node->GetChild(materialIndex);
+				if (materialNode != NULL)
+					m_materialNodes.push_back(Object(materialNode, sceneName));
+			}
+		}
+		else if (node->GetName() == "GameObjects")
+		{
+			for (uint32_t gameObjectIndex = 0; gameObjectIndex < node->GetChildrenCount(); gameObjectIndex++)
+			{
+				XMLNode* gameObjectNode = node->GetChild(gameObjectIndex);
+				if (gameObjectNode != NULL)
+					m_gameObjectNodes.push_back(Object(gameObjectNode, sceneName));
+			}
+		}
+	}
+
+	// Ladowanie scen z includow
+	for (uint32_t includesIndex = 0; includesIndex < includeNodes.size(); includesIndex++)
+	{
+		std::string includeSceneFilename =
+			scenePath.GetPath() + includeNodes[includesIndex]->GetAttribAsString("name") + ".scene";
+		
+		LoadAdditive(includeSceneFilename);
+	}
+
+	return true;
+}
+
+BaseScene* SceneLoader::BuildScene()
+{
+	BaseScene* scene = new BaseScene();
+
+	for (uint32_t i = 0; i < m_materialNodes.size(); i++)
+	{
+		Material* material = LoadMaterial(m_materialNodes[i].XMLNode);
+		if (material != NULL)
+			m_materials[material->GetName()] = material;
+	}
+
+	for (uint32_t i = 0; i < m_gameObjectNodes.size(); i++)
+	{
+		GameObject* gameObject = LoadGameObject(m_gameObjectNodes[i].SceneName, m_gameObjectNodes[i].XMLNode);
+		if (gameObject != NULL)
+			scene->m_gameObjects.push_back(gameObject);
+	}
+
+	return scene;
+}
+
