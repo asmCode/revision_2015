@@ -37,7 +37,7 @@ namespace sm
 			this ->s = s;
 		}
 
-		Quat operator + (Quat q)
+		Quat operator + (const Quat& q) const
 		{
 			Quat ret;
 			ret.v = this ->v + q.v;
@@ -45,7 +45,7 @@ namespace sm
 			return ret;
 		}
 
-		Quat operator - (Quat q)
+		Quat operator - (const Quat& q) const
 		{
 			Quat ret;
 			ret.v = this ->v - q.v;
@@ -53,7 +53,7 @@ namespace sm
 			return ret;
 		}
 
-		Quat operator * (const Quat& q);
+		Quat operator * (const Quat& q) const;
 
 		Quat operator * (float s)
 		{

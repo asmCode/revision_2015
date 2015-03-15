@@ -34,6 +34,16 @@ const sm::Vec3& Transform::GetPosition() const
 	return m_position;
 }
 
+const sm::Quat& Transform::GetRotation() const
+{
+	return m_rotation;
+}
+
+const sm::Vec3& Transform::GetScale() const
+{
+	return m_scale;
+}
+
 sm::Vec3 Transform::GetForward()
 {
 	if (m_isDirty)

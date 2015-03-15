@@ -28,6 +28,7 @@
 #include "SceneElement/StaticData.h"
 #include "SceneElement/CustomSceneElement.h"
 
+#include <Math/MathUtils.h>
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>

@@ -14,6 +14,8 @@ public:
 	void SetScale(const sm::Vec3& scale);
 
 	const sm::Vec3& GetPosition() const;
+	const sm::Quat& GetRotation() const;
+	const sm::Vec3& GetScale() const;
 
 	sm::Vec3 GetForward();
 	sm::Vec3 GetRight();

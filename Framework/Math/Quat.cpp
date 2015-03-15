@@ -30,7 +30,7 @@ namespace sm
 	}
 	*/
 
-	Quat Quat::operator * (const Quat& q)
+	Quat Quat::operator * (const Quat& q) const
 	{
 		Quat quat;
 
