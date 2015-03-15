@@ -30,6 +30,7 @@
 
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
+#include <Graphics/Mesh.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
@@ -357,6 +358,27 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 				gameObject->AddRenderable(renderable);
 			}
 		}
+		else if (node->GetName() == "Mesh")
+		{
+			std::string meshName = node->GetAttribAsString("name");
+			std::string materialName = node->GetAttribAsString("material");
+
+			Model* model = Content::Instance->Get<Model>(sceneName);
+			assert(model != NULL);
+
+			Mesh* mesh = model->FindMesh(meshName);
+			assert(mesh != NULL);
+
+			Material* material = FindMaterial(materialName);
+			if (material == NULL)
+				material = FindMaterial("ErrorMaterial");
+
+			assert(mesh->meshParts.size() == 1);
+
+			GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(mesh->meshParts[0]);
+			Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material);
+			gameObject->AddRenderable(renderable);
+		}
 		else if (node->GetName() == "Light")
 		{
 			Light* light = new Light(gameObject);
@@ -365,6 +387,10 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 		else if (node->GetName() == "Camera")
 		{
 			Camera* camera = new Camera(gameObject);
+			camera->SetFov(node->GetAttribAsFloat("fov"));
+			camera->SetNearPlane(node->GetAttribAsFloat("near_plane"));
+			camera->SetFarPlane(node->GetAttribAsFloat("far_plane"));
+
 			gameObject->SetCamera(camera);
 		}
 		else if (node->GetName() == "Behaviour")

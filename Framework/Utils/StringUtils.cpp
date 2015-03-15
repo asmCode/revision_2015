@@ -54,3 +54,24 @@ float StringUtils::ParseFloat(const std::string& str)
 	sscanf(str.c_str(), "%f", &value);
 	return value;
 }
+
+std::string StringUtils::ToString(float value)
+{
+	char txt[1024];
+	sprintf(txt, "%f", value);
+	return txt;
+}
+
+std::string StringUtils::ToString(const sm::Vec3& value)
+{
+	char txt[1024];
+	sprintf(txt, "%f,%f,%f", value.x, value.y, value.z);
+	return txt;
+}
+
+std::string StringUtils::ToString(const sm::Vec4& value)
+{
+	char txt[1024];
+	sprintf(txt, "%f,%f,%f,%f", value.x, value.y, value.z, value.w);
+	return txt;
+}

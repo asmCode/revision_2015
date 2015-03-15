@@ -35,7 +35,7 @@ void ScenesManager::Initialize()
 
 	BaseScene* baseScene = new BaseScene();
 	SceneLoader sceneLoader;
-	sceneLoader.LoadFromFile(baseScene, "NewEngineTest");
+	sceneLoader.LoadFromFile(baseScene, "eee");
 
 	m_scenes.push_back(baseScene);
 

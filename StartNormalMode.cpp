@@ -118,8 +118,14 @@ void StartNormalMode()
 #else
 	/*scrWidth = 1024;
 	scrHeight = 768;*/
-	scrWidth = 960 * 1.5;
-	scrHeight = 540 * 1.5;
+	/*
+	scrWidth = 960;
+	scrHeight = 540;
+	*/
+	
+	scrWidth = 1440;
+	scrHeight = 810;
+	
 	scrBpp = 32;
 	scrFreq = 60;
 #endif

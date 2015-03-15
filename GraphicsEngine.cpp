@@ -182,6 +182,7 @@ void GraphicsEngine::RenderGameObjects()
 			continue;
 
 		BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
+		BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
 
 		Material* material = m_solidRenderables[i]->GetMaterial();
 		material->SetupMaterial();
