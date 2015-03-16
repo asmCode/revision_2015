@@ -64,6 +64,12 @@ void Parameter::SetVec4(sm::Vec4 value)
 	Value.Vec4 = value;
 }
 
+void Parameter::SetTexture(Texture* texture)
+{
+	m_type = Parameter::Type_Texture;
+	Value.Texture = texture;
+}
+
 float Parameter::GetFloat() const
 {
 	assert(m_type == Parameter::Type_Float);
@@ -80,6 +86,12 @@ const sm::Vec4& Parameter::GetVec4() const
 {
 	assert(m_type == Parameter::Type_Vec4);
 	return Value.Vec4;
+}
+
+Texture* Parameter::GetTexture() const
+{
+	assert(m_type == Parameter::Type_Texture);
+	return Value.Texture;
 }
 
 Parameter::Type Parameter::GetType() const

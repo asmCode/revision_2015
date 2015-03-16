@@ -59,6 +59,7 @@ public:
 	void SetParameter(const std::string& name, float value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
 	void SetParameter(const std::string& name, const sm::Vec4& value);
+	void SetParameter(const std::string& name, Texture* value);
 
 	bool HasBuiltInShaderParam(BuiltInShaderParams::ParamFlag paramFlag);
 

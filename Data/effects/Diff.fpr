@@ -27,8 +27,8 @@ void main()
 	
 	vec4 diffColor = texture(u_diffTex, o_coordsDiff);
 	diffColor.xyz *= diffValue;
-	diffColor.w *= u_opacity;
-	diffColor.xyz += u_specularColor * specValue;
+	//diffColor.w *= u_opacity;
+	//diffColor.xyz += u_specularColor * specValue;
 	
 	FragColor = diffColor;
 }

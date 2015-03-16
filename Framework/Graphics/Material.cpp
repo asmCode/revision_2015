@@ -55,6 +55,11 @@ void Material::SetParameter(const std::string& name, const sm::Vec4& value)
 	m_parameters[name].SetVec4(value);
 }
 
+void Material::SetParameter(const std::string& name, Texture* value)
+{
+	m_parameters[name].SetTexture(value);
+}
+
 void Material::SetupMaterial()
 {
 	SetupRenderState();
@@ -86,6 +91,10 @@ void Material::SetupShader()
 		case Parameter::Type_Vec4:
 			m_shader->SetParameter(it->first.c_str(), parameter.GetVec4());
 			break;
+
+		case Parameter::Type_Texture:
+			m_shader->SetTextureParameter(it->first.c_str(), 0, parameter.GetTexture()->GetId());
+			break;
 		}
 	}
 }
@@ -94,3 +103,4 @@ const std::string& Material::GetName() const
 {
 	return name;
 }
+

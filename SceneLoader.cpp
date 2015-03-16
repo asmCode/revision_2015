@@ -264,6 +264,10 @@ Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 			case Parameter::Type_Vec4:
 				material->SetParameter(parameter.GetName(), parameter.GetVec4());
 				break;
+
+			case Parameter::Type_Texture:
+				material->SetParameter(parameter.GetName(), parameter.GetTexture());
+				break;
 			}
 		}
 	}
@@ -473,10 +477,16 @@ Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)
 		sm::Vec3 value = DemoUtils::ParseVector3(valueString, ",");
 		parameter.SetVec3(value);
 	}
-	if (typeString == "vec4")
+	else if (typeString == "vec4")
 	{
 		sm::Vec4 value = DemoUtils::ParseVector4(valueString, ",");
 		parameter.SetVec4(value);
+	}
+	else if (typeString == "texture")
+	{
+		Texture* texture = Content::Instance->Get<Texture>(valueString);
+		if (texture != NULL)
+			parameter.SetTexture(texture);
 	}
 
 	return parameter;
