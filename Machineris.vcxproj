@@ -119,8 +119,6 @@ exit /B 0
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimCameraManager.cpp" />
-    <ClCompile Include="AssemblingScene.cpp" />
-    <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Behaviours\FppCamera.cpp" />
     <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
@@ -153,7 +151,6 @@ exit /B 0
     <ClCompile Include="SynchEvent.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
-    <ClCompile Include="Dream.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="Framework\Graphics\Animation.cpp">
@@ -256,11 +253,9 @@ exit /B 0
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
     <ClCompile Include="Renderable.cpp" />
-    <ClCompile Include="GeometryBatch.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="PropertySignal.cpp" />
     <ClCompile Include="Scenes\Test1Scene.cpp" />
-    <ClCompile Include="ShadowMappingTest.cpp" />
     <ClCompile Include="Blur.cpp" />
     <ClCompile Include="DemoController.cpp" />
     <ClCompile Include="DrawingRoutines.cpp" />
@@ -284,9 +279,7 @@ exit /B 0
   <ItemGroup>
     <ClInclude Include="AnimationClips\IAnimationClip.h" />
     <ClInclude Include="AnimCameraManager.h" />
-    <ClInclude Include="AssemblingScene.h" />
     <ClInclude Include="BaseMesh.h" />
-    <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Behaviours\FppCamera.h" />
     <ClInclude Include="Behaviours\FppCameraFactory.h" />
@@ -302,7 +295,6 @@ exit /B 0
     <ClInclude Include="Behaviours\Jump.h" />
     <ClInclude Include="Behaviours\JumpFactory.h" />
     <ClInclude Include="Billboard.h" />
-    <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugUtils.h" />
@@ -324,7 +316,6 @@ exit /B 0
     <ClInclude Include="DemoOptions.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
-    <ClInclude Include="Dream.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
     <ClInclude Include="Framework\Graphics\Animation.h" />
@@ -472,13 +463,10 @@ exit /B 0
     <ClInclude Include="Particles\Particle.h" />
     <ClInclude Include="Particles\ParticleEmmiter.h" />
     <ClInclude Include="Renderable.h" />
-    <ClInclude Include="GeometryBatch.h" />
-    <ClInclude Include="GlassPart.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="PropertySignal.h" />
     <ClInclude Include="Scenes\BaseScene.h" />
     <ClInclude Include="Scenes\Test1Scene.h" />
-    <ClInclude Include="ShadowMappingTest.h" />
     <ClInclude Include="bass.h" />
     <ClInclude Include="Blur.h" />
     <ClInclude Include="DemoController.h" />
@@ -494,7 +482,6 @@ exit /B 0
     <ClInclude Include="Utils\Stopwatch.h" />
     <ClInclude Include="VectorGraphics.h" />
     <ClInclude Include="VertexDataBufferTransform.h" />
-    <ClInclude Include="XmlWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rw09.rc" />

@@ -2,7 +2,6 @@
 
 #include "Renderable.h"
 #include "IDrawable.h"
-#include "BasicLightingEffect.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>

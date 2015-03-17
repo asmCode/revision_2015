@@ -1,8 +1,6 @@
 #include "DemoController.h"
 #include <Utils/Log.h>
-#include "BasicLightingEffect.h"
 #include "ParticlesManager.h"
-#include "ShadowMappingTest.h"
 #include <Graphics/Framebuffer.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
@@ -10,7 +8,6 @@
 #include "LoadingScreen.h"
 #include <Graphics/Shader.h>
 #include "Blur.h"
-#include "XmlWriter.h"
 #include <Graphics/DepthTexture.h>
 #include <Graphics/MeshPart.h>
 #include "Frustum.h"
@@ -37,7 +34,6 @@
 #include "ScenesManager.h"
 
 #include "GraphicsEngine.h"
-#include "AssemblingScene.h"
 #include <Graphics/Property.h>
 #include <Graphics/BuiltInShaderParams.h>
 #include "PropertySignal.h"
@@ -48,7 +44,6 @@
 #include "Particles/IParticleHandler.h"
 #include "GameObject.h"
 #include "Environment.h"
-//#include "Dream.h"
 #include "VectorGraphics.h"
 #include "GraphicsLog.h"
 
@@ -121,8 +116,6 @@ float conv(int a, int b, int c)
 }
 
 DemoController::DemoController() :
-	shadowPass(NULL),
-	m_envTexture(NULL),
 	m_scenesManager(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
@@ -137,13 +130,10 @@ DemoController::DemoController() :
 	isPlaying = false;
 
 	errorOccured = false;
-	nextId = 0;
-
+	
 	glWnd = NULL;
 	m_content = NULL;
-	//scene = NULL;
-	fov = 60.0f;
-
+	
 	isStereo = false;
 
 	blur = NULL;
@@ -152,7 +142,6 @@ DemoController::DemoController() :
 	m_biasClamp = 0.0f;
 
 	currentCamera = NULL;
-	cameraMode = CameraMode_Free;
 	m_shadowMapTexture = NULL;
 
 	electroNoiseVal = 0.0f;
@@ -168,6 +157,7 @@ DemoController::~DemoController()
 
 void DemoController::AssignLightmapsToModels()
 {
+	/*
 	for (uint32_t i = 0; i < allMeshParts.size(); i++)
 	{
 		MeshPart *meshPart = allMeshParts[i];
@@ -180,6 +170,7 @@ void DemoController::AssignLightmapsToModels()
 			!(meshPart->material != NULL && meshPart->material->IsOpacity()))
 			allMeshParts[i]->m_lightmap = lightmap;
 	}
+	*/
 }
 
 void DemoController::InitializeBlur()
@@ -519,7 +510,6 @@ void DemoController::Release()
 	Billboard::Release();
 
 	DeleteObject(blurFbo);
-	DeleteObject(m_envTexture);
 }
 
 static float lastTime;
@@ -579,7 +569,7 @@ bool DemoController::Update(float time, float seconds)
 		m_activeCamera->GetFov(time),
 		(float)width / (float)height);
 
-	FrustumCulling(allMeshParts);
+	//FrustumCulling(allMeshParts);
 #endif
 
 	return true;
@@ -786,7 +776,6 @@ bool DemoController::Draw(float time, float seconds)
 	char fpsText[1024];
 	sprintf(fpsText, "fps: %.2f", fps);
 	DrawText(fpsText, 4, height - 20, 255, 0, 0);
-	DrawEngineStats();
 
 	/*
 	sm::Vec3 camPos = m_scenesManager->GetActiveScene()->GetCameras()[0]->
@@ -916,31 +905,6 @@ bool DemoController::BeforeStartSetups()
 	return true;
 }
 
-int DemoController::GetNextId()
-{
-	nextId++;
-	return nextId;
-}
-
-bool DemoController::HasGlowMaterial(MeshPart *meshPart)
-{
-	assert(meshPart != NULL);
-
-	return
-		meshPart->material != NULL &&
-		meshPart->material->name.size() >= 4 &&
-		meshPart->material->name.substr(0, 4) == "glow";
-}
-
-bool DemoController::HasOpacityMaterial(MeshPart *meshPart)
-{
-	assert(meshPart != NULL);
-
-	return
-		meshPart->material != NULL &&
-		meshPart->material->IsOpacity();
-}
-
 void DemoController::DrawText(const std::string &text, int x, int y, BYTE r, BYTE g, BYTE b)
 {
 	//m_fontRenderer->DrawString("abcdefgh", 10, 10, Color::Blue);
@@ -980,86 +944,6 @@ float DemoController::CalcFps(float ms)
 	return fps;
 }
 
-bool MeshPartComp(MeshPart *&a, MeshPart *&b)
-{
-	float aOpacity = 1.0f;
-	float bOpacity = 1.0f;
-
-	if (a->material != NULL)
-		aOpacity = a->material->Opacity();
-
-	if (b->material != NULL)
-		bOpacity = b->material->Opacity();
-
-	return aOpacity > bOpacity;
-}
-
-void DemoController::SortByOpacity(std::vector<MeshPart*> &meshParts)
-{
-	std::sort(meshParts.begin(), meshParts.end(),  MeshPartComp);
-}
-
-void DemoController::FilterGlowObjects()
-{
-	for (unsigned i = 0; i < allMeshParts.size(); i++)
-	{
-		MeshPart *mp = allMeshParts[i];
-
-		if (mp->mesh->m_isShadowCaster)
-			m_shadowCasterObjects.push_back(mp);
-
-		if (HasGlowMaterial(mp))
-		{
-			if (HasOpacityMaterial(mp))
-			{
-				m_opacityGlowObjects.push_back(mp);
-			}
-			else
-			{
-				m_solidGlowObjects.push_back(mp);
-			}
-		}
-		else
-		{
-			if (HasOpacityMaterial(mp))
-			{
-				m_opacityNonGlowObjects.push_back(mp);
-			}
-			else
-			{
-				m_solidNonGlowObjects.push_back(mp);
-			}
-		}
-	}
-}
-
-
-void DemoController::FilterOpacityObjects(const std::vector<Model*> &models,
-										  std::vector<MeshPart*> &opacityMeshParts,
-										  std::vector<MeshPart*> &solidGlowMeshParts)
-{
-	for (unsigned i = 0; i < models.size(); i++)
-	{
-		std::vector<Mesh*> &meshes = models[i] ->GetMeshes();
-
-		for (unsigned j = 0; j < meshes.size(); j++)
-		{
-			std::vector<MeshPart*> &meshParts = meshes[j] ->GetMeshParts();
-
-			for (unsigned k = 0; k < meshParts.size(); k++)
-			{
-				Material *mat = meshParts[k] ->GetMaterial();
-
-				if (mat != NULL &&
-					mat->IsOpacity())
-					opacityMeshParts.push_back(meshParts[k]);
-				else
-					solidGlowMeshParts.push_back(meshParts[k]);
-			}
-		}
-	}
-}
-
 void DemoController::DrawShadowMap()
 {
 	m_shadowMappingFramebuffer->BindFramebuffer();
@@ -1080,7 +964,7 @@ void DemoController::DrawShadowMap()
 	glCullFace(GL_BACK);
 }
 
-void DemoController::FrustumCulling(std::vector<MeshPart*> &meshParts)
+/*void DemoController::FrustumCulling(std::vector<MeshPart*> &meshParts)
 {
 	for (unsigned i = 0; i < meshParts.size(); i++)
 	{
@@ -1092,56 +976,7 @@ void DemoController::FrustumCulling(std::vector<MeshPart*> &meshParts)
 		else
 			meshParts[i]->SetVisibility(false);
 	}
-}
-
-void DemoController::DrawEngineStats()
-{
-	unsigned totalVerticesCount = 0;
-	unsigned visibleVerticesCount = 0;
-	unsigned totalMeshPartsCount = allMeshParts.size();
-	for (uint32_t i = 0; i < GeometryBatches_Count; i++)
-	{
-		if (m_geoBatch[i].IsVisible())
-			totalMeshPartsCount += m_geoBatch[i].allMeshParts.size();
-	}
-	unsigned visibleMeshPartsCount = 0;
-
-	for (unsigned i = 0; i < allMeshParts.size(); i++)
-	{
-		totalVerticesCount += allMeshParts[i]->GetVerticesCount();
-
-		if (allMeshParts[i]->IsVisible())
-		{
-			visibleMeshPartsCount++;
-			visibleVerticesCount += allMeshParts[i]->GetVerticesCount();
-		}
-	}
-
-	for (uint32_t i = 0; i < GeometryBatches_Count; i++)
-	{
-		for (unsigned j = 0; j < m_geoBatch[i].allMeshParts.size(); j++)
-		{
-			if (m_geoBatch[i].IsVisible())
-			{
-				totalVerticesCount += m_geoBatch[i].allMeshParts[j]->GetVerticesCount();
-
-				if (m_geoBatch[i].allMeshParts[j]->IsVisible())
-				{
-					visibleMeshPartsCount++;
-					visibleVerticesCount += m_geoBatch[i].allMeshParts[j]->GetVerticesCount();
-				}
-			}
-		}
-	}
-
-	char text[1024];
-	sprintf(text, "visible meshes: %u / %u (%.1f%%)", visibleMeshPartsCount, totalMeshPartsCount,
-		100.0f * (float)visibleMeshPartsCount / (float)totalMeshPartsCount);
-	DrawText(text, 4, height - 40, 255, 0, 0);
-	sprintf(text, "visible vertices: %u / %u (%.1f%%)", visibleVerticesCount, totalVerticesCount,
-		100.0f * (float)visibleVerticesCount / (float)totalVerticesCount);
-	DrawText(text, 4, height - 60, 255, 0, 0);
-}
+}*/
 
 void DemoController::SetAlwaysVisibility(const std::vector<Model*> &models)
 {

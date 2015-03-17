@@ -1,5 +1,4 @@
 #include "DemoUtils.h"
-#include "XmlWriter.h"
 #include "../Camera.h"
 #include "../GameObject.h"
 #include "../Transform.h"
@@ -8,6 +7,7 @@
 #include <stdint.h>
 #include <XML/XMLLoader.h>
 #include <XML/XMLNode.h>
+#include <XML/XmlWriter.h>
 #include <fstream>
 
 sm::Vec3 DemoUtils::GetRandomVector()

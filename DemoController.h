@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DemoOptions.h"
-#include "CameraMode.h"
 #include "GraphicsLibrary\CubeTexture.h"
 
 #include <Core/GenericSingleton.h>
@@ -16,7 +15,6 @@
 #include "GraphicsLibrary\OpenglWindow.h"
 
 #include "Particles/ParticleEmmiter.h"
-#include "GeometryBatch.h"
 
 #include "AnimCameraManager.h"
 #include <Graphics/Interpolators/Interpolator.h>
@@ -32,21 +30,11 @@ class BaseScene;
 class ScenesManager;
 class SynchManager;
 
-DWORD WINAPI EditableDemoThread(void *params);
-class DemoController;
-class EditableDemo;
-class MachineScreen;
-class Cigarette;
-class EditableCamera;
-class ManCam;
-class ShadowMappingTest;
 class LoadingScreen;
 class ParticlesManager;
-class CreditsDance;
 class Framebuffer;
 class DepthTexture;
 class Blur;
-class PostProcessing;
 class Frustum;
 class Screens;
 class PropertySignal;
@@ -66,10 +54,7 @@ class DemoController :
 	public GenericSingleton<DemoController>
 {
 	friend class GenericSingleton<DemoController>;
-	friend class NormalMappingTest;
-	friend class ShadowMappingTest;
 	friend class LoadingScreen;
-	friend class MachineScreen;
 
 public:
 	static const float GlowBufferWidthRatio;
@@ -90,8 +75,6 @@ public:
 		GeometryBatches_MechArms,
 		GeometryBatches_Count
 	};
-
-	GeometryBatch m_geoBatch[GeometryBatches_Count];
 
 	std::string m_strBasePath;
 
@@ -148,7 +131,6 @@ public:
 	Texture *mask;
 
 	bool errorOccured;
-	MachineScreen *machineScreen;
 
 	OpenglWindow *glWnd;
 
@@ -162,8 +144,6 @@ public:
 	bool isStereo;
 
 	ParticlesManager *m_particlesManager;
-
-	PostProcessing *postProcessing;
 
 	Framebuffer *blurFbo;
 	Texture *targetTex0;
@@ -186,29 +166,9 @@ public:
 	Framebuffer *m_distortionFramebuffer;
 	Texture *m_distortionTexture;
 
-	CubeTexture *m_envTexture;
-
-	std::vector<MeshPart*> allMeshParts;
-
-	std::vector<MeshPart*> m_opacityGlowObjects;
-	std::vector<MeshPart*> m_solidGlowObjects;
-	std::vector<MeshPart*> m_opacityNonGlowObjects;
-	std::vector<MeshPart*> m_solidNonGlowObjects;
-	std::vector<MeshPart*> m_shadowCasterObjects;
-
-	void SortByOpacity(std::vector<MeshPart*> &meshParts);
-	void FilterGlowObjects();
-
-	ShadowMappingTest *shadowPass;
 	LoadingScreen *loadingScreen;
 
-	CameraMode cameraMode;
-
 	GraphicsEngine* m_graphicsEngine;
-
-	int nextId;
-
-	float fov;
 
 	DemoController();
 	~DemoController();
@@ -236,7 +196,6 @@ public:
 
 	void DrawText(const std::string &text, int x, int y, BYTE r = 255, BYTE g = 255, BYTE b = 255);
 	float CalcFps(float ms);
-	void DrawEngineStats();
 
 	int width;
 	int height;
@@ -249,7 +208,7 @@ public:
 	void DrawGlowTexture();
 	void DrawShadowMap();
 
-	void FrustumCulling(std::vector<MeshPart*> &meshParts);
+	//void FrustumCulling(std::vector<MeshPart*> &meshParts);
 
 public:
 	void AssignLightmapsToModels();
@@ -265,20 +224,11 @@ public:
 	bool Update(float time, float ms);
 	bool Draw(float time, float ms);
 
-	int GetNextId();
-
-	bool HasGlowMaterial(MeshPart *meshPart);
-	bool HasOpacityMaterial(MeshPart *meshPart);
-
 	void LoadProperties(const std::string &filename);
 
 	void SetAlwaysVisibility(
 		const std::vector<Model*> &models);
 
-	void FilterOpacityObjects(
-		const std::vector<Model*> &models,
-		std::vector<MeshPart*> &opacityMeshParts,
-		std::vector<MeshPart*> &solidGlowMeshParts);
 
 	void DrawPostProcess(int sharpTexId, int blurTexId, int glowTex, unsigned int shadowTex, float fade);
 
