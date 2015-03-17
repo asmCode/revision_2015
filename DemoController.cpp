@@ -10,7 +10,6 @@
 #include "LoadingScreen.h"
 #include <Graphics/Shader.h>
 #include "Blur.h"
-#include "ManCam.h"
 #include "XmlWriter.h"
 #include <Graphics/DepthTexture.h>
 #include <Graphics/MeshPart.h>
@@ -236,7 +235,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	glWnd = new OpenglWindow();
 	if (!glWnd->Initialize(parent, title,
-		width, height, bpp, freq, fullscreen, createOwnWindow, dynamic_cast<IKeyboardCallback*>(this)))
+		width, height, bpp, freq, fullscreen, createOwnWindow, NULL))
 	{
 		Log::LogT("couldn't initialize opengl window");
 		Release();
@@ -532,10 +531,10 @@ bool DemoController::Update(float time, float seconds)
 	m_engine->GetBehavioursManager()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
-		DemoUtils::SaveCamera(&manCam, 0);
+		DemoUtils::SaveCamera(m_scenesManager->GetActiveScene()->GetCameras()[0], 0);
 
 	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
-		DemoUtils::LoadCamera(&manCam, 0);
+		DemoUtils::LoadCamera(m_scenesManager->GetActiveScene()->GetCameras()[0], 0);
 
 	m_scenesManager->Update(time);
 
@@ -556,23 +555,9 @@ bool DemoController::Update(float time, float seconds)
 		activeScene->NotifySynchEvent(synchEvent);
 	}
 
-#if MAN_CAM
-	manCam.Process(seconds);
-	m_activeCamera = &manCam;
-#else
 	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::Identity, seconds);
 	//m_activeCamera = animCamsMng.GetActiveCamera(time);
 	m_activeCamera = activeScene->GetCamera();
-#endif
-
-	m_view = m_activeCamera->GetViewMatrix();
-	m_proj = sm::Matrix::PerspectiveMatrix(
-		m_activeCamera->GetFov(time),
-		(float)width / (float)height,
-		m_activeCamera->GetNearClip(),
-		m_activeCamera->GetFarClip());
-
-	m_viewProj = m_proj * m_view;
 
 	activeScene->Update(time, seconds);
 	return true;
@@ -580,168 +565,12 @@ bool DemoController::Update(float time, float seconds)
 	camerasFactoryAnimation->Update(time, sm::Matrix::Identity, seconds);
 	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
 
-	m_lightViewMatrix = m_currentLightCamera->GetViewMatrix();
-	m_lightProjMatrix = sm::Matrix::PerspectiveMatrix(
-		m_currentLightCamera->GetFov(time),
-		(float)width / (float)height,
-		m_currentLightCamera->GetNearClip(),
-		m_currentLightCamera->GetFarClip());
-
-// set camera wher light
-#if 0 
-	m_view = m_lightViewMatrix;
-	m_proj = m_lightProjMatrix;
-#endif
-
-#if 0
-	m_view.a[0] = 0.9890f;
-	m_view.a[1] = -0.0625f;
-	m_view.a[2] = -0.1340f;
-	m_view.a[3] = 0.0000f;
-	m_view.a[4] = 0.0000f;
-	m_view.a[5] = 0.9063f;
-	m_view.a[6] = -0.4226f;
-	m_view.a[7] = 0.0000f;
-	m_view.a[8] = 0.1478f;
-	m_view.a[9] = 0.4180f;
-	m_view.a[10] = 0.8964f;
-	m_view.a[11] = 0.0000f;
-	m_view.a[12] = -6.1468f;
-	m_view.a[13] = -4.0603f;
-	m_view.a[14] = -10.1110f;
-	m_view.a[15] = 1.0000f;
-#endif
-
-	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
-		m_gameObjects[i]->Update(m_greetzDanceTime, seconds);
-
-	/*m_proj = sm::Matrix::PerspectiveMatrix(
-		deg(m_currentLightCamera->GetFov(0)),
-		(float)width / (float)height,
-		m_currentLightCamera->GetNearClip(),
-		m_currentLightCamera->GetFarClip());
-
-	m_view =
-		sm::Matrix::RotateAxisMatrix(1.57f, 1, 0, 0) *
-		m_currentLightCamera->GetViewMatrix();*/
-
-	m_viewProj = m_proj * m_view;
-
+	/*
 	m_particlesManager->SetViewMatrix(m_view);
 	m_particlesManager->SetProjMatrix(m_proj);
 	m_particlesManager->Update(seconds);
+	*/
 
-	//anim->Update(time / 1000.0f, sm::Matrix::Identity, seconds);
-
-	//m_robot->SetViewProjMatrix(m_viewProj);
-	//m_robot->Update(time, seconds);
-
-////	if (demoMode != DemoMode_Editor && !started)
-////	{
-//#ifndef DISABLE_MUSIC
-//		music.SetPosition(time / 1000.0f);
-//		music.Play();
-//
-//		//music.SetPosition(time / 1000.0f);
-//#endif
-////		started = true;
-////	}
-////
-////	/*
-////	if (!demoEnded)
-////	{
-////		time = music.GetPosition() * 1000.0f;
-////
-////		if ((time / 1000.0f) >= (180.0f + 43.0f))
-////		{
-////			music.Stop();
-////			demoEnded = true;
-////		}
-////	}
-////	*/
-//
-//	lastTime = time;
-//
-//	m_geoBatch[GeometryBatches_FactoryHall].SetVisibility(false);
-//	m_geoBatch[GeometryBatches_MechArms].SetVisibility(false);
-//	m_geoBatch[GeometryBatches_RobotLying].SetVisibility(false);
-//	m_geoBatch[GeometryBatches_RobotMoving].SetVisibility(false);
-//	m_geoBatch[GeometryBatches_Passage].SetVisibility(false);
-//
-//	return true;
-//
-//	m_doorsAnim->Update(time / 1000.0f, sm::Matrix::Identity, ms / 1000.0f);
-//
-//	m_fovPower -= (ms / 1000.0f) * 2.0f;
-//	if (m_fovPower < 0.0f)
-//		m_fovPower = 0.0f;
-//
-//	//m_fovPower = 1.0f;
-//
-//	if (m_fovSignal->CheckSignal(time / 1000.0f))
-//	{
-//		m_fovPower = 1.0f;
-//	}
-//
-//	//if ((time / 1000.0f) >= 120.0f && m_activeScene != m_breakingWallScene)
-//	//{
-//	//	m_activeScene->SetVisibility(false);
-//	//	m_breakingWallScene->SetVisibility(true);
-//
-//	//	m_activeScene = m_breakingWallScene;
-//	//}
-//
-//	/*if (m_assemblingScene->IsActiveOnTime(time / 1000.0f) && (m_activeScene != m_assemblingScene))
-//	{
-//		m_assemblingScene->SetVisibility(true);
-//
-//		m_activeScene = m_assemblingScene;
-//	}*/
-//
-//	camerasAnimation->Update(time / 1000, sm::Matrix::Identity, ms / 1000.0f);
-//
-//	if (errorOccured)
-//		return false;
-//
-//	m_activeScene->Update(time / 1000.0f, ms / 1000.0f);
-//
-//#ifndef MAN_CAM
-//	cameraMode = CameraMode_Preview;
-//#endif
-//	if (cameraMode == CameraMode_Preview) 
-//	{
-//		currentCamera = animCamsMng.GetActiveCamera(time / 1000.0f);
-//		assert(currentCamera != NULL);
-//	}
-//
-//	if (camShakeVal == 0.0f)
-//		view = currentCamera->GetViewMatrix();
-//	else
-//		view =
-//			sm::Matrix::RotateAxisMatrix(random.GetFloat(0.0f, 0.1f) * camShakeVal, sm::Vec3(random.GetFloat(-1, 1), random.GetFloat(-1, 1), random.GetFloat(-1, 1)).GetNormalized()) *
-//			currentCamera->GetViewMatrix();
-//
-//	//view = view * sm::Matrix::ScaleMatrix(0.05f, 0.05f, 0.05f);
-//
-//	float camfov = deg(currentCamera ->GetFov(time / 1000.0f));
-//
-//	if (fov != camfov)
-//	{
-//		fov = camfov;
-//
-//		proj = sm::Matrix::PerspectiveMatrix(
-//			fov, (float)width / (float)height, NEAR_PLANE, FAR_PLANE);
-//
-//		/*glowProj = sm::Matrix::PerspectiveMatrix(
-//			fov, (float)width / (float)height, NEAR_PLANE, FAR_PLANE);*/
-//	}
-//
-//	if (dynamic_cast<ManCam*>(currentCamera) != NULL)
-//		((ManCam*)currentCamera)->Process(ms);
-//
-//	//scene ->Update(time, ms);
-//	//shadowPass->Update(time, ms);
-//
 #ifndef DISABLE_FRUSTUM_CULLING
 	frustum->SetFrustum(
 		m_activeCamera->GetViewMatrix(),
@@ -811,18 +640,7 @@ bool DemoController::Draw(float time, float seconds)
 	glDepthMask(true);
 	glColorMask(true, true, true, true);
 
-	DrawingRoutines::SetViewProjMatrix(m_viewProj);
-	DrawingRoutines::SetLightPosition(sm::Vec3(0, 100, 100));
-	DrawingRoutines::SetEyePosition(m_activeCamera->GetPosition());
-	DrawingRoutines::SetLightPosition(m_activeCamera->GetPosition());
-
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
-
-	BuiltInShaderParams::m_paramWorld = sm::Matrix::Identity;
-	BuiltInShaderParams::m_paramView = m_view;
-	BuiltInShaderParams::m_paramProj = m_proj;
-	BuiltInShaderParams::m_paramViewProj = m_viewProj;
-	BuiltInShaderParams::m_paramWorldViewProj = m_viewProj;
 
 	m_graphicsEngine->RenderGameObjects();
 
@@ -970,9 +788,11 @@ bool DemoController::Draw(float time, float seconds)
 	DrawText(fpsText, 4, height - 20, 255, 0, 0);
 	DrawEngineStats();
 
-	sm::Vec3 camPos = m_activeCamera->GetPosition();
+	/*
+	sm::Vec3 camPos = m_scenesManager->GetActiveScene()->GetCameras()[0]->
 	sprintf(fpsText, "camera position: (%.4f, %.4f, %.4f)", camPos.x, camPos.y, camPos.z);
 	DrawText(fpsText, 4, 20, 255, 255, 255);
+	*/
 
 	sprintf(fpsText, "time: %.2f", time);
 	DrawText(fpsText, 4, height - 160, 255, 0, 0);
@@ -1254,11 +1074,6 @@ void DemoController::DrawShadowMap()
 	glDisable(GL_BLEND);
 
 	glViewport(0, 0, width, height);
-
-	DrawingRoutines::SetShadowCastingLightView(m_lightViewMatrix);
-	DrawingRoutines::SetShadowCastingLightProj(m_lightProjMatrix);
-	
-	DrawingRoutines::DrawShadowMap(m_shadowCasterObjects);
 	
 	Framebuffer::RestoreDefaultFramebuffer();
 	
@@ -1346,78 +1161,6 @@ void DemoController::SetAlwaysVisibility(const std::vector<Model*> &models)
 				}
 			}
 		}
-	}
-}
-
-int propVal = 1;
-static float timeShift = -1;
-
-void DemoController::OnLeftMouseDown()
-{
-	if (timeShift == -1)
-		timeShift = lastTime / 1000.0f;
-
-	Log::LogT("changeGreetzProp->SetValue(%d, %.4f);", propVal, (lastTime / 1000.0f) - 0);
-
-	if (propVal == 1)
-		propVal = 0;
-	else
-		propVal = 1;
-}
-
-static int beatPropVal;
-
-void DemoController::OnKeyDown(int keyCode)
-{
-	switch (keyCode)
-	{
-	case 'X':
-		for (uint32_t i = 0; i < allMeshParts.size(); i++)
-		{
-			allMeshParts[i]->m_lightmap = NULL;
-		}
-		break;
-
-	case 'T':
-		m_biasScale += 0.0001f;
-		tmp_progress += 0.01f;
-		fov += 1.0f;
-		break;
-
-	case 'G':
-		m_biasClamp += 0.0001f;
-		tmp_progress -= 0.01f;
-		fov -= 1.0f;
-		break;
-
-	case 'C':
-		Log::LogT("Camera");
-		for (uint32_t i = 0; i < 16; i++)
-		{
-			Log::LogT("m_view.a[%d] = %.4ff;", i, m_view.a[i]);
-		}
-		Log::LogT("");
-		break;
-
-		/*
-	case 'L':
-		Log::LogT("Light");
-		for (uint32_t i = 0; i < 16; i++)
-		{ 
-			Log::LogT("lightTransform.a[%d] = %.4ff;", i, m_view.a[i]);
-		}
-		Log::LogT("");
-		*/
-		break;
-
-	case 'B':
-		if (beatPropVal == 0)
-			beatPropVal = 1;
-		else
-			beatPropVal = 0;
-
-		Log::LogT("m_fovAnim->SetValue(%d, %.4f);", beatPropVal, (lastTime / 1000.0f));
-		break;
 	}
 }
 

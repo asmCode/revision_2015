@@ -14,13 +14,10 @@
 #include <Graphics/AnimationData.h>
 
 #include "GraphicsLibrary\OpenglWindow.h"
-#include "GraphicsLibrary\SteerCamera.h"
-#include "GraphicsLibrary\IKeyboardCallback.h"
 
 #include "Particles/ParticleEmmiter.h"
 #include "GeometryBatch.h"
 
-#include "ManCam.h"
 #include "AnimCameraManager.h"
 #include <Graphics/Interpolators/Interpolator.h>
 #include <Graphics/Interpolators/InterpolatorFactory.h>
@@ -65,7 +62,6 @@ class FuturisEngine;
 
 class DemoController :
 	public IContentObserver,
-	public IKeyboardCallback,
 	public IGraphicsEngine,
 	public GenericSingleton<DemoController>
 {
@@ -80,8 +76,6 @@ public:
 	static const float GlowBufferHeightRatio;
 
 	FuturisEngine* m_engine;
-
-	std::vector<GameObject*> m_gameObjects;
 
 	float tmp_progress;
 
@@ -157,7 +151,6 @@ public:
 	MachineScreen *machineScreen;
 
 	OpenglWindow *glWnd;
-	ManCam manCam;
 
 	float m_biasScale;
 	float m_biasClamp;
@@ -165,13 +158,7 @@ public:
 	Animation *camerasAnimation;
 	Animation *camerasFactoryAnimation;
 
-	sm::Matrix m_lightViewMatrix;
-	sm::Matrix m_lightProjMatrix;
 	Frustum *frustum;
-	sm::Matrix m_view;
-	sm::Matrix m_proj;
-	sm::Matrix m_viewProj;
-	sm::Matrix glowProj;
 	bool isStereo;
 
 	ParticlesManager *m_particlesManager;
@@ -265,9 +252,6 @@ public:
 	void FrustumCulling(std::vector<MeshPart*> &meshParts);
 
 public:
-	void OnLeftMouseDown();
-	void OnKeyDown(int keyCode);
-
 	void AssignLightmapsToModels();
 
 	void InitializeBlur();

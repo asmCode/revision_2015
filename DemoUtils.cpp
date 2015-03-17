@@ -1,6 +1,8 @@
 #include "DemoUtils.h"
-#include "ManCam.h"
 #include "XmlWriter.h"
+#include "../Camera.h"
+#include "../GameObject.h"
+#include "../Transform.h"
 #include <Utils/Randomizer.h>
 #include <Utils/StringUtils.h>
 #include <stdint.h>
@@ -62,6 +64,13 @@ std::string DemoUtils::ToText(const sm::Vec4& value, const std::string& separato
 	return text;
 }
 
+std::string DemoUtils::ToText(const sm::Quat& value, const std::string& separator)
+{
+	char text[128];
+	sprintf(text, "%f%s%f%s%f%s%f", value.s, separator.c_str(), value.v.x, separator.c_str(), value.v.y, separator.c_str(), value.v.z, separator.c_str());
+	return text;
+}
+
 sm::Vec3 DemoUtils::ParseVector3(const std::string& vectorStr, const std::string& separator)
 {
 	sm::Vec3 vec;
@@ -80,7 +89,16 @@ sm::Vec4 DemoUtils::ParseVector4(const std::string& vectorStr, const std::string
 	return vec;
 }
 
-void DemoUtils::SaveCamera(ManCam* camera, int slot)
+sm::Quat DemoUtils::ParseQuat(const std::string& vectorStr, const std::string& separator)
+{
+	sm::Quat q;
+	char mask[32];
+	sprintf(mask, "%%f%s%%f%s%%f%s%%f", separator.c_str(), separator.c_str(), separator.c_str(), separator.c_str());
+	sscanf(vectorStr.c_str(), mask, &q.s, &q.v.x, &q.v.y, &q.v.z);
+	return q;
+}
+
+void DemoUtils::SaveCamera(Camera* camera, int slot)
 {
 	char camFilename[128];
 	sprintf(camFilename, "cam%d", slot);
@@ -90,41 +108,15 @@ void DemoUtils::SaveCamera(ManCam* camera, int slot)
 
 	xml.OpenElement("Camera");
 	xml.OpenElement("Transform");
-	xml.WriteAttribute("position", DemoUtils::ToText(camera->position));
-	xml.WriteAttribute("yaw", camera->yaw);
-	xml.WriteAttribute("pitch", camera->pitch);
-	xml.WriteAttribute("roll", camera->roll);
+	xml.WriteAttribute("position", DemoUtils::ToText(camera->GetGameObject()->Transform.GetPosition()));
+	xml.WriteAttribute("rotation", DemoUtils::ToText(camera->GetGameObject()->Transform.GetRotation()));
 	xml.CloseElement();
 	xml.CloseElement();
-
-	//sm::Matrix transform = camera->GetViewMatrix().GetInversed();
-	/*
-	char transformText[1024];
-	sprintf(
-	transformText,
-	"%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f;%.4f",
-	transform.a[0],
-	transform.a[1],
-	transform.a[2],
-	transform.a[3],
-	transform.a[4],
-	transform.a[5],
-	transform.a[6],
-	transform.a[7],
-	transform.a[8],
-	transform.a[9],
-	transform.a[10],
-	transform.a[11],
-	transform.a[12],
-	transform.a[13],
-	transform.a[14],
-	transform.a[15]);
-	*/
 
 	camFile.close();
 }
 
-void DemoUtils::LoadCamera(ManCam* camera, int slot)
+void DemoUtils::LoadCamera(Camera* camera, int slot)
 {
 	char camFilename[128];
 	sprintf(camFilename, "cam%d", slot);
@@ -137,8 +129,6 @@ void DemoUtils::LoadCamera(ManCam* camera, int slot)
 	if (transformNode == NULL)
 		return;
 
-	camera->position = ParseVector3(transformNode->GetAttribAsString("position"));
-	camera->yaw = transformNode->GetAttribAsFloat("yaw");
-	camera->pitch = transformNode->GetAttribAsFloat("pitch");
-	camera->roll = transformNode->GetAttribAsFloat("roll");
+	camera->GetGameObject()->Transform.SetPosition(ParseVector3(transformNode->GetAttribAsString("position")));
+	camera->GetGameObject()->Transform.SetRotation(ParseQuat(transformNode->GetAttribAsString("rotation")));
 }

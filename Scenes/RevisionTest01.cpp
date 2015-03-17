@@ -207,6 +207,7 @@ void RevisionTest01::Draw()
 	DemoController::GetInstance()->m_graphicsEngine->RenderTexture(m_blurTexture->GetId(), 1.0f, FaceResolution, 0, FaceResolution, FaceResolution);
 
 	glViewport(0, 0, DemoController::GetInstance()->width, DemoController::GetInstance()->height);
+	/*
 	m_wallFace->Draw(
 		m_blurTexture->GetId(),
 		m_wall1Tex->GetId(),
@@ -214,6 +215,7 @@ void RevisionTest01::Draw()
 		sm::Matrix::TranslateMatrix(0.0, 2.5f, -9.999f) * sm::Matrix::ScaleMatrix(4.0f, 4.0f, 4.0f),
 		DemoController::GetInstance()->m_viewProj,
 		DemoController::GetInstance()->m_activeCamera->GetPosition());
+		*/
 	//m_wallFace->Draw(m_colorTexture, smooth, DemoController::GetInstance()->m_viewProj);
 
 	DrawingRoutines::DrawWithMaterial(m_room->m_meshParts);

@@ -1,24 +1,14 @@
 #include "OpenglWindow.h"
 #include <assert.h>
-#include "IKeyboardCallback.h"
 
 LRESULT CALLBACK OpenglWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	static IKeyboardCallback *kbCallback;
-
 	switch (uMsg)
 	{
 	case WM_CREATE:
 		{
 			CREATESTRUCT *cs = (CREATESTRUCT*)lParam;
-			kbCallback = (IKeyboardCallback*)cs->lpCreateParams;
 		}
-		return 0;
-
-	case WM_KEYDOWN:
-		if (kbCallback != NULL)
-			kbCallback->OnKeyDown(wParam);
-
 		return 0;
 
 	case WM_MOUSEACTIVATE:
@@ -35,11 +25,6 @@ LRESULT CALLBACK OpenglWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 		case SC_MONITORPOWER:
 			return 0;
 		}
-
-	case WM_LBUTTONDOWN:
-		if (kbCallback != NULL)
-			kbCallback->OnLeftMouseDown();
-		return 0;
 
 	case WM_DESTROY:
 		return 0;

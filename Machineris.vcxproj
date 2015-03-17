@@ -212,7 +212,6 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
     <ClCompile Include="GraphicsLibrary\OpenglWindow.cpp" />
-    <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="Materials\BaseGlowTransparencySpecullar.cpp" />
@@ -265,7 +264,6 @@ exit /B 0
     <ClCompile Include="Blur.cpp" />
     <ClCompile Include="DemoController.cpp" />
     <ClCompile Include="DrawingRoutines.cpp" />
-    <ClCompile Include="ManCam.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="PropertyManager.cpp" />
     <ClCompile Include="StartDialog.cpp" />
@@ -413,10 +411,8 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
     <ClInclude Include="GraphicsLibrary\ICamera.h" />
     <ClInclude Include="GraphicsLibrary\IGlContextService.h" />
-    <ClInclude Include="GraphicsLibrary\IKeyboardCallback.h" />
     <ClInclude Include="GraphicsLibrary\OpenglWindow.h" />
     <ClInclude Include="GraphicsLibrary\PosKey.h" />
-    <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="Materials\BaseGlowTransparencySpecullar.h" />
@@ -487,7 +483,6 @@ exit /B 0
     <ClInclude Include="Blur.h" />
     <ClInclude Include="DemoController.h" />
     <ClInclude Include="DrawingRoutines.h" />
-    <ClInclude Include="ManCam.h" />
     <ClInclude Include="MemoryLeak.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="PropertyManager.h" />
