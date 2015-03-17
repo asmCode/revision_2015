@@ -9,7 +9,6 @@ varying vec3 o_lightDirection;
 
 void main()
 {
-
 	vec3 normal = normalize(o_normal);
 	vec3 lightDirection = normalize(o_lightDirection);
 		

@@ -17,7 +17,8 @@ public:
 		ParamFlag_Proj = 1 << 2,
 		ParamFlag_ViewProj = 1 << 3,
 		ParamFlag_WorldViewProj = 1 << 4,
-		ParamFlag_PointLightPosition = 1 << 5
+		ParamFlag_PointLightPosition = 1 << 5,
+		ParamFlag_EyePosition = 1 << 6
 	};
 
 	static const std::string* ParamsNames;
@@ -28,6 +29,7 @@ public:
 	static sm::Matrix m_paramViewProj;
 	static sm::Matrix m_paramWorldViewProj;
 	static sm::Vec3 m_paramPointLightPosition;
+	static sm::Vec3 m_paramEyePosition;
 
 	static Params GetShaderParams(Shader* shader);
 	static void SetShaderBuiltInParams(Shader* shader, Params params);

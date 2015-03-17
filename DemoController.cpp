@@ -1049,7 +1049,7 @@ bool DemoController::BeforeStartSetups()
 {
 	Content *dc = m_content;
 
-	DrawingRoutines::Initialize(m_content);
+	//DrawingRoutines::Initialize(m_content);
 
 	/*Shader *blurEffect = dc->Get<Shader>("blur");
 	assert(blurEffect != NULL);

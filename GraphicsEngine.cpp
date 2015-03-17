@@ -155,6 +155,7 @@ void GraphicsEngine::RenderGameObjects()
 		BuiltInShaderParams::m_paramView = m_cameras[0]->GetViewMatrix();
 		BuiltInShaderParams::m_paramProj = m_cameras[0]->GetProjMatrix();
 		BuiltInShaderParams::m_paramViewProj = m_cameras[0]->GetViewProjMatrix();
+		BuiltInShaderParams::m_paramEyePosition = m_cameras[0]->GetGameObject()->Transform.GetPosition();
 	}
 
 	//m_mainFrame->BindFramebuffer();
