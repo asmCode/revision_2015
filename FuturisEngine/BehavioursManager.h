@@ -11,8 +11,7 @@ class IBehaviourFactory;
 class BehavioursManager
 {
 public:
-	BehavioursManager();
-	~BehavioursManager();
+	static BehavioursManager* GetInstance();
 
 	void RegisterBehaviour(const std::string& name, IBehaviourFactory* factory);
 	Behaviour* CreateBehaviour(const std::string& name, GameObject *gameObject);
@@ -23,6 +22,11 @@ private:
 	typedef std::map<std::string, IBehaviourFactory*> BehavioursFactoriesMap;
 	typedef std::vector<Behaviour*> BehavioursVector;
 
+	static BehavioursManager* m_instance;
+
 	BehavioursFactoriesMap m_behavioursFactories;
 	BehavioursVector m_behaviours;
+
+	BehavioursManager();
+	~BehavioursManager();
 };

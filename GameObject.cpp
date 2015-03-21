@@ -2,6 +2,7 @@
 #include "Renderable.h"
 #include "Light.h"
 #include "Camera.h"
+#include "../FuturisEngine/BehavioursManager.h"
 #include <stddef.h>
 
 GameObject::GameObject(const std::string& name) :
@@ -59,6 +60,15 @@ Camera* GameObject::GetCamera() const
 void GameObject::AddBehaviour(Behaviour* behaviour)
 {
 	m_behaviours.push_back(behaviour);
+}
+
+Behaviour* GameObject::AddBehaviour(const std::string& componentName)
+{
+	Behaviour* behaviour = BehavioursManager::GetInstance()->CreateBehaviour(componentName, this);
+	if (behaviour != NULL)
+		m_behaviours.push_back(behaviour);
+
+	return behaviour;
 }
 
 const std::vector<Behaviour*>& GameObject::GetBehaviours() const

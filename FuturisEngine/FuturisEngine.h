@@ -1,7 +1,5 @@
 #pragma once
 
-class BehavioursManager;
-
 class FuturisEngine
 {
 public:
@@ -10,8 +8,5 @@ public:
 
 	bool Initialize();
 
-	BehavioursManager* GetBehavioursManager() const;
-
 private:
-	BehavioursManager* m_behavioursManager;
 };

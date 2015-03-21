@@ -6,6 +6,16 @@
 #include <stdint.h>
 #include <assert.h>
 
+BehavioursManager* BehavioursManager::m_instance;
+
+BehavioursManager* BehavioursManager::GetInstance()
+{
+	if (m_instance == NULL)
+		m_instance = new BehavioursManager();
+
+	return m_instance;
+}
+
 BehavioursManager::BehavioursManager()
 {
 }

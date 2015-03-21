@@ -32,6 +32,7 @@ public:
 	Camera* GetCamera() const;
 
 	void AddBehaviour(Behaviour* behaviour);
+	Behaviour* AddBehaviour(const std::string& componentName);
 	const std::vector<Behaviour*>& GetBehaviours() const;
 
 protected:
