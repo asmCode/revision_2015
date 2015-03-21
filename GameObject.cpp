@@ -21,14 +21,6 @@ const std::vector<Renderable*>& GameObject::GetRenderables() const
 	return m_renderables;
 }
 
-void GameObject::Awake()
-{
-}
-
-void GameObject::Update(float time, float seconds)
-{
-}
-
 bool GameObject::IsActive() const
 {
 	return m_isActive;

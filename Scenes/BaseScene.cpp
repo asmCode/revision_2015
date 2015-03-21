@@ -84,8 +84,6 @@ bool BaseScene::Update(float time, float deltaTime)
 	if (m_camerasManager != NULL)
 		m_activeCamera = m_camerasManager->GetActiveCamera(time);
 
-	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
-		m_gameObjects[i]->Update(time, deltaTime);
 
 	return true;
 }

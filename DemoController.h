@@ -82,8 +82,6 @@ public:
 
 	float m_fovPower;
 
-	ScenesManager* m_scenesManager;
-
 	Model *m_mdl_teapot;
 
 	Texture *m_bgTex;

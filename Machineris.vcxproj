@@ -124,6 +124,10 @@ exit /B 0
     <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
     <ClCompile Include="Behaviours\Jump.cpp" />
     <ClCompile Include="Behaviours\JumpFactory.cpp" />
+    <ClCompile Include="Behaviours\PassageController.cpp" />
+    <ClCompile Include="Behaviours\PassageControllerFactory.cpp" />
+    <ClCompile Include="Behaviours\Tile.cpp" />
+    <ClCompile Include="Behaviours\TileFactory.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -283,6 +287,10 @@ exit /B 0
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Behaviours\FppCamera.h" />
     <ClInclude Include="Behaviours\FppCameraFactory.h" />
+    <ClInclude Include="Behaviours\PassageController.h" />
+    <ClInclude Include="Behaviours\PassageControllerFactory.h" />
+    <ClInclude Include="Behaviours\Tile.h" />
+    <ClInclude Include="Behaviours\TileFactory.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />

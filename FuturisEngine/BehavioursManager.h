@@ -17,6 +17,7 @@ public:
 	void RegisterBehaviour(const std::string& name, IBehaviourFactory* factory);
 	Behaviour* CreateBehaviour(const std::string& name, GameObject *gameObject);
 	void UpdateBehaviours();
+	void AwakeBehaviours();
 
 private:
 	typedef std::map<std::string, IBehaviourFactory*> BehavioursFactoriesMap;

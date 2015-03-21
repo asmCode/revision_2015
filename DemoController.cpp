@@ -27,9 +27,10 @@
 #include "FuturisEngine/Screen.h"
 #include "FuturisEngine/Time.h"
 
-#include "Behaviours/Jump.h"
 #include "Behaviours/JumpFactory.h"
 #include "Behaviours/FppCameraFactory.h"
+#include "Behaviours/TileFactory.h"
+#include "Behaviours/PassageControllerFactory.h"
 
 #include "ScenesManager.h"
 
@@ -116,7 +117,6 @@ float conv(int a, int b, int c)
 }
 
 DemoController::DemoController() :
-	m_scenesManager(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
 	m_synchManager(NULL),
@@ -301,6 +301,8 @@ void DemoController::RegisterBehaviours()
 
 	behavioursManager->RegisterBehaviour("Jump", new JumpFactory());
 	behavioursManager->RegisterBehaviour("FppCamera", new FppCameraFactory());
+	behavioursManager->RegisterBehaviour("Tile", new TileFactory());
+	behavioursManager->RegisterBehaviour("PassageController", new PassageControllerFactory());
 }
 
 Animation *anim;
@@ -462,14 +464,15 @@ bool DemoController::LoadContent(const char *basePath)
 	*/
 
 	Stopwatch loadScenesStopwatch(true);
-	m_scenesManager = new ScenesManager();
-	m_scenesManager->Initialize();
+	ScenesManager::GetInstance();
+	ScenesManager::GetInstance()->Initialize();
+	m_engine->GetBehavioursManager()->AwakeBehaviours();
 	Log::LogT("Scenes loaded in %.2f s", loadScenesStopwatch.GetTime());
 
 	m_graphicsEngine = new GraphicsEngine(width, height);
 	m_graphicsEngine->Initialize();
 
-	BaseScene* scene = m_scenesManager->GetActiveScene();
+	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
 
 	m_graphicsEngine->SetRenderables(scene->GetRenderables());
 	m_graphicsEngine->SetLights(scene->GetLights());
@@ -521,17 +524,17 @@ bool DemoController::Update(float time, float seconds)
 	m_engine->GetBehavioursManager()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
-		DemoUtils::SaveCamera(m_scenesManager->GetActiveScene()->GetCameras()[0], 0);
+		DemoUtils::SaveCamera(ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0], 0);
 
 	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
-		DemoUtils::LoadCamera(m_scenesManager->GetActiveScene()->GetCameras()[0], 0);
+		DemoUtils::LoadCamera(ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0], 0);
 
-	m_scenesManager->Update(time);
+	ScenesManager::GetInstance()->Update(time);
 
 	m_activeCamera = NULL;
 
-	BaseScene* activeScene = m_scenesManager->GetActiveScene();
-	if (m_scenesManager->IsSceneChanged())
+	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
+	if (ScenesManager::GetInstance()->IsSceneChanged())
 		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
 	
 	m_synchManager->Update(time);

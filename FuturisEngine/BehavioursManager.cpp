@@ -45,3 +45,9 @@ void BehavioursManager::UpdateBehaviours()
 	for (uint32_t i = 0; i < m_behaviours.size(); i++)
 		m_behaviours[i]->Update();
 }
+
+void BehavioursManager::AwakeBehaviours()
+{
+	for (uint32_t i = 0; i < m_behaviours.size(); i++)
+		m_behaviours[i]->Awake();
+}

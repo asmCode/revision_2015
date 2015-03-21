@@ -4,12 +4,12 @@
 #include <stdint.h>
 
 class BaseScene;
+class GameObject;
 
 class ScenesManager
 {
 public:
-	ScenesManager();
-	virtual ~ScenesManager() {}
+	static ScenesManager* GetInstance();
 
 	void Initialize();
 
@@ -17,9 +17,16 @@ public:
 	BaseScene* GetActiveScene() const;
 	bool IsSceneChanged() const;
 
+	GameObject* FindGameObject(const std::string& name) const;
+
 private:
+	static ScenesManager* m_instance;
+
 	std::vector<BaseScene*> m_scenes;
 	int m_activeSceneIndex;
 
 	bool m_isSceneChanged;
+
+	ScenesManager();
+	virtual ~ScenesManager() {}
 };
