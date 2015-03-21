@@ -2,23 +2,13 @@
 #include "../Camera.h"
 #include "../GameObject.h"
 #include "../Transform.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Utils/StringUtils.h>
 #include <stdint.h>
 #include <XML/XMLLoader.h>
 #include <XML/XMLNode.h>
 #include <XML/XmlWriter.h>
 #include <fstream>
-
-sm::Vec3 DemoUtils::GetRandomVector()
-{
-	static Randomizer random;
-
-	return sm::Vec3(
-		random.GetFloat(-1, 1),
-		random.GetFloat(-1, 1),
-		random.GetFloat(-1, 1)).GetNormalized();
-}
 
 float DemoUtils::GetPathLength(std::vector<sm::Vec3>& path)
 {

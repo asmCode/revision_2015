@@ -4,7 +4,7 @@
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
 #include <UserInput/Input.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Utils/Log.h>
 #include <Math/Animation/ExpOut.h>
 #include <Math/Animation/QuadIn.h>

@@ -421,7 +421,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			std::vector<Parameter> parameters;
 			LoadParameters(node, parameters);
 
-			Behaviour* behaviour = DemoController::GetInstance()->m_engine->GetBehavioursManager()->CreateBehaviour(behaviourName, gameObject);
+			Behaviour* behaviour = BehavioursManager::GetInstance()->CreateBehaviour(behaviourName, gameObject);
 			
 			for (uint32_t i = 0; i < parameters.size(); i++)
 			{

@@ -4,7 +4,7 @@
 #include "Ribbon/Modificators/ITriangleModificator.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Graphics/MeshPart.h>
 #include <Math/MathUtils.h>
 #include <Graphics/VertexInformation.h>
@@ -33,7 +33,7 @@ void TrianglesRibbon::Initialize(
 
 	m_minScale = minScale;
 
-	static Randomizer random;
+	static Random random;
 
 	m_trianglesCount = meshPart->GetVerticesCount() / 3;
 
@@ -59,7 +59,7 @@ void TrianglesRibbon::Initialize(
 
 		m_trianglesData[i]->ScaleCurve = ribbinCurveBuilder->CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
 
-		m_trianglesData[i]->Axis = DemoUtils::GetRandomVector();
+		m_trianglesData[i]->Axis = Random::GetUniVector();
 		m_trianglesData[i]->Angle = 0.0f;
 		m_trianglesData[i]->AngleSpeed = random.GetFloat(1.0, 10.0f);
 	}

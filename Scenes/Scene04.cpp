@@ -7,7 +7,7 @@
 #include "../GameObjects/Guy.h"
 #include "../GameObjects/Ribbon.h"
 #include <UserInput/Input.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Utils/Log.h>
 #include <Math/Animation/ExpOut.h>
 #include <Math/Animation/QuadIn.h>

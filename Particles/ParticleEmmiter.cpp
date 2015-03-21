@@ -3,7 +3,7 @@
 #include "Particle.h"
 #include <Graphics/Interpolators/InterpolatorFactory.h>
 #include <Math/Vec4.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <memory>
 #include <assert.h>
 
@@ -154,7 +154,7 @@ void ParticleEmmiter::DisableSparksSource()
 
 void ParticleEmmiter::StartParticle(Particle *particle)
 {
-	static Randomizer random;
+	static Random random;
 
 	sm::Vec3 position;
 	sm::Vec3 direction;

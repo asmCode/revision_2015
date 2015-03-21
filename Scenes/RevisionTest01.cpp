@@ -4,7 +4,7 @@
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
 #include "../Environment.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Texture.h>

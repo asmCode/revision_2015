@@ -66,7 +66,6 @@ Texture *blackTex;
 LinearInterpolator<float> fadeAnim;
 
 DemoController* GenericSingleton<DemoController>::instance;
-Randomizer DemoController::random;
 
   void APIENTRY OpenglDebugCallback(
 	  GLenum source,
@@ -297,7 +296,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 void DemoController::RegisterBehaviours()
 {
-	BehavioursManager* behavioursManager = m_engine->GetBehavioursManager();
+	BehavioursManager* behavioursManager = BehavioursManager::GetInstance();
 
 	behavioursManager->RegisterBehaviour("Jump", new JumpFactory());
 	behavioursManager->RegisterBehaviour("FppCamera", new FppCameraFactory());
@@ -466,7 +465,7 @@ bool DemoController::LoadContent(const char *basePath)
 	Stopwatch loadScenesStopwatch(true);
 	ScenesManager::GetInstance();
 	ScenesManager::GetInstance()->Initialize();
-	m_engine->GetBehavioursManager()->AwakeBehaviours();
+	BehavioursManager::GetInstance()->AwakeBehaviours();
 	Log::LogT("Scenes loaded in %.2f s", loadScenesStopwatch.GetTime());
 
 	m_graphicsEngine = new GraphicsEngine(width, height);
@@ -521,7 +520,7 @@ bool DemoController::Update(float time, float seconds)
 	Time::TimeLeft = time;
 	Time::DeltaTime = seconds;
 
-	m_engine->GetBehavioursManager()->UpdateBehaviours();
+	BehavioursManager::GetInstance()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::SaveCamera(ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0], 0);

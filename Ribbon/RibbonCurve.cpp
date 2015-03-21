@@ -8,7 +8,7 @@
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
 #include <Math/Animation/QuarticOut.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Graphics/Interpolators/TCBInterpolator.h>
 #include <Math/Animation/AnimationCurve.h>
 #include <Math/Animation/QuadOut.h>

@@ -1,5 +1,5 @@
 #include "RibbonCurveDestroy.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include "../SceneElement/Path.h"
 #include "../SceneElement/Key.h"
 #include "../DemoUtils.h"
@@ -18,11 +18,11 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestroy::CreateCurve(
 	float spread,
 	float maxDelay)
 {
-	static Randomizer random;
+	static Random random;
 
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
 
-	sm::Vec3 velocity = DemoUtils::GetRandomVector();
+	sm::Vec3 velocity = Random::GetUniVector();
 	velocity.y = MathUtils::Abs(velocity.y);
 	velocity *= random.GetFloat(0.3f, 6.0f);
 
@@ -54,7 +54,7 @@ AnimationCurve<float>* RibbonCurveDestroy::CreateScaleCurve(AnimationCurve<sm::V
 	float s = transformCurve->GetStartTime();
 	float e = transformCurve->GetEndTime();
 
-	static Randomizer random;
+	static Random random;
 
 	curve->AddKeyframe(s, 1.0f);
 	curve->AddKeyframe((s + e) / 2, 0.5f);

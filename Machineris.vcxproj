@@ -200,7 +200,7 @@ exit /B 0
     <ClCompile Include="Framework\Math\Matrix.cpp" />
     <ClCompile Include="Framework\UserInput\Input.cpp" />
     <ClCompile Include="Framework\Utils\Log.cpp" />
-    <ClCompile Include="Framework\Utils\Randomizer.cpp" />
+    <ClCompile Include="Framework\Utils\Random.cpp" />
     <ClCompile Include="Framework\Utils\StringUtils.cpp" />
     <ClCompile Include="Framework\XML\XMLLoader.cpp" />
     <ClCompile Include="Framework\XML\XMLNode.cpp" />
@@ -396,7 +396,7 @@ exit /B 0
     <ClInclude Include="Framework\UserInput\Input.h" />
     <ClInclude Include="Framework\UserInput\KeyCode.h" />
     <ClInclude Include="Framework\Utils\Log.h" />
-    <ClInclude Include="Framework\Utils\Randomizer.h" />
+    <ClInclude Include="Framework\Utils\Random.h" />
     <ClInclude Include="Framework\Utils\StringUtils.h" />
     <ClInclude Include="Framework\XML\XMLLoader.h" />
     <ClInclude Include="Framework\XML\XMLNode.h" />

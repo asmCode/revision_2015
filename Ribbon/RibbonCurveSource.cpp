@@ -1,5 +1,5 @@
 #include "RibbonCurveSource.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include "../SceneElement/Path.h"
 #include "../SceneElement/Key.h"
 #include "../DemoUtils.h"
@@ -14,7 +14,7 @@ AnimationCurve<sm::Vec3>* RibbonCurveSource::CreateCurve(
 {		
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
 
-	static Randomizer random;
+	static Random random;
 
 	const std::vector<SceneElement::Key*>& keys = path->Keys;
 	int keysCount = keys.size();
@@ -30,7 +30,7 @@ AnimationCurve<sm::Vec3>* RibbonCurveSource::CreateCurve(
 
 	for (uint32_t i = 2; i < keysCount; i++)
 	{
-		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + Random::GetUniVector() *random.GetFloat(0, spread));
 	}
 
 	curve->SmoothTangents();
@@ -42,7 +42,7 @@ AnimationCurve<float>* RibbonCurveSource::CreateScaleCurve(AnimationCurve<sm::Ve
 {
 	AnimationCurve<float>* curve = new AnimationCurve<float>();
 
-	static Randomizer random;
+	static Random random;
 
 	float startTimeShift = random.GetFloat(transformCurve->GetKeyframe(0).Time, transformCurve->GetKeyframe(1).Time);
 

@@ -2,7 +2,7 @@
 #include "../GameObject.h"
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>

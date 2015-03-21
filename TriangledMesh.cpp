@@ -5,7 +5,7 @@
 #include <Math/Vec2.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/VertexInformation.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <GL/glew.h>
 
 TriangledMesh::TriangledMesh() :

@@ -20,7 +20,7 @@
 #include <Graphics/Interpolators/Interpolator.h>
 #include <Graphics/Interpolators/InterpolatorFactory.h>
 #include <Graphics/Content/IContentObserver.h>
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 
 #include <windows.h>
 #include <vector>
@@ -101,8 +101,6 @@ public:
 	Shader *m_spriteShader;
 	
 	//Effect *electro;
-
-	static Randomizer random;
 
 	unsigned noiseTex;
 	void InitElectroNoise();

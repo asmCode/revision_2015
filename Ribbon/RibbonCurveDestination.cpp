@@ -1,7 +1,7 @@
 #include "RibbonCurveDestination.h"
 #include "../SceneElement/Key.h"
 #include "../DemoUtils.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Math/Animation/AnimationCurve.h>
 #include <Math/MathUtils.h>
 #include <stdint.h>
@@ -14,7 +14,7 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestination::CreateCurve(
 	float spread,
 	float maxDelay)
 {	
-	static Randomizer random;
+	static Random random;
 
 	const std::vector<SceneElement::Key*>& keys = path->Keys;
 
@@ -27,7 +27,7 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestination::CreateCurve(
 
 	for (uint32_t i = 0; i < keysCount - 2; i++)
 	{
-		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + Random::GetUniVector() * random.GetFloat(0, spread));
 	}
 
 	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
@@ -51,7 +51,7 @@ AnimationCurve<float>* RibbonCurveDestination::CreateScaleCurve(AnimationCurve<s
 	float startTime = transformCurve->GetStartTime();
 	float endTime = transformCurve->GetEndTime();
 
-	static Randomizer random;
+	static Random random;
 
 	curve->AddKeyframe(startTime, 0);
 	curve->AddKeyframe(startTime + 1, minScale);

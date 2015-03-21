@@ -3,7 +3,7 @@
 #include "../GameObjects/BlinkStatic.h"
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
-#include <Utils/Randomizer.h>
+#include <Utils/Random.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>
@@ -35,7 +35,7 @@ bool SynchTestScene::Update(float time, float deltaTime)
 
 void SynchTestScene::NotifySynchEvent(SynchEvent* synchEvent)
 {
-	static Randomizer random;
+	static Random random;
 
 	sm::Vec4 color(
 		(random.GetInt(0, 8) * 32.0f) / 256.0f,

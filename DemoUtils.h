@@ -11,7 +11,6 @@ class Camera;
 class DemoUtils
 {
 public:
-	static sm::Vec3 GetRandomVector();
 	static float GetPathLength(std::vector<sm::Vec3>& path);
 	static sm::Matrix GetTriangleTransform(sm::Vec3* triangle);
 	static std::string ToText(const sm::Vec3& value, const std::string& separator = ";");
