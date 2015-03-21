@@ -84,15 +84,19 @@ void Input::UpdateState()
 	{
 		keyState = GetAsyncKeyState(m_keyMap[i]);
 
-		if ((keyState & pressedFlag) != 0)
+		if ((keyState & pressedFlag) != 0) // klawisz jest nacisniety
 		{
 			m_justPressed[i] = !m_pressed[i];
 			
 			m_pressed[i] = true;
 		}
-		else
+		else // klawisz nie jest nacisniety
 		{			
 			m_justReleased[i] = m_pressed[i];
+
+			// fix: jesli w jednym wywolaniu metody nacisnieto przycisk a w kolejnym
+			// wywolaniu puszczono, to m_justPressed[i] pozostaloby true
+			m_justPressed[i] = false;
 
 			m_pressed[i] = false;
 		}
