@@ -463,7 +463,6 @@ bool DemoController::LoadContent(const char *basePath)
 	Stopwatch loadScenesStopwatch(true);
 	ScenesManager::GetInstance();
 	ScenesManager::GetInstance()->Initialize();
-	BehavioursManager::GetInstance()->AwakeBehaviours();
 	Log::LogT("Scenes loaded in %.2f s", loadScenesStopwatch.GetTime());
 
 	m_graphicsEngine = new GraphicsEngine(width, height);
@@ -518,6 +517,7 @@ bool DemoController::Update(float time, float seconds)
 	Time::TimeLeft = time;
 	Time::DeltaTime = seconds;
 
+	BehavioursManager::GetInstance()->AwakeBehaviours();
 	BehavioursManager::GetInstance()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))

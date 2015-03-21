@@ -46,6 +46,7 @@ Behaviour* BehavioursManager::CreateBehaviour(const std::string& name, GameObjec
 	Behaviour* behaviour = behaviourFactory->Create(gameObject, name);
 
 	m_behaviours.push_back(behaviour);
+	m_behavioursToAwake.push_back(behaviour);
 
 	return behaviour;
 }
@@ -58,6 +59,15 @@ void BehavioursManager::UpdateBehaviours()
 
 void BehavioursManager::AwakeBehaviours()
 {
-	for (uint32_t i = 0; i < m_behaviours.size(); i++)
-		m_behaviours[i]->Awake();
+	while (m_behavioursToAwake.size() > 0)
+	{
+		// Behaviours trzeba skopiowac do innego wektora, bo podczas wywolywania Awake() nowe Behavioury
+		// moga zostac stworzone (a tym samym dodane do listy m_behavioursToAwake
+		BehavioursVector toAwake(m_behavioursToAwake);
+
+		m_behavioursToAwake.clear();
+
+		for (uint32_t i = 0; i < toAwake.size(); i++)
+			toAwake[i]->Awake();
+	}
 }

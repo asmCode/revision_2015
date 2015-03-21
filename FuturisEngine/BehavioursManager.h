@@ -26,6 +26,7 @@ private:
 
 	BehavioursFactoriesMap m_behavioursFactories;
 	BehavioursVector m_behaviours;
+	BehavioursVector m_behavioursToAwake;
 
 	BehavioursManager();
 	~BehavioursManager();
