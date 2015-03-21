@@ -10,13 +10,11 @@
 #include "Blur.h"
 #include <Graphics/DepthTexture.h>
 #include <Graphics/MeshPart.h>
+#include "Scenes/BaseScene.h"
 #include "Frustum.h"
 #include <Graphics/BoundingSphere.h>
 #include "common.h"
 #include "SynchEventsLoader.h"
-#include "Scenes/Test1Scene.h"
-#include "Scenes/GlowTestScene.h"
-#include "Scenes/GuySceneTest.h"
 #include "DemoUtils.h"
 #include "Utils/Stopwatch.h"
 #include "SynchManager.h"
