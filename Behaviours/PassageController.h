@@ -20,4 +20,5 @@ private:
 	std::vector<Tile*> m_tiles;
 
 	void InitTiles();
+	void BlowTiles(int count);
 };
