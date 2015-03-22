@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Component.h"
+#include "FuturisEngine/LayerId.h"
 #include <Math/Matrix.h>
 #include <Graphics/Rect.h>
 
@@ -32,6 +33,7 @@ public:
 	Camera(GameObject* gameObject);
 
 	void SetClearFlag(ClearFlag clearFlag);
+	void SetCullLayers(Layers m_cullLayers);
 
 	void Clear();
 
@@ -47,12 +49,14 @@ public:
 	const sm::Matrix& GetProjMatrix();
 	const sm::Matrix& GetViewProjMatrix();
 	const sm::Vec4& GetClearColor() const;
+	Layers GetCullLayers() const;
 
 	void Setup();
 
 private:
 	ClearFlag m_clearFlag;
 	ProjectionType m_projectionType;
+	Layers m_cullLayers;
 
 	float m_horizontalFov;
 	float m_nearPlane;

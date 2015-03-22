@@ -16,6 +16,7 @@ Camera::Camera(GameObject* gameObject) :
 	Component(gameObject),
 	m_clearFlag(DefaultClearFlag),
 	m_projectionType(DefaultProjectionType),
+	m_cullLayers(LayerId_All),
 	m_horizontalFov(DefaultFov),
 	m_nearPlane(DefaultNearPlane),
 	m_farPlane(DefaultFarPlane),
@@ -27,6 +28,11 @@ Camera::Camera(GameObject* gameObject) :
 void Camera::SetClearFlag(ClearFlag clearFlag)
 {
 	m_clearFlag = clearFlag;
+}
+
+void Camera::SetCullLayers(Layers cullLayers)
+{
+	m_cullLayers = cullLayers;
 }
 
 void Camera::Clear()
@@ -122,6 +128,11 @@ const sm::Matrix& Camera::GetViewProjMatrix()
 const sm::Vec4& Camera::GetClearColor() const
 {
 	return m_clearColor;
+}
+
+Layers Camera::GetCullLayers() const
+{
+	return m_cullLayers;
 }
 
 void Camera::Setup()

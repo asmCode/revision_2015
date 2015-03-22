@@ -33,6 +33,10 @@ enum LayerId
 	LayerId_28 = 1 << 28,
 	LayerId_29 = 1 << 29,
 	LayerId_30 = 1 << 30,
-	LayerId_31 = 1 << 31
+	LayerId_31 = 1 << 31,
+
+	LayerId_All = 0xffffffff
 };
+
+typedef unsigned int Layers;
 
