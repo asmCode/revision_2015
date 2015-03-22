@@ -282,6 +282,7 @@ exit /B 0
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\FuturisEngine.h" />
+    <ClInclude Include="FuturisEngine\LayerId.h" />
     <ClInclude Include="FuturisEngine\ParametersContainer.h" />
     <ClInclude Include="FuturisEngine\ParameterPointer.h" />
     <ClInclude Include="FuturisEngine\Screen.h" />
