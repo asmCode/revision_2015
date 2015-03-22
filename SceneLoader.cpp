@@ -344,6 +344,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 
 	GameObject* gameObject = new GameObject(gameObjectNode->GetAttribAsString("name"));
 
+	LayerId layerId = (LayerId)(gameObjectNode->GetAttribAsInt32("layer", 0) + 1);
+	gameObject->SetLayerId(layerId);
+
 	for (uint32_t i = 0; i < gameObjectNode->GetChildrenCount(); i++)
 	{
 		XMLNode* node = gameObjectNode->GetChild(i);
