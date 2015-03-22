@@ -7,6 +7,7 @@
 const Camera::ClearFlag Camera::DefaultClearFlag = Camera::ClearFlag_ColorAndDepth;
 const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionType_Perspective;
 const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
+const float Camera::DefaultOrthoSize = 100.0f;
 const float Camera::DefaultNearPlane = 1.0f;
 const float Camera::DefaultFarPlane = 1000.0f;
 const sm::Rect<float> Camera::DefaultViewport = sm::Rect<float>(0, 0, 1, 1);
@@ -18,6 +19,7 @@ Camera::Camera(GameObject* gameObject) :
 	m_projectionType(DefaultProjectionType),
 	m_cullLayers(LayerId_All),
 	m_horizontalFov(DefaultFov),
+	m_orthoSize(DefaultOrthoSize),
 	m_nearPlane(DefaultNearPlane),
 	m_farPlane(DefaultFarPlane),
 	m_viewportRect(DefaultViewport),
@@ -108,11 +110,13 @@ const sm::Matrix& Camera::GetProjMatrix()
 	}
 	else
 	{
+		float aspect = GetAspect();
+
 		m_proj = sm::Matrix::Ortho2DMatrix(
-			m_viewportRect.X,
-			m_viewportRect.X + m_viewportRect.Width,
-			m_viewportRect.Y,
-			m_viewportRect.Y + m_viewportRect.Height);
+			-m_orthoSize,
+			m_orthoSize,
+			-m_orthoSize / aspect,
+			m_orthoSize / aspect);
 	}
 
 	return m_proj;

@@ -25,6 +25,7 @@ public:
 	static const ClearFlag DefaultClearFlag;
 	static const ProjectionType DefaultProjectionType;
 	static const float DefaultFov;
+	static const float DefaultOrthoSize;
 	static const float DefaultNearPlane;
 	static const float DefaultFarPlane;
 	static const sm::Rect<float> DefaultViewport;
@@ -59,6 +60,7 @@ private:
 	Layers m_cullLayers;
 
 	float m_horizontalFov;
+	float m_orthoSize;
 	float m_nearPlane;
 	float m_farPlane;
 	sm::Rect<float> m_viewportRect;
