@@ -175,6 +175,7 @@ public:
 	static const float PI2;
 	static const float PI4;
 	static const float Deg2Rad;
+	static const float Rad2Deg;
 };
 
 #endif

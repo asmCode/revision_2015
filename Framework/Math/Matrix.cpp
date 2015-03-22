@@ -27,6 +27,43 @@ namespace sm
 		return mat;
 	}
 
+	Matrix Matrix::PerspectiveMatrix(float fovH, float aspect, float znear, float zfar)
+	{
+		Matrix matrix = Identity;
+
+		float fovV = 2.0f * atanf(tanf(fovH / 2.0f) / aspect);
+
+		float f = 1.0f / tanf(fovV / 2.0f);
+		float nearMinusFar = znear - zfar;
+
+		matrix.a[0] = f / aspect;
+		matrix.a[5] = f;
+		matrix.a[10] = (zfar + znear) / nearMinusFar;
+		matrix.a[11] = -1;
+		matrix.a[14] = (2.0f * znear * zfar) / nearMinusFar;
+		matrix.a[15] = 0.0f;
+
+		return matrix;
+	}
+
+	Matrix Matrix::Ortho2DMatrix(float left, float right, float bottom, float top)
+	{
+		float _near = -100.0f;
+		float _far = 100.0f;
+
+		Matrix matrix = Identity;
+
+		matrix.a[0] = 2.0f / (right - left);
+		matrix.a[5] = 2.0f / (top - bottom);
+		matrix.a[10] = -2.0f / (_far - _near);
+
+		matrix.a[12] = -(right + left) / (right - left);
+		matrix.a[13] = -(top + bottom) / (top - bottom);
+		matrix.a[14] = -(_far + _near) / (_far - _near);
+
+		return matrix;
+	}
+
 	Matrix Matrix::CreateLookAt(const sm::Vec3 &forward, const sm::Vec3 &worldUp)
 	{
 		sm::Matrix lookAt;
