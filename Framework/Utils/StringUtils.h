@@ -18,6 +18,7 @@ public:
 	static void Split(const std::string src, const std::string &separator, std::vector<std::string> &result);
 
 	static float ParseFloat(const std::string& str);
+	static int ParseInt(const std::string& str);
 
 	static std::string ToString(float value);
 	static std::string ToString(const sm::Vec3& value);

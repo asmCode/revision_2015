@@ -55,6 +55,13 @@ float StringUtils::ParseFloat(const std::string& str)
 	return value;
 }
 
+int StringUtils::ParseInt(const std::string& str)
+{
+	int value;
+	sscanf(str.c_str(), "%d", &value);
+	return value;
+}
+
 std::string StringUtils::ToString(float value)
 {
 	char txt[1024];

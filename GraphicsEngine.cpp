@@ -184,6 +184,9 @@ void GraphicsEngine::RenderGameObjects()
 			if (!m_solidRenderables[i]->IsActive())
 				continue;
 
+			if ((m_cameras[cameraIndex]->GetCullLayers() & m_solidRenderables[i]->GetLayerId()) == 0)
+				continue;
+
 			BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
 			BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
 

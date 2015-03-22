@@ -79,6 +79,14 @@ sm::Vec4 DemoUtils::ParseVector4(const std::string& vectorStr, const std::string
 	return vec;
 }
 
+void DemoUtils::ParseIntVector(const std::string& vectorStr, std::vector<int>& numbers, const std::string& separator)
+{
+	std::vector<std::string> numbersStr;
+	StringUtils::Split(vectorStr, separator, numbersStr);
+	for (uint32_t i = 0; i < numbersStr.size(); i++)
+		numbers.push_back(StringUtils::ParseInt(numbersStr[i]));
+}
+
 sm::Quat DemoUtils::ParseQuat(const std::string& vectorStr, const std::string& separator)
 {
 	sm::Quat q;

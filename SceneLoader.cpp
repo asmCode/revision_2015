@@ -344,7 +344,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 
 	GameObject* gameObject = new GameObject(gameObjectNode->GetAttribAsString("name"));
 
-	LayerId layerId = (LayerId)(gameObjectNode->GetAttribAsInt32("layer", 0) + 1);
+	LayerId layerId = (LayerId)(1 << gameObjectNode->GetAttribAsInt32("layer", 0));
 	gameObject->SetLayerId(layerId);
 
 	for (uint32_t i = 0; i < gameObjectNode->GetChildrenCount(); i++)
@@ -378,7 +378,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
 			{
 				GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
-				Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material);
+				Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material, 0, layerId);
 				gameObject->AddRenderable(renderable);
 			}
 		}
@@ -400,7 +400,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			assert(mesh->meshParts.size() == 1);
 
 			GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(mesh->meshParts[0]);
-			Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material);
+			Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material, 0, layerId);
 			gameObject->AddRenderable(renderable);
 		}
 		else if (node->GetName() == "Light")
@@ -419,6 +419,18 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 
 			sm::Vec4 clearColor = DemoUtils::ParseVector4(node->GetAttribAsString("clear_color", StringUtils::ToString(Camera::DefaultClearColor)), ",");
 			camera->SetClearColor(clearColor);
+
+			Layers cullLayers = LayerId_All;
+			std::string cullLayersStr = node->GetAttribAsString("cull_layers", "all");
+			if (cullLayersStr != "all")
+			{
+				Layers cullLayers = 0;
+				std::vector<int> layersNumbers;
+				DemoUtils::ParseIntVector(cullLayersStr, layersNumbers, ",");
+				for (uint32_t layersNumbersIndex = 0; layersNumbersIndex < layersNumbers.size(); layersNumbersIndex++)
+					cullLayers |= (LayerId)1 << layersNumbers[layersNumbersIndex];
+				camera->SetCullLayers(cullLayers);
+			}
 
 			gameObject->SetCamera(camera);
 		}

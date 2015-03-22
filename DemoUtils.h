@@ -18,6 +18,7 @@ public:
 	static std::string ToText(const sm::Quat& value, const std::string& separator = ";");
 	static sm::Vec3 ParseVector3(const std::string& vectorStr, const std::string& separator = ";");
 	static sm::Vec4 ParseVector4(const std::string& vectorStr, const std::string& separator = ";");
+	static void ParseIntVector(const std::string& vectorStr, std::vector<int>& numbers, const std::string& separator = ";");
 	static sm::Quat ParseQuat(const std::string& vectorStr, const std::string& separator = ";");
 	static void SaveCamera(Camera* camera, int slot);
 	static void LoadCamera(Camera* camera, int slot);
