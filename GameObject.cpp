@@ -9,7 +9,8 @@ GameObject::GameObject(const std::string& name) :
 	m_name(name),
 	m_isActive(true),
 	m_light(NULL),
-	m_camera(NULL)
+	m_camera(NULL),
+	m_layerId(LayerId_0)
 {
 }
 
@@ -30,6 +31,16 @@ bool GameObject::IsActive() const
 const std::string& GameObject::GetName() const
 {
 	return m_name;
+}
+
+void GameObject::SetLayerId(LayerId layerId)
+{
+	m_layerId = layerId;
+}
+
+LayerId GameObject::GetLayerId() const
+{
+	return m_layerId;
 }
 
 void GameObject::AddRenderable(Renderable* renderable)

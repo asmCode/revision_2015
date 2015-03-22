@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Transform.h"
+#include "FuturisEngine/LayerId.h"
 #include <Math/Matrix.h>
 #include <vector>
-#include "Transform.h"
+
 
 class Renderable;
 class Light;
@@ -23,6 +25,9 @@ public:
 
 	const std::string& GetName() const;
 
+	void SetLayerId(LayerId layerId);
+	LayerId GetLayerId() const;
+
 	void AddRenderable(Renderable* renderable);
 
 	void SetLight(Light* light);
@@ -39,10 +44,11 @@ protected:
 	std::vector<Renderable*> m_renderables;
 	std::vector<Behaviour*> m_behaviours;
 
-	Light* m_light;
-	Camera* m_camera;
-
 	bool m_isActive;
 	std::string m_name;
+	LayerId m_layerId;
+
+	Light* m_light;
+	Camera* m_camera;
 };
 
