@@ -46,6 +46,8 @@ GraphicsEngine::~GraphicsEngine()
 
 void GraphicsEngine::Initialize()
 {
+	glEnable(GL_SCISSOR_TEST);
+
 	m_mainRenderTexture = new Texture(
 		m_screenWidth,
 		m_screenHeight,
@@ -150,54 +152,55 @@ void GraphicsEngine::RenderGameObjects()
 	if (m_lights.size() > 0)
 		BuiltInShaderParams::m_paramPointLightPosition = m_lights[0]->GetGameObject()->Transform.GetPosition();
 
-	if (m_cameras.size() > 0)
+	for (uint32_t cameraIndex = 0; cameraIndex < m_cameras.size(); cameraIndex++)
 	{
-		BuiltInShaderParams::m_paramView = m_cameras[0]->GetViewMatrix();
-		BuiltInShaderParams::m_paramProj = m_cameras[0]->GetProjMatrix();
-		BuiltInShaderParams::m_paramViewProj = m_cameras[0]->GetViewProjMatrix();
-		BuiltInShaderParams::m_paramEyePosition = m_cameras[0]->GetGameObject()->Transform.GetPosition();
-	}
+		BuiltInShaderParams::m_paramView = m_cameras[cameraIndex]->GetViewMatrix();
+		BuiltInShaderParams::m_paramProj = m_cameras[cameraIndex]->GetProjMatrix();
+		BuiltInShaderParams::m_paramViewProj = m_cameras[cameraIndex]->GetViewProjMatrix();
+		BuiltInShaderParams::m_paramEyePosition = m_cameras[cameraIndex]->GetGameObject()->Transform.GetPosition();
 
-	//m_mainFrame->BindFramebuffer();
-	//glViewport(0, 0, m_screenWidth, m_screenHeight);
 
-	m_cameras[0]->Setup();
+		//m_mainFrame->BindFramebuffer();
+		//glViewport(0, 0, m_screenWidth, m_screenHeight);
 
-	/*
-	GLenum enabledBuffers[2];
-	enabledBuffers[0] = GL_COLOR_ATTACHMENT0;
-	enabledBuffers[1] = GL_COLOR_ATTACHMENT1;
-	glDrawBuffers(2, enabledBuffers);
-	*/
+		m_cameras[cameraIndex]->Setup();
 
-	glDepthMask(true);
-	glColorMask(true, true, true, true);
-	//glColorMaski(0, true, true, true, true);
-	//glColorMaski(1, true, true, true, true);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
+		/*
+		GLenum enabledBuffers[2];
+		enabledBuffers[0] = GL_COLOR_ATTACHMENT0;
+		enabledBuffers[1] = GL_COLOR_ATTACHMENT1;
+		glDrawBuffers(2, enabledBuffers);
+		*/
 
-	for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
-	{
-		if (!m_solidRenderables[i]->IsActive())
-			continue;
+		glDepthMask(true);
+		glColorMask(true, true, true, true);
+		//glColorMaski(0, true, true, true, true);
+		//glColorMaski(1, true, true, true, true);
+		m_cameras[cameraIndex]->Clear();
+		glEnable(GL_DEPTH_TEST);
 
-		BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
-		BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
+		for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
+		{
+			if (!m_solidRenderables[i]->IsActive())
+				continue;
 
-		Material* material = m_solidRenderables[i]->GetMaterial();
-		material->SetupMaterial();
-		m_solidRenderables[i]->Draw();
-	}
+			BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
+			BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
 
-	for (uint32_t i = 0; i < m_transparentRenderables.size(); i++)
-	{
-		if (!m_transparentRenderables[i]->IsActive())
-			continue;
+			Material* material = m_solidRenderables[i]->GetMaterial();
+			material->SetupMaterial();
+			m_solidRenderables[i]->Draw();
+		}
 
-		Material* material = m_transparentRenderables[i]->GetMaterial();
-		material->SetupMaterial();
-		m_transparentRenderables[i]->Draw();
+		for (uint32_t i = 0; i < m_transparentRenderables.size(); i++)
+		{
+			if (!m_transparentRenderables[i]->IsActive())
+				continue;
+
+			Material* material = m_transparentRenderables[i]->GetMaterial();
+			material->SetupMaterial();
+			m_transparentRenderables[i]->Draw();
+		}
 	}
 
 	return;

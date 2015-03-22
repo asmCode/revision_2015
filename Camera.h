@@ -26,6 +26,8 @@ public:
 	static const float DefaultFov;
 	static const float DefaultNearPlane;
 	static const float DefaultFarPlane;
+	static const sm::Rect<float> DefaultViewport;
+	static const sm::Vec4 DefaultClearColor;
 
 	Camera(GameObject* gameObject);
 
@@ -37,12 +39,14 @@ public:
 	void SetFarPlane(float farPlane);
 	void SetNearPlane(float nearPlane);
 	void SetViewport(float x, float y, float width, float height);
+	void SetClearColor(const sm::Vec4& clearColor);
 
 	void SetProjectionType(ProjectionType projectionType);
 
 	const sm::Matrix& GetViewMatrix();
 	const sm::Matrix& GetProjMatrix();
 	const sm::Matrix& GetViewProjMatrix();
+	const sm::Vec4& GetClearColor() const;
 
 	void Setup();
 
@@ -54,6 +58,7 @@ private:
 	float m_nearPlane;
 	float m_farPlane;
 	sm::Rect<float> m_viewportRect;
+	sm::Vec4 m_clearColor;
 
 	sm::Matrix m_view;
 	sm::Matrix m_proj;

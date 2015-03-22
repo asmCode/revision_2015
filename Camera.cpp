@@ -9,6 +9,8 @@ const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionT
 const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
 const float Camera::DefaultNearPlane = 1.0f;
 const float Camera::DefaultFarPlane = 1000.0f;
+const sm::Rect<float> Camera::DefaultViewport = sm::Rect<float>(0, 0, 1, 1);
+const sm::Vec4 Camera::DefaultClearColor = sm::Vec4(0.2f, 0.1f, 0.1f, 0.0f);
 
 Camera::Camera(GameObject* gameObject) :
 	Component(gameObject),
@@ -17,7 +19,8 @@ Camera::Camera(GameObject* gameObject) :
 	m_horizontalFov(DefaultFov),
 	m_nearPlane(DefaultNearPlane),
 	m_farPlane(DefaultFarPlane),
-	m_viewportRect(0, 0, 1, 1)
+	m_viewportRect(DefaultViewport),
+	m_clearColor(DefaultClearColor)
 {
 }
 
@@ -33,9 +36,15 @@ void Camera::Clear()
 	if (m_clearFlag == ClearFlag_Depth)
 		clearFlags = GL_DEPTH_BUFFER_BIT;
 	else if (m_clearFlag == ClearFlag_Color)
+	{
 		clearFlags = GL_COLOR_BUFFER_BIT;
+		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+	}
 	else if (m_clearFlag == ClearFlag_ColorAndDepth)
+	{
 		clearFlags = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
+		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+	}
 
 	if (clearFlags != 0)
 		glClear(clearFlags);
@@ -62,6 +71,11 @@ void Camera::SetViewport(float x, float y, float width, float height)
 	m_viewportRect.Y = y;
 	m_viewportRect.Width = width;
 	m_viewportRect.Height = height;
+}
+
+void Camera::SetClearColor(const sm::Vec4& clearColor)
+{
+	m_clearColor = clearColor;
 }
 
 void Camera::SetProjectionType(ProjectionType projectionType)
@@ -105,9 +119,20 @@ const sm::Matrix& Camera::GetViewProjMatrix()
 	return m_viewProj;
 }
 
+const sm::Vec4& Camera::GetClearColor() const
+{
+	return m_clearColor;
+}
+
 void Camera::Setup()
 {
 	glViewport(
+		(int)((float)Screen::Width * m_viewportRect.X),
+		(int)((float)Screen::Height * m_viewportRect.Y),
+		(int)((float)Screen::Width * m_viewportRect.Width),
+		(int)((float)Screen::Height * m_viewportRect.Height));
+
+	glScissor(
 		(int)((float)Screen::Width * m_viewportRect.X),
 		(int)((float)Screen::Height * m_viewportRect.Y),
 		(int)((float)Screen::Width * m_viewportRect.Width),

@@ -414,6 +414,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			sm::Vec4 viewport = DemoUtils::ParseVector4(node->GetAttribAsString("viewport", "0,0,1,1"), ",");
 			camera->SetViewport(viewport.x, viewport.y, viewport.z, viewport.w);
 
+			sm::Vec4 clearColor = DemoUtils::ParseVector4(node->GetAttribAsString("clear_color", StringUtils::ToString(Camera::DefaultClearColor)), ",");
+			camera->SetClearColor(clearColor);
+
 			gameObject->SetCamera(camera);
 		}
 		else if (node->GetName() == "Behaviour")
