@@ -410,7 +410,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			Camera* camera = new Camera(gameObject);
 			camera->SetFov(node->GetAttribAsFloat("fov", Camera::DefaultFov));
 			camera->SetNearPlane(node->GetAttribAsFloat("near_plane", Camera::DefaultNearPlane));
-			camera->SetFarPlane(node->GetAttribAsFloat("far_plane", Camera::DefaultFarPlane));
+
+			sm::Vec4 viewport = DemoUtils::ParseVector4(node->GetAttribAsString("viewport", "0,0,1,1"), ",");
+			camera->SetViewport(viewport.x, viewport.y, viewport.z, viewport.w);
 
 			gameObject->SetCamera(camera);
 		}
