@@ -5,6 +5,9 @@
 #include <Math/Matrix.h>
 #include <Graphics/Rect.h>
 
+class Texture;
+class Framebuffer;
+
 class Camera : public Component
 {
 public:
@@ -52,7 +55,11 @@ public:
 	const sm::Vec4& GetClearColor() const;
 	Layers GetCullLayers() const;
 
+	void SetRenderToTexture(Texture* texture);
+
 	void Setup();
+
+	bool HasRenderTexture() const;
 
 private:
 	ClearFlag m_clearFlag;
@@ -70,5 +77,10 @@ private:
 	sm::Matrix m_proj;
 	sm::Matrix m_viewProj;
 
+	Texture* m_renderTexture;
+	Framebuffer* m_framebuffer;
+
+	int GetTargetWidth() const;
+	int GetTargetHeight() const;
 	float GetAspect() const;
 };

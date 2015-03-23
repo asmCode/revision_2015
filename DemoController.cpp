@@ -28,7 +28,11 @@
 #include "Behaviours/JumpFactory.h"
 #include "Behaviours/FppCameraFactory.h"
 #include "Behaviours/TileFactory.h"
+#include "Behaviours/GenericFactory.h"
 #include "Behaviours/PassageControllerFactory.h"
+
+#include "Behaviours/RttTest.h"
+
 
 #include "ScenesManager.h"
 
@@ -300,6 +304,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("FppCamera", new FppCameraFactory());
 	behavioursManager->RegisterBehaviour("Tile", new TileFactory());
 	behavioursManager->RegisterBehaviour("PassageController", new PassageControllerFactory());
+	behavioursManager->RegisterBehaviour("RttTest", new GenericFactory<RttTest>());
 }
 
 Animation *anim;
@@ -769,9 +774,11 @@ bool DemoController::Draw(float time, float seconds)
 
 #ifdef SHOW_FPS
 	glViewport(0, 0, width, height);
+	glScissor(0, 0, width, height);
+	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
-	glColor4f(1, 0, 0, 1);
+	//glColor4f(1, 0, 0, 1);
 	float fps= CalcFps(seconds);
 	char fpsText[1024];
 	sprintf(fpsText, "fps: %.2f", fps);
@@ -802,8 +809,8 @@ void DemoController::SetOpenglParams()
 	int width = glWnd ->GetWindowWidth();
 	int height = glWnd ->GetWindowHeight();
 
-	wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
-	glListBase(1000);
+	//wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
+	//glListBase(1000);
 
 	glViewport(0, 0, width, height);
 
@@ -911,22 +918,22 @@ void DemoController::DrawText(const std::string &text, int x, int y, BYTE r, BYT
 
 	glUseProgram(0);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(sm::Matrix::Ortho2DMatrix(0, width, 0, height).a);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	//glMatrixMode(GL_PROJECTION);
+	//glLoadMatrixf(sm::Matrix::Ortho2DMatrix(0, width, 0, height).a);
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
 
-	glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
+	//glPushAttrib(GL_ENABLE_BIT | GL_CURRENT_BIT);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_TEXTURE_2D);
-	glRasterPos2d(x, y);
+	//glRasterPos2d(x, y);
 
-	glColor3ub(r, g, b);
-	glCallLists((int)text.size(), GL_UNSIGNED_BYTE, text.c_str());
+	//glColor3ub(r, g, b);
+	//glCallLists((int)text.size(), GL_UNSIGNED_BYTE, text.c_str());
 	
-	glPopAttrib();
+	//glPopAttrib();
 }
 
 float DemoController::CalcFps(float ms)

@@ -52,6 +52,7 @@ bool Framebuffer::Initialize(int width, int height, int bpp)
 
 void Framebuffer::Validate()
 {
+	BindFramebuffer();
 	unsigned status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	assert(GL_FRAMEBUFFER_COMPLETE == status);
 
@@ -75,18 +76,21 @@ void Framebuffer::AttachColorTexture(unsigned textureId, uint32_t index)
 	if (index == 0)
 		this ->textureId = textureId;
 
+	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, textureId, 0);
 }
 
 void Framebuffer::DettachColorTexture(uint32_t index)
 {
+	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, 0, 0);
 }
 
 void Framebuffer::AttachDepthTexture(unsigned textureId)
 {
+	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, textureId, 0);
 }
