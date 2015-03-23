@@ -46,6 +46,7 @@ public:
 	void SetNearPlane(float nearPlane);
 	void SetViewport(float x, float y, float width, float height);
 	void SetClearColor(const sm::Vec4& clearColor);
+	void SetDepth(int depth);
 
 	void SetProjectionType(ProjectionType projectionType);
 
@@ -53,6 +54,7 @@ public:
 	const sm::Matrix& GetProjMatrix();
 	const sm::Matrix& GetViewProjMatrix();
 	const sm::Vec4& GetClearColor() const;
+	int GetDepth() const;
 	Layers GetCullLayers() const;
 
 	void SetRenderToTexture(Texture* texture);
@@ -72,6 +74,7 @@ private:
 	float m_farPlane;
 	sm::Rect<float> m_viewportRect;
 	sm::Vec4 m_clearColor;
+	int m_depth;
 
 	sm::Matrix m_view;
 	sm::Matrix m_proj;

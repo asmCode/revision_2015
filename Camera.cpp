@@ -26,6 +26,7 @@ Camera::Camera(GameObject* gameObject) :
 	m_farPlane(DefaultFarPlane),
 	m_viewportRect(DefaultViewport),
 	m_clearColor(DefaultClearColor),
+	m_depth(0),
 	m_renderTexture(NULL),
 	m_framebuffer(NULL)
 {
@@ -90,6 +91,11 @@ void Camera::SetClearColor(const sm::Vec4& clearColor)
 	m_clearColor = clearColor;
 }
 
+void Camera::SetDepth(int depth)
+{
+	m_depth = depth;
+}
+
 void Camera::SetProjectionType(ProjectionType projectionType)
 {
 	m_projectionType = projectionType;
@@ -136,6 +142,11 @@ const sm::Matrix& Camera::GetViewProjMatrix()
 const sm::Vec4& Camera::GetClearColor() const
 {
 	return m_clearColor;
+}
+
+int Camera::GetDepth() const
+{
+	return m_depth;
 }
 
 Layers Camera::GetCullLayers() const
