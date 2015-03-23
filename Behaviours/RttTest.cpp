@@ -46,5 +46,12 @@ void RttTest::Update()
 		GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("box4cam1");
 		gameObject->GetRenderables()[0]->GetMaterial()->SetParameter("u_diffTex", m_renderTexture);
 	}
+
+	if (Input::GetKeyUp(KeyCode_R))
+	{
+		m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
+
+		m_camera->SetRenderToTexture(NULL);
+	}
 }
 
