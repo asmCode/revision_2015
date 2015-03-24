@@ -6,6 +6,7 @@
 #include "Light.h"
 #include "Camera.h"
 #include "RenderableSort.h"
+#include "CameraSort.h"
 #include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
 #include <Graphics/Framebuffer.h>
@@ -145,6 +146,7 @@ void GraphicsEngine::SetLights(const std::vector<Light*>& lights)
 void GraphicsEngine::SetCameras(const std::vector<Camera*>& cameras)
 {
 	m_cameras.insert(m_cameras.begin(), cameras.begin(), cameras.end());
+	std::sort(m_cameras.begin(), m_cameras.end(), CameraSort());
 }
 
 void GraphicsEngine::RenderGameObjects()

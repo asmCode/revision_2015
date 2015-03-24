@@ -420,6 +420,8 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			sm::Vec4 clearColor = DemoUtils::ParseVector4(node->GetAttribAsString("clear_color", StringUtils::ToString(Camera::DefaultClearColor)), ",");
 			camera->SetClearColor(clearColor);
 
+			camera->SetDepth(node->GetAttribAsInt32("depth"));
+
 			Layers cullLayers = LayerId_All;
 			std::string cullLayersStr = node->GetAttribAsString("cull_layers", "all");
 			if (cullLayersStr != "all")

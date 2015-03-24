@@ -131,6 +131,7 @@ exit /B 0
     <ClCompile Include="Behaviours\TileFactory.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraSort.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="Framework\Graphics\BaseTexture.cpp" />
@@ -282,6 +283,7 @@ exit /B 0
     <ClInclude Include="Behaviours\Tile.h" />
     <ClInclude Include="Behaviours\TileFactory.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraSort.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\FuturisEngine.h" />
