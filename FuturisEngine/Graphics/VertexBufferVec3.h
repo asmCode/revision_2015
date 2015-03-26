@@ -13,8 +13,6 @@ namespace FuturisEngine
 			VertexBufferVec3();
 			~VertexBufferVec3();
 
-			void Initialize();
-
 			void Setup(int channel = 0);
 			void Apply(bool keepReadable = false);
 
@@ -27,6 +25,7 @@ namespace FuturisEngine
 			int m_count;
 			sm::Vec3* m_data;
 
+			void Initialize();
 			void DeleteData();
 		};
 	}

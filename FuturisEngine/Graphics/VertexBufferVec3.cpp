@@ -22,13 +22,10 @@ namespace FuturisEngine
 			DeleteData();
 		}
 
-		void VertexBufferVec3::Initialize()
-		{
-			glGenBuffers(1, &m_vboId);
-		}
-
 		void VertexBufferVec3::Setup(int channel)
 		{
+			assert(m_vboId != 0);
+
 			glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
 			glVertexAttribPointer(channel, 3, GL_FLOAT, false, 0, 0);
 		}
@@ -53,6 +50,9 @@ namespace FuturisEngine
 
 		void VertexBufferVec3::SetData(const sm::Vec3* data, int count)
 		{
+			if (m_vboId == 0)
+				Initialize();
+
 			if (m_data == NULL || m_count != count)
 			{
 				DeleteData();
@@ -67,6 +67,13 @@ namespace FuturisEngine
 		const sm::Vec3* VertexBufferVec3::GetData() const
 		{
 			return m_data;
+		}
+
+		void VertexBufferVec3::Initialize()
+		{
+			assert(m_vboId == 0);
+
+			glGenBuffers(1, &m_vboId);
 		}
 
 		void VertexBufferVec3::DeleteData()
