@@ -141,7 +141,6 @@ exit /B 0
     <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
     <ClCompile Include="FuturisEngine\ComponentFlag.cpp" />
     <ClCompile Include="FuturisEngine\Engine.cpp" />
-    <ClCompile Include="FuturisEngine\Graphics\VertexBufferVec3.cpp" />
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
     <ClCompile Include="FuturisEngine\ParameterPointer.cpp" />
     <ClCompile Include="FuturisEngine\Screen.cpp" />
@@ -293,6 +292,7 @@ exit /B 0
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\ComponentFlag.h" />
     <ClInclude Include="FuturisEngine\Engine.h" />
+    <ClInclude Include="FuturisEngine\Graphics\VertexBuffer.h" />
     <ClInclude Include="FuturisEngine\Graphics\VertexBufferVec3.h" />
     <ClInclude Include="FuturisEngine\LayerId.h" />
     <ClInclude Include="FuturisEngine\ParametersContainer.h" />

@@ -1,8 +1,7 @@
 #pragma once
 
 #include "BaseMesh.h"
-
-namespace FuturisEngine { namespace Graphics { class VertexBufferVec3; } }
+#include "../FuturisEngine/Graphics/VertexBufferVec3.h"
 
 class RenderableProxy : public BaseMesh
 {
@@ -17,3 +16,4 @@ public:
 private:
 	FuturisEngine::Graphics::VertexBufferVec3* m_buffer;
 };
+

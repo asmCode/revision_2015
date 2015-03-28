@@ -16,7 +16,7 @@ RenderableProxy::~RenderableProxy()
 
 void RenderableProxy::Setup()
 {
-	m_buffer->Setup();
+	m_buffer->Setup(0);
 }
 
 void RenderableProxy::Draw()

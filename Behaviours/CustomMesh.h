@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../Behaviour.h"
+#include "../FuturisEngine/Graphics/VertexBufferVec3.h"
 #include <string>
 
 class GameObject;
-namespace FuturisEngine { namespace Graphics { class VertexBufferVec3; } }
 
 class CustomMesh : public Behaviour
 {
