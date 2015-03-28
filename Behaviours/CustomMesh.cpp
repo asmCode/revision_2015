@@ -30,6 +30,10 @@ void CustomMesh::Awake()
 	m_buffer->SetData(vertices, 3);
 	m_buffer->Apply(true);
 
+	uint16_t indices[3] = { 0, 1, 2 };
+	m_indexBuffer = new IndexBuffer();
+	m_indexBuffer->SetIndices(indices, 3);
+
 	RenderableProxy* renderableProxy = new RenderableProxy(m_buffer);
 
 	Renderable* renderable = new Renderable(m_gameObject, renderableProxy, material);

@@ -2,6 +2,7 @@
 
 #include "../Behaviour.h"
 #include "../FuturisEngine/Graphics/VertexBufferVec3.h"
+#include "../FuturisEngine/Graphics/IndexBuffer.h"
 #include <string>
 
 class GameObject;
@@ -16,4 +17,5 @@ public:
 
 private:
 	FuturisEngine::Graphics::VertexBufferVec3* m_buffer;
+	FuturisEngine::Graphics::IndexBuffer* m_indexBuffer;
 };

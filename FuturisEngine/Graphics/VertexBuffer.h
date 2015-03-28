@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Math/Vec3.h>
 #include <stdint.h>
 #include <GL/glew.h>
 #include <stddef.h>
 #include <memory>
+#include <assert.h>
 
 namespace FuturisEngine
 {
@@ -71,7 +71,7 @@ namespace FuturisEngine
 					DeleteData();
 
 					m_count = count;
-					m_data = new sm::Vec3[m_count];
+					m_data = new T[m_count];
 				}
 
 				memcpy(m_data, data, m_count * sizeof(T));
