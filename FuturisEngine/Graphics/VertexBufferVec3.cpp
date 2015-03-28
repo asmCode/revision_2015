@@ -22,12 +22,13 @@ namespace FuturisEngine
 			DeleteData();
 		}
 
-		void VertexBufferVec3::Setup(int channel)
+		void VertexBufferVec3::Setup(int index)
 		{
 			assert(m_vboId != 0);
 
 			glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
-			glVertexAttribPointer(channel, 3, GL_FLOAT, false, 0, 0);
+			glEnableVertexAttribArray(index);
+			glVertexAttribPointer(index, 3, GL_FLOAT, false, 0, 0);
 		}
 
 		void VertexBufferVec3::Apply(bool keepReadable)
@@ -41,6 +42,11 @@ namespace FuturisEngine
 
 			if (!keepReadable)
 				DeleteData();
+		}
+
+		void VertexBufferVec3::TmpDraw()
+		{
+			glDrawArrays(GL_TRIANGLES, 0, m_count);
 		}
 
 		int VertexBufferVec3::GetCount() const
@@ -62,6 +68,14 @@ namespace FuturisEngine
 			}
 
 			memcpy(m_data, data, m_count * sizeof(sm::Vec3));
+		}
+
+		void VertexBufferVec3::SetElement(int index, const sm::Vec3& element)
+		{
+			assert(m_data != NULL);
+			assert(index < m_count);
+
+			*(m_data + index) = element;
 		}
 
 		const sm::Vec3* VertexBufferVec3::GetData() const

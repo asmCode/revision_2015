@@ -2,6 +2,7 @@
 #include "../GameObject.h"
 #include "../Environment.h"
 #include "../AnimCameraManager.h"
+#include "../FuturisEngine/ComponentFlag.h"
 #include <Graphics/AnimationData.h>
 #include <Graphics/Animation.h>
 #include <Graphics/Content/Content.h>
@@ -10,7 +11,8 @@
 BaseScene::BaseScene() :
 	m_camerasManager(NULL),
 	m_camerasAnimation(NULL),
-	m_activeCamera(NULL)
+	m_activeCamera(NULL),
+	m_hasSceneChanged(false)
 {
 };
 
@@ -47,9 +49,6 @@ bool BaseScene::Initialize()
 
 	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
 	{
-		const std::vector<Renderable*>& renderables = m_gameObjects[i]->GetRenderables();
-		m_renderables.insert(m_renderables.end(), renderables.begin(), renderables.end());
-
 		Light* light = m_gameObjects[i]->GetLight();
 		if (light != NULL)
 			m_lights.push_back(light);
@@ -109,4 +108,29 @@ GameObject* BaseScene::FindGameObject(const std::string& name)
 	}
 
 	return NULL;
+}
+
+void BaseScene::NotifyNewGameObject(GameObject* gameObject)
+{
+	m_gameObjects.push_back(gameObject);
+
+	m_hasSceneChanged = true;
+}
+
+void BaseScene::NotifyNewComponent(GameObject* gameObject, int componentFlag)
+{
+	if (componentFlag & ComponentFlag::Mesh)
+		m_renderables.insert(m_renderables.end(), gameObject->GetRenderables().begin(), gameObject->GetRenderables().end());
+
+	m_hasSceneChanged = true;
+}
+
+bool BaseScene::HasSceneChanged() const
+{
+	return m_hasSceneChanged;
+}
+
+void BaseScene::ClearSceneChangedFlag()
+{
+	m_hasSceneChanged = false;
 }

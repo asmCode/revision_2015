@@ -3,6 +3,9 @@
 #include "Light.h"
 #include "Camera.h"
 #include "../FuturisEngine/BehavioursManager.h"
+#include "../FuturisEngine/ComponentFlag.h"
+#include "../ScenesManager.h"
+#include "../Scenes/BaseScene.h"
 #include <stddef.h>
 
 GameObject::GameObject(const std::string& name) :
@@ -12,6 +15,8 @@ GameObject::GameObject(const std::string& name) :
 	m_camera(NULL),
 	m_layerId(LayerId_0)
 {
+	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
+	scene->NotifyNewGameObject(this);
 }
 
 GameObject::~GameObject()
@@ -46,6 +51,9 @@ LayerId GameObject::GetLayerId() const
 void GameObject::AddRenderable(Renderable* renderable)
 {
 	m_renderables.push_back(renderable);
+
+	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
+	scene->NotifyNewComponent(this, ComponentFlag::Mesh);
 }
 
 void GameObject::SetLight(Light* light)

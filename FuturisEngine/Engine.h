@@ -1,10 +1,10 @@
 #pragma once
 
-class FuturisEngine
+class Engine
 {
 public:
-	FuturisEngine();
-	~FuturisEngine();
+	Engine();
+	~Engine();
 
 	bool Initialize();
 

@@ -32,7 +32,7 @@ public:
 
 	// Doladowuje dane ze sceny z innego pliku xml.
 	bool LoadAdditive(const std::string& filename);
-	BaseScene* BuildScene();
+	void BuildScene(BaseScene* baseScene);
 
 private:
 	class Object

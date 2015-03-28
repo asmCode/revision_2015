@@ -13,11 +13,13 @@ namespace FuturisEngine
 			VertexBufferVec3();
 			~VertexBufferVec3();
 
-			void Setup(int channel = 0);
+			void Setup(int index = 0);
 			void Apply(bool keepReadable = false);
+			void TmpDraw();
 
 			int GetCount() const;
 			void SetData(const sm::Vec3* data, int count);
+			void SetElement(int index, const sm::Vec3& element);
 			const sm::Vec3* GetData() const;
 
 		private:

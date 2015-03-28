@@ -20,7 +20,7 @@
 #include "SynchManager.h"
 #include "SynchEvent.h"
 #include "Light.h"
-#include "FuturisEngine/FuturisEngine.h"
+#include "FuturisEngine/Engine.h"
 #include "FuturisEngine/BehavioursManager.h"
 #include "FuturisEngine/Screen.h"
 #include "FuturisEngine/Time.h"
@@ -32,6 +32,7 @@
 #include "Behaviours/PassageControllerFactory.h"
 
 #include "Behaviours/RttTest.h"
+#include "Behaviours/CustomMesh.h"
 
 
 #include "ScenesManager.h"
@@ -288,7 +289,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	Billboard::Initialize();
 
-	m_engine = new FuturisEngine();
+	m_engine = new Engine();
 	m_engine->Initialize();
 
 	RegisterBehaviours();
@@ -305,6 +306,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("Tile", new TileFactory());
 	behavioursManager->RegisterBehaviour("PassageController", new PassageControllerFactory());
 	behavioursManager->RegisterBehaviour("RttTest", new GenericFactory<RttTest>());
+	behavioursManager->RegisterBehaviour("CustomMesh", new GenericFactory<CustomMesh>());
 }
 
 Animation *anim;
@@ -475,7 +477,7 @@ bool DemoController::LoadContent(const char *basePath)
 
 	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
 
-	m_graphicsEngine->SetRenderables(scene->GetRenderables());
+	//m_graphicsEngine->SetRenderables(scene->GetRenderables());
 	m_graphicsEngine->SetLights(scene->GetLights());
 	m_graphicsEngine->SetCameras(scene->GetCameras());
 
@@ -522,6 +524,13 @@ bool DemoController::Update(float time, float seconds)
 	Time::TimeLeft = time;
 	Time::DeltaTime = seconds;
 
+	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
+	if (activeScene->HasSceneChanged())
+	{
+		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
+		activeScene->ClearSceneChangedFlag();
+	}
+
 	BehavioursManager::GetInstance()->AwakeBehaviours();
 	BehavioursManager::GetInstance()->UpdateBehaviours();
 
@@ -535,7 +544,6 @@ bool DemoController::Update(float time, float seconds)
 
 	m_activeCamera = NULL;
 
-	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
 	if (ScenesManager::GetInstance()->IsSceneChanged())
 		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
 	

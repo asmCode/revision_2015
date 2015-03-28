@@ -44,7 +44,7 @@ class FontRenderer;
 class DistortParticleHandler;
 class GameObject;
 class GraphicsEngine;
-class FuturisEngine;
+class Engine;
 
 #define demo DemoController::GetInstance()
 
@@ -60,7 +60,7 @@ public:
 	static const float GlowBufferWidthRatio;
 	static const float GlowBufferHeightRatio;
 
-	FuturisEngine* m_engine;
+	Engine* m_engine;
 
 	float tmp_progress;
 

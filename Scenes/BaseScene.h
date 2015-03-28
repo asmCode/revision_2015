@@ -31,6 +31,12 @@ public:
 	const std::vector<Light*>& GetLights() const;
 	const std::vector<Camera*>& GetCameras() const;
 
+	bool HasSceneChanged() const;
+	void ClearSceneChangedFlag();
+
+	void NotifyNewGameObject(GameObject* gameObject);
+	void NotifyNewComponent(GameObject* gameObject, int componentFlag);
+
 	virtual ICamera* GetCamera() const;
 
 	virtual float GetStartTime() const;
@@ -49,6 +55,8 @@ protected:
 	AnimCameraManager* m_camerasManager;
 	Animation* m_camerasAnimation;
 	ICamera* m_activeCamera;
+
+	bool m_hasSceneChanged;
 
 	virtual void InitializeSubScene() {};
 

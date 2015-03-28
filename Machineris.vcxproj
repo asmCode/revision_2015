@@ -120,6 +120,7 @@ exit /B 0
   <ItemGroup>
     <ClCompile Include="AnimCameraManager.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Behaviours\CustomMesh.cpp" />
     <ClCompile Include="Behaviours\FppCamera.cpp" />
     <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
     <ClCompile Include="Behaviours\Jump.cpp" />
@@ -138,7 +139,8 @@ exit /B 0
     <ClCompile Include="Framework\Graphics\BuiltInShaderParams.cpp" />
     <ClCompile Include="Framework\Math\Quat.cpp" />
     <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
-    <ClCompile Include="FuturisEngine\FuturisEngine.cpp" />
+    <ClCompile Include="FuturisEngine\ComponentFlag.cpp" />
+    <ClCompile Include="FuturisEngine\Engine.cpp" />
     <ClCompile Include="FuturisEngine\Graphics\VertexBufferVec3.cpp" />
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
     <ClCompile Include="FuturisEngine\ParameterPointer.cpp" />
@@ -147,6 +149,7 @@ exit /B 0
     <ClCompile Include="GeoMeshProxy.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="RenderableProxy.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WallFace.cpp" />
     <ClCompile Include="GameObjects\BlinkStatic.cpp" />
@@ -275,6 +278,7 @@ exit /B 0
     <ClInclude Include="AnimCameraManager.h" />
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Behaviours\CustomMesh.h" />
     <ClInclude Include="Behaviours\FppCamera.h" />
     <ClInclude Include="Behaviours\FppCameraFactory.h" />
     <ClInclude Include="Behaviours\GenericFactory.h" />
@@ -287,7 +291,8 @@ exit /B 0
     <ClInclude Include="CameraSort.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
-    <ClInclude Include="FuturisEngine\FuturisEngine.h" />
+    <ClInclude Include="FuturisEngine\ComponentFlag.h" />
+    <ClInclude Include="FuturisEngine\Engine.h" />
     <ClInclude Include="FuturisEngine\Graphics\VertexBufferVec3.h" />
     <ClInclude Include="FuturisEngine\LayerId.h" />
     <ClInclude Include="FuturisEngine\ParametersContainer.h" />
@@ -306,6 +311,7 @@ exit /B 0
     <ClInclude Include="GeoMeshProxy.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Parameter.h" />
+    <ClInclude Include="RenderableProxy.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WallFace.h" />
     <ClInclude Include="GameObjects\BlinkStatic.h" />

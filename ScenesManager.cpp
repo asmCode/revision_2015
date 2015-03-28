@@ -23,16 +23,15 @@ ScenesManager* ScenesManager::GetInstance()
 
 void ScenesManager::Initialize()
 {
-	SceneLoader sceneLoader;
-
-	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\NewEngineTest.scene";
-	sceneLoader.LoadAdditive(sceneFileName);
-	BaseScene* baseScene = sceneLoader.BuildScene();
-
+	BaseScene* baseScene = new BaseScene();
 	m_scenes.push_back(baseScene);
-
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;
+
+	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\NewEngineTest.scene";
+	SceneLoader sceneLoader;
+	sceneLoader.LoadAdditive(sceneFileName);
+	sceneLoader.BuildScene(baseScene);
 
 	for (uint32_t i = 0; i < m_scenes.size(); i++)
 		m_scenes[i]->Initialize();

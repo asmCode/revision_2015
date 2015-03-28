@@ -10,7 +10,6 @@
 #include "../GeoMeshProxy.h"
 #include "../Renderable.h"
 #include "DemoController.h"
-#include "FuturisEngine/FuturisEngine.h"
 #include "FuturisEngine/BehavioursManager.h"
 #include "Behaviour.h"
 
@@ -566,10 +565,8 @@ bool SceneLoader::LoadAdditive(const std::string& filename)
 	return true;
 }
 
-BaseScene* SceneLoader::BuildScene()
+void SceneLoader::BuildScene(BaseScene* scene)
 {
-	BaseScene* scene = new BaseScene();
-
 	for (uint32_t i = 0; i < m_materialNodes.size(); i++)
 	{
 		Material* material = LoadMaterial(m_materialNodes[i].XMLNode);
@@ -580,10 +577,8 @@ BaseScene* SceneLoader::BuildScene()
 	for (uint32_t i = 0; i < m_gameObjectNodes.size(); i++)
 	{
 		GameObject* gameObject = LoadGameObject(m_gameObjectNodes[i].SceneName, m_gameObjectNodes[i].XMLNode);
-		if (gameObject != NULL)
-			scene->m_gameObjects.push_back(gameObject);
+		//if (gameObject != NULL)
+//			scene->m_gameObjects.push_back(gameObject);
 	}
-
-	return scene;
 }
 
