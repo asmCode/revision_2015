@@ -97,6 +97,8 @@ namespace FuturisEngine
 
 			if ((m_dirtyFlag & DirtyFlagCoord1) && m_coord1Buffer != NULL)
 				m_coord1Buffer->Apply(keepReadable);
+
+			m_dirtyFlag = false;
 		}
 
 		int Mesh::GetVertexCount() const
@@ -107,6 +109,15 @@ namespace FuturisEngine
 		void Mesh::Draw()
 		{
 			assert(m_indexBuffer != NULL);
+
+			if (m_vertexBuffer != NULL)
+				m_vertexBuffer->Setup(VertexBufferIndex);
+
+			if (m_normalBuffer != NULL)
+				m_normalBuffer->Setup(NormalBufferIndex);
+
+			if (m_coord1Buffer != NULL)
+				m_coord1Buffer->Setup(Coord1BufferIndex);
 
 			m_indexBuffer->Draw();
 		}

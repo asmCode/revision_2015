@@ -37,6 +37,10 @@ namespace FuturisEngine
 			static const int DirtyFlagNormal = 1 << 1;
 			static const int DirtyFlagCoord1 = 1 << 2;
 
+			static const int VertexBufferIndex = 0;
+			static const int NormalBufferIndex = 3;
+			static const int Coord1BufferIndex = 1;
+
 			int m_dirtyFlag;
 
 			IndexBuffer* m_indexBuffer;
