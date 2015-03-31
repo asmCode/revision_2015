@@ -80,6 +80,9 @@ bool OpenglWindow::Initialize(HWND parentWindow, const char * title, int width, 
 			return false;
 		}
 
+		int windowX = 0;
+		int windowY = 0;
+
 		if (fullscreen)
 		{
 			windowStyle = WS_POPUP;
@@ -90,11 +93,18 @@ bool OpenglWindow::Initialize(HWND parentWindow, const char * title, int width, 
 			if (parentWindow != NULL)
 				windowStyle = WS_CHILD;
 			else
+			{
 				windowStyle = WS_POPUP;
+				int currentWidth = GetSystemMetrics(SM_CXSCREEN);
+				int currentHeight = GetSystemMetrics(SM_CYSCREEN);
+
+				windowX = (currentWidth - width) / 2;
+				windowY = (currentHeight - height) / 2;
+			}
 		}
 
 		hwnd = CreateWindowEx(windowExStyle, "OpenglWindow", title,
-			WS_CLIPSIBLINGS | WS_CLIPCHILDREN | windowStyle, 0, 0, width, height,
+			WS_CLIPSIBLINGS | WS_CLIPCHILDREN | windowStyle, windowX, windowY, width, height,
 			parentWindow, NULL, hinstance, params);
 
 		if (hwnd == 0)

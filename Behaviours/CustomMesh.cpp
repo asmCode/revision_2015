@@ -30,7 +30,7 @@ void CustomMesh::Awake()
 	m_buffer->SetData(vertices, 3);
 	m_buffer->Apply(true);
 
-	uint16_t indices[3] = { 0, 1, 2 };
+	uint32_t indices[3] = { 0, 1, 2 };
 	m_indexBuffer = new IndexBuffer();
 	m_indexBuffer->SetIndices(indices, 3);
 

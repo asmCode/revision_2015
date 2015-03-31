@@ -5,9 +5,6 @@
 #include <map>
 
 class GameObject;
-class Ribbon;
-class Guy;
-class Static;
 class BaseScene;
 class Material;
 class Parameter;
@@ -18,8 +15,6 @@ namespace SceneElement
 	class Key;
 	class IntKey;
 	class FloatKey;
-	class StaticData;
-	class GuyData;
 	class CustomSceneElement;
 }
 
@@ -54,13 +49,11 @@ private:
 
 	SceneElement::Path* LoadPath(XMLNode* node);
 	SceneElement::Key* LoadKey(XMLNode* node);
-	SceneElement::GuyData* LoadGuy(XMLNode* node);
 	Material* LoadMaterial(XMLNode* materialNode);
 	SceneElement::CustomSceneElement* LoadCustomSceneElement(XMLNode* elementNode);
 	static void LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys);
 	static void LoadFloatKeys(XMLNode* node, std::vector<SceneElement::FloatKey*>& keys);
 
-	Guy* CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData);
 	GameObject* CreateElementFromData(const std::string& sceneName, SceneElement::CustomSceneElement* data);
 
 	void LoadGameObjects(const std::string& sceneName, XMLNode* node);

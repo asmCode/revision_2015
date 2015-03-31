@@ -1,7 +1,6 @@
 #include "GraphicsEngine.h"
 #include "GameObject.h"
 #include "Renderable.h"
-#include "DrawingRoutines.h"
 #include "Quad.h"
 #include "Light.h"
 #include "Camera.h"

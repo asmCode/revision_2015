@@ -3,13 +3,10 @@
 #include "ParticlesManager.h"
 #include <Graphics/Framebuffer.h>
 #include <Graphics/Model.h>
-#include <Graphics/Mesh.h>
-#include <Graphics/MeshPart.h>
 #include "LoadingScreen.h"
 #include <Graphics/Shader.h>
 #include "Blur.h"
 #include <Graphics/DepthTexture.h>
-#include <Graphics/MeshPart.h>
 #include "Scenes/BaseScene.h"
 #include "Frustum.h"
 #include <Graphics/BoundingSphere.h>
@@ -41,7 +38,6 @@
 #include <Graphics/Property.h>
 #include <Graphics/BuiltInShaderParams.h>
 #include "PropertySignal.h"
-#include "DrawingRoutines.h"
 #include "Billboard.h"
 #include "DistortParticleHandler.h"
 #include "Particles/ParticleEmmiter.h"
@@ -289,6 +285,8 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	Billboard::Initialize();
 
+	glEnable(GL_CULL_FACE);
+
 	m_engine = new Engine();
 	m_engine->Initialize();
 
@@ -345,9 +343,6 @@ bool DemoController::LoadContent(const char *basePath)
 	dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
 	Log::LogT("Skinned Meshes loaded in %.2f s", loadSkinnedMeshesStopwatch.GetTime());
 
-	if (!AssignAssets())
-		return false;
-
 	Shader* vgShader = m_content->Get<Shader>("VectorGraphics");
 	assert(vgShader != NULL);
 	vgShader->BindVertexChannel(0, "a_position");
@@ -361,7 +356,7 @@ bool DemoController::LoadContent(const char *basePath)
 	m_spriteShader->BindVertexChannel(1, "a_coords");
 	m_spriteShader->LinkProgram();
 
-	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, width, 0, height));
+	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, (float)width, 0, (float)height));
 
 	m_endScreen = Content::Instance->Get<Texture>("end");
 	assert(m_endScreen != NULL);
@@ -836,15 +831,6 @@ void DemoController::SetOpenglParams()
 	glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
 }
 
-bool DemoController::AssignAssets()
-{
-	bool result = true;
-
-	m_content->CombineResources();
-	
-	return result;
-}
-
 void DemoController::ErrorOccured( const std::string &errorMsg )
 {
 	Log::LogT("error: %s", errorMsg.c_str());
@@ -993,27 +979,6 @@ void DemoController::DrawShadowMap()
 	}
 }*/
 
-void DemoController::SetAlwaysVisibility(const std::vector<Model*> &models)
-{
-	for (unsigned i = 0; i < models.size(); i++)
-	{
-		std::vector<Mesh*> &meshes = models[i] ->GetMeshes();
-
-		for (unsigned j = 0; j < meshes.size(); j++)
-		{
-			if (meshes[j]->name.size() >= 4 &&
-				meshes[j]->name.substr(0, 7) == "credits")
-			{
-				for (unsigned k = 0; k < meshes[j]->GetMeshParts().size(); k++)
-				{
-					meshes[j]->GetMeshParts()[k]->IsAlvaysVisible() = true;
-					//meshes[j]->colorMask = sm::Vec3(2, 2, 2);
-				}
-			}
-		}
-	}
-}
-
 Texture* DemoController::LoadTexture(const std::string &path)
 {
 	return TextureLoader::Load(path);
@@ -1029,7 +994,9 @@ Shader* DemoController::LoadShader(const std::string &vertexShaderPath,
 
 Model* DemoController::LoadModel(const std::string &path)
 {
-	return ModelLoader::LoadFromFile(path);
+	ModelLoader loader;
+	Model* model = loader.LoadFromFile(path);
+	return model;
 }
 
 AnimationData* DemoController::LoadAnimation(const std::string &path)

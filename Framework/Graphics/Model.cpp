@@ -1,62 +1,44 @@
 #include "Model.h"
+#include "../../FuturisEngine/Graphics/Mesh.h"
 
-#include "Mesh.h"
-#include "MeshPart.h"
+using namespace FuturisEngine::Graphics;
+
+const std::string& Model::MeshInfo::GetName() const
+{
+	return m_name;
+}
+
+FuturisEngine::Graphics::Mesh* Model::MeshInfo::GetMesh() const
+{
+	return m_mesh;
+}
 
 Model::Model()
 {
-	m_baseTransform = sm::Matrix::Identity;
 }
 
 Model::~Model()
 {
-	for (int i = 0; i < (int)meshes.size(); i++)
-		delete meshes[i];
-
-	meshes.clear();
+	for (int i = 0; i < (int)m_meshes.size(); i++)
+		delete m_meshes[i]->GetMesh();
 }
 
-std::vector<Mesh*> &Model::GetMeshes()
+void Model::AddMesh(const std::string& name, Mesh* mesh)
 {
-	return meshes;
+	m_meshes.push_back(new MeshInfo(name, mesh));
 }
 
-void Model::GetMeshParts(std::vector<MeshPart*> &meshParts)
+const std::vector<Model::MeshInfo*>& Model::GetMeshes()
 {
-	for (unsigned i = 0; i < meshes.size(); i++)
-		for (unsigned j = 0; j < meshes[i]->GetMeshParts().size(); j++)
-			meshParts.push_back(meshes[i]->GetMeshParts()[j]);
+	return m_meshes;
 }
 
-Mesh* Model::FindMesh(const std::string &meshName)
+Mesh* Model::FindMesh(const std::string &name)
 {
-	for (unsigned i = 0; i < meshes.size(); i++)
-		if (meshes[i]->name == meshName)
-			return meshes[i];
+	for (unsigned i = 0; i < m_meshes.size(); i++)
+		if (m_meshes[i]->GetName() == name)
+			return m_meshes[i]->GetMesh();
 
 	return NULL;
-}
-
-void Model::SetTransformForMeshes(const sm::Matrix &transform)
-{
-	for (unsigned i = 0; i < meshes.size(); i++)
-		meshes[i]->Transform() = transform;
-}
-
-void Model::SetAlwaysVisible(bool visible)
-{
-	for (unsigned i = 0; i < meshes.size(); i++)
-		for (unsigned j = 0; j < meshes[i]->GetMeshParts().size(); j++)
-			meshes[i]->GetMeshParts()[j]->IsAlvaysVisible() = visible;
-}
-
-Model *Model::CreateReference()
-{
-	Model *model = new Model();
-
-	for (unsigned i = 0; i < meshes.size(); i++)
-		model->meshes.push_back(meshes[i]->CreateReference());
-
-	return model;
 }
 

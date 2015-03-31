@@ -5,7 +5,6 @@
 #include <Graphics/SkinnedMeshData.h>
 #include <Graphics/SkinnedVertex.h>
 #include <Graphics/Animation.h>
-#include "MeshUtils.h"
 #include <Math/Vec2.h>
 #include <GL/glew.h>
 

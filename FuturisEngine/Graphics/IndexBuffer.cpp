@@ -20,7 +20,7 @@ namespace FuturisEngine
 				glDeleteBuffers(1, &m_vboId);
 		}
 
-		void IndexBuffer::SetIndices(const uint16_t* data, int count)
+		void IndexBuffer::SetIndices(const uint32_t* data, int count)
 		{
 			if (m_vboId == 0)
 				Initialize();
@@ -28,7 +28,7 @@ namespace FuturisEngine
 			m_count = count;
 			
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vboId);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint16_t) * count, data, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * count, data, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 
@@ -37,7 +37,7 @@ namespace FuturisEngine
 			assert(m_vboId != 0);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vboId);
-			glDrawElements(GL_TRIANGLES, m_count, GL_UNSIGNED_SHORT, 0);
+			glDrawElements(GL_TRIANGLES, m_count, GL_UNSIGNED_INT, 0);
 		}
 
 		int IndexBuffer::GetCount() const

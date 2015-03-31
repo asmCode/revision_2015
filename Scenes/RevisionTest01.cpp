@@ -1,11 +1,9 @@
 #include "RevisionTest01.h"
 #include "../WallFace.h"
 #include "../GameObject.h"
-#include "../Materials/GlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
 #include "../Environment.h"
 #include <Utils/Random.h>
-#include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Texture.h>
 #include <Graphics/Shader.h>
@@ -218,7 +216,7 @@ void RevisionTest01::Draw()
 		*/
 	//m_wallFace->Draw(m_colorTexture, smooth, DemoController::GetInstance()->m_viewProj);
 
-	DrawingRoutines::DrawWithMaterial(m_room->m_meshParts);
+	//DrawingRoutines::DrawWithMaterial(m_room->m_meshParts);
 }
 
 void RevisionTest01::DrawFace(float maxDepthValue, float discardMinDepthValue)
@@ -246,7 +244,7 @@ void RevisionTest01::DrawFace(float maxDepthValue, float discardMinDepthValue)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_DEPTH_TEST);
 
-	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts, world, viewProj, maxDepthValue, discardMinDepthValue);
+//	DrawingRoutines::DrawDepthByZ(m_face->m_meshParts, world, viewProj, maxDepthValue, discardMinDepthValue);
 }
 
 void RevisionTest01::NotifySynchEvent(SynchEvent* synchEvent)

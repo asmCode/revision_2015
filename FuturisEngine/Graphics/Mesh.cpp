@@ -34,7 +34,7 @@ namespace FuturisEngine
 				delete m_coord1Buffer;
 		}
 
-		void Mesh::SetIndices(const uint16_t* vertices, int count)
+		void Mesh::SetIndices(const uint32_t* vertices, int count)
 		{
 			if (m_indexBuffer == NULL)
 				m_indexBuffer = new IndexBuffer();

@@ -1,31 +1,38 @@
 #pragma once
 
-#include <Math/Matrix.h>
 #include <vector>
+#include <string>
 
-class Mesh;
-class MeshPart;
+namespace FuturisEngine { namespace Graphics { class Mesh; } }
 
 class Model
 {
 public:
-	std::vector<Mesh*> meshes;
+	class MeshInfo
+	{
+	public:
+		MeshInfo(const std::string& name, FuturisEngine::Graphics::Mesh* mesh) :
+			m_name(name),
+			m_mesh(mesh) {}
 
-public:
-	sm::Matrix m_baseTransform;
+		const std::string& GetName() const;
+		FuturisEngine::Graphics::Mesh* GetMesh() const;
+
+	private:
+		std::string m_name;
+		FuturisEngine::Graphics::Mesh* m_mesh;
+	};
 
 	Model();
 	~Model();
 
-	std::vector<MeshPart*> m_meshParts;
+	void AddMesh(const std::string& name, FuturisEngine::Graphics::Mesh* mesh);
 
-	std::vector<Mesh*> &GetMeshes();
-	void GetMeshParts(std::vector<MeshPart*> &meshParts);
-	Mesh* FindMesh(const std::string &meshName);
+	const std::vector<MeshInfo*>& GetMeshes();
+	
+	FuturisEngine::Graphics::Mesh* FindMesh(const std::string &name);
 
-	void SetTransformForMeshes(const sm::Matrix &transform);
-
-	void SetAlwaysVisible(bool visible);
-
-	Model *CreateReference();
+private:
+	std::vector<MeshInfo*> m_meshes;
 };
+

@@ -29,9 +29,6 @@ public:
 	void LoadMaterials(const std::string &fullPath);
 	void LoadSkinnedMeshes(const std::string &fullPath);
 
-	// Assign textures to materials and materials to models
-	void CombineResources();
-
 	template <typename T>
 	void Add(const std::string &name, const T*resource)
 	{

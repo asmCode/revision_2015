@@ -2,40 +2,27 @@
 #include "Environment.h"
 #include "GameObject.h"
 #include "DemoUtils.h"
-#include "GameObjects/Ribbon.h"
-#include "GameObjects/Static.h"
-#include "GameObjects/Guy.h"
-#include "GameObjects/BlinkStatic.h"
 #include "Scenes/BaseScene.h"
-#include "../GeoMeshProxy.h"
 #include "../Renderable.h"
 #include "DemoController.h"
 #include "FuturisEngine/BehavioursManager.h"
 #include "Behaviour.h"
 
-#include "SceneElement/RibbonData.h"
-#include "SceneElement/Source.h"
-#include "SceneElement/Destination.h"
-#include "SceneElement/StaticSource.h"
-#include "SceneElement/StaticDestination.h"
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
 #include "SceneElement/IntKey.h"
 #include "SceneElement/FloatKey.h"
-#include "SceneElement/GuyData.h"
 #include "SceneElement/Material.h"
-#include "SceneElement/StaticData.h"
 #include "SceneElement/CustomSceneElement.h"
 
 #include <Math/MathUtils.h>
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
-#include <Graphics/Mesh.h>
-#include <Graphics/MeshPart.h>
 #include <Graphics/Material.h>
 #include <Graphics/Shader.h>
 #include "Light.h"
 #include "Camera.h"
+#include "../FuturisEngine/Graphics/Mesh.h"
 
 
 #include <IO/Path.h>
@@ -50,6 +37,8 @@
 #include <map>
 
 #include "Parameter.h"
+
+using namespace FuturisEngine::Graphics;
 
 bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 {
@@ -208,26 +197,6 @@ SceneElement::CustomSceneElement* SceneLoader::LoadCustomSceneElement(XMLNode* e
 	return data;
 }
 
-SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
-{
-	assert(node->GetName() == "Guy");
-
-	SceneElement::GuyData* guyData = new SceneElement::GuyData();
-	guyData->Id = node->GetAttribAsString("id");
-	guyData->RibbonName = node->GetAttribAsString("ribbon_name");
-	//guyData->Material = FindMaterial(node->GetAttribAsString("material_name"));
-
-	XMLNode* path = node->GetChild("Path");
-	if (path != NULL)
-		guyData->Path = LoadPath(path);
-
-	XMLNode* animIndexNode = node->GetChild("AnimationIndex");
-	if (animIndexNode != NULL)
-		LoadIntKeys(animIndexNode, guyData->AnimationIndex);
-
-	return guyData;
-}
-
 Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 {
 	assert(materialNode->GetName() == "Material");
@@ -301,11 +270,12 @@ void SceneLoader::LoadFloatKeys(XMLNode* node, std::vector<SceneElement::FloatKe
 	}
 }
 
-Guy* SceneLoader::CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData)
+/*Guy* SceneLoader::CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData)
 {
 	return new Guy(sceneName, guyData);
-}
+}*/
 
+/*
 GameObject* SceneLoader::CreateElementFromData(const std::string& sceneName, SceneElement::CustomSceneElement* data)
 {
 	if (data->Type == "BlinkStatic")
@@ -313,6 +283,7 @@ GameObject* SceneLoader::CreateElementFromData(const std::string& sceneName, Sce
 
 	return NULL;
 }
+*/
 
 Material* SceneLoader::FindMaterial(const std::string& materialName)
 {
@@ -374,10 +345,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			if (material == NULL)
 				material = FindMaterial("ErrorMaterial");
 
-			for (uint32_t i = 0; i < model->m_meshParts.size(); i++)
+			for (uint32_t i = 0; i < model->GetMeshes().size(); i++)
 			{
-				GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(model->m_meshParts[i]);
-				Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material, 0, layerId);
+				Renderable* renderable = new Renderable(gameObject, model->GetMeshes()[i]->GetMesh(), material, 0, layerId);
 				gameObject->AddRenderable(renderable);
 			}
 		}
@@ -389,18 +359,22 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			Model* model = Content::Instance->Get<Model>(sceneName);
 			assert(model != NULL);
 
-			Mesh* mesh = model->FindMesh(meshName);
-			assert(mesh != NULL);
+			do
+			{
+				Mesh* mesh = model->FindMesh(meshName);
+				if (mesh == NULL)
+				{
+					//assert(mesh != NULL);
+					break;
+				}
 
-			Material* material = FindMaterial(materialName);
-			if (material == NULL)
-				material = FindMaterial("ErrorMaterial");
+				Material* material = FindMaterial(materialName);
+				if (material == NULL)
+					material = FindMaterial("ErrorMaterial");
 
-			assert(mesh->meshParts.size() == 1);
-
-			GeoMeshProxy* geoMeshProxy = new GeoMeshProxy(mesh->meshParts[0]);
-			Renderable* renderable = new Renderable(gameObject, geoMeshProxy, material, 0, layerId);
-			gameObject->AddRenderable(renderable);
+				Renderable* renderable = new Renderable(gameObject, mesh, material, 0, layerId);
+				gameObject->AddRenderable(renderable);
+			} while (false);
 		}
 		else if (node->GetName() == "Light")
 		{

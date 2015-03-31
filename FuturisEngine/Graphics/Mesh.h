@@ -2,6 +2,7 @@
 
 #include "VertexBufferVec3.h"
 #include "VertexBufferVec2.h"
+#include "../BaseMesh.h"
 #include <stdint.h>
 
 namespace FuturisEngine
@@ -10,13 +11,13 @@ namespace FuturisEngine
 	{
 		class IndexBuffer;
 		
-		class Mesh
+		class Mesh : public BaseMesh
 		{
 		public:
 			Mesh();
 			~Mesh();
 
-			void SetIndices(const uint16_t* indices, int count);
+			void SetIndices(const uint32_t* indices, int count);
 			void SetVertices(const sm::Vec3* vertices, int count);
 			void SetNormals(const sm::Vec3* normals, int count);
 			void SetCoords1(const sm::Vec2* coords, int count);

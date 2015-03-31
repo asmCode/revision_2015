@@ -82,8 +82,6 @@ public:
 
 	float m_fovPower;
 
-	Model *m_mdl_teapot;
-
 	Texture *m_bgTex;
 	Shader *m_distortShader;
 
@@ -172,8 +170,6 @@ public:
 	void SetOpenglParams();
 	bool InitCg();
 
-	bool AssignAssets();
-
 	// IContentObserver interface
 	void ErrorOccured(const std::string &errorMsg);
 	void OnLoadingContentStarted(int stepsCount);
@@ -204,8 +200,6 @@ public:
 	void DrawGlowTexture();
 	void DrawShadowMap();
 
-	//void FrustumCulling(std::vector<MeshPart*> &meshParts);
-
 public:
 	void AssignLightmapsToModels();
 
@@ -221,9 +215,6 @@ public:
 	bool Draw(float time, float ms);
 
 	void LoadProperties(const std::string &filename);
-
-	void SetAlwaysVisibility(
-		const std::vector<Model*> &models);
 
 
 	void DrawPostProcess(int sharpTexId, int blurTexId, int glowTex, unsigned int shadowTex, float fade);

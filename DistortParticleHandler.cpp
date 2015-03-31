@@ -1,6 +1,5 @@
 #include "DistortParticleHandler.h"
 
-#include "DrawingRoutines.h"
 #include "Billboard.h"
 #include "Particles/Particle.h"
 #include <Graphics/Texture.h>

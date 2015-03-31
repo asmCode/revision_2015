@@ -3,8 +3,6 @@
 #include "DistortParticleHandler.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
-#include <Graphics/Mesh.h>
-#include <Graphics/MeshPart.h>
 #include <Graphics/VertexInformation.h>
 #include <Utils/StringUtils.h>
 #include <Graphics/Property.h>
@@ -31,6 +29,7 @@ void ParticlesManager::Initialize(Model *modelWithParticles)
 
 	m_distortParticleHandler = new DistortParticleHandler(distortionEffect, smokeTexture, NULL);
 
+#if 0 // juz w meshu nie trzymamy informacji i particlach. Musze to przerobic na jakis xml
 	std::vector<Mesh*> &m_meshes = modelWithParticles->GetMeshes();
 	for (uint32_t i = 0; i < m_meshes.size(); i++)
 	{
@@ -99,6 +98,7 @@ void ParticlesManager::Initialize(Model *modelWithParticles)
 				//particleSource->m_direction = m_meshes[i]->m_worldMatrix * sm::Vec3(0, 0, 0);
 		}
 	}
+#endif
 
 	for (int i = 0; i != m_particlesSources.size(); i++)
 	{

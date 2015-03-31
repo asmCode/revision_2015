@@ -12,7 +12,7 @@ namespace FuturisEngine
 			IndexBuffer();
 			~IndexBuffer();
 
-			void SetIndices(const uint16_t* indices, int count);
+			void SetIndices(const uint32_t* indices, int count);
 			void Draw();
 			int GetCount() const;
 
