@@ -1,29 +1,38 @@
 #pragma once
 
+#include "ParameterPointer.h"
 #include <Math/Vec3.h>
 #include <Math/Vec4.h>
+#include <Utils/MapUtils.h>
 #include <string>
 #include <map>
-
-class ParameterPointer;
 
 class ParametersContainer
 {
 public:
 	virtual ~ParametersContainer();
 
-	void SetParameter(const std::string& name, float value);
-	void SetParameter(const std::string& name, int value);
-	void SetParameter(const std::string& name, const sm::Vec3& value);
-	void SetParameter(const std::string& name, const sm::Vec4& value);
-	void SetParameter(const std::string& name, const std::string& value);
+	template <typename T>
+	void SetParameter(const std::string& name, const T& value)
+	{
+		ParameterPointer* parameterPointer = MapUtils::Find(m_parameters, name);
+		if (parameterPointer == NULL)
+		{
+			assert(false);
+			return;
+		}
+
+		parameterPointer->SetValue(value);
+	}
 
 protected:
-	void RegisterParameter(const std::string& name, float* parameter);
-	void RegisterParameter(const std::string& name, int* parameter);
-	void RegisterParameter(const std::string& name, sm::Vec3* parameter);
-	void RegisterParameter(const std::string& name, sm::Vec4* parameter);
-	void RegisterParameter(const std::string& name, std::string* parameter);
+	template <typename T>
+	void RegisterParameter(const std::string& name, const T* parameter)
+	{
+		assert(!MapUtils::HasKey(m_parameters, name));
+
+		m_parameters[name] = new ParameterPointer(parameter);
+	}
 
 private:
 	typedef std::map<std::string, ParameterPointer*> ParametersPointersMap;

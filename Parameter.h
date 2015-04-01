@@ -13,6 +13,7 @@ public:
 	{
 		Type_Float,
 		Type_Int,
+		Type_Vec2,
 		Type_Vec3,
 		Type_Vec4,
 		Type_String,

@@ -146,7 +146,6 @@ exit /B 0
     <ClCompile Include="FuturisEngine\Graphics\IndexBuffer.cpp" />
     <ClCompile Include="FuturisEngine\Graphics\Mesh.cpp" />
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
-    <ClCompile Include="FuturisEngine\ParameterPointer.cpp" />
     <ClCompile Include="FuturisEngine\Screen.cpp" />
     <ClCompile Include="FuturisEngine\Time.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -497,6 +496,8 @@ exit /B 0
     <None Include="Data\effects\TexDiff.vpr" />
     <None Include="Data\effects\TexDiffSpec.fpr" />
     <None Include="Data\effects\TexDiffSpec.vpr" />
+    <None Include="Data\effects\TextureImage.fpr" />
+    <None Include="Data\effects\TextureImage.vpr" />
     <None Include="Data\effects\VertBlur.fpr" />
     <None Include="Data\effects\VertBlur.vpr" />
     <None Include="Data\effects\WallFace.fpr" />

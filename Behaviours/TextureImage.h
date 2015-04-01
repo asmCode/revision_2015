@@ -18,4 +18,6 @@ private:
 	int m_layer;
 	std::string m_textureName;
 	sm::Vec4 m_bounds;
+	sm::Vec4 m_coords;
 };
+

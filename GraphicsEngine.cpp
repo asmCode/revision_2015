@@ -180,7 +180,7 @@ void GraphicsEngine::RenderGameObjects()
 		m_cameras[cameraIndex]->Clear();
 		glEnable(GL_DEPTH_TEST);
 
-		for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
+ 		for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
 		{
 			if (!m_solidRenderables[i]->IsActive())
 				continue;

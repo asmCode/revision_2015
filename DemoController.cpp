@@ -521,6 +521,8 @@ bool DemoController::Update(float time, float seconds)
 	Time::TimeLeft = time;
 	Time::DeltaTime = seconds;
 
+	BehavioursManager::GetInstance()->AwakeBehaviours();
+
 	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
 	if (activeScene->HasSceneChanged())
 	{
@@ -528,7 +530,6 @@ bool DemoController::Update(float time, float seconds)
 		activeScene->ClearSceneChangedFlag();
 	}
 
-	BehavioursManager::GetInstance()->AwakeBehaviours();
 	BehavioursManager::GetInstance()->UpdateBehaviours();
 
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
