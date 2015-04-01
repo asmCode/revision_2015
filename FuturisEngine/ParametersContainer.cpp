@@ -22,6 +22,18 @@ void ParametersContainer::SetParameter(const std::string& name, float value)
 	parameterPointer->SetFloat(value);
 }
 
+void ParametersContainer::SetParameter(const std::string& name, int value)
+{
+	ParameterPointer* parameterPointer = MapUtils::Find(m_parameters, name);
+	if (parameterPointer == NULL)
+	{
+		assert(false);
+		return;
+	}
+
+	parameterPointer->SetInt(value);
+}
+
 void ParametersContainer::SetParameter(const std::string& name, const sm::Vec3& value)
 {
 	ParameterPointer* parameterPointer = MapUtils::Find(m_parameters, name);
@@ -46,7 +58,26 @@ void ParametersContainer::SetParameter(const std::string& name, const sm::Vec4& 
 	parameterPointer->SetVec4(value);
 }
 
+void ParametersContainer::SetParameter(const std::string& name, const std::string& value)
+{
+	ParameterPointer* parameterPointer = MapUtils::Find(m_parameters, name);
+	if (parameterPointer == NULL)
+	{
+		assert(false);
+		return;
+	}
+
+	parameterPointer->SetString(value);
+}
+
 void ParametersContainer::RegisterParameter(const std::string& name, float* parameter)
+{
+	assert(!MapUtils::HasKey(m_parameters, name));
+
+	m_parameters[name] = new ParameterPointer(parameter);
+}
+
+void ParametersContainer::RegisterParameter(const std::string& name, int* parameter)
 {
 	assert(!MapUtils::HasKey(m_parameters, name));
 
@@ -61,6 +92,13 @@ void ParametersContainer::RegisterParameter(const std::string& name, sm::Vec3* p
 }
 
 void ParametersContainer::RegisterParameter(const std::string& name, sm::Vec4* parameter)
+{
+	assert(!MapUtils::HasKey(m_parameters, name));
+
+	m_parameters[name] = new ParameterPointer(parameter);
+}
+
+void ParametersContainer::RegisterParameter(const std::string& name, std::string* parameter)
 {
 	assert(!MapUtils::HasKey(m_parameters, name));
 

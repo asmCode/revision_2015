@@ -52,6 +52,12 @@ void Parameter::SetFloat(float value)
 	Value.Float = value;
 }
 
+void Parameter::SetInt(int value)
+{
+	m_type = Parameter::Type_Int;
+	Value.Int = value;
+}
+
 void Parameter::SetVec3(sm::Vec3 value)
 {
 	m_type = Parameter::Type_Vec3;
@@ -62,6 +68,12 @@ void Parameter::SetVec4(sm::Vec4 value)
 {
 	m_type = Parameter::Type_Vec4;
 	Value.Vec4 = value;
+}
+
+void Parameter::SetString(const std::string& value)
+{
+	m_type = Parameter::Type_String;
+	Value.String = value;
 }
 
 void Parameter::SetTexture(Texture* texture)
@@ -76,6 +88,12 @@ float Parameter::GetFloat() const
 	return Value.Float;
 }
 
+int Parameter::GetInt() const
+{
+	assert(m_type == Parameter::Type_Int);
+	return Value.Int;
+}
+
 const sm::Vec3& Parameter::GetVec3() const
 {
 	assert(m_type == Parameter::Type_Vec3);
@@ -86,6 +104,12 @@ const sm::Vec4& Parameter::GetVec4() const
 {
 	assert(m_type == Parameter::Type_Vec4);
 	return Value.Vec4;
+}
+
+const std::string& Parameter::GetString() const
+{
+	assert(m_type == Parameter::Type_String);
+	return Value.String;
 }
 
 Texture* Parameter::GetTexture() const

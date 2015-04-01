@@ -27,6 +27,7 @@
 #include "Behaviours/TileFactory.h"
 #include "Behaviours/GenericFactory.h"
 #include "Behaviours/PassageControllerFactory.h"
+#include "Behaviours/TextureImage.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -305,6 +306,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("PassageController", new PassageControllerFactory());
 	behavioursManager->RegisterBehaviour("RttTest", new GenericFactory<RttTest>());
 	behavioursManager->RegisterBehaviour("CustomMesh", new GenericFactory<CustomMesh>());
+	behavioursManager->RegisterBehaviour("TextureImage", new GenericFactory<TextureImage>());
 }
 
 Animation *anim;

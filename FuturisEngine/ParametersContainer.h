@@ -13,13 +13,17 @@ public:
 	virtual ~ParametersContainer();
 
 	void SetParameter(const std::string& name, float value);
+	void SetParameter(const std::string& name, int value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
 	void SetParameter(const std::string& name, const sm::Vec4& value);
+	void SetParameter(const std::string& name, const std::string& value);
 
 protected:
 	void RegisterParameter(const std::string& name, float* parameter);
+	void RegisterParameter(const std::string& name, int* parameter);
 	void RegisterParameter(const std::string& name, sm::Vec3* parameter);
 	void RegisterParameter(const std::string& name, sm::Vec4* parameter);
+	void RegisterParameter(const std::string& name, std::string* parameter);
 
 private:
 	typedef std::map<std::string, ParameterPointer*> ParametersPointersMap;

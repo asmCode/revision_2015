@@ -393,6 +393,16 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			sm::Vec4 clearColor = DemoUtils::ParseVector4(node->GetAttribAsString("clear_color", StringUtils::ToString(Camera::DefaultClearColor)), ",");
 			camera->SetClearColor(clearColor);
 
+			std::string projection = node->GetAttribAsString("projection", "perspective");
+			if (projection == "perspective")
+				camera->SetProjectionType(Camera::ProjectionType_Perspective);
+			else if (projection == "orthographics")
+				camera->SetProjectionType(Camera::ProjectionType_Orthographics);
+			else
+			{
+				assert(false);
+			}
+
 			camera->SetDepth(node->GetAttribAsInt32("depth"));
 
 			Layers cullLayers = LayerId_All;
@@ -416,19 +426,23 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			std::vector<Parameter> parameters;
 			LoadParameters(node, parameters);
 
-			Behaviour* behaviour = BehavioursManager::GetInstance()->CreateBehaviour(behaviourName, gameObject);
-			
-			for (uint32_t i = 0; i < parameters.size(); i++)
+			Behaviour* behaviour = gameObject->AddBehaviour(behaviourName);
+			if (behaviour != NULL)
 			{
-				if (parameters[i].GetType() == Parameter::Type_Float)
-					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetFloat());
-				else if (parameters[i].GetType() == Parameter::Type_Vec3)
-					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec3());
-				else if (parameters[i].GetType() == Parameter::Type_Vec4)
-					behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec4());
+				for (uint32_t i = 0; i < parameters.size(); i++)
+				{
+					if (parameters[i].GetType() == Parameter::Type_Float)
+						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetFloat());
+					if (parameters[i].GetType() == Parameter::Type_Int)
+						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetInt());
+					else if (parameters[i].GetType() == Parameter::Type_Vec3)
+						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec3());
+					else if (parameters[i].GetType() == Parameter::Type_Vec4)
+						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec4());
+					else if (parameters[i].GetType() == Parameter::Type_String)
+						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetString());
+				}
 			}
-
-			gameObject->AddBehaviour(behaviour);
 		}
 	}
 
@@ -467,6 +481,11 @@ Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)
 		float value = StringUtils::ParseFloat(valueString);
 		parameter.SetFloat(value);
 	}
+	else if (typeString == "int")
+	{
+		int value = StringUtils::ParseInt(valueString);
+		parameter.SetInt(value);
+	}
 	else if (typeString == "vec3")
 	{
 		sm::Vec3 value = DemoUtils::ParseVector3(valueString, ",");
@@ -476,6 +495,10 @@ Parameter SceneLoader::LoadParameter(XMLNode* parameterNode)
 	{
 		sm::Vec4 value = DemoUtils::ParseVector4(valueString, ",");
 		parameter.SetVec4(value);
+	}
+	else if (typeString == "string")
+	{
+		parameter.SetString(valueString);
 	}
 	else if (typeString == "texture")
 	{
