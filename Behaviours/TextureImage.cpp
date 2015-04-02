@@ -11,7 +11,6 @@ using namespace FuturisEngine::Graphics;
 TextureImage::TextureImage(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name)
 {
-	RegisterParameter("layer", &m_layer);
 	RegisterParameter("texture", &m_textureName);
 	RegisterParameter("bounds", &m_bounds);
 	RegisterParameter("coords", &m_coords);

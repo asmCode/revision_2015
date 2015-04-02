@@ -393,6 +393,18 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			sm::Vec4 clearColor = DemoUtils::ParseVector4(node->GetAttribAsString("clear_color", StringUtils::ToString(Camera::DefaultClearColor)), ",");
 			camera->SetClearColor(clearColor);
 
+			std::string clearFlag = node->GetAttribAsString("clear_flag", "color_and_depth");
+			if (clearFlag == "color_and_depth")
+				camera->SetClearFlag(Camera::ClearFlag_ColorAndDepth);
+			else if (clearFlag == "color")
+				camera->SetClearFlag(Camera::ClearFlag_Color);
+			else if (clearFlag == "depth")
+				camera->SetClearFlag(Camera::ClearFlag_Depth);
+			else
+			{
+				assert(false);
+			}
+
 			std::string projection = node->GetAttribAsString("projection", "perspective");
 			if (projection == "perspective")
 				camera->SetProjectionType(Camera::ProjectionType_Perspective);
