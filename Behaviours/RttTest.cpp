@@ -5,6 +5,8 @@
 #include "../ScenesManager.h"
 #include "../Renderable.h"
 #include "../FuturisEngine/BehavioursManager.h"
+#include "../FuturisEngine/Screen.h"
+#include "TextureImage.h"
 #include <UserInput/Input.h>
 #include <Utils/Random.h>
 #include <Graphics/Texture.h>
@@ -32,19 +34,23 @@ void RttTest::Update()
 		m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
 
 		m_renderTexture = new Texture(
-			300,
-			200,
+			Screen::Width,
+			Screen::Height,
 			32,
 			NULL,
 			BaseTexture::Wrap_ClampToEdge,
-			BaseTexture::Filter_Nearest,
-			BaseTexture::Filter_Nearest,
+			BaseTexture::Filter_Linear,
+			BaseTexture::Filter_Linear,
 			false);
 
 		m_camera->SetRenderToTexture(m_renderTexture);
 
-		GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("box4cam1");
-		gameObject->GetRenderables()[0]->GetMaterial()->SetParameter("u_diffTex", m_renderTexture);
+		GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("kamerka_output");
+		if (gameObject != NULL)
+		{
+			TextureImage* textureImage = (TextureImage*)gameObject->GetBehaviour("TextureImage");
+			textureImage->GetMaterial()->SetParameter("u_tex", m_renderTexture);
+		}
 	}
 
 	if (Input::GetKeyUp(KeyCode_R))

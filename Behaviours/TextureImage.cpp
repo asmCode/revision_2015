@@ -58,13 +58,19 @@ void TextureImage::Awake()
 	Shader* shader = Content::Instance->Get<Shader>("TextureImage");
 	assert(shader != NULL);
 
-	Material* material = new Material();
-	material->SetShader(shader);
-	material->SetParameter("u_tex", texture);
+	m_material = new Material();
+	m_material->SetShader(shader);
+	m_material->SetParameter("u_tex", texture);
 
-	m_gameObject->AddRenderable(new Renderable(m_gameObject, mesh, material, 0, m_gameObject->GetLayerId()));
+	m_gameObject->AddRenderable(new Renderable(m_gameObject, mesh, m_material, 0, m_gameObject->GetLayerId()));
 }
 
 void TextureImage::Update()
 {
 }
+
+Material* TextureImage::GetMaterial() const
+{
+	return m_material;
+}
+
