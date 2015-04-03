@@ -38,6 +38,7 @@ public:
 
 	void AddBehaviour(Behaviour* behaviour);
 	Behaviour* AddBehaviour(const std::string& componentName);
+	Behaviour* GetBehaviour(const std::string& componentName) const;
 	const std::vector<Behaviour*>& GetBehaviours() const;
 
 protected:

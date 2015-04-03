@@ -3,6 +3,7 @@
 #include "Light.h"
 #include "Camera.h"
 #include "../FuturisEngine/BehavioursManager.h"
+#include "../Behaviour.h"
 #include "../FuturisEngine/ComponentFlag.h"
 #include "../ScenesManager.h"
 #include "../Scenes/BaseScene.h"
@@ -90,7 +91,19 @@ Behaviour* GameObject::AddBehaviour(const std::string& componentName)
 	return behaviour;
 }
 
+Behaviour* GameObject::GetBehaviour(const std::string& componentName) const
+{
+	for (uint32_t i = 0; i < m_behaviours.size(); i++)
+	{
+		if (m_behaviours[i]->GetName() == componentName)
+			return m_behaviours[i];
+	}
+
+	return NULL;
+}
+
 const std::vector<Behaviour*>& GameObject::GetBehaviours() const
 {
 	return m_behaviours;
 }
+
