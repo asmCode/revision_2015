@@ -5,10 +5,11 @@
 DepthTexture::DepthTexture(uint32_t width, uint32_t height) : BaseTexture(width, height)
 {
 	glGenTextures(1, &m_texId);
+	glActiveTexture(0);
 	glBindTexture(GL_TEXTURE_2D, m_texId);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32,
-		m_width, m_height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+		m_width, m_height, 0, 0, 0, NULL);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
