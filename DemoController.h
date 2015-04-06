@@ -32,9 +32,7 @@ class SynchManager;
 
 class LoadingScreen;
 class ParticlesManager;
-class Framebuffer;
 class DepthTexture;
-class Blur;
 class Frustum;
 class Screens;
 class PropertySignal;
@@ -139,26 +137,11 @@ public:
 
 	ParticlesManager *m_particlesManager;
 
-	Framebuffer *blurFbo;
-	Texture *targetTex0;
-
 	float m_greetzDanceTime;
 
 	bool firstupdate;
 
 	float m_endScreenOpacity;
-
-	DepthTexture *m_shadowMapTexture;
-	Texture *m_dummyColorTexture;
-	Framebuffer *m_shadowMappingFramebuffer;
-
-	Blur *blur;
-	Blur *dofBlur;
-
-	Texture *m_mainFrameTexture;
-
-	Framebuffer *m_distortionFramebuffer;
-	Texture *m_distortionTexture;
 
 	LoadingScreen *loadingScreen;
 
@@ -197,13 +180,8 @@ public:
 	float delayLimit;
 	float fps;
 
-	void DrawGlowTexture();
-	void DrawShadowMap();
-
 public:
 	void AssignLightmapsToModels();
-
-	void InitializeBlur();
 
 	bool Initialize(bool isStereo, HWND parent, const char *title, int width, int height,
 		int bpp, int freq, bool fullscreen, bool createOwnWindow);

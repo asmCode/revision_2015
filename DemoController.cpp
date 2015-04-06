@@ -1,11 +1,9 @@
 #include "DemoController.h"
 #include <Utils/Log.h>
 #include "ParticlesManager.h"
-#include <Graphics/Framebuffer.h>
 #include <Graphics/Model.h>
 #include "LoadingScreen.h"
 #include <Graphics/Shader.h>
-#include "Blur.h"
 #include <Graphics/DepthTexture.h>
 #include "Scenes/BaseScene.h"
 #include "Frustum.h"
@@ -124,8 +122,6 @@ DemoController::DemoController() :
 	flaps = 0;
 	firstupdate = true;
 	fade = 0.0f;
-	blurFbo = NULL;
-	dofBlur = NULL;
 	isPlaying = false;
 
 	errorOccured = false;
@@ -135,13 +131,10 @@ DemoController::DemoController() :
 	
 	isStereo = false;
 
-	blur = NULL;
-
 	m_biasScale = 0.0f;
 	m_biasClamp = 0.0f;
 
 	currentCamera = NULL;
-	m_shadowMapTexture = NULL;
 
 	electroNoiseVal = 0.0f;
 	camShakeVal = 0.0f;
@@ -170,39 +163,6 @@ void DemoController::AssignLightmapsToModels()
 			allMeshParts[i]->m_lightmap = lightmap;
 	}
 	*/
-}
-
-void DemoController::InitializeBlur()
-{
-	uint32_t glowWidth = static_cast<uint32_t>(width * GlowBufferWidthRatio);
-	uint32_t glowHeight = static_cast<uint32_t>(height * GlowBufferHeightRatio);
-
-	m_distortionTexture = new Texture(
-		width,
-		height,
-		32,
-		NULL,
-		Texture::Wrap_ClampToEdge,
-		Texture::Filter_Nearest,
-		Texture::Filter_Nearest,
-		false);
-
-	m_mainFrameTexture = new Texture(
-		width,
-		height,
-		32,
-		NULL,
-		Texture::Wrap_ClampToEdge,
-		Texture::Filter_Nearest,
-		Texture::Filter_Nearest,
-		false);
-
-	m_distortionFramebuffer = new Framebuffer();
-	m_distortionFramebuffer->Initialize(width, height, 32);
-	m_distortionFramebuffer->BindFramebuffer();
-	m_distortionFramebuffer->AttachColorTexture(m_mainFrameTexture->GetId(), 0);
-	m_distortionFramebuffer->AttachColorTexture(m_distortionTexture->GetId(), 1);
-	m_distortionFramebuffer->Validate();
 }
 
 bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, int width, int height,
@@ -256,33 +216,6 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	GraphicsLog::Initialize(NULL, NULL);
 
 	loadingScreen = new LoadingScreen();
-
-	targetTex0 = new Texture(width, height, 32, NULL, Texture::Wrap_ClampToEdge, Texture::Filter_Nearest, Texture::Filter_Nearest, false);
-
-	blurFbo = new Framebuffer();
-	blurFbo ->Initialize(width / 2, height / 2, 32);
-
-	uint8_t fadeTexData[] =
-	{
-		0, 0, 0, 255,
-		0, 0, 0, 255,
-		0, 0, 0, 255,
-		0, 0, 0, 255
-	};
-
-	m_fadeTex = new Texture(2, 2, 32, fadeTexData, Texture::Wrap_ClampToEdge, Texture::Filter_Nearest, Texture::Filter_Nearest, false);
-
-	m_shadowMapTexture = new DepthTexture(width, height);
-	m_dummyColorTexture = new Texture(width, height, 32, NULL, Texture::Wrap_ClampToEdge,
-		Texture::Filter_Nearest, Texture::Filter_Nearest, false);
-
-	m_shadowMappingFramebuffer = new Framebuffer();
-	m_shadowMappingFramebuffer->Initialize(width, height, 32);
-	m_shadowMappingFramebuffer->BindFramebuffer();
-	m_shadowMappingFramebuffer->AttachColorTexture(m_dummyColorTexture->GetId());
-	m_shadowMappingFramebuffer->AttachDepthTexture(m_shadowMapTexture->GetId());
-	m_shadowMappingFramebuffer->Validate();
-	Framebuffer::RestoreDefaultFramebuffer();
 
 	Billboard::Initialize();
 
@@ -498,21 +431,7 @@ void DemoController::Release()
 		glWnd = NULL;
 	}
 
-	if (blur != NULL)
-	{
-		delete blur;
-		blur = NULL;
-	}
-
-	if (dofBlur != NULL)
-	{
-		delete dofBlur;
-		dofBlur = NULL;
-	}
-
 	Billboard::Release();
-
-	DeleteObject(blurFbo);
 }
 
 static float lastTime;
@@ -663,8 +582,6 @@ bool DemoController::Draw(float time, float seconds)
 	}
 
 #if 0
-
-	DrawShadowMap();
 
 	m_distortionFramebuffer->BindFramebuffer();
 	glViewport(0, 0, width, height);
@@ -946,26 +863,6 @@ float DemoController::CalcFps(float ms)
 	}
 
 	return fps;
-}
-
-void DemoController::DrawShadowMap()
-{
-	m_shadowMappingFramebuffer->BindFramebuffer();
-
-	glDepthMask(true);
-	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	glClear(GL_DEPTH_BUFFER_BIT);
-	glColorMask(false, false, false, false);
-	glDisable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_BLEND);
-
-	glViewport(0, 0, width, height);
-	
-	Framebuffer::RestoreDefaultFramebuffer();
-	
-	glCullFace(GL_BACK);
 }
 
 /*void DemoController::FrustumCulling(std::vector<MeshPart*> &meshParts)

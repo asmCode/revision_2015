@@ -99,14 +99,14 @@ void GraphicsEngine::Initialize()
 		false);
 
 	m_mainFrame = new Framebuffer();
-	m_mainFrame->Initialize(m_screenWidth, m_screenHeight, 32);
+	m_mainFrame->Initialize(m_screenWidth, m_screenHeight);
 	m_mainFrame->BindFramebuffer();
 	m_mainFrame->AttachColorTexture(m_mainRenderTexture->GetId(), 0);
 	m_mainFrame->AttachColorTexture(m_glowTexture->GetId(), 1);
 	m_mainFrame->Validate();
 
 	m_halfFrame = new Framebuffer();
-	m_halfFrame->Initialize(m_screenWidth / 2, m_screenHeight / 2, 32);
+	m_halfFrame->Initialize(m_screenWidth / 2, m_screenHeight / 2);
 
 	m_quad = new Quad();
 	m_quad->Initialize();

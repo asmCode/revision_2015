@@ -24,7 +24,7 @@ Blur::Blur(int blurCount, Shader *horiBlurShader, Shader *vertBlurShader, int wi
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	framebuffer = new Framebuffer();
-	framebuffer ->Initialize(width, height, bpp);
+	framebuffer ->Initialize(width, height);
 
 	tmpTex = new Texture(width, height, bpp, NULL, Texture::Wrap_ClampToEdge, Texture::Filter_Linear, Texture::Filter_Linear, false);
 

@@ -23,11 +23,10 @@ Framebuffer::~Framebuffer(void)
 		glDeleteFramebuffers(1, &framebufferId);
 }
 
-bool Framebuffer::Initialize(int width, int height, int bpp)
+bool Framebuffer::Initialize(int width, int height)
 {
 	this ->width = width;
 	this ->height = height;
-	this ->bpp = bpp;
 
 	// depth renderbuffer
 	glGenRenderbuffers(1, &depthRenderBufferId);
@@ -103,11 +102,6 @@ int Framebuffer::GetWidth()
 int Framebuffer::GetHeight()
 {
 	return height;
-}
-
-int Framebuffer::GetBpp()
-{
-	return bpp;
 }
 
 void Framebuffer::BindFramebuffer()

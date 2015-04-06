@@ -92,7 +92,7 @@ void RevisionTest01::Initialize()
 		true);
 
 	m_depthFramebuffer = new Framebuffer();
-	m_depthFramebuffer->Initialize(FaceResolution, FaceResolution, 32);
+	m_depthFramebuffer->Initialize(FaceResolution, FaceResolution);
 	m_depthFramebuffer->BindFramebuffer();
 	m_depthFramebuffer->AttachColorTexture(m_colorTexture->GetId());
 	m_depthFramebuffer->Validate();

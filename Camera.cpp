@@ -167,7 +167,7 @@ void Camera::SetRenderToTexture(Texture* texture)
 	if (m_renderTexture != NULL)
 	{
 		m_framebuffer = new Framebuffer();
-		m_framebuffer->Initialize(m_renderTexture->GetWidth(), m_renderTexture->GetHeight(), m_renderTexture->GetBpp());
+		m_framebuffer->Initialize(m_renderTexture->GetWidth(), m_renderTexture->GetHeight());
 		m_framebuffer->AttachColorTexture(m_renderTexture->GetId());
 		m_framebuffer->Validate();
 	}

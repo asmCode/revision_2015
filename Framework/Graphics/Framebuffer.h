@@ -21,7 +21,7 @@ public:
 	Framebuffer();
 	~Framebuffer(void);
 
-	bool Initialize(int width, int height, int bpp);
+	bool Initialize(int width, int height);
 	unsigned GetTextureId();
 
 	void BindFramebuffer();
@@ -33,7 +33,6 @@ public:
 
 	int GetWidth();
 	int GetHeight();
-	int GetBpp();
 
 	static void RestoreDefaultFramebuffer();
 };
