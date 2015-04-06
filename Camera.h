@@ -6,6 +6,7 @@
 #include <Graphics/Rect.h>
 
 class Texture;
+class DepthTexture;
 class Framebuffer;
 
 class Camera : public Component

@@ -1,12 +1,13 @@
 #include "Framebuffer.h"
 
 #include <GL/glew.h>
-#include <gl/gl.h>
 #include <assert.h>
 
-Framebuffer::Framebuffer()
+Framebuffer::Framebuffer() :
+	m_isColorBufferEnabled(false),
+	m_isDepthBufferEnabled(false),
+	m_clearColor(0, 0, 0, 0)
 {
-	textureId = 0;
 	framebufferId = 0;
 	depthRenderBufferId = 0;
 }
@@ -25,8 +26,8 @@ Framebuffer::~Framebuffer(void)
 
 bool Framebuffer::Initialize(int width, int height)
 {
-	this ->width = width;
-	this ->height = height;
+	this ->m_width = width;
+	this ->m_height = height;
 
 	// depth renderbuffer
 	glGenRenderbuffers(1, &depthRenderBufferId);
@@ -65,16 +66,8 @@ void Framebuffer::Validate()
 	//#define GL_FRAMEBUFFER_UNSUPPORTED_EXT    0x8CDD
 }
 
-unsigned Framebuffer::GetTextureId()
-{
-	return textureId;
-}
-
 void Framebuffer::AttachColorTexture(unsigned textureId, uint32_t index)
 {
-	if (index == 0)
-		this ->textureId = textureId;
-
 	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, textureId, 0);
@@ -96,12 +89,12 @@ void Framebuffer::AttachDepthTexture(unsigned textureId)
 
 int Framebuffer::GetWidth()
 {
-	return width;
+	return m_width;
 }
 
 int Framebuffer::GetHeight()
 {
-	return height;
+	return m_height;
 }
 
 void Framebuffer::BindFramebuffer()
@@ -113,3 +106,32 @@ void Framebuffer::RestoreDefaultFramebuffer()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
+
+void Framebuffer::EnableColorBuffer(bool enable)
+{
+	m_isColorBufferEnabled = enable;
+}
+
+void Framebuffer::EnableDepthBuffer(bool enable)
+{
+	m_isDepthBufferEnabled = enable;
+}
+
+void Framebuffer::SetClearColor(const sm::Vec4& clearColor)
+{
+	m_clearColor = clearColor;
+}
+
+void Framebuffer::Clear(bool color, bool depth)
+{
+	assert(color || depth);
+
+	uint32_t clearMask = 0;
+	if (color && m_isColorBufferEnabled)
+		clearMask |= GL_COLOR_BUFFER_BIT;
+	if (depth && m_isDepthBufferEnabled)
+		clearMask |= GL_DEPTH_BUFFER_BIT;
+
+	glClear(clearMask);
+}
+
