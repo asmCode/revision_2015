@@ -3,9 +3,12 @@
 #include <GL/glew.h>
 #include <assert.h>
 
+Framebuffer* Framebuffer::Default = new Framebuffer();
+
 Framebuffer::Framebuffer() :
-	m_isColorBufferEnabled(false),
-	m_isDepthBufferEnabled(false),
+	m_colorBufferType(this == Default ? GL_BACK : GL_COLOR_ATTACHMENT0),
+	m_isColorBufferEnabled(true),
+	m_isDepthBufferEnabled(true),
 	m_clearColor(0, 0, 0, 0)
 {
 	framebufferId = 0;
@@ -26,6 +29,8 @@ Framebuffer::~Framebuffer(void)
 
 bool Framebuffer::Initialize(int width, int height)
 {
+	assert(!IsDefault());
+
 	this ->m_width = width;
 	this ->m_height = height;
 
@@ -50,6 +55,14 @@ bool Framebuffer::Initialize(int width, int height)
 	return true;
 }
 
+void Framebuffer::Setup()
+{
+	BindFramebuffer();
+
+	glDrawBuffer(m_isColorBufferEnabled ? m_colorBufferType : GL_NONE);
+	glDepthMask(m_isDepthBufferEnabled);
+}
+
 void Framebuffer::Validate()
 {
 	BindFramebuffer();
@@ -68,20 +81,17 @@ void Framebuffer::Validate()
 
 void Framebuffer::AttachColorTexture(unsigned textureId, uint32_t index)
 {
+	assert(!IsDefault());
+
 	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, textureId, 0);
 }
 
-void Framebuffer::DettachColorTexture(uint32_t index)
-{
-	BindFramebuffer();
-	glFramebufferTexture2D(
-		GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, 0, 0);
-}
-
 void Framebuffer::AttachDepthTexture(unsigned textureId)
 {
+	assert(!IsDefault());
+
 	BindFramebuffer();
 	glFramebufferTexture2D(
 		GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, textureId, 0);
@@ -97,14 +107,14 @@ int Framebuffer::GetHeight()
 	return m_height;
 }
 
+bool Framebuffer::IsDefault() const
+{
+	return this == Default;
+}
+
 void Framebuffer::BindFramebuffer()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
-}
-
-void Framebuffer::RestoreDefaultFramebuffer()
-{
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void Framebuffer::EnableColorBuffer(bool enable)
@@ -128,7 +138,10 @@ void Framebuffer::Clear(bool color, bool depth)
 
 	uint32_t clearMask = 0;
 	if (color && m_isColorBufferEnabled)
+	{
 		clearMask |= GL_COLOR_BUFFER_BIT;
+		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+	}
 	if (depth && m_isDepthBufferEnabled)
 		clearMask |= GL_DEPTH_BUFFER_BIT;
 

@@ -9,6 +9,8 @@
 class Framebuffer
 {
 public:
+	static Framebuffer* Default;
+
 	Framebuffer();
 	~Framebuffer(void);
 
@@ -19,7 +21,6 @@ public:
 
 	void AttachColorTexture(unsigned textureId, uint32_t index = 0);
 	void AttachDepthTexture(unsigned textureId);
-	void DettachColorTexture(uint32_t index);
 
 	void EnableColorBuffer(bool enable);
 	void EnableDepthBuffer(bool enable);
@@ -30,11 +31,10 @@ public:
 	int GetWidth();
 	int GetHeight();
 
-	void BindFramebuffer();
-
-	static void RestoreDefaultFramebuffer();
+	bool IsDefault() const;
 
 private:
+	unsigned m_colorBufferType;
 	unsigned framebufferId;
 	unsigned depthRenderBufferId;
 	unsigned offscreenColorRenderBufferId;
@@ -45,5 +45,7 @@ private:
 	bool m_isColorBufferEnabled;
 	bool m_isDepthBufferEnabled;
 	sm::Vec4 m_clearColor;
+
+	void BindFramebuffer();
 };
 
