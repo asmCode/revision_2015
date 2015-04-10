@@ -2,15 +2,17 @@
 
 #include <GL/glew.h>
 #include <assert.h>
+#include <stddef.h>
 
 Framebuffer* Framebuffer::Default = new Framebuffer();
 
 Framebuffer::Framebuffer() :
-	m_colorBufferType(this == Default ? GL_BACK : GL_COLOR_ATTACHMENT0),
 	m_isColorBufferEnabled(true),
 	m_isDepthBufferEnabled(true),
 	m_clearColor(0, 0, 0, 0)
 {
+	m_colorBufferType = (Default == NULL) ? GL_BACK : GL_COLOR_ATTACHMENT0;
+
 	framebufferId = 0;
 	depthRenderBufferId = 0;
 }

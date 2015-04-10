@@ -10,6 +10,7 @@
 #include <UserInput/Input.h>
 #include <Utils/Random.h>
 #include <Graphics/Texture.h>
+#include <Graphics/DepthTexture.h>
 #include <Graphics/Material.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -43,13 +44,15 @@ void RttTest::Update()
 			BaseTexture::Filter_Linear,
 			false);
 
-		m_camera->SetRenderToTexture(m_renderTexture);
+		m_depthTexture = new DepthTexture(Screen::Width, Screen::Height);
+
+		m_camera->SetRenderToTexture(m_renderTexture, m_depthTexture);
 
 		GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("kamerka_output");
 		if (gameObject != NULL)
 		{
 			TextureImage* textureImage = (TextureImage*)gameObject->GetBehaviour("TextureImage");
-			textureImage->GetMaterial()->SetParameter("u_tex", m_renderTexture);
+			textureImage->GetMaterial()->SetParameter("u_tex", m_depthTexture);
 		}
 	}
 
@@ -57,7 +60,7 @@ void RttTest::Update()
 	{
 		m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
 
-		m_camera->SetRenderToTexture(NULL);
+		m_camera->SetRenderToTexture(NULL, NULL);
 	}
 }
 

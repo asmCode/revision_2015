@@ -63,7 +63,7 @@ void Blur::MakeBlur(uint32_t texIdToBlur)
 	glDisableVertexAttribArray(3);
 	glDisableVertexAttribArray(4);
 
-	framebuffer ->BindFramebuffer();
+	framebuffer->Setup();
 
 	glDepthMask(false);
 	glColorMask(true, true, true, true);
@@ -101,8 +101,6 @@ void Blur::MakeBlur(uint32_t texIdToBlur)
 
 		texIdToBlur = blurredTextures[i] ->GetId();
 	}
-
-	Framebuffer::RestoreDefaultFramebuffer();
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

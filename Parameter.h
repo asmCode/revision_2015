@@ -4,7 +4,7 @@
 #include <Math/Vec4.h>
 #include <string>
 
-class Texture;
+class BaseTexture;
 
 class Parameter
 {
@@ -30,14 +30,14 @@ public:
 	void SetVec3(sm::Vec3 value);
 	void SetVec4(sm::Vec4 value);
 	void SetString(const std::string& value);
-	void SetTexture(Texture* texture);
+	void SetTexture(BaseTexture* texture);
 
 	float GetFloat() const;
 	int GetInt() const;
 	const sm::Vec3& GetVec3() const;
 	const sm::Vec4& GetVec4() const;
 	const std::string& GetString() const;
-	Texture* GetTexture() const;
+	BaseTexture* GetTexture() const;
 
 	std::string GetName() const;
 	Type GetType() const;
@@ -50,7 +50,7 @@ private:
 	{
 		float Float;
 		int Int;
-		Texture* Texture;
+		BaseTexture* Texture;
 		struct
 		{
 			sm::Vec3 Vec3;

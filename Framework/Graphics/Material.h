@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #include "Texture.h"
+#include "DepthTexture.h"
 #include "BuiltInShaderParams.h"
 #include "../../Parameter.h"
 //#include "CubeTexture.h"
@@ -59,7 +60,7 @@ public:
 	void SetParameter(const std::string& name, float value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
 	void SetParameter(const std::string& name, const sm::Vec4& value);
-	void SetParameter(const std::string& name, Texture* value);
+	void SetParameter(const std::string& name, BaseTexture* value);
 
 	bool HasBuiltInShaderParam(BuiltInShaderParams::ParamFlag paramFlag);
 

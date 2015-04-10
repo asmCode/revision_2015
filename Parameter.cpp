@@ -76,7 +76,7 @@ void Parameter::SetString(const std::string& value)
 	Value.String = value;
 }
 
-void Parameter::SetTexture(Texture* texture)
+void Parameter::SetTexture(BaseTexture* texture)
 {
 	m_type = Parameter::Type_Texture;
 	Value.Texture = texture;
@@ -112,7 +112,7 @@ const std::string& Parameter::GetString() const
 	return Value.String;
 }
 
-Texture* Parameter::GetTexture() const
+BaseTexture* Parameter::GetTexture() const
 {
 	assert(m_type == Parameter::Type_Texture);
 	return Value.Texture;

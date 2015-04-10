@@ -3,6 +3,7 @@
 #include "FuturisEngine/Screen.h"
 #include <Graphics/Framebuffer.h>
 #include <Graphics/Texture.h>
+#include <Graphics/DepthTexture.h>
 #include <Math/MathUtils.h>
 #include <GL/glew.h>
 
@@ -27,8 +28,7 @@ Camera::Camera(GameObject* gameObject) :
 	m_viewportRect(DefaultViewport),
 	m_clearColor(DefaultClearColor),
 	m_depth(0),
-	m_renderTexture(NULL),
-	m_framebuffer(NULL)
+	m_framebuffer(Framebuffer::Default)
 {
 }
 
@@ -154,21 +154,42 @@ Layers Camera::GetCullLayers() const
 	return m_cullLayers;
 }
 
-void Camera::SetRenderToTexture(Texture* texture)
+void Camera::EnableColorBuffer(bool enable)
 {
-	if (m_framebuffer != NULL)
+	m_framebuffer->EnableColorBuffer(enable);
+}
+
+void Camera::EnableDepthBuffer(bool enable)
+{
+	m_framebuffer->EnableDepthBuffer(enable);
+}
+
+void Camera::SetRenderToTexture(Texture* texture, DepthTexture* depthTexture)
+{
+	// disable offscreen
+	if (texture == NULL && depthTexture == NULL && !m_framebuffer->IsDefault())
 	{
 		delete m_framebuffer;
-		m_framebuffer = NULL;
+		m_framebuffer = Framebuffer::Default;
 	}
-
-	m_renderTexture = texture;
-
-	if (m_renderTexture != NULL)
+	// enable offscreen
+	else if (texture != NULL || depthTexture != NULL)
 	{
+		if (!m_framebuffer->IsDefault())
+			delete m_framebuffer;
+
+		int width = texture != NULL ? texture->GetWidth() : depthTexture->GetWidth();
+		int height = texture != NULL ? texture->GetHeight() : depthTexture->GetHeight();
+
 		m_framebuffer = new Framebuffer();
-		m_framebuffer->Initialize(m_renderTexture->GetWidth(), m_renderTexture->GetHeight());
-		m_framebuffer->AttachColorTexture(m_renderTexture->GetId());
+		m_framebuffer->Initialize(width, height);
+
+		if (texture != NULL)
+			m_framebuffer->AttachColorTexture(texture->GetId());
+
+		if (depthTexture != NULL)
+			m_framebuffer->AttachDepthTexture(depthTexture->GetId());
+
 		m_framebuffer->Validate();
 	}
 }
@@ -190,31 +211,22 @@ void Camera::Setup()
 		(int)((float)width * m_viewportRect.Width),
 		(int)((float)height * m_viewportRect.Height));
 
-	if (HasRenderTexture())
-	{
-		m_framebuffer->BindFramebuffer();
-	}
-	else
-		Framebuffer::RestoreDefaultFramebuffer();
-}
 
-bool Camera::HasRenderTexture() const
-{
-	return m_renderTexture != NULL;
+	m_framebuffer->Setup();
 }
 
 int Camera::GetTargetWidth() const
 {
-	if (HasRenderTexture())
-		return m_renderTexture->GetWidth();
+	if (!m_framebuffer->IsDefault())
+		return m_framebuffer->GetWidth();
 	else
 		return Screen::Width;
 }
 
 int Camera::GetTargetHeight() const
 {
-	if (HasRenderTexture())
-		return m_renderTexture->GetHeight();
+	if (!m_framebuffer->IsDefault())
+		return m_framebuffer->GetHeight();
 	else
 		return Screen::Height;
 }

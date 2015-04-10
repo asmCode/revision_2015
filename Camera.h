@@ -58,13 +58,28 @@ public:
 	int GetDepth() const;
 	Layers GetCullLayers() const;
 
-	void SetRenderToTexture(Texture* texture);
+	void EnableColorBuffer(bool enable);
+	void EnableDepthBuffer(bool enable);
+	void SetRenderToTexture(Texture* texture, DepthTexture* depthTexture);
 
 	void Setup();
 
-	bool HasRenderTexture() const;
-
 private:
+	/*
+	// helper class to manage state of framebuffer;
+	class CameraFramebuffer
+	{
+	public:
+		CameraFramebuffer();
+
+	private:
+		Framebuffer* m_framebuffer;
+
+		bool m_isColorbufferEnabled;
+		bool m_isDepthbufferEnabled;
+	};
+	*/
+
 	ClearFlag m_clearFlag;
 	ProjectionType m_projectionType;
 	Layers m_cullLayers;
@@ -81,7 +96,6 @@ private:
 	sm::Matrix m_proj;
 	sm::Matrix m_viewProj;
 
-	Texture* m_renderTexture;
 	Framebuffer* m_framebuffer;
 
 	int GetTargetWidth() const;

@@ -93,7 +93,7 @@ void RevisionTest01::Initialize()
 
 	m_depthFramebuffer = new Framebuffer();
 	m_depthFramebuffer->Initialize(FaceResolution, FaceResolution);
-	m_depthFramebuffer->BindFramebuffer();
+	m_depthFramebuffer->Setup();
 	m_depthFramebuffer->AttachColorTexture(m_colorTexture->GetId());
 	m_depthFramebuffer->Validate();
 
@@ -175,7 +175,7 @@ void RevisionTest01::Draw()
 	if (DemoController::GetInstance()->m_activeCamera == NULL)
 		return;
 
-	m_depthFramebuffer->BindFramebuffer();
+	m_depthFramebuffer->Setup();
 	m_depthFramebuffer->AttachColorTexture(m_colorTexture->GetId());
 
 	glDepthMask(true);
@@ -188,14 +188,12 @@ void RevisionTest01::Draw()
 
 	DemoController::GetInstance()->m_graphicsEngine->Blur(m_colorTexture, m_interBlurTexture, m_blurTexture);
 
-	m_depthFramebuffer->BindFramebuffer();
+	m_depthFramebuffer->Setup();
 	m_depthFramebuffer->AttachColorTexture(m_blurTexture->GetId());
 	glDepthMask(true);
 	glClear(GL_DEPTH_BUFFER_BIT);
 
 	DrawFace(1.0f, 0.2f);
-
-	Framebuffer::RestoreDefaultFramebuffer();
 
 	glClearColor(0.1f, 0.1f, 0.2f, 0);
 	glDepthMask(true);

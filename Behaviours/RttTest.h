@@ -8,6 +8,7 @@
 
 class GameObject;
 class Texture;
+class DepthTexture;
 class Camera;
 
 class RttTest :	public Behaviour
@@ -20,5 +21,6 @@ public:
 
 private:
 	Texture* m_renderTexture;
+	DepthTexture* m_depthTexture;
 	Camera* m_camera;
 };

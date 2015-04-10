@@ -55,7 +55,7 @@ void Material::SetParameter(const std::string& name, const sm::Vec4& value)
 	m_parameters[name].SetVec4(value);
 }
 
-void Material::SetParameter(const std::string& name, Texture* value)
+void Material::SetParameter(const std::string& name, BaseTexture* value)
 {
 	m_parameters[name].SetTexture(value);
 }
