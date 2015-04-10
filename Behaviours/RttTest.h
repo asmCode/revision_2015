@@ -23,4 +23,7 @@ private:
 	Texture* m_renderTexture;
 	DepthTexture* m_depthTexture;
 	Camera* m_camera;
+
+	bool m_colorEnabled;
+	bool m_depthEnabled;
 };
