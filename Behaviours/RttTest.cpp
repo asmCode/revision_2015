@@ -20,7 +20,9 @@
 #include <sstream>
 
 RttTest::RttTest(GameObject* gameObject, const std::string& name) :
-	Behaviour(gameObject, name)
+	Behaviour(gameObject, name),
+	m_colorEnabled(true),
+	m_depthEnabled(true)
 {
 }
 
@@ -67,6 +69,18 @@ void RttTest::Update()
 		m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
 
 		m_camera->SetRenderToTexture(NULL, NULL);
+	}
+
+	if (Input::GetKeyDown(KeyCode_C))
+	{
+		m_colorEnabled = !m_colorEnabled;
+		m_camera->EnableColorBuffer(m_colorEnabled);
+	}
+
+	if (Input::GetKeyDown(KeyCode_D))
+	{
+		m_depthEnabled = !m_depthEnabled;
+		m_camera->EnableDepthBuffer(m_depthEnabled);
 	}
 }
 
