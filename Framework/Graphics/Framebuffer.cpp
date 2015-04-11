@@ -22,9 +22,6 @@ Framebuffer::~Framebuffer(void)
 	if (depthRenderBufferId != 0)
 		glDeleteRenderbuffers(1, &depthRenderBufferId);
 
-	if (offscreenColorRenderBufferId != 0)
-		glDeleteRenderbuffers(1, &offscreenColorRenderBufferId);
-
 	if (framebufferId != 0)
 		glDeleteFramebuffers(1, &framebufferId);
 }
@@ -40,12 +37,6 @@ bool Framebuffer::Initialize(int width, int height)
 	glGenRenderbuffers(1, &depthRenderBufferId);
 	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBufferId);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
-	glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
-	// offscreen color renderbuffer
-	glGenRenderbuffers(1, &offscreenColorRenderBufferId);
-	glBindRenderbuffer(GL_RENDERBUFFER, offscreenColorRenderBufferId);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA, width, height);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 	// framebuffer

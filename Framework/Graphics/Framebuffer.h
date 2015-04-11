@@ -37,7 +37,6 @@ private:
 	unsigned m_colorBufferType;
 	unsigned framebufferId;
 	unsigned depthRenderBufferId;
-	unsigned offscreenColorRenderBufferId;
 
 	int m_width;
 	int m_height;

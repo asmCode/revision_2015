@@ -21,6 +21,7 @@
 
 RttTest::RttTest(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
+	m_depthTexture(NULL),
 	m_colorEnabled(true),
 	m_depthEnabled(true)
 {
