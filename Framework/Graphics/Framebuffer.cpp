@@ -147,6 +147,7 @@ void Framebuffer::Clear(bool color, bool depth)
 	if (depth && m_isDepthBufferEnabled)
 		clearMask |= GL_DEPTH_BUFFER_BIT;
 
-	glClear(clearMask);
+	if (clearMask != 0)
+		glClear(clearMask);
 }
 

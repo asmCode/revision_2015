@@ -44,23 +44,9 @@ void Camera::SetCullLayers(Layers cullLayers)
 
 void Camera::Clear()
 {
-	unsigned clearFlags = 0;
-
-	if (m_clearFlag == ClearFlag_Depth)
-		clearFlags = GL_DEPTH_BUFFER_BIT;
-	else if (m_clearFlag == ClearFlag_Color)
-	{
-		clearFlags = GL_COLOR_BUFFER_BIT;
-		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
-	}
-	else if (m_clearFlag == ClearFlag_ColorAndDepth)
-	{
-		clearFlags = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
-		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
-	}
-
-	if (clearFlags != 0)
-		glClear(clearFlags);
+	m_framebuffer->Clear(
+		m_clearFlag == ClearFlag_Color || m_clearFlag == ClearFlag_ColorAndDepth,
+		m_clearFlag == ClearFlag_Depth || m_clearFlag == ClearFlag_ColorAndDepth);
 }
 
 void Camera::SetFov(float horizontalFov)
