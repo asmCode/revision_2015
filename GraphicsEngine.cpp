@@ -160,9 +160,6 @@ void GraphicsEngine::RenderGameObjects()
 		BuiltInShaderParams::m_paramEyePosition = m_cameras[cameraIndex]->GetGameObject()->Transform.GetPosition();
 
 
-		//m_mainFrame->BindFramebuffer();
-		//glViewport(0, 0, m_screenWidth, m_screenHeight);
-
 		m_cameras[cameraIndex]->Setup();
 		m_cameras[cameraIndex]->Clear();
 		glEnable(GL_DEPTH_TEST);
