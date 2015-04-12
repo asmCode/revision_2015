@@ -26,7 +26,7 @@ public:
 	void LoadShaders(const std::string &fullPath);
 	void LoadModels(const std::string &fullPath);
 	void LoadAnimations(const std::string &fullPath);
-	void LoadMaterials(const std::string &fullPath);
+	//void LoadMaterials(const std::string &fullPath);
 	void LoadSkinnedMeshes(const std::string &fullPath);
 
 	template <typename T>

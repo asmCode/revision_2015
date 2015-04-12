@@ -74,6 +74,7 @@ void Content::LoadAnimations(const std::string &fullPath)
 	}
 }
 
+/*
 void Content::LoadMaterials(const std::string &fullPath)
 {
 	std::vector<std::string> filesNames;
@@ -86,6 +87,7 @@ void Content::LoadMaterials(const std::string &fullPath)
 		m_materials[path.GetFilename()] = m_graphicsEngine->LoadMaterial(path.GetFullPath());
 	}
 }
+*/
 
 void Content::LoadSkinnedMeshes(const std::string &fullPath)
 {

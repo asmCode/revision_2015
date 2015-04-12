@@ -584,7 +584,10 @@ void SceneLoader::BuildScene(BaseScene* scene)
 	{
 		Material* material = LoadMaterial(m_materialNodes[i].XMLNode);
 		if (material != NULL)
+		{
 			m_materials[material->GetName()] = material;
+			Content::Instance->Add(material->GetName(), material);
+		}
 	}
 
 	for (uint32_t i = 0; i < m_gameObjectNodes.size(); i++)

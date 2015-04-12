@@ -26,6 +26,7 @@
 #include "Behaviours/GenericFactory.h"
 #include "Behaviours/PassageControllerFactory.h"
 #include "Behaviours/TextureImage.h"
+#include "Behaviours/SetShaderReplacementTest.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -240,6 +241,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("RttTest", new GenericFactory<RttTest>());
 	behavioursManager->RegisterBehaviour("CustomMesh", new GenericFactory<CustomMesh>());
 	behavioursManager->RegisterBehaviour("TextureImage", new GenericFactory<TextureImage>());
+	behavioursManager->RegisterBehaviour("SetShaderReplacementTest", new GenericFactory<SetShaderReplacementTest>());
 }
 
 Animation *anim;
@@ -271,9 +273,9 @@ bool DemoController::LoadContent(const char *basePath)
 	Stopwatch loadAnimationsStopwatch(true);
 	dc->LoadAnimations(m_strBasePath + "animations\\");
 	Log::LogT("Animations loaded in %.2f s", loadAnimationsStopwatch.GetTime());
-	Stopwatch loadMaterialsStopwatch(true);
-	dc->LoadMaterials(m_strBasePath + "materials\\");
-	Log::LogT("Materials loaded in %.2f s", loadMaterialsStopwatch.GetTime());
+	//Stopwatch loadMaterialsStopwatch(true);
+//	dc->LoadMaterials(m_strBasePath + "materials\\");
+	//Log::LogT("Materials loaded in %.2f s", loadMaterialsStopwatch.GetTime());
 	Stopwatch loadSkinnedMeshesStopwatch(true);
 	dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
 	Log::LogT("Skinned Meshes loaded in %.2f s", loadSkinnedMeshesStopwatch.GetTime());

@@ -158,11 +158,13 @@ void GraphicsEngine::RenderGameObjects()
 		BuiltInShaderParams::m_paramProj = m_cameras[cameraIndex]->GetProjMatrix();
 		BuiltInShaderParams::m_paramViewProj = m_cameras[cameraIndex]->GetViewProjMatrix();
 		BuiltInShaderParams::m_paramEyePosition = m_cameras[cameraIndex]->GetGameObject()->Transform.GetPosition();
-
+		// TODO: powyzsze parametry powinny juz teraz byc ustawione w materiale
 
 		m_cameras[cameraIndex]->Setup();
 		m_cameras[cameraIndex]->Clear();
 		glEnable(GL_DEPTH_TEST);
+
+		Material* replacementMaterial = m_cameras[cameraIndex]->GetReplacementMaterial();
 
  		for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
 		{
@@ -175,7 +177,7 @@ void GraphicsEngine::RenderGameObjects()
 			BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
 			BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
 
-			Material* material = m_solidRenderables[i]->GetMaterial();
+			Material* material = replacementMaterial != NULL ? replacementMaterial : m_solidRenderables[i]->GetMaterial();
 			material->SetupMaterial();
 			m_solidRenderables[i]->Draw();
 		}
