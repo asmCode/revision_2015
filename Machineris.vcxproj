@@ -216,12 +216,6 @@ exit /B 0
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="RenderableSort.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurve.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurveDestroy.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurveFullDestination.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurveFullSource.cpp" />
-    <ClCompile Include="Ribbon\RibbonCurveSource.cpp" />
     <ClCompile Include="SceneElement\GuyData.cpp" />
     <ClCompile Include="SceneElement\RibbonData.cpp" />
     <ClCompile Include="SceneElement\StaticData.cpp" />
@@ -396,13 +390,6 @@ exit /B 0
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="RenderableSort.h" />
-    <ClInclude Include="Ribbon\IRibbonCurveBuilder.h" />
-    <ClInclude Include="Ribbon\RibbonCurve.h" />
-    <ClInclude Include="Ribbon\RibbonCurveDestination.h" />
-    <ClInclude Include="Ribbon\RibbonCurveDestroy.h" />
-    <ClInclude Include="Ribbon\RibbonCurveFullDestination.h" />
-    <ClInclude Include="Ribbon\RibbonCurveFullSource.h" />
-    <ClInclude Include="Ribbon\RibbonCurveSource.h" />
     <ClInclude Include="SceneElement\Destination.h" />
     <ClInclude Include="SceneElement\FloatKey.h" />
     <ClInclude Include="SceneElement\GuyData.h" />
