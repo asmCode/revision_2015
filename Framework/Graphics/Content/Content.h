@@ -30,7 +30,7 @@ public:
 	void LoadSkinnedMeshes(const std::string &fullPath);
 
 	template <typename T>
-	void Add(const std::string &name, const T*resource)
+	void Add(const std::string &name, T*resource)
 	{
 		std::map<std::string, T*> &resourcesMap = GetContentMap<T>();
 		resourcesMap[name] = resource;
