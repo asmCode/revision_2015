@@ -29,7 +29,7 @@ Camera::Camera(GameObject* gameObject) :
 	m_clearColor(DefaultClearColor),
 	m_depth(0),
 	m_framebuffer(Framebuffer::Default),
-	m_replacementShader(NULL)
+	m_replacementMaterial(NULL)
 {
 }
 
@@ -225,8 +225,13 @@ float Camera::GetAspect() const
 		((float)GetTargetHeight() * m_viewportRect.Height);
 }
 
-void Camera::SetReplacementShader(Shader* shader)
+void Camera::SetReplacementMaterial(Material* material)
 {
-	m_replacementShader = shader;
+	m_replacementMaterial = material;
+}
+
+Material* Camera::GetReplacementMaterial() const
+{
+	return m_replacementMaterial;
 }
 

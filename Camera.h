@@ -7,7 +7,7 @@
 
 class Texture;
 class DepthTexture;
-class Shader;
+class Material;
 class Framebuffer;
 
 class Camera : public Component
@@ -62,6 +62,8 @@ public:
 	void EnableColorBuffer(bool enable);
 	void EnableDepthBuffer(bool enable);
 	void SetRenderToTexture(Texture* texture, DepthTexture* depthTexture);
+	void SetReplacementMaterial(Material* material);
+	Material* GetReplacementMaterial() const;
 
 	void Setup();
 
@@ -99,11 +101,10 @@ private:
 
 	Framebuffer* m_framebuffer;
 
-	// Jesli != NULL, to kamera ignoruje materialy renderowanych obiektow i renderuje wszystko tym shaderem.
-	Shader* m_replacementShader;
+	// Jesli != NULL, to kamera ignoruje materialy renderowanych obiektow i renderuje wszystko tym materialem.
+	Material* m_replacementMaterial;
 
 	int GetTargetWidth() const;
 	int GetTargetHeight() const;
 	float GetAspect() const;
-	void SetReplacementShader(Shader* shader);
 };
