@@ -76,7 +76,10 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 			{
 				Material* material = LoadMaterial(node->GetChild(i));
 				if (material != NULL)
+				{
 					m_materials[material->GetName()] = material;
+					Content::Instance->Add(material->GetName(), material);
+				}
 			}
 
 			Log::LogT("Loading materials time: %.2f", stopwatch.GetTime());
