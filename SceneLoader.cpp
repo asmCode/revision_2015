@@ -564,6 +564,10 @@ bool SceneLoader::LoadAdditive(const std::string& filename)
 					m_gameObjectNodes.push_back(Object(gameObjectNode, sceneName));
 			}
 		}
+		else if (node->GetName() == "Hierarchy")
+		{
+			LoadHierarchy(node);
+		}
 	}
 
 	// Ladowanie scen z includow
@@ -596,5 +600,38 @@ void SceneLoader::BuildScene(BaseScene* scene)
 		//if (gameObject != NULL)
 //			scene->m_gameObjects.push_back(gameObject);
 	}
+}
+
+void SceneLoader::LoadHierarchy(XMLNode* hierarchyNode)
+{
+	if (hierarchyNode == NULL)
+		return;
+
+	for (uint32_t i = 0; i < hierarchyNode->GetChildrenCount(); i++)
+	{
+		SceneLoader::Node* hNode = LoadHierarchyNode(hierarchyNode->GetChild(i));
+		if (hNode != NULL)
+			m_hierarchyRootNodes.push_back(hNode);
+	}
+}
+
+SceneLoader::Node* SceneLoader::LoadHierarchyNode(XMLNode* node)
+{
+	if (node == NULL || node->GetName() != "Node")
+		return NULL;
+
+	SceneLoader::Node* hNode = new SceneLoader::Node(node->GetAttribAsString("name"));
+
+	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+	{
+		SceneLoader::Node* hChildNode = LoadHierarchyNode(node->GetChild(i));
+		if (hChildNode != NULL)
+		{
+			hChildNode->Parent = hNode;
+			hNode->Children.push_back(hChildNode);
+		}
+	}
+
+	return hNode;
 }
 

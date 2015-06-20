@@ -43,9 +43,23 @@ private:
 		std::string SceneName;
 	};
 
+	class Node
+	{
+	public:
+		Node(const std::string& name) :
+			Name(name),
+			Parent(NULL)
+		{ }
+
+		std::string Name;
+		Node* Parent;
+		std::vector<Node*> Children;
+	};
+
 	BaseScene* m_loadingScene;
 
 	std::map<std::string, Material*> m_materials;
+	std::vector<Node*> m_hierarchyRootNodes;
 
 	SceneElement::Path* LoadPath(XMLNode* node);
 	SceneElement::Key* LoadKey(XMLNode* node);
@@ -66,5 +80,8 @@ private:
 
 	std::vector<Object> m_materialNodes;
 	std::vector<Object> m_gameObjectNodes;
+
+	void LoadHierarchy(XMLNode* hierarchyNode);
+	Node* LoadHierarchyNode(XMLNode* node);
 };
 
