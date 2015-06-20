@@ -334,7 +334,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 
 			gameObject->Transform.SetPosition(position);
 			gameObject->Transform.SetRotation(sm::Quat::FromAngleAxis(rotation.x, sm::Vec3(rotation.y, rotation.z, rotation.w))); // x as angle, rest as axis
-			gameObject->Transform.SetScale(scale);
+			gameObject->Transform.SetLocalScale(scale);
 		}
 		else if (node->GetName() == "Model")
 		{

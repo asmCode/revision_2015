@@ -32,14 +32,18 @@ void Transform::SetLocalScale(const sm::Vec3& scale)
 
 void Transform::SetPosition(const sm::Vec3& position)
 {
+	if (m_parent == NULL)
+		SetLocalPosition(position);
+	else
+		SetLocalPosition(m_parent->GetMatrix().GetInversed() * position);
 }
 
 void Transform::SetRotation(const sm::Quat& rotation)
 {
-}
-
-void Transform::SetScale(const sm::Vec3& scale)
-{
+	if (m_parent == NULL)
+		SetLocalRotation(rotation);
+	else
+		SetLocalRotation(rotation * m_parent->GetRotation().GetCoupleQuat());
 }
 
 sm::Vec3 Transform::GetPosition() const
@@ -47,7 +51,7 @@ sm::Vec3 Transform::GetPosition() const
 	if (m_parent == NULL)
 		return m_localPosition;
 
-	return m_parent->GetPosition() + m_localPosition;
+	return m_parent->GetMatrix() * m_localPosition;
 }
 
 sm::Quat Transform::GetRotation() const
@@ -104,8 +108,7 @@ sm::Vec3 Transform::GetUp()
 
 void Transform::SetForward(const sm::Vec3& forward)
 {
-	// TODO:
-	//SetRotation(sm::Quat::LookRotation(forward));
+	SetRotation(sm::Quat::LookRotation(forward));
 }
 
 const sm::Matrix& Transform::GetLocalMatrix()

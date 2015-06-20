@@ -15,7 +15,6 @@ public:
 
 	void SetPosition(const sm::Vec3& position);
 	void SetRotation(const sm::Quat& rotation);
-	void SetScale(const sm::Vec3& scale);
 
 	const sm::Vec3& GetLocalPosition() const;
 	const sm::Quat& GetLocalRotation() const;
