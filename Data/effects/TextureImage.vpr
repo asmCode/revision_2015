@@ -1,0 +1,13 @@
+#version 400
+
+layout (location = 0) in vec3 a_position;
+layout (location = 1) in vec2 a_coords;
+
+out vec2 v_coords;
+
+void main()
+{
+	v_coords = a_coords;
+
+	gl_Position = vec4(a_position, 1);
+}

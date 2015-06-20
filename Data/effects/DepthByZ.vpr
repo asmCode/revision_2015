@@ -2,15 +2,15 @@
 
 layout (location = 0) in vec3 a_position;
 
-uniform mat4 u_world;
-uniform mat4 u_viewProj;
+uniform mat4 u_builtin_world;
+uniform mat4 u_builtin_viewProj;
 
-varying float vDepth;
+out float v_depth;
 
 void main()
 {
-	vec4 worldPosition = u_world * vec4(a_position, 1);
-	vDepth = worldPosition.z;
+	vec4 worldPosition = u_builtin_world * vec4(a_position, 1);
+	v_depth = worldPosition.z;
 
-	gl_Position = u_viewProj * worldPosition;
+	gl_Position = u_builtin_viewProj * worldPosition;
 }

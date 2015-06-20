@@ -83,6 +83,11 @@ void Camera::SetDepth(int depth)
 	m_depth = depth;
 }
 
+void Camera::SetOrthoSize(float orthoSize)
+{
+	m_orthoSize = orthoSize;
+}
+
 void Camera::SetProjectionType(ProjectionType projectionType)
 {
 	m_projectionType = projectionType;

@@ -49,6 +49,7 @@ public:
 	void SetViewport(float x, float y, float width, float height);
 	void SetClearColor(const sm::Vec4& clearColor);
 	void SetDepth(int depth);
+	void SetOrthoSize(float orthoSize);
 
 	void SetProjectionType(ProjectionType projectionType);
 

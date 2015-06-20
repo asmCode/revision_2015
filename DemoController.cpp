@@ -27,6 +27,7 @@
 #include "Behaviours/PassageControllerFactory.h"
 #include "Behaviours/TextureImage.h"
 #include "Behaviours/SetShaderReplacementTest.h"
+#include "Behaviours/Face.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -242,6 +243,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("CustomMesh", new GenericFactory<CustomMesh>());
 	behavioursManager->RegisterBehaviour("TextureImage", new GenericFactory<TextureImage>());
 	behavioursManager->RegisterBehaviour("SetShaderReplacementTest", new GenericFactory<SetShaderReplacementTest>());
+	behavioursManager->RegisterBehaviour("Face", new GenericFactory<Face>());
 }
 
 Animation *anim;

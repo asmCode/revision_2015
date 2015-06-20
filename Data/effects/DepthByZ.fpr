@@ -1,18 +1,20 @@
 #version 400
 
-layout( location = 0 ) out vec4 FragColor;
+//layout( location = 0 ) out vec4 FragColor;
 
-uniform float u_maxDepthValue;
-uniform float u_discardMinDepthValue;
+//uniform float u_maxDepthValue;
+//uniform float u_discardMinDepthValue;
 
-varying float vDepth;
+in float v_depth;
 
 void main()
 {
-	if (vDepth < u_discardMinDepthValue)
-		discard;
+	//if (vDepth < u_discardMinDepthValue)
+//		discard;
 
-	float depth = clamp(vDepth, 0, u_maxDepthValue);
-	FragColor = vec4(vDepth, vDepth, vDepth, 1);
+	//float depth = clamp(vDepth, 0, u_maxDepthValue);
+	//FragColor = vec4(vDepth, vDepth, vDepth, 1);
+
+	gl_FragDepth = v_depth;
 }
 

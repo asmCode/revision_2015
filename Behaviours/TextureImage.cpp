@@ -14,6 +14,8 @@ TextureImage::TextureImage(GameObject* gameObject, const std::string& name) :
 	RegisterParameter("texture", &m_textureName);
 	RegisterParameter("bounds", &m_bounds);
 	RegisterParameter("coords", &m_coords);
+
+	m_material = new Material();
 }
 
 void TextureImage::Awake()
@@ -58,9 +60,8 @@ void TextureImage::Awake()
 	Shader* shader = Content::Instance->Get<Shader>("TextureImage");
 	assert(shader != NULL);
 
-	m_material = new Material();
 	m_material->SetShader(shader);
-	m_material->SetParameter("u_tex", texture);
+	//m_material->SetParameter("u_tex", texture);
 
 	m_gameObject->AddRenderable(new Renderable(m_gameObject, mesh, m_material, 0, m_gameObject->GetLayerId()));
 }
