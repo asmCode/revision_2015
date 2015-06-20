@@ -123,7 +123,10 @@ void Transform::SetForward(const sm::Vec3& forward)
 
 sm::Matrix Transform::GetLocalMatrix()
 {
-	return GetLocalMatrixNoScale() * sm::Matrix::ScaleMatrix(m_localScale);
+	if (m_isDirty)
+		UpdateMatrix();
+
+	return m_localMatrix;
 }
 
 const sm::Matrix& Transform::GetLocalMatrixNoScale()
@@ -139,14 +142,23 @@ sm::Matrix Transform::GetMatrix()
 	if (m_parent == NULL)
 		return GetLocalMatrix();
 
-	return GetLocalMatrixNoScale() * m_parent->GetMatrix();
+	return m_parent->GetMatrix() * GetLocalMatrix();
+}
+
+sm::Matrix Transform::GetMatrixNoScale()
+{
+	if (m_parent == NULL)
+		return GetLocalMatrixNoScale();
+
+	return GetLocalMatrixNoScale() * m_parent->GetMatrixNoScale();
 }
 
 void Transform::UpdateMatrix()
 {
 	m_localMatrix =
 		sm::Matrix::TranslateMatrix(m_localPosition) *
-		sm::Matrix::Rotate(m_localRotation);
+		sm::Matrix::Rotate(m_localRotation) *
+		sm::Matrix::ScaleMatrix(m_localScale);
 
 	m_isDirty = false;
 }

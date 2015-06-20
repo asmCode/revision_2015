@@ -48,5 +48,6 @@ private:
 	sm::Vec3 m_localScale;
 
 	const sm::Matrix& GetLocalMatrixNoScale();
+	sm::Matrix GetMatrixNoScale();
 	void UpdateMatrix();
 };
