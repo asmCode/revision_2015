@@ -1,7 +1,7 @@
 <Scene name="AnimationTest">
 	<GameObjects>
 		<GameObject name="kamerka">
-			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
+			<Transform position="0,0,5" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Camera viewport="0.0,0.0,1,1" depth="2" far_plane="10.0" near_plane="0.1" cull_layers="1" />
 			<Behaviour name="FppCamera">
 				<Parameters>
@@ -16,10 +16,19 @@
 			<Light />
 		</GameObject>
 		
-		<GameObject name="object0" layer="1">
-			<Transform position="0.000000,-0.000001,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="0.022209,0.022209,0.022209" />
+		<GameObject name="face1" layer="1">
+			<Transform position="0.000000,-1.000001,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="0.022209,0.022209,0.022209" />
 			<Model name="face" material="_male headMaterial0" />
+			<GameObject name="face2" layer="1">
+				<Transform position="0.000000,0.000001,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="0.022209,0.022209,0.022209" />
+				<Model name="face" material="_male headMaterial0" />
+				<GameObject name="face3" layer="1">
+					<Transform position="0.000000,1.000001,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="0.022209,0.022209,0.022209" />
+					<Model name="face" material="_male headMaterial0" />
+				</GameObject>
+			</GameObject>
 		</GameObject>
+		
 		
 	</GameObjects>
 	<Materials>
