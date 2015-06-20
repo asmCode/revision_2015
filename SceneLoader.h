@@ -8,6 +8,7 @@ class GameObject;
 class BaseScene;
 class Material;
 class Parameter;
+class Transform;
 
 namespace SceneElement
 {
@@ -83,5 +84,6 @@ private:
 
 	void LoadHierarchy(XMLNode* hierarchyNode);
 	Node* LoadHierarchyNode(XMLNode* node);
+	void SetGameObjectTransformHierarchy(SceneLoader::Node* node, Transform* parent);
 };
 

@@ -9,6 +9,9 @@ class Transform
 public:
 	Transform();
 
+	void SetParent(Transform* parent);
+	const Transform* GetParent() const;
+
 	void SetLocalPosition(const sm::Vec3& position);
 	void SetLocalRotation(const sm::Quat& rotation);
 	void SetLocalScale(const sm::Vec3& scale);
@@ -30,7 +33,7 @@ public:
 
 	void SetForward(const sm::Vec3& forward);
 
-	const sm::Matrix& GetLocalMatrix();
+	sm::Matrix GetLocalMatrix();
 	sm::Matrix GetMatrix();
 
 private:
@@ -44,5 +47,6 @@ private:
 	sm::Quat m_localRotation;
 	sm::Vec3 m_localScale;
 
+	const sm::Matrix& GetLocalMatrixNoScale();
 	void UpdateMatrix();
 };

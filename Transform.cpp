@@ -12,6 +12,16 @@ Transform::Transform() :
 {
 }
 
+void Transform::SetParent(Transform* parent)
+{
+	m_parent = parent;
+}
+
+const Transform* Transform::GetParent() const
+{
+	return m_parent;
+}
+
 void Transform::SetLocalPosition(const sm::Vec3& position)
 {
 	m_localPosition = position;
@@ -111,7 +121,12 @@ void Transform::SetForward(const sm::Vec3& forward)
 	SetRotation(sm::Quat::LookRotation(forward));
 }
 
-const sm::Matrix& Transform::GetLocalMatrix()
+sm::Matrix Transform::GetLocalMatrix()
+{
+	return GetLocalMatrixNoScale() * sm::Matrix::ScaleMatrix(m_localScale);
+}
+
+const sm::Matrix& Transform::GetLocalMatrixNoScale()
 {
 	if (m_isDirty)
 		UpdateMatrix();
@@ -124,15 +139,14 @@ sm::Matrix Transform::GetMatrix()
 	if (m_parent == NULL)
 		return GetLocalMatrix();
 
-	return GetLocalMatrix() * m_parent->GetMatrix();
+	return GetLocalMatrixNoScale() * m_parent->GetMatrix();
 }
 
 void Transform::UpdateMatrix()
 {
 	m_localMatrix =
 		sm::Matrix::TranslateMatrix(m_localPosition) *
-		sm::Matrix::Rotate(m_localRotation) *
-		sm::Matrix::ScaleMatrix(m_localScale);
+		sm::Matrix::Rotate(m_localRotation);
 
 	m_isDirty = false;
 }
