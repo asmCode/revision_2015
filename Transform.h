@@ -47,7 +47,5 @@ private:
 	sm::Quat m_localRotation;
 	sm::Vec3 m_localScale;
 
-	const sm::Matrix& GetLocalMatrixNoScale();
-	sm::Matrix GetMatrixNoScale();
 	void UpdateMatrix();
 };

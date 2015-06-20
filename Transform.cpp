@@ -129,28 +129,12 @@ sm::Matrix Transform::GetLocalMatrix()
 	return m_localMatrix;
 }
 
-const sm::Matrix& Transform::GetLocalMatrixNoScale()
-{
-	if (m_isDirty)
-		UpdateMatrix();
-
-	return m_localMatrix;
-}
-
 sm::Matrix Transform::GetMatrix()
 {
 	if (m_parent == NULL)
 		return GetLocalMatrix();
 
 	return m_parent->GetMatrix() * GetLocalMatrix();
-}
-
-sm::Matrix Transform::GetMatrixNoScale()
-{
-	if (m_parent == NULL)
-		return GetLocalMatrixNoScale();
-
-	return GetLocalMatrixNoScale() * m_parent->GetMatrixNoScale();
 }
 
 void Transform::UpdateMatrix()
