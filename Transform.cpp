@@ -146,3 +146,4 @@ void Transform::UpdateMatrix()
 
 	m_isDirty = false;
 }
+

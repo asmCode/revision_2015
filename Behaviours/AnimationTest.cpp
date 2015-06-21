@@ -43,9 +43,20 @@ void AnimationTest::Update()
 		position.x -= moveValue;
 	if (Input::GetKey(KeyCode_H))
 		position.x += moveValue;
-
-	if (Input::GetKey(KeyCode_R))
+	if (Input::GetKey(KeyCode_Left))
+		rotation = sm::Quat::FromAngleAxis(-angleValue, sm::Vec3(0, 0, 1)) * rotation;
+	if (Input::GetKey(KeyCode_Right))
 		rotation = sm::Quat::FromAngleAxis(angleValue, sm::Vec3(0, 0, 1)) * rotation;
+
+	if (Input::GetKeyDown(KeyCode_L))
+	{
+		m_objects[2]->Transform.SetRotation(m_objects[0]->Transform.GetRotation());
+	}
+
+	if (Input::GetKeyDown(KeyCode_K))
+	{
+		m_objects[2]->Transform.SetPosition(m_objects[0]->Transform.GetPosition());
+	}
 
 	m_objects[m_activeObject]->Transform.SetLocalPosition(position);
 	m_objects[m_activeObject]->Transform.SetLocalRotation(rotation);
