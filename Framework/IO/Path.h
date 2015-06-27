@@ -22,7 +22,7 @@ public:
 
 		std::size_t strLen;
 		std::size_t lastSlash = MathUtils::Max(static_cast<int>(path.find_last_of("/")),
-										       static_cast<int>(path.find_last_of("\\")));
+			static_cast<int>(path.find_last_of("\\")));
 
 		// splitting path and filename + ext
 		strLen = path.size();
@@ -38,7 +38,7 @@ public:
 
 		// splitting filename and ext
 		strLen = file_name.size();
-		std::size_t lastDot = file_name.find_last_of(".");		
+		std::size_t lastDot = file_name.find_last_of(".");
 		if (lastDot != -1 && lastDot != 0)
 		{
 			if (lastDot + 1 != strLen)
@@ -80,7 +80,7 @@ public:
 	static void FixFoldername(std::string &folderName)
 	{
 		if (MathUtils::Max(static_cast<int>(folderName.find_last_of("/")),
-			               static_cast<int>(folderName.find_last_of("\\"))) == folderName.size() - 1)
+			static_cast<int>(folderName.find_last_of("\\"))) == folderName.size() - 1)
 			return;
 
 		folderName += "/";
@@ -89,8 +89,8 @@ public:
 	static bool IsFileExists(const char *fileName);
 
 	static void GetAllFiles(std::vector<std::string> &files,
-							const std::string &path,
-							const std::string &filter);
+		const std::string &path,
+		const std::string &filter);
 
 	static bool GetFileContent(const char *fileName, uint8_t *&data, uint32_t &size)
 	{
@@ -107,7 +107,20 @@ public:
 
 		data = new uint8_t[size];
 		file.read(reinterpret_cast<char*>(data), size);
-		
+
+		file.close();
+
+		return true;
+	}
+
+	static bool WriteTextFile(const char *fileName, const std::string &text)
+	{
+		std::ofstream file(fileName);
+		if (file.fail() || !file.is_open())
+			return false;
+
+		file.write(text.c_str(), text.size());
+
 		file.close();
 
 		return true;

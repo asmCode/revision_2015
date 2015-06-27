@@ -66,6 +66,15 @@ public:
 		isElementBracketOpen = false;
 	}
 
+	XmlWriter(int identLevel = 0) :
+		currentElement(NULL)
+	{
+		this->os = new std::stringstream();
+		this->identLevel = identLevel;
+
+		isElementBracketOpen = false;
+	}
+
 	template <typename ValType>
 	void CreateElement(const char *name, ValType data)
 	{
@@ -173,4 +182,13 @@ public:
 
 		*os << Ident() << data << "\n";
 	}
+
+	std::string GetAsText() const
+	{
+		return ((std::stringstream*)os)->str();
+	}
 };
+
+template<>
+void XmlWriter::WriteAttribute<std::string>(const char *name, const std::string value);
+
