@@ -7,8 +7,6 @@ class Light;
 class Camera;
 class Renderable;
 class ICamera;
-class Animation;
-class AnimCameraManager;
 class SynchEvent;
 
 class BaseScene
@@ -39,9 +37,6 @@ public:
 
 	virtual ICamera* GetCamera() const;
 
-	virtual float GetStartTime() const;
-	virtual float GetEndTime() const;
-
 	virtual void NotifySynchEvent(SynchEvent* synchEvent);
 
 protected:
@@ -52,15 +47,11 @@ protected:
 	std::vector<Light*> m_lights;
 	std::vector<Camera*> m_cameras;
 
-	AnimCameraManager* m_camerasManager;
-	Animation* m_camerasAnimation;
 	ICamera* m_activeCamera;
 
 	bool m_hasSceneChanged;
 
 	virtual void InitializeSubScene() {};
-
-	void LoadCameras();
 
 	GameObject* FindGameObject(const std::string& name);
 

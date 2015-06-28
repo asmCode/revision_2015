@@ -9,7 +9,7 @@
 class TriangleDataColorGlow;
 class SkinnedMeshData;
 class SkinnedVertex;
-class Animation;
+//class Animation;
 
 class SkinnedMesh : public BaseMesh
 {
@@ -29,7 +29,7 @@ public:
 	void SetGlowPower(int index, float glowPower);
 	void SetGlowPower(float glowPower);
 
-	void AddAnimation(const std::string& name, Animation* animation);
+	//void AddAnimation(const std::string& name, Animation* animation);
 
 	int GetBonesCount() const;
 
@@ -43,7 +43,7 @@ protected:
 
 	SkinnedMeshData* m_meshData;
 
-	std::map<std::string, Animation*> m_animations;
+	//std::map<std::string, Animation*> m_animations;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();

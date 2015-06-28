@@ -10,7 +10,7 @@ class IGraphicsEngine;
 class Texture;
 class Shader;
 class Model;
-class AnimationData;
+class AnimationClip;
 class Material;
 class SkinnedMeshData;
 
@@ -63,7 +63,7 @@ private:
 	std::map<std::string, Texture*> m_textures;
 	std::map<std::string, Shader*> m_shaders;
 	std::map<std::string, Model*> m_models;
-	std::map<std::string, AnimationData*> m_animations;
+	std::map<std::string, AnimationClip*> m_animations;
 	std::map<std::string, Material*> m_materials;
 	std::map<std::string, SkinnedMeshData*> m_skinnedMeshes;
 
@@ -94,7 +94,7 @@ private:
 	}
 
 	template <>
-	std::map<std::string, AnimationData*>& GetContentMap<AnimationData>()
+	std::map<std::string, AnimationClip*>& GetContentMap<AnimationClip>()
 	{
 		return m_animations;
 	}

@@ -16,6 +16,7 @@ public:
 		Type_Vec2,
 		Type_Vec3,
 		Type_Vec4,
+		Type_Quat,
 		Type_String,
 		Type_Texture
 	};

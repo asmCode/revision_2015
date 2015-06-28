@@ -4,7 +4,7 @@
 #include "TriangleDataColorGlow.h"
 #include <Graphics/SkinnedMeshData.h>
 #include <Graphics/SkinnedVertex.h>
-#include <Graphics/Animation.h>
+//#include <Graphics/Animation.h>
 #include <Math/Vec2.h>
 #include <GL/glew.h>
 
@@ -178,6 +178,7 @@ void SkinnedMesh::SetGlowPower(float glowPower)
 		SetGlowPower(i, glowPower);
 }
 
+/*
 void SkinnedMesh::AddAnimation(const std::string& name, Animation* animation)
 {
 	for (int i = 0; i < m_meshData->bonesCount; i++)
@@ -190,6 +191,7 @@ void SkinnedMesh::AddAnimation(const std::string& name, Animation* animation)
 		m_animations[name] = anim;
 	}
 }
+*/
 
 int SkinnedMesh::GetBonesCount() const
 {

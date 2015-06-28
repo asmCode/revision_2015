@@ -118,7 +118,6 @@ exit /B 0
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimCameraManager.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Behaviours\AnimationTest.cpp" />
     <ClCompile Include="Behaviours\CustomMesh.cpp" />
@@ -143,6 +142,11 @@ exit /B 0
     <ClCompile Include="Framework\Graphics\BuiltInShaderParams.cpp" />
     <ClCompile Include="Framework\Graphics\Model.cpp" />
     <ClCompile Include="Framework\Math\Quat.cpp" />
+    <ClCompile Include="Framework\XML\XmlWriter.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\Animation.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\AnimationClip.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\AnimationClipLoader.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\PropertyAnimationData.cpp" />
     <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
     <ClCompile Include="FuturisEngine\ComponentFlag.cpp" />
     <ClCompile Include="FuturisEngine\Engine.cpp" />
@@ -165,11 +169,6 @@ exit /B 0
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
-    <ClCompile Include="Framework\Graphics\Animation.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="Framework\Graphics\AnimationData.cpp" />
-    <ClCompile Include="Framework\Graphics\AnimationLoader.cpp" />
     <ClCompile Include="Framework\Graphics\BoundingBox.cpp" />
     <ClCompile Include="Framework\Graphics\BoundingSphere.cpp" />
     <ClCompile Include="Framework\Graphics\Color.cpp" />
@@ -254,7 +253,6 @@ exit /B 0
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClips\IAnimationClip.h" />
-    <ClInclude Include="AnimCameraManager.h" />
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Behaviours\AnimationTest.h" />
@@ -274,6 +272,11 @@ exit /B 0
     <ClInclude Include="CameraSort.h" />
     <ClInclude Include="Framework\Graphics\Model.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
+    <ClInclude Include="Framework\XML\XmlWriter.h" />
+    <ClInclude Include="FuturisEngine\Animation\Animation.h" />
+    <ClInclude Include="FuturisEngine\Animation\AnimationClip.h" />
+    <ClInclude Include="FuturisEngine\Animation\AnimationClipLoader.h" />
+    <ClInclude Include="FuturisEngine\Animation\PropertyAnimationData.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\ComponentFlag.h" />
     <ClInclude Include="FuturisEngine\Engine.h" />
@@ -312,9 +315,6 @@ exit /B 0
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
-    <ClInclude Include="Framework\Graphics\Animation.h" />
-    <ClInclude Include="Framework\Graphics\AnimationData.h" />
-    <ClInclude Include="Framework\Graphics\AnimationLoader.h" />
     <ClInclude Include="Framework\Graphics\BoundingBox.h" />
     <ClInclude Include="Framework\Graphics\BoundingSphere.h" />
     <ClInclude Include="Framework\Graphics\Content\Content.h" />

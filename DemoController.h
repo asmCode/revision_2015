@@ -10,13 +10,11 @@
 #include <Graphics/Interpolators/InterpolatorFactory.h>
 #include <Graphics/IGraphicsEngine.h>
 #include "GraphicsLibrary/AnimCamera.h"
-#include <Graphics/AnimationData.h>
 
 #include "GraphicsLibrary\OpenglWindow.h"
 
 #include "Particles/ParticleEmmiter.h"
 
-#include "AnimCameraManager.h"
 #include <Graphics/Interpolators/Interpolator.h>
 #include <Graphics/Interpolators/InterpolatorFactory.h>
 #include <Graphics/Content/IContentObserver.h>
@@ -43,6 +41,7 @@ class DistortParticleHandler;
 class GameObject;
 class GraphicsEngine;
 class Engine;
+class AnimationClip;
 
 #define demo DemoController::GetInstance()
 
@@ -109,8 +108,6 @@ public:
 	float electroNoiseVal;
 	float camShakeVal;
 
-	AnimCameraManager animCamsMng;
-	AnimCameraManager m_lightCamsMng;
 	ICamera *currentCamera;
 	ICamera *m_currentLightCamera;
 
@@ -128,9 +125,6 @@ public:
 
 	float m_biasScale;
 	float m_biasClamp;
-
-	Animation *camerasAnimation;
-	Animation *camerasFactoryAnimation;
 
 	Frustum *frustum;
 	bool isStereo;
@@ -201,7 +195,7 @@ public:
 	Shader* LoadShader(const std::string &vertexShaderPath,
 										const std::string &fragmentShaderPath);
 	Model* LoadModel(const std::string &path);
-	AnimationData* LoadAnimation(const std::string &path);
+	AnimationClip* LoadAnimation(const std::string &path);
 	Material* LoadMaterial(const std::string &path);
 
 	AnimationCurve<float> m_endScreenAnim;

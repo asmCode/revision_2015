@@ -40,15 +40,6 @@ void ScenesManager::Initialize()
 void ScenesManager::Update(float time)
 {
 	m_isSceneChanged = false;
-
-	if (m_activeSceneIndex != m_scenes.size() - 1)
-	{
-		if (time > m_scenes[m_activeSceneIndex + 1]->GetStartTime())
-		{
-			m_isSceneChanged = true;
-			m_activeSceneIndex++;
-		}
-	}
 }
 
 BaseScene* ScenesManager::GetActiveScene() const

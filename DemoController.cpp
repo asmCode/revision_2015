@@ -32,6 +32,8 @@
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
+#include "FuturisEngine/Animation/AnimationClip.h"
+#include "FuturisEngine/Animation/AnimationClipLoader.h"
 
 
 #include "ScenesManager.h"
@@ -54,7 +56,6 @@
 #include <Graphics/ModelLoader.h>
 #include <Graphics/MaterialLoader.h>
 #include <Graphics/Shader.h>
-#include <Graphics/AnimationLoader.h>
 #include <Graphics/SpriteBatch.h>
 #include <Graphics/FontRenderer.h>
 
@@ -247,8 +248,6 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("Face", new GenericFactory<Face>());
 	behavioursManager->RegisterBehaviour("AnimationTest", new GenericFactory<AnimationTest>());
 }
-
-Animation *anim;
 
 bool DemoController::LoadContent(const char *basePath)
 {
@@ -487,9 +486,6 @@ bool DemoController::Update(float time, float seconds)
 
 	activeScene->Update(time, seconds);
 	return true;
-
-	camerasFactoryAnimation->Update(time, sm::Matrix::Identity, seconds);
-	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
 
 	/*
 	m_particlesManager->SetViewMatrix(m_view);
@@ -905,9 +901,9 @@ Model* DemoController::LoadModel(const std::string &path)
 	return model;
 }
 
-AnimationData* DemoController::LoadAnimation(const std::string &path)
+AnimationClip* DemoController::LoadAnimation(const std::string &path)
 {
-	return AnimationLoader::LoadFromFile(path);
+	return AnimationClipLoader::LoadFromFile(path);
 }
 
 Material* DemoController::LoadMaterial(const std::string &path)
