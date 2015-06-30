@@ -12,8 +12,6 @@
 GameObject::GameObject(const std::string& name) :
 	m_name(name),
 	m_isActive(true),
-	m_light(NULL),
-	m_camera(NULL),
 	m_layerId(LayerId_0)
 {
 	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
@@ -57,53 +55,43 @@ void GameObject::AddRenderable(Renderable* renderable)
 	scene->NotifyNewComponent(this, ComponentFlag::Mesh);
 }
 
-void GameObject::SetLight(Light* light)
+Component* GameObject::AddComponent(const std::string& componentName)
 {
-	m_light = light;
-}
+	Component* component = NULL;
 
-Light* GameObject::GetLight() const
-{
-	return m_light;
-}
-
-void GameObject::SetCamera(Camera* camera)
-{
-	m_camera = camera;
-}
-
-Camera* GameObject::GetCamera() const
-{
-	return m_camera;
-}
-
-void GameObject::AddBehaviour(Behaviour* behaviour)
-{
-	m_behaviours.push_back(behaviour);
-}
-
-Behaviour* GameObject::AddBehaviour(const std::string& componentName)
-{
-	Behaviour* behaviour = BehavioursManager::GetInstance()->CreateBehaviour(componentName, this);
-	if (behaviour != NULL)
-		m_behaviours.push_back(behaviour);
-
-	return behaviour;
-}
-
-Behaviour* GameObject::GetBehaviour(const std::string& componentName) const
-{
-	for (uint32_t i = 0; i < m_behaviours.size(); i++)
+	// code below is temporary. All bomponent's factories should be registered
+	if (componentName == Light::LightComponentName)
 	{
-		if (m_behaviours[i]->GetName() == componentName)
-			return m_behaviours[i];
+		component = new Light(this);
+	}
+	else if (componentName == Camera::CameraComponentName)
+	{
+		component = new Camera(this);
+	}
+	else
+	{
+		component = BehavioursManager::GetInstance()->CreateBehaviour(componentName, this);
+	}
+
+	if (component != NULL)
+		m_components.push_back(component);
+
+	return component;
+}
+
+Component* GameObject::GetComponent(const std::string& componentName) const
+{
+	for (uint32_t i = 0; i < m_components.size(); i++)
+	{
+		if (m_components[i]->GetComponentName() == componentName)
+			return m_components[i];
 	}
 
 	return NULL;
 }
 
-const std::vector<Behaviour*>& GameObject::GetBehaviours() const
+const std::vector<Component*>& GameObject::GetComponents() const
 {
-	return m_behaviours;
+	return m_components;
 }
 

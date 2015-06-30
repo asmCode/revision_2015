@@ -1,9 +1,11 @@
 #include "Animation.h"
 #include "AnimationClip.h"
 #include "../Time.h"
+#include "../GameObject.h"
 #include <assert.h>
 
-Animation::Animation() :
+Animation::Animation(GameObject* gameObject) :
+	Component("Animation", gameObject),
 	m_animationClip(NULL),
 	m_time(0.0f)
 {

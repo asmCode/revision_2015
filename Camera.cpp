@@ -7,6 +7,8 @@
 #include <Math/MathUtils.h>
 #include <GL/glew.h>
 
+const std::string Camera::CameraComponentName = "Camera";
+
 const Camera::ClearFlag Camera::DefaultClearFlag = Camera::ClearFlag_ColorAndDepth;
 const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionType_Perspective;
 const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
@@ -17,7 +19,7 @@ const sm::Rect<float> Camera::DefaultViewport = sm::Rect<float>(0, 0, 1, 1);
 const sm::Vec4 Camera::DefaultClearColor = sm::Vec4(0.2f, 0.1f, 0.1f, 0.0f);
 
 Camera::Camera(GameObject* gameObject) :
-	Component(gameObject),
+	Component(CameraComponentName, gameObject),
 	m_clearFlag(DefaultClearFlag),
 	m_projectionType(DefaultProjectionType),
 	m_cullLayers(LayerId_All),

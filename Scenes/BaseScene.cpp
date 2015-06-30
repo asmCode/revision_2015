@@ -1,6 +1,8 @@
 #include "BaseScene.h"
 #include "../GameObject.h"
 #include "../Environment.h"
+#include "../Light.h"
+#include "../Camera.h"
 #include "../FuturisEngine/ComponentFlag.h"
 #include <Graphics/Content/Content.h>
 #include <stdint.h>
@@ -42,11 +44,11 @@ bool BaseScene::Initialize()
 
 	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
 	{
-		Light* light = m_gameObjects[i]->GetLight();
+		Light* light = (Light*)m_gameObjects[i]->GetComponent(Light::LightComponentName);
 		if (light != NULL)
 			m_lights.push_back(light);
 
-		Camera* camera = m_gameObjects[i]->GetCamera();
+		Camera* camera = (Camera*)m_gameObjects[i]->GetComponent(Camera::CameraComponentName);
 		if (camera != NULL)
 			m_cameras.push_back(camera);
 	}

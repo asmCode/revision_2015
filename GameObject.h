@@ -10,6 +10,7 @@ class Renderable;
 class Light;
 class Camera;
 class Behaviour;
+class Component;
 
 class GameObject
 {
@@ -30,26 +31,16 @@ public:
 
 	void AddRenderable(Renderable* renderable);
 
-	void SetLight(Light* light);
-	Light* GetLight() const;
-
-	void SetCamera(Camera* camera);
-	Camera* GetCamera() const;
-
-	void AddBehaviour(Behaviour* behaviour);
-	Behaviour* AddBehaviour(const std::string& componentName);
-	Behaviour* GetBehaviour(const std::string& componentName) const;
-	const std::vector<Behaviour*>& GetBehaviours() const;
+	Component* AddComponent(const std::string& componentName);
+	Component* GetComponent(const std::string& componentName) const;
+	const std::vector<Component*>& GetComponents() const;
 
 protected:
 	std::vector<Renderable*> m_renderables;
-	std::vector<Behaviour*> m_behaviours;
+	std::vector<Component*> m_components;
 
 	bool m_isActive;
 	std::string m_name;
 	LayerId m_layerId;
-
-	Light* m_light;
-	Camera* m_camera;
 };
 

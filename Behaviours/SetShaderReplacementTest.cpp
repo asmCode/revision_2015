@@ -29,7 +29,7 @@ SetShaderReplacementTest::SetShaderReplacementTest(GameObject* gameObject, const
 
 void SetShaderReplacementTest::Awake()
 {
-	m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
+	m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent(Camera::CameraComponentName);
 	m_replacementMaterial1 = Content::Instance->Get<Material>("Replace1");
 	m_replacementMaterial2 = Content::Instance->Get<Material>("Replace2");
 }

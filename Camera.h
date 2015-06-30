@@ -27,6 +27,8 @@ public:
 		ProjectionType_Orthographics
 	};
 
+	static const std::string CameraComponentName;
+
 	static const ClearFlag DefaultClearFlag;
 	static const ProjectionType DefaultProjectionType;
 	static const float DefaultFov;

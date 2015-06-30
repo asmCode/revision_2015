@@ -3,7 +3,7 @@
 #include <Graphics/Material.h>
 
 Renderable::Renderable(GameObject* gameObject, BaseMesh *mesh, Material* material, int order, LayerId layerId) :
-	Component(gameObject),
+	Component("Renderable", gameObject),
 	Transform(sm::Matrix::Identity),
 	m_mesh(mesh),
 	m_material(material),

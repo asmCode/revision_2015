@@ -1,11 +1,14 @@
 #pragma once
 
-class AnimationClip;
+#include "../../Component.h"
 
-class Animation
+class AnimationClip;
+class GameObject;
+
+class Animation : public Component
 {
 public:
-	Animation();
+	Animation(GameObject* gameObject);
 
 	void Play();
 	void Stop();

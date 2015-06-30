@@ -382,12 +382,11 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 		}
 		else if (node->GetName() == "Light")
 		{
-			Light* light = new Light(gameObject);
-			gameObject->SetLight(light);
+			Light* light = (Light*)gameObject->AddComponent(Light::LightComponentName);
 		}
 		else if (node->GetName() == "Camera")
 		{
-			Camera* camera = new Camera(gameObject);
+			Camera* camera = (Camera*)gameObject->AddComponent(Camera::CameraComponentName);
 			camera->SetFov(node->GetAttribAsFloat("fov", Camera::DefaultFov));
 			camera->SetNearPlane(node->GetAttribAsFloat("near_plane", Camera::DefaultNearPlane));
 			camera->SetFarPlane(node->GetAttribAsFloat("far_plane", Camera::DefaultFarPlane));
@@ -433,8 +432,6 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 					cullLayers |= (LayerId)1 << layersNumbers[layersNumbersIndex];
 				camera->SetCullLayers(cullLayers);
 			}
-
-			gameObject->SetCamera(camera);
 		}
 		else if (node->GetName() == "Behaviour")
 		{
@@ -443,7 +440,7 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			std::vector<Parameter> parameters;
 			LoadParameters(node, parameters);
 
-			Behaviour* behaviour = gameObject->AddBehaviour(behaviourName);
+			Behaviour* behaviour = (Behaviour*)gameObject->AddComponent(behaviourName);
 			if (behaviour != NULL)
 			{
 				for (uint32_t i = 0; i < parameters.size(); i++)

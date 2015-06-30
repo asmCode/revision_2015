@@ -32,7 +32,7 @@ Face::Face(GameObject* gameObject, const std::string& name) :
 void Face::Awake()
 {
 	//m_camera = ScenesManager::GetInstance()->FindGameObject("FaceCamera")->GetCamera();
-	m_camera = ScenesManager::GetInstance()->FindGameObject("FaceCamera")->GetCamera();
+	m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("FaceCamera")->GetComponent(Camera::CameraComponentName);
 	m_camera->SetOrthoSize(0.5f);
 	m_depthByZMaterial = Content::Instance->Get<Material>("DepthByZ");
 
@@ -43,7 +43,7 @@ void Face::Awake()
 	GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("kamerka_depth");
 	if (gameObject != NULL)
 	{
-		TextureImage* textureImage = (TextureImage*)gameObject->GetBehaviour("TextureImage");
+		TextureImage* textureImage = (TextureImage*)gameObject->GetComponent("TextureImage");
 		textureImage->GetMaterial()->SetParameter("u_tex", m_depthTexture);
 	}
 }

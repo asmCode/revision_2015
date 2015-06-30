@@ -29,7 +29,7 @@ RttTest::RttTest(GameObject* gameObject, const std::string& name) :
 
 void RttTest::Awake()
 {
-	m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
+	m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent(Camera::CameraComponentName);
 
 	m_renderTexture = new Texture(
 		Screen::Width,
@@ -53,21 +53,21 @@ void RttTest::Update()
 		GameObject* gameObject = ScenesManager::GetInstance()->FindGameObject("kamerka_color");
 		if (gameObject != NULL)
 		{
-			TextureImage* textureImage = (TextureImage*)gameObject->GetBehaviour("TextureImage");
+			TextureImage* textureImage = (TextureImage*)gameObject->GetComponent("TextureImage");
 			textureImage->GetMaterial()->SetParameter("u_tex", m_renderTexture);
 		}
 
 		gameObject = ScenesManager::GetInstance()->FindGameObject("kamerka_depth");
 		if (gameObject != NULL)
 		{
-			TextureImage* textureImage = (TextureImage*)gameObject->GetBehaviour("TextureImage");
+			TextureImage* textureImage = (TextureImage*)gameObject->GetComponent("TextureImage");
 			textureImage->GetMaterial()->SetParameter("u_tex", m_depthTexture);
 		}
 	}
 
 	if (Input::GetKeyUp(KeyCode_R))
 	{
-		m_camera = ScenesManager::GetInstance()->FindGameObject("kamerka")->GetCamera();
+		m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent(Camera::CameraComponentName);
 
 		m_camera->SetRenderToTexture(NULL, NULL);
 	}

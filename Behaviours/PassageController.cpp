@@ -53,7 +53,7 @@ void PassageController::InitTiles()
 
 		if (tileGameObject != NULL)
 		{
-			Tile* tile = (Tile*)tileGameObject->AddBehaviour("Tile");
+			Tile* tile = (Tile*)tileGameObject->AddComponent("Tile");
 
 			m_tiles.push_back(tile);
 		}
