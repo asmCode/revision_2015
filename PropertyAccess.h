@@ -5,40 +5,61 @@
 class PropertyAccess
 {
 public:
+	template <typename TClass, typename TType> using SetterPointer = void (TClass::*)(const TType&);
+	template <typename TClass, typename TType> using GetterPointer = TType(TClass::*)();
+
 	template <typename TClass, typename TType>
-	PropertyAccess(TClass* object, void (TClass::*setter)(const TType&), TType (TClass::*getter)())
+	PropertyAccess(
+		TClass* object,
+		SetterPointer<TClass, TType> setter,
+		GetterPointer<TClass, TType> getter)
 	{
 		using std::placeholders::_1;
-		m_setter = &std::bind(setter, object, _1);
-
-		typedef std::function < void(const TType&) > cipsko;
-
-		cipsko d = std::bind(setter, object, _1);
-		cipsko* dd = &d;
-		m_setter = dd;
-
-		d(12);
-		(*dd)(13);
-		//m_getter = &std::bind(getter, object);
+		m_setter = new Setter<TType>(std::bind(setter, object, _1));
+		m_getter = new Getter<TType>(std::bind(getter, object));
 	}
-	
+
+	~PropertyAccess()
+	{
+		delete m_setter;
+		delete m_getter;
+	}
+
 	template <typename T>
 	void Set(const T& value)
 	{
-		typedef std::function < void(const T&) > cipsko;
-
-		(*((cipsko*)m_setter))(value);
+		((Setter<T>*)m_setter)->m_setter(value);
 	}
 
 	template <typename T>
 	T Get()
 	{
-		return (*((std::function<T()>*)m_setter))();
+		return ((Getter<T>*)m_getter)->m_getter();
 	}
 
 private:
-	//void* m_setter;
-	std::function m_setter;
-	void* m_getter;
+	struct Base
+	{
+		virtual ~Base() {}
+	};
+
+	template <typename TType>
+	struct Setter : public Base
+	{
+		Setter(std::function < void(const TType&) > setter) { m_setter = setter; }
+
+		std::function < void(const TType&) > m_setter;
+	};
+
+	template <typename TType>
+	struct Getter : public Base
+	{
+		Getter(std::function < TType() > getter) { m_getter = getter; }
+
+		std::function < TType() > m_getter;
+	};
+
+	Base* m_setter;
+	Base* m_getter;
 };
 
