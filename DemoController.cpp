@@ -35,6 +35,7 @@
 #include "FuturisEngine/Animation/AnimationClip.h"
 #include "FuturisEngine/Animation/AnimationClipLoader.h"
 
+#include "PropertyAccess.h"
 
 #include "ScenesManager.h"
 
@@ -117,12 +118,61 @@ float conv(int a, int b, int c)
 	return a * 60.0f + b + ((float)c / 4800.0f);
 }
 
+class eee
+{
+public:
+	int a;
+
+	void ustaw(const int& s) { a = s; }
+	int wez() { return a; }
+};
+
 DemoController::DemoController() :
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
 	m_synchManager(NULL),
 	m_engine(NULL)
 {
+	Log::StartLog(true, false, false);
+
+	Stopwatch s(false);
+
+	eee e;
+	PropertyAccess dupa(&e, &eee::ustaw, &eee::wez);
+
+	dupa.Set<int>(123);
+	int f = dupa.Get<int>();
+
+	s.Start();
+	std::string s1 = "ssdad";
+	std::string s2 = "ssdad";
+	std::string s3 = "ssdad2";
+	for (int i = 0; i < 999999; i++)
+	{
+		if (s1 == s3)
+		{
+
+		}
+		else if (s1 == s2)
+		{
+			e.ustaw(1);
+			e.wez();
+		}
+	}
+	float directly = s.GetTime();
+	s.ResetAndStart();
+	for (int i = 0; i < 999999; i++)
+	{
+		dupa.Set<int>(i);
+		dupa.Get<int>();
+	}
+	float indirectly = s.GetTime();
+
+	Log::LogT("directly: %f", directly);
+	Log::LogT("by property access: %f", indirectly);
+
+	Log::LogT("it's %f slower", indirectly / directly);
+
 	flaps = 0;
 	firstupdate = true;
 	fade = 0.0f;

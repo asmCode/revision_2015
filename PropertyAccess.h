@@ -14,9 +14,9 @@ public:
 		SetterPointer<TClass, TType> setter,
 		GetterPointer<TClass, TType> getter)
 	{
-		using std::placeholders::_1;
-		m_setter = new Setter<TType>(std::bind(setter, object, _1));
-		m_getter = new Getter<TType>(std::bind(getter, object));
+		//using std::placeholders::_1;
+		m_setter = new Setter<TClass, TType>(object, setter);
+		m_getter = new Getter<TClass, TType>(object, getter);
 	}
 
 	~PropertyAccess()
@@ -28,38 +28,64 @@ public:
 	template <typename T>
 	void Set(const T& value)
 	{
-		((Setter<T>*)m_setter)->m_setter(value);
+		((Setter*)m_setter)->Set(value);
 	}
 
 	template <typename T>
 	T Get()
 	{
-		return ((Getter<T>*)m_getter)->m_getter();
+		return ((Getter*)m_getter)->Get();
 	}
 
 private:
-	struct Base
+	struct SetterBase
 	{
-		virtual ~Base() {}
+		virtual ~SetterBase() {}
 	};
 
-	template <typename TType>
-	struct Setter : public Base
+	template <typename TClass, typename TType>
+	struct Setter : public SetterBase
 	{
-		Setter(std::function < void(const TType&) > setter) { m_setter = setter; }
+		Setter(
+			TClass* object,
+			SetterPointer<TClass, TType> setter) :
+			m_object(object),
+			m_setter(setter) { }
 
-		std::function < void(const TType&) > m_setter;
+		void Set(const TType& value)
+		{
+			(m_object->*m_setter)(value);
+		}
+
+		TClass* m_object;
+		SetterPointer<TClass, TType> m_setter;
 	};
 
-	template <typename TType>
-	struct Getter : public Base
+	struct GetterBase
 	{
-		Getter(std::function < TType() > getter) { m_getter = getter; }
-
-		std::function < TType() > m_getter;
+		virtual ~GetterBase() {}
 	};
 
-	Base* m_setter;
-	Base* m_getter;
+	template <typename TClass, typename TType>
+	struct Getter : public GetterBase
+	{
+		Getter(
+			TClass* object,
+			GetterPointer<TClass, TType> getter) :
+			m_object(object),
+			m_getter(getter) {}
+
+		TType Get()
+		{
+			return (m_object->*m_getter)();
+		}
+
+		TType m_placeholder;
+		TClass* m_object;
+		GetterPointer<TClass, TType> m_getter;
+	};
+
+	SetterBase* m_setter;
+	GetterBase* m_getter;
 };
 
