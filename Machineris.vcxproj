@@ -301,6 +301,7 @@ exit /B 0
     <ClInclude Include="Framework\Graphics\BuiltInShaderParams.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Parameter.h" />
+    <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WallFace.h" />

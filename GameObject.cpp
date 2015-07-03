@@ -59,7 +59,7 @@ Component* GameObject::AddComponent(const std::string& componentName)
 {
 	Component* component = NULL;
 
-	// code below is temporary. All bomponent's factories should be registered
+	// code below is temporary. All component's factories should be registered
 	if (componentName == Light::LightComponentName)
 	{
 		component = new Light(this);
