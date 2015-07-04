@@ -46,7 +46,7 @@ public:
 	void Clear();
 
 	void SetFov(const float& horizontalFov);
-	float GetFov();
+	float GetFov() const;
 	void SetFarPlane(float farPlane);
 	void SetNearPlane(float nearPlane);
 	void SetViewport(float x, float y, float width, float height);

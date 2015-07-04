@@ -11,7 +11,7 @@ class PropertyWrapper : public PropertyWrapperBase
 {
 public:
 	virtual void Set(const TType& value) = 0;
-	virtual TType Get() = 0;
+	virtual TType Get() const = 0;
 };
 
 template <typename TClass, typename TType>
@@ -19,7 +19,7 @@ class PropertyWrapperT : public PropertyWrapper<TType>
 {
 public:
 	using SetterPointer = void (TClass::*)(const TType&);
-	using GetterPointer = TType(TClass::*)();
+	using GetterPointer = TType(TClass::*)() const;
 
 	PropertyWrapperT(
 		TClass* object,
@@ -34,7 +34,7 @@ public:
 		(m_object->*m_setter)(value);
 	}
 
-	TType Get()
+	TType Get() const
 	{
 		return (m_object->*m_getter)();
 	}

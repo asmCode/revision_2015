@@ -59,7 +59,7 @@ void Camera::SetFov(const float& horizontalFov)
 	m_horizontalFov = horizontalFov;
 }
 
-float Camera::GetFov()
+float Camera::GetFov() const
 {
 	return m_horizontalFov;
 }
