@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "GameObject.h"
 #include "FuturisEngine/Screen.h"
+#include "FuturisEngine/PropertyContainer.h"
 #include <Graphics/Framebuffer.h>
 #include <Graphics/Texture.h>
 #include <Graphics/DepthTexture.h>
@@ -33,6 +34,7 @@ Camera::Camera(GameObject* gameObject) :
 	m_framebuffer(Framebuffer::Default),
 	m_replacementMaterial(NULL)
 {
+	GetPropertyContainer()->AddProperty<Camera, float>("fov", PropertyType_Float, this, &Camera::SetFov, &Camera::GetFov);
 }
 
 void Camera::SetClearFlag(ClearFlag clearFlag)
@@ -52,9 +54,14 @@ void Camera::Clear()
 		m_clearFlag == ClearFlag_Depth || m_clearFlag == ClearFlag_ColorAndDepth);
 }
 
-void Camera::SetFov(float horizontalFov)
+void Camera::SetFov(const float& horizontalFov)
 {
 	m_horizontalFov = horizontalFov;
+}
+
+float Camera::GetFov()
+{
+	return m_horizontalFov;
 }
 
 void Camera::SetFarPlane(float farPlane)

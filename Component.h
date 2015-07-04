@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include <string>
 
+class PropertyContainer;
+
 class Component
 {
 public:
@@ -10,10 +12,14 @@ public:
 	virtual ~Component() {};
 
 	GameObject* GetGameObject() const;
+	PropertyContainer* GetPropertyContainer() const;
 
 	const std::string& GetComponentName() const;
 
 protected:
 	GameObject* m_gameObject;
 	std::string m_componentName;
+
+private:
+	PropertyContainer* m_propertyContainer;
 };

@@ -1,6 +1,8 @@
 #include "AnimationTest.h"
+#include "../FuturisEngine/PropertyContainer.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
+#include "../Camera.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -47,6 +49,12 @@ void AnimationTest::Update()
 		rotation = sm::Quat::FromAngleAxis(-angleValue, sm::Vec3(0, 0, 1)) * rotation;
 	if (Input::GetKey(KeyCode_Right))
 		rotation = sm::Quat::FromAngleAxis(angleValue, sm::Vec3(0, 0, 1)) * rotation;
+
+	if (Input::GetKeyDown(KeyCode_Z))
+	{
+		Camera* m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent(Camera::CameraComponentName);
+		m_camera->GetPropertyContainer()->GetProperty("fov")->Set<float>(0.2f);
+	}
 
 	if (Input::GetKeyDown(KeyCode_L))
 	{

@@ -153,6 +153,7 @@ exit /B 0
     <ClCompile Include="FuturisEngine\Graphics\IndexBuffer.cpp" />
     <ClCompile Include="FuturisEngine\Graphics\Mesh.cpp" />
     <ClCompile Include="FuturisEngine\ParametersContainer.cpp" />
+    <ClCompile Include="FuturisEngine\PropertyContainer.cpp" />
     <ClCompile Include="FuturisEngine\Screen.cpp" />
     <ClCompile Include="FuturisEngine\Time.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -288,6 +289,8 @@ exit /B 0
     <ClInclude Include="FuturisEngine\LayerId.h" />
     <ClInclude Include="FuturisEngine\ParametersContainer.h" />
     <ClInclude Include="FuturisEngine\ParameterPointer.h" />
+    <ClInclude Include="FuturisEngine\PropertyContainer.h" />
+    <ClInclude Include="FuturisEngine\PropertyType.h" />
     <ClInclude Include="FuturisEngine\Screen.h" />
     <ClInclude Include="FuturisEngine\Time.h" />
     <ClInclude Include="IBehaviourFactory.h" />
