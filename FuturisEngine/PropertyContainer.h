@@ -9,7 +9,7 @@
 
 class PropertyContainer
 {
-private:
+public:
 	struct Property
 	{
 	public:
@@ -36,6 +36,11 @@ private:
 			return ((PropertyWrapper<TType>*)m_propertyWrapper)->Get();
 		}
 
+		PropertyWrapperBase* GetPropertyWrapper() const
+		{
+			return m_propertyWrapper;
+		}
+
 	private:
 		std::string m_name;
 		PropertyType m_type;
@@ -44,7 +49,6 @@ private:
 
 	using PropertyMap = std::map < std::string, Property* >;
 
-public:
 	template <typename TClass, typename TType>
 	void AddProperty(
 		const std::string& name,

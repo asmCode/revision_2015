@@ -4,6 +4,7 @@
 
 class AnimationClip;
 class GameObject;
+class AnimationClipAttachement;
 
 class Animation : public Component
 {
@@ -22,4 +23,6 @@ private:
 	AnimationClip* m_animationClip;
 
 	float m_time;
+
+	AnimationClipAttachement* m_attachement;
 };

@@ -1,3 +1,5 @@
+#pragma once
+
 enum PropertyType
 {
 	PropertyType_Int,
@@ -7,5 +9,6 @@ enum PropertyType
 	PropertyType_Vec4,
 	PropertyType_Quat,
 	PropertyType_Matrix,
-	PropertyType_Texture
+	PropertyType_String,
+	PropertyType_Texture,
 };

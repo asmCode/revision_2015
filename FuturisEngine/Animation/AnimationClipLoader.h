@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Parameter.h"
+#include "../PropertyType.h"
 #include <string>
 
 class AnimationClip;
@@ -15,5 +15,5 @@ public:
 private:
 	static PropertyAnimationData* LoadPropertyAnimation(XMLNode* propAnimNode);
 
-	static Parameter::Type ParseParamType(const std::string& paramTypeText);
+	static PropertyType ParseParamType(const std::string& paramTypeText);
 };

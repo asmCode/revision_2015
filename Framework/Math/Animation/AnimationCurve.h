@@ -3,6 +3,7 @@
 #include "Keyframe.h"
 #include <vector>
 #include <stdint.h>
+#include <assert.h>
 
 template <typename T>
 class AnimationCurve

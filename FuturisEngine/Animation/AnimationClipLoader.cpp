@@ -45,7 +45,7 @@ PropertyAnimationData* AnimationClipLoader::LoadPropertyAnimation(XMLNode* propA
 	if (propAnimNode == NULL)
 		return NULL;
 
-	Parameter::Type type = ParseParamType(propAnimNode->GetAttribAsString("type"));
+	PropertyType type = ParseParamType(propAnimNode->GetAttribAsString("type"));
 	std::string target = propAnimNode->GetAttribAsString("target");
 	std::string component = propAnimNode->GetAttribAsString("component");
 	std::string property = propAnimNode->GetAttribAsString("property");
@@ -54,16 +54,16 @@ PropertyAnimationData* AnimationClipLoader::LoadPropertyAnimation(XMLNode* propA
 
 	switch (type)
 	{
-	case Parameter::Type_Float:
+	case PropertyType_Float:
 		animationCurve = new AnimationCurve<float>();
 		break;
-	case Parameter::Type_Int:
+	case PropertyType_Int:
 		animationCurve = new AnimationCurve<int>();
 		break;
-	case Parameter::Type_Vec3:
+	case PropertyType_Vec3:
 		animationCurve = new AnimationCurve<sm::Vec3>();
 		break;
-	case Parameter::Type_Quat:
+	case PropertyType_Quat:
 		animationCurve = new AnimationCurve<sm::Quat>();
 		break;
 	}
@@ -79,16 +79,16 @@ PropertyAnimationData* AnimationClipLoader::LoadPropertyAnimation(XMLNode* propA
 
 		switch (type)
 		{
-		case Parameter::Type_Float:
+		case PropertyType_Float:
 			((AnimationCurve<float>*)animationCurve)->AddKeyframe(time, StringUtils::ParseFloat(value));
 			break;
-		case Parameter::Type_Int:
+		case PropertyType_Int:
 			((AnimationCurve<int>*)animationCurve)->AddKeyframe(time, StringUtils::ParseInt(value));
 			break;
-		case Parameter::Type_Vec3:
+		case PropertyType_Vec3:
 			((AnimationCurve<sm::Vec3>*)animationCurve)->AddKeyframe(time, DemoUtils::ParseVector3(value, ","));
 			break;
-		case Parameter::Type_Quat:
+		case PropertyType_Quat:
 			{
 				sm::Vec4 vec4 = DemoUtils::ParseVector4(value, ",");
 				sm::Quat quat = sm::Quat::FromAngleAxis(vec4.x, sm::Vec3(vec4.y, vec4.z, vec4.w));	
@@ -101,16 +101,16 @@ PropertyAnimationData* AnimationClipLoader::LoadPropertyAnimation(XMLNode* propA
 	return new PropertyAnimationData(type, target, component, property, animationCurve);
 }
 
-Parameter::Type AnimationClipLoader::ParseParamType(const std::string& paramTypeText)
+PropertyType AnimationClipLoader::ParseParamType(const std::string& paramTypeText)
 {
 	if (paramTypeText == "float")
-		return Parameter::Type_Float;
+		return PropertyType_Float;
 	if (paramTypeText == "int")
-		return Parameter::Type_Int;
+		return PropertyType_Int;
 	if (paramTypeText == "vec3")
-		return Parameter::Type_Vec3;
+		return PropertyType_Vec3;
 	if (paramTypeText == "quat")
-		return Parameter::Type_Quat;
+		return PropertyType_Quat;
 
-	return Parameter::Type_Float;
+	return PropertyType_Float;
 }

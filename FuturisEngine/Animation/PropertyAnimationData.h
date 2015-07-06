@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "../Parameter.h"
+#include "../PropertyType.h"
 
 template<typename T> class AnimationCurve;
 
@@ -9,13 +9,13 @@ class PropertyAnimationData
 {
 public:
 	PropertyAnimationData(
-		Parameter::Type type,
+		PropertyType type,
 		std::string targetName,
 		std::string componentType,
 		std::string propertyName,
 		void* animationCurve);
 
-	Parameter::Type GetType() const;
+	PropertyType GetType() const;
 	const std::string& GetTargetName() const;
 	const std::string& GetComponentType() const;
 	const std::string& GetPropertyName() const;
@@ -24,7 +24,7 @@ public:
 	float GetDuration() const;
 
 private:
-	Parameter::Type m_type;
+	PropertyType m_type;
 	std::string m_targetName;
 	std::string m_componentType;
 	std::string m_propertyName;

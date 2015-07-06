@@ -145,7 +145,9 @@ exit /B 0
     <ClCompile Include="Framework\XML\XmlWriter.cpp" />
     <ClCompile Include="FuturisEngine\Animation\Animation.cpp" />
     <ClCompile Include="FuturisEngine\Animation\AnimationClip.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\AnimationClipAttachement.cpp" />
     <ClCompile Include="FuturisEngine\Animation\AnimationClipLoader.cpp" />
+    <ClCompile Include="FuturisEngine\Animation\AnimationPropertyAttachement.cpp" />
     <ClCompile Include="FuturisEngine\Animation\PropertyAnimationData.cpp" />
     <ClCompile Include="FuturisEngine\BehavioursManager.cpp" />
     <ClCompile Include="FuturisEngine\ComponentFlag.cpp" />
@@ -276,7 +278,9 @@ exit /B 0
     <ClInclude Include="Framework\XML\XmlWriter.h" />
     <ClInclude Include="FuturisEngine\Animation\Animation.h" />
     <ClInclude Include="FuturisEngine\Animation\AnimationClip.h" />
+    <ClInclude Include="FuturisEngine\Animation\AnimationClipAttachement.h" />
     <ClInclude Include="FuturisEngine\Animation\AnimationClipLoader.h" />
+    <ClInclude Include="FuturisEngine\Animation\AnimationPropertyAttachement.h" />
     <ClInclude Include="FuturisEngine\Animation\PropertyAnimationData.h" />
     <ClInclude Include="FuturisEngine\BehavioursManager.h" />
     <ClInclude Include="FuturisEngine\ComponentFlag.h" />

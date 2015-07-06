@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FuturisEngine/PropertyType.h"
 #include <Math/Vec3.h>
 #include <Math/Vec4.h>
 #include <string>
@@ -9,18 +10,6 @@ class BaseTexture;
 class Parameter
 {
 public:
-	enum Type
-	{
-		Type_Float,
-		Type_Int,
-		Type_Vec2,
-		Type_Vec3,
-		Type_Vec4,
-		Type_Quat,
-		Type_String,
-		Type_Texture
-	};
-
 	Parameter();
 	Parameter(const std::string& name);
 
@@ -41,11 +30,11 @@ public:
 	BaseTexture* GetTexture() const;
 
 	std::string GetName() const;
-	Type GetType() const;
+	PropertyType GetType() const;
 
 private:
 	std::string m_name;
-	Type m_type;
+	PropertyType m_type;
 
 	union ValueUnion
 	{

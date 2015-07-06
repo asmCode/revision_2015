@@ -4,7 +4,7 @@
 #include <Math/Quat.h>
 
 PropertyAnimationData::PropertyAnimationData(
-	Parameter::Type type,
+	PropertyType type,
 	std::string targetName,
 	std::string componentType,
 	std::string propertyName,
@@ -17,7 +17,7 @@ PropertyAnimationData::PropertyAnimationData(
 {
 }
 
-Parameter::Type PropertyAnimationData::GetType() const
+PropertyType PropertyAnimationData::GetType() const
 {
 	return m_type;
 }
@@ -46,13 +46,13 @@ float PropertyAnimationData::GetDuration() const
 {
 	switch (m_type)
 	{
-	case Parameter::Type_Float:
+	case PropertyType_Float:
 		return ((AnimationCurve<float>*)m_animationCurve)->GetEndTime();
-	case Parameter::Type_Int:
+	case PropertyType_Int:
 		return ((AnimationCurve<int>*)m_animationCurve)->GetEndTime();
-	case Parameter::Type_Vec3:
+	case PropertyType_Vec3:
 		return ((AnimationCurve<sm::Vec3>*)m_animationCurve)->GetEndTime();
-	case Parameter::Type_Quat:
+	case PropertyType_Quat:
 		return ((AnimationCurve<sm::Quat>*)m_animationCurve)->GetEndTime();
 	}
 

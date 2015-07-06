@@ -11,13 +11,13 @@ Parameter::Parameter(const std::string& name) :
 	/*
 	switch (type)
 	{
-	case Parameter::Type_Float:
+	case PropertyType_Float:
 		m_value = new float();
 		break;
-	case Parameter::Type_Vec3:
+	case PropertyType_Vec3:
 		m_value = new sm::Vec3();
 		break;
-	case Parameter::Type_Vec4:
+	case PropertyType_Vec4:
 		m_value = new sm::Vec4();
 		break;
 	default:
@@ -31,13 +31,13 @@ Parameter::~Parameter()
 	/*
 	switch (m_type)
 	{
-	case Parameter::Type_Float:
+	case PropertyType_Float:
 		delete (float*)m_value;
 		break;
-	case Parameter::Type_Vec3:
+	case PropertyType_Vec3:
 		delete (sm::Vec3*)m_value;
 		break;
-	case Parameter::Type_Vec4:
+	case PropertyType_Vec4:
 		delete (sm::Vec4*)m_value;
 		break;
 	default:
@@ -48,77 +48,77 @@ Parameter::~Parameter()
 
 void Parameter::SetFloat(float value)
 {
-	m_type = Parameter::Type_Float;
+	m_type = PropertyType_Float;
 	Value.Float = value;
 }
 
 void Parameter::SetInt(int value)
 {
-	m_type = Parameter::Type_Int;
+	m_type = PropertyType_Int;
 	Value.Int = value;
 }
 
 void Parameter::SetVec3(sm::Vec3 value)
 {
-	m_type = Parameter::Type_Vec3;
+	m_type = PropertyType_Vec3;
 	Value.Vec3 = value;
 }
 
 void Parameter::SetVec4(sm::Vec4 value)
 {
-	m_type = Parameter::Type_Vec4;
+	m_type = PropertyType_Vec4;
 	Value.Vec4 = value;
 }
 
 void Parameter::SetString(const std::string& value)
 {
-	m_type = Parameter::Type_String;
+	m_type = PropertyType_String;
 	Value.String = value;
 }
 
 void Parameter::SetTexture(BaseTexture* texture)
 {
-	m_type = Parameter::Type_Texture;
+	m_type = PropertyType_Texture;
 	Value.Texture = texture;
 }
 
 float Parameter::GetFloat() const
 {
-	assert(m_type == Parameter::Type_Float);
+	assert(m_type == PropertyType_Float);
 	return Value.Float;
 }
 
 int Parameter::GetInt() const
 {
-	assert(m_type == Parameter::Type_Int);
+	assert(m_type == PropertyType_Int);
 	return Value.Int;
 }
 
 const sm::Vec3& Parameter::GetVec3() const
 {
-	assert(m_type == Parameter::Type_Vec3);
+	assert(m_type == PropertyType_Vec3);
 	return Value.Vec3;
 }
 
 const sm::Vec4& Parameter::GetVec4() const
 {
-	assert(m_type == Parameter::Type_Vec4);
+	assert(m_type == PropertyType_Vec4);
 	return Value.Vec4;
 }
 
 const std::string& Parameter::GetString() const
 {
-	assert(m_type == Parameter::Type_String);
+	assert(m_type == PropertyType_String);
 	return Value.String;
 }
 
 BaseTexture* Parameter::GetTexture() const
 {
-	assert(m_type == Parameter::Type_Texture);
+	assert(m_type == PropertyType_Texture);
 	return Value.Texture;
 }
 
-Parameter::Type Parameter::GetType() const
+PropertyType Parameter::GetType() const
 {
 	return m_type;
 }

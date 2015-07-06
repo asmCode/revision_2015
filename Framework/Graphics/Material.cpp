@@ -80,19 +80,19 @@ void Material::SetupShader()
 
 		switch (parameter.GetType())
 		{
-		case Parameter::Type_Float:
+		case PropertyType_Float:
 			m_shader->SetParameter(it->first.c_str(), parameter.GetFloat());
 			break;
 
-		case Parameter::Type_Vec3:
+		case PropertyType_Vec3:
 			m_shader->SetParameter(it->first.c_str(), parameter.GetVec3());
 			break;
 
-		case Parameter::Type_Vec4:
+		case PropertyType_Vec4:
 			m_shader->SetParameter(it->first.c_str(), parameter.GetVec4());
 			break;
 
-		case Parameter::Type_Texture:
+		case PropertyType_Texture:
 			m_shader->SetTextureParameter(it->first.c_str(), 0, parameter.GetTexture()->GetId());
 			break;
 		}

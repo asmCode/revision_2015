@@ -225,19 +225,19 @@ Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 
 			switch (parameter.GetType())
 			{
-			case Parameter::Type_Float:
+			case PropertyType_Float:
 				material->SetParameter(parameter.GetName(), parameter.GetFloat());
 				break;
 
-			case Parameter::Type_Vec3:
+			case PropertyType_Vec3:
 				material->SetParameter(parameter.GetName(), parameter.GetVec3());
 				break;
 
-			case Parameter::Type_Vec4:
+			case PropertyType_Vec4:
 				material->SetParameter(parameter.GetName(), parameter.GetVec4());
 				break;
 
-			case Parameter::Type_Texture:
+			case PropertyType_Texture:
 				material->SetParameter(parameter.GetName(), parameter.GetTexture());
 				break;
 			}
@@ -445,15 +445,15 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			{
 				for (uint32_t i = 0; i < parameters.size(); i++)
 				{
-					if (parameters[i].GetType() == Parameter::Type_Float)
+					if (parameters[i].GetType() == PropertyType_Float)
 						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetFloat());
-					if (parameters[i].GetType() == Parameter::Type_Int)
+					if (parameters[i].GetType() == PropertyType_Int)
 						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetInt());
-					else if (parameters[i].GetType() == Parameter::Type_Vec3)
+					else if (parameters[i].GetType() == PropertyType_Vec3)
 						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec3());
-					else if (parameters[i].GetType() == Parameter::Type_Vec4)
+					else if (parameters[i].GetType() == PropertyType_Vec4)
 						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetVec4());
-					else if (parameters[i].GetType() == Parameter::Type_String)
+					else if (parameters[i].GetType() == PropertyType_String)
 						behaviour->SetParameter(parameters[i].GetName(), parameters[i].GetString());
 				}
 			}
