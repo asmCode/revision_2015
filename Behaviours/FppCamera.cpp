@@ -1,5 +1,6 @@
 #include "FppCamera.h"
 #include "../GameObject.h"
+#include "../Transform.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -34,19 +35,19 @@ void FppCamera::Update()
 
 void FppCamera::UpdatePosition()
 {
-	sm::Vec3 position = m_gameObject->Transform.GetPosition();
+	sm::Vec3 position = m_gameObject->GetTransform().GetPosition();
 
 	if (Input::GetKey(KeyCode_W))
-		position -= m_gameObject->Transform.GetForward() * m_moveSensitivity * Time::DeltaTime;
+		position -= m_gameObject->GetTransform().GetForward() * m_moveSensitivity * Time::DeltaTime;
 
 	if (Input::GetKey(KeyCode_S))
-		position += m_gameObject->Transform.GetForward() * m_moveSensitivity * Time::DeltaTime;
+		position += m_gameObject->GetTransform().GetForward() * m_moveSensitivity * Time::DeltaTime;
 
 	if (Input::GetKey(KeyCode_A))
-		position -= m_gameObject->Transform.GetRight() * m_moveSensitivity * Time::DeltaTime;
+		position -= m_gameObject->GetTransform().GetRight() * m_moveSensitivity * Time::DeltaTime;
 
 	if (Input::GetKey(KeyCode_D))
-		position += m_gameObject->Transform.GetRight() * m_moveSensitivity * Time::DeltaTime;
+		position += m_gameObject->GetTransform().GetRight() * m_moveSensitivity * Time::DeltaTime;
 
 	if (Input::GetKey(KeyCode_Q))
 		position += sm::Vec3(0, 1, 0) * m_moveSensitivity * Time::DeltaTime;
@@ -54,7 +55,7 @@ void FppCamera::UpdatePosition()
 	if (Input::GetKey(KeyCode_E))
 		position -= sm::Vec3(0, 1, 0) * m_moveSensitivity * Time::DeltaTime;
 
-	m_gameObject->Transform.SetPosition(position);
+	m_gameObject->GetTransform().SetPosition(position);
 }
 
 void FppCamera::UpdateRotation()
@@ -96,5 +97,5 @@ void FppCamera::UpdateRotation()
 
 	sm::Vec3 forward = rotation.Rotate(sm::Vec3(0, 0, 1));
 
-	m_gameObject->Transform.SetForward(forward);
+	m_gameObject->GetTransform().SetForward(forward);
 }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Transform.h"
 #include "FuturisEngine/LayerId.h"
 #include <Math/Matrix.h>
 #include <vector>
 
 
+class Transform;
 class Renderable;
 class Light;
 class Camera;
@@ -15,8 +15,6 @@ class Component;
 class GameObject
 {
 public:
-	Transform Transform;
-
 	GameObject(const std::string& name);
 	virtual ~GameObject();
 
@@ -31,11 +29,14 @@ public:
 
 	void AddRenderable(Renderable* renderable);
 
+	Transform& GetTransform() const;
+
 	Component* AddComponent(const std::string& componentName);
 	Component* GetComponent(const std::string& componentName) const;
 	const std::vector<Component*>& GetComponents() const;
 
 protected:
+	Transform* m_transform;
 	std::vector<Renderable*> m_renderables;
 	std::vector<Component*> m_components;
 

@@ -5,16 +5,16 @@
 #include <string>
 
 class GameObject;
-class Animation;
 
-class AnimationTest : public Behaviour
+class HierarchyTest : public Behaviour
 {
 public:
-	AnimationTest(GameObject* gameObject, const std::string& name);
+	HierarchyTest(GameObject* gameObject, const std::string& name);
 
 	void Update();
 	void Awake();
 
 private:
-	float m_time;
+	GameObject* m_objects[3];
+	int m_activeObject;
 };

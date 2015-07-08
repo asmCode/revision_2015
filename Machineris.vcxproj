@@ -124,6 +124,7 @@ exit /B 0
     <ClCompile Include="Behaviours\Face.cpp" />
     <ClCompile Include="Behaviours\FppCamera.cpp" />
     <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
+    <ClCompile Include="Behaviours\HierarchyTest.cpp" />
     <ClCompile Include="Behaviours\Jump.cpp" />
     <ClCompile Include="Behaviours\JumpFactory.cpp" />
     <ClCompile Include="Behaviours\PassageController.cpp" />
@@ -264,6 +265,7 @@ exit /B 0
     <ClInclude Include="Behaviours\FppCamera.h" />
     <ClInclude Include="Behaviours\FppCameraFactory.h" />
     <ClInclude Include="Behaviours\GenericFactory.h" />
+    <ClInclude Include="Behaviours\HierarchyTest.h" />
     <ClInclude Include="Behaviours\PassageController.h" />
     <ClInclude Include="Behaviours\PassageControllerFactory.h" />
     <ClInclude Include="Behaviours\RttTest.h" />

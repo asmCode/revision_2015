@@ -106,8 +106,8 @@ void DemoUtils::SaveCamera(Camera* camera, int slot)
 
 	xml.OpenElement("Camera");
 	xml.OpenElement("Transform");
-	xml.WriteAttribute("position", DemoUtils::ToText(camera->GetGameObject()->Transform.GetPosition()));
-	xml.WriteAttribute("rotation", DemoUtils::ToText(camera->GetGameObject()->Transform.GetRotation()));
+	xml.WriteAttribute("position", DemoUtils::ToText(camera->GetGameObject()->GetTransform().GetPosition()));
+	xml.WriteAttribute("rotation", DemoUtils::ToText(camera->GetGameObject()->GetTransform().GetRotation()));
 	xml.CloseElement();
 	xml.CloseElement();
 
@@ -127,6 +127,6 @@ void DemoUtils::LoadCamera(Camera* camera, int slot)
 	if (transformNode == NULL)
 		return;
 
-	camera->GetGameObject()->Transform.SetPosition(ParseVector3(transformNode->GetAttribAsString("position")));
-	camera->GetGameObject()->Transform.SetRotation(ParseQuat(transformNode->GetAttribAsString("rotation")));
+	camera->GetGameObject()->GetTransform().SetPosition(ParseVector3(transformNode->GetAttribAsString("position")));
+	camera->GetGameObject()->GetTransform().SetRotation(ParseQuat(transformNode->GetAttribAsString("rotation")));
 }

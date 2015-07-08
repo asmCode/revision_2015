@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Behaviour.h"
+#include <Math/Quat.h>
 #include <Math/Vec3.h>
 #include <string>
 

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameObject.h"
 #include <string>
 
+class GameObject;
 class PropertyContainer;
 
 class Component

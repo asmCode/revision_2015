@@ -1,5 +1,6 @@
 #include "GraphicsEngine.h"
 #include "GameObject.h"
+#include "Transform.h"
 #include "Renderable.h"
 #include "Quad.h"
 #include "Light.h"
@@ -150,14 +151,14 @@ void GraphicsEngine::SetCameras(const std::vector<Camera*>& cameras)
 void GraphicsEngine::RenderGameObjects()
 {
 	if (m_lights.size() > 0)
-		BuiltInShaderParams::m_paramPointLightPosition = m_lights[0]->GetGameObject()->Transform.GetPosition();
+		BuiltInShaderParams::m_paramPointLightPosition = m_lights[0]->GetGameObject()->GetTransform().GetPosition();
 
 	for (uint32_t cameraIndex = 0; cameraIndex < m_cameras.size(); cameraIndex++)
 	{
 		BuiltInShaderParams::m_paramView = m_cameras[cameraIndex]->GetViewMatrix();
 		BuiltInShaderParams::m_paramProj = m_cameras[cameraIndex]->GetProjMatrix();
 		BuiltInShaderParams::m_paramViewProj = m_cameras[cameraIndex]->GetViewProjMatrix();
-		BuiltInShaderParams::m_paramEyePosition = m_cameras[cameraIndex]->GetGameObject()->Transform.GetPosition();
+		BuiltInShaderParams::m_paramEyePosition = m_cameras[cameraIndex]->GetGameObject()->GetTransform().GetPosition();
 		// TODO: powyzsze parametry powinny juz teraz byc ustawione w materiale
 
 		m_cameras[cameraIndex]->Setup();
@@ -174,7 +175,7 @@ void GraphicsEngine::RenderGameObjects()
 			if ((m_cameras[cameraIndex]->GetCullLayers() & m_solidRenderables[i]->GetLayerId()) == 0)
 				continue;
 
-			BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->Transform.GetMatrix();
+			BuiltInShaderParams::m_paramWorld = m_solidRenderables[i]->GetGameObject()->GetTransform().GetMatrix();
 			BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
 
 			Material* material = replacementMaterial != NULL ? replacementMaterial : m_solidRenderables[i]->GetMaterial();

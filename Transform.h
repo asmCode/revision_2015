@@ -1,13 +1,14 @@
 #pragma once
 
+#include "Component.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
 
-class Transform
+class Transform : public Component
 {
 public:
-	Transform();
+	Transform(GameObject* gameObject);
 
 	void SetParent(Transform* parent);
 	const Transform* GetParent() const;

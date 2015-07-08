@@ -1,4 +1,5 @@
 #include "SceneLoader.h"
+#include "Transform.h"
 #include "Environment.h"
 #include "GameObject.h"
 #include "DemoUtils.h"
@@ -333,9 +334,9 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 			sm::Vec4 rotation = DemoUtils::ParseVector4(node->GetAttribAsString("rotation", "0,1,0,0"), ",");
 			sm::Vec3 scale = DemoUtils::ParseVector3(node->GetAttribAsString("scale", "1,1,1"), ",");
 
-			gameObject->Transform.SetLocalPosition(position);
-			gameObject->Transform.SetLocalRotation(sm::Quat::FromAngleAxis(rotation.x, sm::Vec3(rotation.y, rotation.z, rotation.w))); // x as angle, rest as axis
-			gameObject->Transform.SetLocalScale(scale);
+			gameObject->GetTransform().SetLocalPosition(position);
+			gameObject->GetTransform().SetLocalRotation(sm::Quat::FromAngleAxis(rotation.x, sm::Vec3(rotation.y, rotation.z, rotation.w))); // x as angle, rest as axis
+			gameObject->GetTransform().SetLocalScale(scale);
 		}
 		else if (node->GetName() == "Model")
 		{
@@ -615,10 +616,10 @@ void SceneLoader::SetGameObjectTransformHierarchy(SceneLoader::Node* node, Trans
 	if (gameObject == NULL)
 		return;
 
-	gameObject->Transform.SetParent(parent);
+	gameObject->GetTransform().SetParent(parent);
 
 	for (uint32_t i = 0; i < node->Children.size(); i++)
-		SetGameObjectTransformHierarchy(node->Children[i], &gameObject->Transform);
+		SetGameObjectTransformHierarchy(node->Children[i], &gameObject->GetTransform());
 }
 
 void SceneLoader::LoadHierarchy(XMLNode* hierarchyNode)

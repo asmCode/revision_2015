@@ -1,5 +1,6 @@
 #include "Jump.h"
 #include "../GameObject.h"
+#include "../Transform.h"
 
 Jump::Jump(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name)
@@ -14,5 +15,5 @@ void Jump::Update()
 
 	time += 0.01f;
 
-	m_gameObject->Transform.SetPosition(sm::Vec3(0, sinf(time * m_speed) * m_power, 0));
+	m_gameObject->GetTransform().SetPosition(sm::Vec3(0, sinf(time * m_speed) * m_power, 0));
 }

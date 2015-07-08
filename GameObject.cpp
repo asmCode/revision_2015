@@ -2,6 +2,7 @@
 #include "Renderable.h"
 #include "Light.h"
 #include "Camera.h"
+#include "Transform.h"
 #include "../FuturisEngine/BehavioursManager.h"
 #include "../Behaviour.h"
 #include "../FuturisEngine/ComponentFlag.h"
@@ -14,6 +15,8 @@ GameObject::GameObject(const std::string& name) :
 	m_isActive(true),
 	m_layerId(LayerId_0)
 {
+	m_transform = new Transform(this);
+
 	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
 	scene->NotifyNewGameObject(this);
 }
@@ -53,6 +56,11 @@ void GameObject::AddRenderable(Renderable* renderable)
 
 	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
 	scene->NotifyNewComponent(this, ComponentFlag::Mesh);
+}
+
+Transform& GameObject::GetTransform() const
+{
+	return *m_transform;
 }
 
 Component* GameObject::AddComponent(const std::string& componentName)

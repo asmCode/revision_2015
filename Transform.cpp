@@ -2,7 +2,8 @@
 #include <Math/MathUtils.h>
 #include "../GraphicsLog.h"
 
-Transform::Transform() :
+Transform::Transform(GameObject* gameObject) :
+	Component("Transform", gameObject),
 	m_isDirty(false),
 	m_parent(NULL),
 	m_localMatrix(sm::Matrix::Identity),
