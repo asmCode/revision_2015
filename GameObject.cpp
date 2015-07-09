@@ -63,6 +63,20 @@ Transform& GameObject::GetTransform() const
 	return *m_transform;
 }
 
+GameObject* GameObject::FindChild(const std::string& name) const
+{
+	const std::vector<Transform*>& children = GetTransform().GetChildren();
+
+	for (uint32_t i = 0; i < children.size(); i++)
+	{
+		GameObject* child = children[i]->GetGameObject();
+		if (child->GetName() == name)
+			return child;
+	}
+
+	return NULL;
+}
+
 Component* GameObject::AddComponent(const std::string& componentName)
 {
 	Component* component = NULL;

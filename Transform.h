@@ -4,6 +4,7 @@
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
+#include <vector>
 
 class Transform : public Component
 {
@@ -12,6 +13,7 @@ public:
 
 	void SetParent(Transform* parent);
 	const Transform* GetParent() const;
+	const std::vector<Transform*>& GetChildren() const;
 
 	void SetLocalPosition(const sm::Vec3& position);
 	void SetLocalRotation(const sm::Quat& rotation);
@@ -48,5 +50,8 @@ private:
 	sm::Quat m_localRotation;
 	sm::Vec3 m_localScale;
 
+	std::vector<Transform*> m_children;
+
 	void UpdateMatrix();
+	void AddChild(Transform* transform);
 };

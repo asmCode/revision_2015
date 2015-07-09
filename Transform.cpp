@@ -15,12 +15,21 @@ Transform::Transform(GameObject* gameObject) :
 
 void Transform::SetParent(Transform* parent)
 {
+	assert(parent != NULL);
+
 	m_parent = parent;
+
+	parent->AddChild(this);
 }
 
 const Transform* Transform::GetParent() const
 {
 	return m_parent;
+}
+
+const std::vector<Transform*>& Transform::GetChildren() const
+{
+	return m_children;
 }
 
 void Transform::SetLocalPosition(const sm::Vec3& position)
@@ -148,3 +157,9 @@ void Transform::UpdateMatrix()
 	m_isDirty = false;
 }
 
+void Transform::AddChild(Transform* transform)
+{
+	assert(transform != NULL);
+
+	m_children.push_back(transform);
+}

@@ -31,6 +31,8 @@ public:
 
 	Transform& GetTransform() const;
 
+	GameObject* FindChild(const std::string& name) const;
+
 	Component* AddComponent(const std::string& componentName);
 	Component* GetComponent(const std::string& componentName) const;
 	const std::vector<Component*>& GetComponents() const;
