@@ -7,9 +7,6 @@
 
 class Transform;
 class Renderable;
-class Light;
-class Camera;
-class Behaviour;
 class Component;
 
 class GameObject
@@ -31,7 +28,7 @@ public:
 
 	Transform& GetTransform() const;
 
-	GameObject* FindChild(const std::string& name) const;
+	GameObject* FindChild(const std::string& name, bool recursive = false) const;
 
 	Component* AddComponent(const std::string& componentName);
 	Component* GetComponent(const std::string& componentName) const;

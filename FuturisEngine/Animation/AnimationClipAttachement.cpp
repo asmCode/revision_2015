@@ -22,7 +22,12 @@ AnimationClipAttachement::AnimationClipAttachement(
 		const PropertyAnimationData* animData = animationClip->GetPropertyAnimation(i);
 		assert(animData != NULL);
 
-		Component* component = m_gameObject->GetComponent(animData->GetComponentType());
+		GameObject* animGameObject = gameObject;
+		if (gameObject->GetName() != animData->GetTargetName())
+			animGameObject = gameObject->FindChild(animData->GetTargetName());
+
+		assert(animGameObject != nullptr);
+		Component* component = animGameObject->GetComponent(animData->GetComponentType());
 		assert(component != NULL);
 
 		PropertyContainer::Property* property = component->GetPropertyContainer()->GetProperty(animData->GetPropertyName());

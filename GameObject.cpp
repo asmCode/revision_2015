@@ -2,6 +2,7 @@
 #include "Renderable.h"
 #include "Light.h"
 #include "Camera.h"
+#include "FuturisEngine/Animation/Animation.h"
 #include "Transform.h"
 #include "../FuturisEngine/BehavioursManager.h"
 #include "../Behaviour.h"
@@ -15,7 +16,7 @@ GameObject::GameObject(const std::string& name) :
 	m_isActive(true),
 	m_layerId(LayerId_0)
 {
-	m_transform = new Transform(this);
+	m_transform = (Transform*)AddComponent("Transform");
 
 	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
 	scene->NotifyNewGameObject(this);
@@ -63,7 +64,7 @@ Transform& GameObject::GetTransform() const
 	return *m_transform;
 }
 
-GameObject* GameObject::FindChild(const std::string& name) const
+GameObject* GameObject::FindChild(const std::string& name, bool recursive) const
 {
 	const std::vector<Transform*>& children = GetTransform().GetChildren();
 
@@ -72,6 +73,12 @@ GameObject* GameObject::FindChild(const std::string& name) const
 		GameObject* child = children[i]->GetGameObject();
 		if (child->GetName() == name)
 			return child;
+		else if (recursive)
+		{
+			GameObject* childOfChild = child->FindChild(name, recursive);
+			if (childOfChild != NULL)
+				return childOfChild;
+		}
 	}
 
 	return NULL;
@@ -82,13 +89,21 @@ Component* GameObject::AddComponent(const std::string& componentName)
 	Component* component = NULL;
 
 	// code below is temporary. All component's factories should be registered
-	if (componentName == Light::LightComponentName)
+	if (componentName == "Transform")
+	{
+		component = new Transform(this);
+	}
+	else if (componentName == Light::LightComponentName)
 	{
 		component = new Light(this);
 	}
 	else if (componentName == Camera::CameraComponentName)
 	{
 		component = new Camera(this);
+	}
+	else if (componentName == "Animation")
+	{
+		component = new Animation(this);
 	}
 	else
 	{

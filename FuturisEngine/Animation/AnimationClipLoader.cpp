@@ -91,11 +91,27 @@ PropertyAnimationData* AnimationClipLoader::LoadPropertyAnimation(XMLNode* propA
 		case PropertyType_Quat:
 			{
 				sm::Vec4 vec4 = DemoUtils::ParseVector4(value, ",");
-				sm::Quat quat = sm::Quat::FromAngleAxis(vec4.x, sm::Vec3(vec4.y, vec4.z, vec4.w));	
+				sm::Quat quat = sm::Quat::FromAngleAxis(vec4.x, sm::Vec3(vec4.y, vec4.w, -vec4.z));	
 				((AnimationCurve<sm::Quat>*)animationCurve)->AddKeyframe(time, quat);
 			}
 			break;
 		}
+	}
+
+	switch (type)
+	{
+	case PropertyType_Float:
+		((AnimationCurve<float>*)animationCurve)->SmoothTangents();
+		break;
+	case PropertyType_Int:
+		((AnimationCurve<int>*)animationCurve)->SmoothTangents();
+		break;
+	case PropertyType_Vec3:
+		((AnimationCurve<sm::Vec3>*)animationCurve)->SmoothTangents();
+		break;
+	case PropertyType_Quat:
+		((AnimationCurve<sm::Quat>*)animationCurve)->SmoothTangents();
+		break;
 	}
 
 	return new PropertyAnimationData(type, target, component, property, animationCurve);

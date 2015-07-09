@@ -1,5 +1,6 @@
 #include "AnimationTest.h"
 #include "../FuturisEngine/PropertyContainer.h"
+#include "../FuturisEngine/Animation/Animation.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
 #include "../Camera.h"
@@ -16,16 +17,29 @@ AnimationTest::AnimationTest(GameObject* gameObject, const std::string& name) :
 
 void AnimationTest::Awake()
 {
+	m_animation = (Animation*)ScenesManager::GetInstance()->FindGameObject("root")->GetComponent("Animation");
+	m_animation->Play();
 }
+
+float time = 0.0f;
 
 void AnimationTest::Update()
 {
-	if (Input::GetKeyDown(KeyCode_Z))
+	bool changedTime = false;
+
+	if (Input::GetKey(KeyCode_O))
 	{
-		/*
-		Camera* m_camera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent(Camera::CameraComponentName);
-		m_camera->GetPropertyContainer()->GetProperty("fov")->Set<float>(0.2f);
-		*/
+		time += Time::DeltaTime;
+		changedTime = true;
 	}
+
+	if (Input::GetKey(KeyCode_K))
+	{
+		time -= Time::DeltaTime;
+		changedTime = true;
+	}
+
+	if (changedTime)
+		m_animation->SetTime(time);
 }
 

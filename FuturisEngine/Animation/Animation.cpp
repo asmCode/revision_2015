@@ -17,6 +17,8 @@ void Animation::Play()
 {
 	if (m_animationClip == NULL)
 		return;
+
+	m_attachement = new AnimationClipAttachement(m_animationClip, GetGameObject());
 }
 
 void Animation::Stop()
@@ -30,11 +32,7 @@ void Animation::SetAnimationClip(AnimationClip* animationClip)
 	if (m_attachement != NULL)
 		delete m_attachement;
 
-	m_attachement = new AnimationClipAttachement(m_animationClip, GetGameObject());
-
 	m_animationClip = animationClip;
-
-	SetTime(0.0f);
 }
 
 void Animation::SetTime(float time)

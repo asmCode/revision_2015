@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "FuturisEngine/PropertyContainer.h"
 #include <Math/MathUtils.h>
 #include "../GraphicsLog.h"
 
@@ -11,15 +12,22 @@ Transform::Transform(GameObject* gameObject) :
 	m_localRotation(1, 0, 0, 0),
 	m_localScale(sm::Vec3(1, 1, 1))
 {
+	GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
+		"Position", PropertyType_Vec3, this, &Transform::SetPosition, &Transform::GetPosition);
+
+	GetPropertyContainer()->AddProperty<Transform, sm::Quat>(
+		"Rotation", PropertyType_Quat, this, &Transform::SetRotation, &Transform::GetRotation);
+
+	/*GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
+		"Scale", PropertyType_Vec3, this, &Transform::SetLocalScale, &Transform::GetLocalScale);*/
 }
 
 void Transform::SetParent(Transform* parent)
 {
-	assert(parent != NULL);
-
 	m_parent = parent;
 
-	parent->AddChild(this);
+	if (m_parent != nullptr)
+		m_parent->AddChild(this);
 }
 
 const Transform* Transform::GetParent() const

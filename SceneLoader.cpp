@@ -8,6 +8,7 @@
 #include "../Renderable.h"
 #include "DemoController.h"
 #include "FuturisEngine/BehavioursManager.h"
+#include "FuturisEngine/Animation/AnimationClip.h"
 #include "Behaviour.h"
 
 #include "SceneElement/Path.h"
@@ -25,6 +26,7 @@
 #include "Light.h"
 #include "Camera.h"
 #include "../FuturisEngine/Graphics/Mesh.h"
+#include "../FuturisEngine/Animation/Animation.h"
 
 
 #include <IO/Path.h>
@@ -432,6 +434,17 @@ GameObject* SceneLoader::LoadGameObject(const std::string& sceneName, XMLNode* g
 				for (uint32_t layersNumbersIndex = 0; layersNumbersIndex < layersNumbers.size(); layersNumbersIndex++)
 					cullLayers |= (LayerId)1 << layersNumbers[layersNumbersIndex];
 				camera->SetCullLayers(cullLayers);
+			}
+		}
+		else if (node->GetName() == "Animation")
+		{
+			Animation* animation = (Animation*)gameObject->AddComponent("Animation");
+
+			for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+			{
+				XMLNode* animChildnode = node->GetChild(i);
+				if (animChildnode->GetName() == "Clip")
+					animation->SetAnimationClip(Content::Instance->Get<AnimationClip>(animChildnode->GetAttribAsString("name")));
 			}
 		}
 		else if (node->GetName() == "Behaviour")

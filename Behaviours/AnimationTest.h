@@ -17,4 +17,6 @@ public:
 
 private:
 	float m_time;
+
+	Animation* m_animation;
 };
