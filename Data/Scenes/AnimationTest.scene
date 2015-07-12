@@ -4,7 +4,11 @@
 		<GameObject name="AnimationTest">
 			<Behaviour name="AnimationTest" />
 		</GameObject>
-	
+		<GameObject name="root">
+			<Animation>
+				<Clip name="anim1" />
+			</Animation>
+		</GameObject>
 		<GameObject name="kamerka">
 			<Transform position="0,0,20" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Camera viewport="0.0,0.0,1,1" depth="2" far_plane="100.0" near_plane="0.1" />
@@ -22,11 +26,24 @@
 		</GameObject>		
 	</GameObjects>
 	<Hierarchy>
+		<Node name="root">
+			<Node name="Teapot001">
+			<Node name="Teapot002">
+			<Node name="Teapot003">
+			</Node>
+			</Node>
+			</Node>
+		</Node>
 	</Hierarchy>
 	<Materials>
 		<Material name="ErrorMaterial" shader="Solid">
 			<Parameters>
 				<Parameter name="u_color" type="vec3" value="1.0,0.0,1.0" />
+			</Parameters>
+		</Material>
+		<Material name="Gray" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.8,0.8,0.8" />
 			</Parameters>
 		</Material>
 	</Materials>

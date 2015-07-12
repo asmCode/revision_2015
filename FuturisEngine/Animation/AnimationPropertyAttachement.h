@@ -26,6 +26,10 @@ private:
 	void SetTimeT(float time)
 	{
 		T value = ((AnimationCurve<T>*)m_propertyAnimationData->GetAnimationCurve())->Evaluate(time);
+
+		if (m_propertyAnimationData->GetType() == PropertyType_Quat)
+			((sm::Quat*)((void*)&value))->Normalize();
+
 		((PropertyWrapper<T>*)m_propertyWrapper)->Set(value);
 	}
 };

@@ -13,10 +13,10 @@ Transform::Transform(GameObject* gameObject) :
 	m_localScale(sm::Vec3(1, 1, 1))
 {
 	GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
-		"Position", PropertyType_Vec3, this, &Transform::SetPosition, &Transform::GetPosition);
+		"Position", PropertyType_Vec3, this, &Transform::SetLocalPosition, &Transform::GetLocalPosition);
 
 	GetPropertyContainer()->AddProperty<Transform, sm::Quat>(
-		"Rotation", PropertyType_Quat, this, &Transform::SetRotation, &Transform::GetRotation);
+		"Rotation", PropertyType_Quat, this, &Transform::SetLocalRotation, &Transform::GetLocalRotation);
 
 	/*GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
 		"Scale", PropertyType_Vec3, this, &Transform::SetLocalScale, &Transform::GetLocalScale);*/
@@ -24,7 +24,13 @@ Transform::Transform(GameObject* gameObject) :
 
 void Transform::SetParent(Transform* parent)
 {
+	sm::Vec3 position = GetPosition();
+	sm::Quat rotation = GetRotation();
+
 	m_parent = parent;
+
+	SetPosition(position);
+	SetRotation(rotation);
 
 	if (m_parent != nullptr)
 		m_parent->AddChild(this);
@@ -98,17 +104,17 @@ sm::Vec3 Transform::GetScale() const
 	return m_parent->GetScale() * m_localScale;
 }
 
-const sm::Vec3& Transform::GetLocalPosition() const
+sm::Vec3 Transform::GetLocalPosition() const
 {
 	return m_localPosition;
 }
 
-const sm::Quat& Transform::GetLocalRotation() const
+sm::Quat Transform::GetLocalRotation() const
 {
 	return m_localRotation;
 }
 
-const sm::Vec3& Transform::GetLocalScale() const
+sm::Vec3 Transform::GetLocalScale() const
 {
 	return m_localScale;
 }

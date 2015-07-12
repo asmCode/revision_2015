@@ -24,7 +24,7 @@ AnimationClipAttachement::AnimationClipAttachement(
 
 		GameObject* animGameObject = gameObject;
 		if (gameObject->GetName() != animData->GetTargetName())
-			animGameObject = gameObject->FindChild(animData->GetTargetName());
+			animGameObject = gameObject->FindChild(animData->GetTargetName(), true);
 
 		assert(animGameObject != nullptr);
 		Component* component = animGameObject->GetComponent(animData->GetComponentType());
