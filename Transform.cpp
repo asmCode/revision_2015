@@ -18,8 +18,8 @@ Transform::Transform(GameObject* gameObject) :
 	GetPropertyContainer()->AddProperty<Transform, sm::Quat>(
 		"Rotation", PropertyType_Quat, this, &Transform::SetLocalRotation, &Transform::GetLocalRotation);
 
-	/*GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
-		"Scale", PropertyType_Vec3, this, &Transform::SetLocalScale, &Transform::GetLocalScale);*/
+	GetPropertyContainer()->AddProperty<Transform, sm::Vec3>(
+		"Scale", PropertyType_Vec3, this, &Transform::SetLocalScale, &Transform::GetLocalScale);
 }
 
 void Transform::SetParent(Transform* parent)
