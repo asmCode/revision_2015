@@ -613,10 +613,32 @@ void SceneLoader::BuildScene(BaseScene* scene)
 //			scene->m_gameObjects.push_back(gameObject);
 	}
 
+	for (uint32_t i = 0; i < m_gameObjectNodes.size(); i++)
+	{
+		if (!m_gameObjectNodes[i].XMLNode->HasAttrib("parent"))
+			continue;
+
+		GameObject* child = scene->FindGameObject(m_gameObjectNodes[i].XMLNode->GetAttribAsString("name"));
+		GameObject* parent = scene->FindGameObject(m_gameObjectNodes[i].XMLNode->GetAttribAsString("parent"));
+
+		sm::Vec3 childLocalPos = child->GetTransform().GetLocalPosition();
+		sm::Quat childLocalRot = child->GetTransform().GetLocalRotation();
+		sm::Vec3 childLocalScale = child->GetTransform().GetLocalScale();
+		
+		child->GetTransform().SetParent(&parent->GetTransform());
+
+		// set parent changes localPosition, rot and scale. Thats why we need to fix them
+		child->GetTransform().SetLocalPosition(childLocalPos);
+		child->GetTransform().SetLocalRotation(childLocalRot);
+		child->GetTransform().SetLocalScale(childLocalScale);
+	}
+
+	/*
 	for (uint32_t i = 0; i < m_hierarchyRootNodes.size(); i++)
 	{
 		SetGameObjectTransformHierarchy(m_hierarchyRootNodes[i], NULL);
 	}
+	*/
 }
 
 void SceneLoader::SetGameObjectTransformHierarchy(SceneLoader::Node* node, Transform* parent)
