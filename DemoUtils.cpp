@@ -1,4 +1,6 @@
 #include "DemoUtils.h"
+#include "ScenesManager.h"
+#include "Scenes/BaseScene.h"
 #include "../Camera.h"
 #include "../GameObject.h"
 #include "../Transform.h"
@@ -8,7 +10,9 @@
 #include <XML/XMLLoader.h>
 #include <XML/XMLNode.h>
 #include <XML/XmlWriter.h>
+#include <iomanip>
 #include <fstream>
+#include <sstream>
 
 float DemoUtils::GetPathLength(std::vector<sm::Vec3>& path)
 {
@@ -129,4 +133,17 @@ void DemoUtils::LoadCamera(Camera* camera, int slot)
 
 	camera->GetGameObject()->GetTransform().SetPosition(ParseVector3(transformNode->GetAttribAsString("position")));
 	camera->GetGameObject()->GetTransform().SetRotation(ParseQuat(transformNode->GetAttribAsString("rotation")));
+}
+
+void DemoUtils::GetAllObjects(const std::string& namePrefix, std::vector<GameObject*>& gameObjects)
+{
+	GameObject* gameObject = NULL;
+
+	const std::vector<GameObject*>& _gameObjects = ScenesManager::GetInstance()->GetActiveScene()->GetGameObjects();
+
+	for (uint32_t i = 0; i < _gameObjects.size(); i++)
+	{
+		if (_gameObjects[i]->GetName().find(namePrefix) == 0)
+			gameObjects.push_back(_gameObjects[i]);	
+	}
 }

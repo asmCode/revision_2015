@@ -28,7 +28,7 @@ void ScenesManager::Initialize()
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;
 
-	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\AnimationTest.scene";
+	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\SphereTest.scene";
 	SceneLoader sceneLoader;
 	sceneLoader.LoadAdditive(sceneFileName);
 	sceneLoader.BuildScene(baseScene);

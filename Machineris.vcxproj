@@ -131,6 +131,8 @@ exit /B 0
     <ClCompile Include="Behaviours\PassageControllerFactory.cpp" />
     <ClCompile Include="Behaviours\RttTest.cpp" />
     <ClCompile Include="Behaviours\SetShaderReplacementTest.cpp" />
+    <ClCompile Include="Behaviours\Sphere.cpp" />
+    <ClCompile Include="Behaviours\SpherePart.cpp" />
     <ClCompile Include="Behaviours\TextureImage.cpp" />
     <ClCompile Include="Behaviours\Tile.cpp" />
     <ClCompile Include="Behaviours\TileFactory.cpp" />
@@ -270,6 +272,8 @@ exit /B 0
     <ClInclude Include="Behaviours\PassageControllerFactory.h" />
     <ClInclude Include="Behaviours\RttTest.h" />
     <ClInclude Include="Behaviours\SetShaderReplacementTest.h" />
+    <ClInclude Include="Behaviours\Sphere.h" />
+    <ClInclude Include="Behaviours\SpherePart.h" />
     <ClInclude Include="Behaviours\TextureImage.h" />
     <ClInclude Include="Behaviours\Tile.h" />
     <ClInclude Include="Behaviours\TileFactory.h" />
