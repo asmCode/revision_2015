@@ -71,7 +71,12 @@ namespace sm
 			return ret;
 		}
 
-		Quat GetCoupleQuat()
+		Quat operator - () const
+		{
+			return GetCoupleQuat();
+		}
+
+		Quat GetCoupleQuat() const
 		{
 			Quat ret;
 			ret.v = v;

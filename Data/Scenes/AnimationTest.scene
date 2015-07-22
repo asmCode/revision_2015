@@ -12,6 +12,7 @@
 		<GameObject name="kamerka">
 			<Transform position="0,0,20" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Camera viewport="0.0,0.0,1,1" depth="2" far_plane="100.0" near_plane="0.1" />
+			<Light />
 			<Behaviour name="FppCamera">
 				<Parameters>
 					<Parameter name="move_sensitivity" type="float" value="10.0" />
@@ -20,21 +21,13 @@
 			</Behaviour>
 		</GameObject>
 		
+		<!--
 		<GameObject name="Light">
 			<Transform position="0,0,20" />
 			<Light />
 		</GameObject>		
+		-->
 	</GameObjects>
-	<Hierarchy>
-		<Node name="root">
-			<Node name="Teapot001">
-			<Node name="Teapot002">
-			<Node name="Teapot003">
-			</Node>
-			</Node>
-			</Node>
-		</Node>
-	</Hierarchy>
 	<Materials>
 		<Material name="ErrorMaterial" shader="Solid">
 			<Parameters>

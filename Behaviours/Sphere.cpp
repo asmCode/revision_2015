@@ -24,10 +24,12 @@ void Sphere::Awake()
 
 void Sphere::Update()
 {
-	if (Input::GetKey(KeyCode_O))
+	if (Input::GetKeyDown(KeyCode_O))
 	{
-		Transform& transform = m_parts[Random::GetInt(0, m_parts.size() - 1)]->GetGameObject()->GetTransform();
-		transform.SetPosition(transform.GetPosition() + transform.GetPosition().GetNormalized());
+		//Transform& transform = m_parts[Random::GetInt(0, m_parts.size() - 1)]->GetGameObject()->GetTransform();
+		//transform.SetPosition(transform.GetPosition() + transform.GetPosition().GetNormalized());
+
+		m_parts[33]->Open();
 	}
 }
 
