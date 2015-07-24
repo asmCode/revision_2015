@@ -1,8 +1,28 @@
 #include "Quat.h"
 #include "Matrix.h"
+#include "MathUtils.h"
 
 namespace sm
 {
+	float Quat::Dot(const sm::Quat& q1, const sm::Quat& q2)
+	{
+		return (q1.s * q2.s + Vec3::Dot(q1.v, q2.v)) / (q1.GetLength() * q2.GetLength());
+	}
+
+	Quat Quat::Slerp(const sm::Quat& begin, const sm::Quat& end, float time)
+	{
+		float a = begin.GetLength();
+		float b = end.GetLength();
+
+		float dot = Dot(begin, end);
+		float cosAngle = MathUtils::Clamp(dot, -1.0f, 1.0f);
+		float angle = acosf(cosAngle);
+
+		float sinAngle = sinf(angle);
+
+		return (begin * (sinf((1.0f - time) * angle) / sinAngle)) + (end * (sinf(time * angle) / sinAngle));
+	}
+
 	Quat Quat::FromAngleAxis(float angle, const sm::Vec3& axis)
 	{
 		Quat quat;

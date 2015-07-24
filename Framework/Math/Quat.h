@@ -121,7 +121,7 @@ namespace sm
 			}
 		}
 
-		float GetLength()
+		float GetLength() const
 		{
 			return sqrtf((s * s) + Vec3::Dot(v, v));
 		}
@@ -139,6 +139,8 @@ namespace sm
 			return ret.v;
 		}
 
+		static float Dot(const sm::Quat& q1, const sm::Quat& q2);
+		static Quat Slerp(const sm::Quat& begin, const sm::Quat& end, float time);
 		static Quat FromAngleAxis(float angle, const sm::Vec3& axis);
 		static Quat FromOrtogonalMatrix(const sm::Matrix& matrix);
 		static Quat FromToRotate(const sm::Vec3& from, const sm::Vec3& to);
