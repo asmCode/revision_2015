@@ -19,6 +19,8 @@ void VectorGraphics::SetViewProjMatrix(const sm::Matrix& viewProj)
 
 void VectorGraphics::Begin()
 {
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
