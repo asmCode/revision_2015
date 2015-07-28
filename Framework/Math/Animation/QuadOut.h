@@ -2,6 +2,7 @@
 
 #include "IAnimationCurve.h"
 #include "../MathUtils.h"
+#include "../Quat.h"
 #include <math.h>
 
 template <typename T>
@@ -17,3 +18,14 @@ public:
 		return -c * time * (time - 2) + begin;
 	};
 };
+/*
+template <>
+sm::Quat QuadOut<sm::Quat>::Evaluate(const sm::Quat& begin, const sm::Quat& end, float time)
+{
+	QuadOut<float> timeCurve;
+
+	float quatTime = timeCurve.Evaluate(0.0f, 1.0f, time);
+
+	return sm::Quat::Slerp(begin, end, quatTime);
+}
+*/

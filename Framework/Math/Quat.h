@@ -19,7 +19,7 @@ namespace sm
 		{
 		}
 
-		Quat(float val)
+		explicit Quat(float val)
 		{
 			this->v.Set(val, val, val);
 			this->s = val;
@@ -55,7 +55,7 @@ namespace sm
 
 		Quat operator * (const Quat& q) const;
 
-		Quat operator * (float s)
+		Quat operator * (float s) const
 		{
 			Quat ret;
 			ret.v = this ->v * s;
@@ -63,7 +63,7 @@ namespace sm
 			return ret;
 		}
 
-		Quat operator / (float s)
+		Quat operator / (float s) const
 		{
 			Quat ret;
 			ret.v = this->v / s;
@@ -73,7 +73,10 @@ namespace sm
 
 		Quat operator - () const
 		{
-			return GetCoupleQuat();
+			Quat ret;
+			ret.v = -this->v;
+			ret.s = -this->s;
+			return ret;
 		}
 
 		Quat GetCoupleQuat() const

@@ -133,6 +133,9 @@ exit /B 0
     <ClCompile Include="Behaviours\SetShaderReplacementTest.cpp" />
     <ClCompile Include="Behaviours\Sphere.cpp" />
     <ClCompile Include="Behaviours\SpherePart.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\CommandBase.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\PullOut.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\SlideOut.cpp" />
     <ClCompile Include="Behaviours\TextureImage.cpp" />
     <ClCompile Include="Behaviours\Tile.cpp" />
     <ClCompile Include="Behaviours\TileFactory.cpp" />
@@ -274,6 +277,9 @@ exit /B 0
     <ClInclude Include="Behaviours\SetShaderReplacementTest.h" />
     <ClInclude Include="Behaviours\Sphere.h" />
     <ClInclude Include="Behaviours\SpherePart.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\CommandBase.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\PullOut.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\SlideOut.h" />
     <ClInclude Include="Behaviours\TextureImage.h" />
     <ClInclude Include="Behaviours\Tile.h" />
     <ClInclude Include="Behaviours\TileFactory.h" />
