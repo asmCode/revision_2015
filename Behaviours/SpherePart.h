@@ -3,12 +3,17 @@
 #include "../Behaviour.h"
 #include <Math/Quat.h>
 #include <string>
+#include <queue>
 
 class GameObject;
 template <typename T > class IAnimationCurve;
+class CommandBase;
 
 class SpherePart : public Behaviour
 {
+	friend class PullOut;
+	friend class CommandBase;
+
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);
 
@@ -16,6 +21,8 @@ public:
 	void Awake();
 
 	void Open();
+
+	void QueueCommand(CommandBase* command);
 
 private:
 	enum State
@@ -39,8 +46,11 @@ private:
 
 	sm::Vec3 m_basePosition;
 	sm::Quat m_baseRotation;
-	sm::Vec3 m_moveOutPosition;
+	sm::Vec3 m_direction;
 	sm::Quat m_shiftRotation;
 
 	GameObject* m_rotatePivot;
+
+	std::queue<CommandBase*> m_commands;
+	CommandBase* m_currentCommand;
 };

@@ -18,7 +18,7 @@ public:
 		return -c * time * (time - 2) + begin;
 	};
 };
-/*
+
 template <>
 sm::Quat QuadOut<sm::Quat>::Evaluate(const sm::Quat& begin, const sm::Quat& end, float time)
 {
@@ -28,4 +28,3 @@ sm::Quat QuadOut<sm::Quat>::Evaluate(const sm::Quat& begin, const sm::Quat& end,
 
 	return sm::Quat::Slerp(begin, end, quatTime);
 }
-*/
