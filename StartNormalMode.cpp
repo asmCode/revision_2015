@@ -190,7 +190,7 @@ void StartNormalMode()
 
 #ifndef DISABLE_MUSIC
 	music = new Music();
-	music->LoadMusic((baseDataPath + "\\music\\traymuss.mp3").c_str());
+	music->LoadMusic((baseDataPath + "\\music\\dakota.mp3").c_str());
 	music->SetPosition(TIME_SHIFT);
 	music->Play();
 #endif
