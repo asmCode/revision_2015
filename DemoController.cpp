@@ -319,7 +319,7 @@ bool DemoController::LoadContent(const char *basePath)
 	m_mask = Content::Instance->Get<Texture>("super_maska_kurwo");
 	assert(m_mask != NULL);
 
-	m_synchManager = new SynchManager();
+	m_synchManager = SynchManager::GetInstance();
 	if (!SynchEventsLoader::LoadFromFile(m_strBasePath + "Synch/Piano.snh", m_synchManager))
 	{
 		assert(false);
@@ -482,15 +482,6 @@ bool DemoController::Update(float time, float seconds)
 		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
 	
 	m_synchManager->Update(time);
-	SynchEvent* synchEvent = NULL;
-	while (true)
-	{
-		synchEvent = m_synchManager->GetAndRemoveEvent();
-		if (synchEvent == NULL)
-			break;
-
-		activeScene->NotifySynchEvent(synchEvent);
-	}
 
 	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::Identity, seconds);
 	//m_activeCamera = animCamsMng.GetActiveCamera(time);

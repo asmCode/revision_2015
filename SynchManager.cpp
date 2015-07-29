@@ -1,7 +1,19 @@
 #include "SynchManager.h"
+#include "SynchManagerObserver.h"
 #include "SynchEvent.h"
 #include "SynchEventSort.h"
+#include <stdint.h>
 #include <algorithm>
+
+SynchManager* SynchManager::m_instance;
+
+SynchManager* SynchManager::GetInstance()
+{
+	if (m_instance == nullptr)
+		m_instance = new SynchManager();
+
+	return m_instance;
+}
 
 SynchManager::SynchManager() :
 	m_time(0.0f)
@@ -20,6 +32,16 @@ void SynchManager::Addevent(SynchEvent* synchEvent)
 void SynchManager::Update(float time)
 {
 	m_time = time;
+
+	SynchEvent* synchEvent = nullptr;
+	while (true)
+	{
+		synchEvent = GetAndRemoveEvent();
+		if (synchEvent == NULL)
+			break;
+
+		NotifySynchEventFired(synchEvent);
+	}
 }
 
 SynchEvent* SynchManager::GetAndRemoveEvent()
@@ -40,8 +62,20 @@ SynchEvent* SynchManager::GetAndRemoveEvent()
 	return NULL;
 }
 
+void SynchManager::RegisterObserver(SynchManagerObserver* observer)
+{
+	m_observers.push_back(observer);
+}
+
 void SynchManager::SortEventsByTime()
 {
 	static SynchEventSort synchEventsort; // descending!! (it is much easier to pop event from the end of the vector).
 	std::sort(m_events.begin(), m_events.end(), synchEventsort);
 }
+
+void SynchManager::NotifySynchEventFired(SynchEvent* synchEvent)
+{
+	for (uint32_t i = 0; i < m_observers.size(); i++)
+		m_observers[i]->SynchEventFired(synchEvent);
+}
+

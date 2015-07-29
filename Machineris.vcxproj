@@ -330,6 +330,7 @@ exit /B 0
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
+    <ClInclude Include="SynchManagerObserver.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WallFace.h" />
     <ClInclude Include="IDrawable.h" />
