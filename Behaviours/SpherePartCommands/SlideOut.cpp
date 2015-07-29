@@ -24,7 +24,7 @@ bool SlideOut::Update()
 
 	QuadOut<sm::Quat> curve;
 
-	m_pivotTransform->SetLocalRotation(curve.Evaluate(m_baseRotation, m_destinationRotation, m_time / m_duration));
+	m_pivotTransform->SetLocalRotation(curve.Evaluate(m_spherePart->m_baseRotation, m_destinationRotation, m_time / m_duration));
 
 	return m_time == m_duration;
 }
@@ -33,7 +33,6 @@ void SlideOut::SetSpherePart(SpherePart* spherePart)
 {
 	this->CommandBase::SetSpherePart(spherePart);
 
-	m_baseRotation = sm::Quat::FromAngleAxis(0.0f, m_axis);
 	m_destinationRotation = sm::Quat::FromAngleAxis(m_angle, m_axis);
 }
 

@@ -5,7 +5,9 @@
 #include "../Camera.h"
 #include "SpherePart.h"
 #include "SpherePartCommands/PullOut.h"
+#include "SpherePartCommands/PullIn.h"
 #include "SpherePartCommands/SlideOut.h"
+#include "SpherePartCommands/SlideIn.h"
 #include "../DemoUtils.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
@@ -34,11 +36,20 @@ void Sphere::Update()
 		//Transform& transform = m_parts[Random::GetInt(0, m_parts.size() - 1)]->GetGameObject()->GetTransform();
 		//transform.SetPosition(transform.GetPosition() + transform.GetPosition().GetNormalized());
 
-		PullOut* pullOut = new PullOut(2.0f, 0.5f);
-		m_parts[33]->QueueCommand(pullOut);
+		//int index = Random::GetInt(0, m_parts.size() - 1);
+		int index = 33;
 
-		SlideOut* slideOut = new SlideOut(2.0f, MathUtils::PI, sm::Vec3(1, 0, 0));
-		m_parts[33]->QueueCommand(slideOut);
+		PullOut* pullOut = new PullOut(0.3f, 0.5f);
+		m_parts[index]->QueueCommand(pullOut);
+
+		SlideOut* slideOut = new SlideOut(0.5f, MathUtils::PI / 6.0f, sm::Vec3(1, 0, 0));
+		m_parts[index]->QueueCommand(slideOut);
+
+		SlideIn* slideIn = new SlideIn(0.5f);
+		m_parts[index]->QueueCommand(slideIn);
+
+		PullIn* pullIn = new PullIn(0.5f);
+		m_parts[index]->QueueCommand(pullIn);
 
 		//m_parts[33]->Open();
 	}

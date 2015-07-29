@@ -28,9 +28,8 @@ SpherePart::SpherePart(GameObject* gameObject, const std::string& name) :
 void SpherePart::Awake()
 {
 	m_basePosition = GetGameObject()->GetTransform().GetLocalPosition();
+	m_baseRotation = m_rotatePivot->GetTransform().GetLocalRotation();
 	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
-	m_baseRotation = sm::Quat::FromAngleAxis(0.0f, sm::Vec3(1, 0, 0));
-	m_shiftRotation = m_baseRotation * sm::Quat::FromAngleAxis(MathUtils::PI, sm::Vec3(1, 0, 0));
 }
 
 void SpherePart::Update()
@@ -67,6 +66,7 @@ void SpherePart::Update()
 	if (m_currentCommand == nullptr && m_commands.size() > 0)
 	{
 		m_currentCommand = m_commands.front();
+		m_currentCommand->SetSpherePart(this);
 		m_commands.pop();
 	}
 
@@ -84,6 +84,6 @@ void SpherePart::Open()
 
 void SpherePart::QueueCommand(CommandBase* command)
 {
-	command->SetSpherePart(this);
+	//command->SetSpherePart(this);
 	m_commands.push(command);
 }
