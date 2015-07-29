@@ -4,11 +4,11 @@
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-class SlideIn : public CommandBase
+class RollIn : public CommandBase
 {
 public:
-	SlideIn(float duration);
-	~SlideIn();
+	RollIn(float duration);
+	~RollIn();
 
 	bool Update();
 

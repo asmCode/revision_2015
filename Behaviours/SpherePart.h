@@ -15,6 +15,8 @@ class SpherePart : public Behaviour
 	friend class PullIn;
 	friend class SlideIn;
 	friend class SlideOut;
+	friend class RollOut;
+	friend class RollIn;
 	friend class CommandBase;
 
 public:
@@ -49,6 +51,7 @@ private:
 
 	sm::Vec3 m_basePosition;
 	sm::Quat m_baseRotation;
+	sm::Quat m_basePivotRotation;
 	sm::Vec3 m_direction;
 
 	GameObject* m_rotatePivot;

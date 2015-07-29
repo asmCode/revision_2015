@@ -1,5 +1,5 @@
 #include "SpherePart.h"
-#include "../ScenesManager.h"
+#include "../ScenesManager.h"Sphere
 #include "../GameObject.h"
 #include "../Transform.h"
 #include "../Camera.h"
@@ -28,7 +28,8 @@ SpherePart::SpherePart(GameObject* gameObject, const std::string& name) :
 void SpherePart::Awake()
 {
 	m_basePosition = GetGameObject()->GetTransform().GetLocalPosition();
-	m_baseRotation = m_rotatePivot->GetTransform().GetLocalRotation();
+	m_baseRotation = GetGameObject()->GetTransform().GetLocalRotation();
+	m_basePivotRotation = m_rotatePivot->GetTransform().GetLocalRotation();
 	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
 }
 
