@@ -18,4 +18,7 @@ public:
 
 	// wektor w dowolnym kierunku mieszcz¹cy siê w szescianie (-1.0, 1.0 ...)
 	static sm::Vec3 GetVector();
+
+	static void Shuffle(int* elements, int count);
+	static void GetRandomUniqueArray(int* elements, int min, int max);
 };

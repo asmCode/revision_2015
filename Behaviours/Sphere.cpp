@@ -31,12 +31,12 @@ void Sphere::Awake()
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", "SpherePart", m_parts);
 }
 
-void Sphere::RollSpherePart()
+void Sphere::RollSpherePart(int index)
 {
 	//int index = Random::GetInt(0, m_parts.size() - 1);
-	int index = 33;
+	//int index = 33;
 
-	PullOut* pullOut = new PullOut(0.34f, 0.8f);
+	PullOut* pullOut = new PullOut(0.34f, 1.2f);
 	m_parts[index]->QueueCommand(pullOut);
 
 	/*

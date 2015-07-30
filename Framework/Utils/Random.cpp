@@ -29,3 +29,30 @@ sm::Vec3 Random::GetVector()
 		GetFloat(-1, 1));
 }
 
+void Random::Shuffle(int* elements, int count)
+{
+	int max = count - 1;
+
+	for (int i = 0; i < count; i++)
+	{
+		int r = GetInt(0, max);
+
+		if (max != r)
+		{
+			elements[max] ^= elements[r];
+			elements[r] ^= elements[max];
+			elements[max] ^= elements[r];
+		}
+
+		max--;
+	}
+}
+
+void Random::GetRandomUniqueArray(int* elements, int min, int max)
+{
+	int count = max - min + 1;
+	for (int i = 0; i < count; i++)
+		elements[i] = min + i;
+
+	Shuffle(elements, count);
+}
