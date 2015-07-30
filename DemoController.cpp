@@ -31,6 +31,7 @@
 #include "Behaviours/AnimationTest.h"
 #include "Behaviours/Sphere.h"
 #include "Behaviours/SpherePart.h"
+#include "Behaviours/SceneController.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -259,6 +260,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("AnimationTest", new GenericFactory<AnimationTest>());
 	behavioursManager->RegisterBehaviour("Sphere", new GenericFactory<Sphere>());
 	behavioursManager->RegisterBehaviour("SpherePart", new GenericFactory<SpherePart>());
+	behavioursManager->RegisterBehaviour("SceneController", new GenericFactory<SceneController>());
 }
 
 bool DemoController::LoadContent(const char *basePath)
@@ -320,7 +322,8 @@ bool DemoController::LoadContent(const char *basePath)
 	assert(m_mask != NULL);
 
 	m_synchManager = SynchManager::GetInstance();
-	if (!SynchEventsLoader::LoadFromFile(m_strBasePath + "Synch/Piano.snh", m_synchManager))
+	//if (!SynchEventsLoader::LoadFromFile(m_strBasePath + "Synch/Piano.snh", m_synchManager))
+	if (!SynchEventsLoader::Generate(m_synchManager))
 	{
 		assert(false);
 	}

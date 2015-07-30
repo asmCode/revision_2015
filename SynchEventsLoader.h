@@ -8,4 +8,5 @@ class SynchEventsLoader
 {
 public:
 	static bool LoadFromFile(const std::string& path, SynchManager* synchManager);
+	static bool Generate(SynchManager* synchManager);
 };

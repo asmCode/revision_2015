@@ -31,6 +31,32 @@ void Sphere::Awake()
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", "SpherePart", m_parts);
 }
 
+void Sphere::RollSpherePart()
+{
+	//int index = Random::GetInt(0, m_parts.size() - 1);
+	int index = 33;
+
+	PullOut* pullOut = new PullOut(0.34f, 0.8f);
+	m_parts[index]->QueueCommand(pullOut);
+
+	/*
+	SlideOut* slideOut = new SlideOut(0.5f, MathUtils::PI / 6.0f, sm::Vec3(1, 0, 0));
+	m_parts[index]->QueueCommand(slideOut);
+
+	SlideIn* slideIn = new SlideIn(0.5f);
+	m_parts[index]->QueueCommand(slideIn);
+	*/
+
+	RollOut* rollOut = new RollOut(0.34f, MathUtils::PI2 - 0.01f);
+	m_parts[index]->QueueCommand(rollOut);
+
+	RollIn* rollIn = new RollIn(0.34f);
+	m_parts[index]->QueueCommand(rollIn);
+
+	PullIn* pullIn = new PullIn(0.34f);
+	m_parts[index]->QueueCommand(pullIn);
+}
+
 void Sphere::Update()
 {
 	if (Input::GetKeyDown(KeyCode_O))

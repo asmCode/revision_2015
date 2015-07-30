@@ -4,6 +4,7 @@
 #include "../../FuturisEngine/Time.h"
 #include <Math/MathUtils.h>
 #include <Math/Animation/QuadOut.h>
+#include <Math/Animation/QuarticOut.h>
 
 RollIn::RollIn(float duration) :
 m_duration(duration),
@@ -19,7 +20,7 @@ bool RollIn::Update()
 {
 	m_time = MathUtils::Min(m_duration, m_time + Time::DeltaTime);
 
-	QuadOut<sm::Quat> curve;
+	QuarticOut<sm::Quat> curve;
 
 	m_transform->SetLocalRotation(curve.Evaluate(m_startRotation, m_spherePart->m_baseRotation, m_time / m_duration));
 

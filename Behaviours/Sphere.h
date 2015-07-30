@@ -15,6 +15,8 @@ public:
 	void Update();
 	void Awake();
 
+	void RollSpherePart();
+
 private:
 	std::vector<SpherePart*> m_parts;
 };

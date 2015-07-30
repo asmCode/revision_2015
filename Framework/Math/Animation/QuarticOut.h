@@ -2,6 +2,7 @@
 
 #include "IAnimationCurve.h"
 #include "../MathUtils.h"
+#include "../Quat.h"
 
 template <typename T>
 class QuarticOut : public IAnimationCurve<T>
@@ -17,3 +18,13 @@ public:
 	};
 
 };
+
+template <>
+sm::Quat QuarticOut<sm::Quat>::Evaluate(const sm::Quat& begin, const sm::Quat& end, float time)
+{
+	QuarticOut<float> timeCurve;
+
+	float quatTime = timeCurve.Evaluate(0.0f, 1.0f, time);
+
+	return sm::Quat::Slerp(begin, end, quatTime);
+}

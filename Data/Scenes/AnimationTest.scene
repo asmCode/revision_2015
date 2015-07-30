@@ -1,6 +1,10 @@
 <Scene name="AnimationTest">
 	<IncludeScene name="anim_test" />
 	<GameObjects>
+		<GameObject name="SceneController">
+			<Behaviour name="SceneController" />
+		</GameObject>
+		
 		<GameObject name="AnimationTest">
 			<Behaviour name="AnimationTest" />
 		</GameObject>

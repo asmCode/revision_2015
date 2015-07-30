@@ -4,6 +4,7 @@
 #include "../../FuturisEngine/Time.h"
 #include <Math/MathUtils.h>
 #include <Math/Animation/QuadOut.h>
+#include <Math/Animation/QuarticOut.h>
 
 PullOut::PullOut(float duration, float distance) :
 m_duration(duration),
@@ -21,7 +22,7 @@ bool PullOut::Update()
 {
 	m_time = MathUtils::Min(m_duration, m_time + Time::DeltaTime);
 
-	QuadOut<sm::Vec3> pullOutCurve;
+	QuarticOut<sm::Vec3> pullOutCurve;
 
 	m_transform->SetLocalPosition(pullOutCurve.Evaluate(m_spherePart->m_basePosition, m_pullOutPosition, m_time / m_duration));
 
