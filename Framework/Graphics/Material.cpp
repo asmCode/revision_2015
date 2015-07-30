@@ -40,9 +40,24 @@ void Material::SetShader(Shader* shader)
 	m_builtInShaderParams = BuiltInShaderParams::GetShaderParams(m_shader);
 }
 
+Shader* Material::GetShader() const
+{
+	return m_shader;
+}
+
 void Material::SetParameter(const std::string& name, float value)
 {
 	m_parameters[name].SetFloat(value);
+}
+
+sm::Vec3 Material::GetParameterVec3(const std::string& name)
+{
+	return m_parameters[name].GetVec3();
+}
+
+float Material::GetParameterFloat(const std::string& name)
+{
+	return m_parameters[name].GetFloat();
 }
 
 void Material::SetParameter(const std::string& name, const sm::Vec3& value)

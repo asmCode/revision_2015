@@ -57,6 +57,9 @@ public:
 	virtual bool IsOpacity() const;
 
 	void SetShader(Shader* shader);
+	Shader* GetShader() const;
+	sm::Vec3 GetParameterVec3(const std::string& name);
+	float GetParameterFloat(const std::string& name);
 	void SetParameter(const std::string& name, float value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
 	void SetParameter(const std::string& name, const sm::Vec4& value);
