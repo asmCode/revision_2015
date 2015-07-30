@@ -30,6 +30,9 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 {
 	if (synchEvent->GetId() == "beat1")
 	{
+		m_sphere->BlinkSpherePart(33, sm::Vec3(0.9f, 0.9f, 0.9f));
+		return;
+
 		const int totalCount = 54;
 		const int subCount = 20;
 

@@ -8,6 +8,7 @@
 class GameObject;
 template <typename T > class IAnimationCurve;
 class CommandBase;
+class Material;
 
 class SpherePart : public Behaviour
 {
@@ -18,6 +19,7 @@ class SpherePart : public Behaviour
 	friend class RollOut;
 	friend class RollIn;
 	friend class CommandBase;
+	friend class Blink;
 
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);
@@ -53,6 +55,8 @@ private:
 	sm::Quat m_baseRotation;
 	sm::Quat m_basePivotRotation;
 	sm::Vec3 m_direction;
+	sm::Vec3 m_baseColor;
+	Material* m_material;
 
 	GameObject* m_rotatePivot;
 

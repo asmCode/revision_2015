@@ -12,6 +12,7 @@
 #include "SpherePartCommands/SlideIn.h"
 #include "SpherePartCommands/RollOut.h"
 #include "SpherePartCommands/RollIn.h"
+#include "SpherePartCommands/Blink.h"
 #include "../DemoUtils.h"
 #include <Graphics/Material.h>
 #include <UserInput/Input.h>
@@ -75,12 +76,18 @@ void Sphere::RollSpherePart(int index)
 	m_parts[index]->QueueCommand(pullIn);
 }
 
+void Sphere::BlinkSpherePart(int index, const sm::Vec3& color)
+{
+	Blink* blink = new Blink(1.0f, color);
+	m_parts[index]->QueueCommand(blink);
+}
+
 void Sphere::Update()
 {
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];
-		renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(1, 0, 0));
+		renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(0.9f, 0.9f, 0.9f));
 	}
 	else if (Input::GetKey(KeyCode_K))
 	{

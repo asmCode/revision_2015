@@ -16,6 +16,7 @@ public:
 	void Awake();
 
 	void RollSpherePart(int index);
+	void BlinkSpherePart(int index, const sm::Vec3& color);
 
 private:
 	std::vector<SpherePart*> m_parts;

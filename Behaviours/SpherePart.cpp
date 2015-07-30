@@ -1,8 +1,10 @@
 #include "SpherePart.h"
-#include "../ScenesManager.h"Sphere
+#include "../ScenesManager.h"
 #include "../GameObject.h"
 #include "../Transform.h"
 #include "../Camera.h"
+#include <Graphics/Material.h>
+#include "../Renderable.h"
 #include "SpherePartCommands/CommandBase.h"
 #include <Math/Animation/QuadOut.h>
 #include <UserInput/Input.h>
@@ -31,39 +33,12 @@ void SpherePart::Awake()
 	m_baseRotation = GetGameObject()->GetTransform().GetLocalRotation();
 	m_basePivotRotation = m_rotatePivot->GetTransform().GetLocalRotation();
 	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
+	m_material = m_gameObject->GetRenderables()[0]->GetMaterial();
+	m_baseColor = m_material->GetParameterVec3("u_color");
 }
 
 void SpherePart::Update()
 {
-	/*
-	switch (m_state)
-	{
-	case State_Opening:
-		if (m_moveOutTime == 1.0f)
-		{
-			m_shiftTime += Time::DeltaTime;
-
-			sm::Quat rot = m_shiftCurve->Evaluate(m_baseRotation, m_shiftRotation, m_shiftTime);
-			rot.Normalize();
-			m_rotatePivot->GetTransform().SetRotation(rot);
-		}
-		else
-		{
-			m_moveOutTime += Time::DeltaTime;
-			m_moveOutTime = MathUtils::Clamp(m_moveOutTime, 0.0f, 1.0f);
-
-			if (m_moveOutTime == 1.0f)
-				GetGameObject()->GetTransform().SetParent(&m_rotatePivot->GetTransform());
-
-			GetGameObject()->GetTransform().SetPosition(m_moveOutCurve->Evaluate(m_basePosition, m_moveOutPosition, m_moveOutTime));
-		}
-		break;
-
-	default:
-		break;
-	}
-	*/
-
 	if (m_currentCommand == nullptr && m_commands.size() > 0)
 	{
 		m_currentCommand = m_commands.front();
