@@ -47,6 +47,8 @@ void Sphere::Awake()
 		material->SetParameter("u_specularLevel", commonMaterial->GetParameterFloat("u_specularLevel"));
 
 		m_parts[i]->GetGameObject()->GetRenderables()[0]->SetMaterial(material);
+
+		m_parts[i]->GetPivot()->SetParent(&GetGameObject()->GetTransform());
 	}
 }
 
@@ -55,7 +57,7 @@ void Sphere::RollSpherePart(int index)
 	//int index = Random::GetInt(0, m_parts.size() - 1);
 	//int index = 33;
 
-	PullOut* pullOut = new PullOut(0.34f, 1.2f);
+	PullOut* pullOut = new PullOut(0.32f, 1.2f);
 	m_parts[index]->QueueCommand(pullOut);
 
 	/*
@@ -66,24 +68,30 @@ void Sphere::RollSpherePart(int index)
 	m_parts[index]->QueueCommand(slideIn);
 	*/
 
-	RollOut* rollOut = new RollOut(0.34f, MathUtils::PI2 - 0.01f);
+	RollOut* rollOut = new RollOut(0.32f, MathUtils::PI2 - 0.01f);
 	m_parts[index]->QueueCommand(rollOut);
 
-	RollIn* rollIn = new RollIn(0.34f);
+	RollIn* rollIn = new RollIn(0.32f);
 	m_parts[index]->QueueCommand(rollIn);
 
-	PullIn* pullIn = new PullIn(0.34f);
+	PullIn* pullIn = new PullIn(0.32f);
 	m_parts[index]->QueueCommand(pullIn);
 }
 
 void Sphere::BlinkSpherePart(int index, const sm::Vec3& color)
 {
-	Blink* blink = new Blink(1.0f, color);
+	Blink* blink = new Blink(0.5f, color);
 	m_parts[index]->QueueCommand(blink);
 }
 
+float angle;
+
 void Sphere::Update()
 {
+	angle += Time::DeltaTime * 0.4f;
+
+	GetGameObject()->GetTransform().SetLocalRotation(sm::Quat::FromAngleAxis(angle, sm::Vec3(0, 1, 0)));
+
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];

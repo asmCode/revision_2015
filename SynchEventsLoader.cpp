@@ -33,7 +33,24 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {
-	//static const float FirstBlinkBeat = 
+	float time = 0.0f;
+	
+	///////////
+	static const float BlinkBeatFirst = 11.34f;
+	static const float BlinkBeatLast = 32.0f;
+	static const float BlinkBeatCount = 15.0f * 2; // w kazdym z nich sa 4 beaty
+
+	static const float BlinkBeatLength = BlinkBeatLast - BlinkBeatFirst;
+	static const float BlinkBeatSingle = BlinkBeatLength / (BlinkBeatCount - 0.0f);
+
+	time = BlinkBeatFirst;
+	for (uint32_t i = 0; i < (uint32_t)BlinkBeatCount; i++)
+	{
+		synchManager->Addevent(new SynchEvent("blink1", time));
+		time += BlinkBeatSingle;
+	}
+	//////////
+
 	static const float RollBeatFirst = 33.0f;
 	static const float RollBeatLast = 53.55f;
 	static const float RollBeatCount = 15.0f; // w kazdym z nich sa 4 beaty
@@ -41,7 +58,7 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	static const float RollBeatLength = RollBeatLast - RollBeatFirst;
 	static const float RollBeatSingle = RollBeatLength / (RollBeatCount - 0.0f);
 
-	float time = RollBeatFirst;
+	time = RollBeatFirst;
 	for (uint32_t i = 0; i < (uint32_t)RollBeatCount; i++)
 	{
 		synchManager->Addevent(new SynchEvent("beat1", time));

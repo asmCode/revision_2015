@@ -9,6 +9,7 @@ class GameObject;
 template <typename T > class IAnimationCurve;
 class CommandBase;
 class Material;
+class Transform;
 
 class SpherePart : public Behaviour
 {
@@ -30,6 +31,8 @@ public:
 	void Open();
 
 	void QueueCommand(CommandBase* command);
+
+	Transform* GetPivot() const;
 
 private:
 	enum State

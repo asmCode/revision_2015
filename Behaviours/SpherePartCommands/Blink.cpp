@@ -25,7 +25,7 @@ bool Blink::Update()
 {
 	m_time = MathUtils::Min(m_duration, m_time + Time::DeltaTime);
 
-	QuarticIn<sm::Vec3> curve;
+	QuadIn<sm::Vec3> curve;
 
 	m_spherePart->m_material->SetParameter("u_color", curve.Evaluate(m_color, m_spherePart->m_baseColor, m_time / m_duration));
 

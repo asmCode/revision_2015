@@ -28,11 +28,19 @@ void SceneController::Update()
 
 void SceneController::SynchEventFired(SynchEvent* synchEvent)
 {
-	if (synchEvent->GetId() == "beat1")
+	if (synchEvent->GetId() == "blink1")
 	{
-		m_sphere->BlinkSpherePart(33, sm::Vec3(0.9f, 0.9f, 0.9f));
-		return;
+		const int totalCount = 54;
+		const int subCount = 20;
 
+		int elements[totalCount];
+		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
+
+		for (int i = 0; i < subCount; i++)
+			m_sphere->BlinkSpherePart(elements[i], sm::Vec3(0.9f, 0.9f, 0.9f));
+	}
+	else if (synchEvent->GetId() == "beat1")
+	{
 		const int totalCount = 54;
 		const int subCount = 20;
 
