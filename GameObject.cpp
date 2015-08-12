@@ -9,7 +9,9 @@
 #include "../FuturisEngine/ComponentFlag.h"
 #include "../ScenesManager.h"
 #include "../Scenes/BaseScene.h"
+#include <Utils/Log.h>
 #include <stddef.h>
+#include <assert.h>
 
 GameObject::GameObject(const std::string& name) :
 	m_name(name),
@@ -134,5 +136,40 @@ const std::vector<Component*>& GameObject::GetComponents() const
 
 GameObject* GameObject::Instantiate(GameObject* prefab)
 {
-	return nullptr;
+	Log::LogT("Clonning %s", prefab->GetName().c_str());
+
+	//static const std::string nameSurfix = " (clone)";
+	static const std::string nameSurfix = "";
+
+	assert(prefab != nullptr);
+
+	GameObject* clone = new GameObject(prefab->GetName() + nameSurfix);
+
+	clone->GetTransform().SetPosition(prefab->GetTransform().GetPosition());
+	clone->GetTransform().SetRotation(prefab->GetTransform().GetRotation());
+	clone->GetTransform().SetLocalScale(prefab->GetTransform().GetLocalScale());
+
+	const std::vector<Component*>& components = prefab->GetComponents();
+	for (uint32_t i = 0; i < components.size(); i++)
+	{
+		clone->AddComponent(components[i]->GetComponentName());
+	}
+
+	const std::vector<Renderable*>& renderables = prefab->GetRenderables();
+	for (uint32_t i = 0; i < renderables.size(); i++)
+	{
+		Renderable* renderable = new Renderable(clone, renderables[i]->GetMesh(), renderables[i]->GetMaterial(), 0, renderables[i]->GetLayerId());
+
+		clone->AddRenderable(renderable);
+	}
+
+	const std::vector<Transform*>& children = prefab->GetTransform().GetChildren();
+	for (uint32_t i = 0; i < children.size(); i++)
+	{
+		GameObject* child = GameObject::Instantiate(children[i]->GetGameObject());
+		child->GetTransform().SetParent(&clone->GetTransform());
+	}
+
+	return clone;
 }
+
