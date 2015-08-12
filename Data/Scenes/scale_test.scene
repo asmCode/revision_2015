@@ -1,0 +1,27 @@
+<Scene name="scale_test">
+	<GameObjects>
+		<GameObject name="Camera001">
+			<Transform position="-0.458478,-0.000000,195.600784" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Camera2 fov="0.785398" near_plane="1.000000" far_plane="1000.000000" />
+		</GameObject>
+		<GameObject name="Teapot001">
+			<Transform position="81.066879,26.595333,0.000001" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Teapot001" material="01 - Default" />
+		</GameObject>
+		<GameObject name="Teapot002">
+			<Transform position="-30.873539,21.608950,-17.090263" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Teapot002" material="01 - Default" />
+		</GameObject>
+		<GameObject name="Omni001">
+			<Transform position="-1.655183,-0.000001,144.438721" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Light type="point" color="1.000000,1.000000,1.000000" brightness="1.000000" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="01 - Default" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.588235,0.588235,0.588235" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

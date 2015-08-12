@@ -1,0 +1,40 @@
+<Scene name="mecharm">
+	<GameObjects>
+		<GameObject name="MechArm">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Behaviour name="MechArm" />
+		</GameObject>
+		<GameObject name="Box005" parent="MechArm">
+			<Transform position="0.000000,0.000000,2.881370" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box005" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Box006" parent="MechArm">
+			<Transform position="-0.000000,-0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box006" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Arm1" parent="Box006">
+			<Transform position="-0.000000,0.000001,3.350686" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Box003" parent="Arm1">
+			<Transform position="0.288137,0.144069,2.199954" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box003" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Box001" parent="Arm1">
+			<Transform position="-0.288137,0.144069,2.199954" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box001" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Arm2" parent="Arm1">
+			<Transform position="-0.000000,-0.000000,4.519449" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Arm2" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Arrow" parent="Arm2">
+			<Transform position="0.000001,0.000000,4.510027" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Arrow" material="Fiolet" />
+		</GameObject>
+		<GameObject name="End" parent="Arrow">
+			<Transform position="0.000000,-0.000001,0.873074" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+	</Materials>
+</Scene>

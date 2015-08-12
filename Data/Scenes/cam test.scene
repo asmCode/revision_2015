@@ -1,0 +1,42 @@
+<Scene name="cam test">
+	<GameObjects>
+		<GameObject name="futuris916">
+			<Transform position="-5028.079102,313.793396,-562.292053" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="futuris916" material="blacha" />
+		</GameObject>
+		<GameObject name="Camera001">
+			<Transform position="2.040622,372.024689,-123.997658" rotation="1.564085,-0.001635,-0.999997,0.001624" scale="0.999998,1.000000,1.000002" />
+			<Camera fov="1.039501" near_plane="1.000000" far_plane="8000.000000" />
+			<Behaviour name="FppCamera">
+				<Parameters>
+					<Parameter name="move_sensitivity" type="float" value="10.0" />
+					<Parameter name="rotate_sensitivity" type="float" value="0.005" />
+				</Parameters>
+			</Behaviour>
+		</GameObject>
+		<GameObject name="Teapot001">
+			<Transform position="-99.491730,372.601929,-148.528656" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Teapot001" material="Material #98" />
+		</GameObject>
+		<GameObject name="Omni001">
+			<Transform position="-10.349266,364.080902,-123.379639" rotation="4.188790,0.577350,-0.577350,0.577350" scale="1.000000,1.000000,1.000000" />
+			<Light type="point" color="1.000000,1.000000,1.000000" brightness="1.000000" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Material #98" shader="SolidDiffSpec">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.588000,0.588000,0.588000" />
+				<Parameter name="u_glossiness" type="float" value="6.400000" />
+				<Parameter name="u_specularLevel" type="float" value="0.070000" />
+			</Parameters>
+		</Material>
+		<Material name="blacha" shader="TexDiffSpec">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="03" />
+				<Parameter name="u_glossiness" type="float" value="6.400000" />
+				<Parameter name="u_specularLevel" type="float" value="0.180000" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

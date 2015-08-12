@@ -1,0 +1,69 @@
+<Scene name="room">
+	<Ribbons />
+	<StaticMeshes>
+		<Static mesh_name="Plane001" material_name="Material #25" />
+		<Static mesh_name="Plane002" material_name="Material #26" />
+		<Static mesh_name="Plane003" material_name="Material #27" />
+		<Static mesh_name="Plane004" material_name="Material #30" />
+		<Static mesh_name="Plane005" material_name="Material #29" />
+	</StaticMeshes>
+	<Guys />
+	<Elements />
+	<Materials>
+		<Material>
+			<Name value="Material #25" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="Material #26" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="Material #27" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="Material #29" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="Material #30" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+	</Materials>
+</Scene>

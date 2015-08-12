@@ -1,0 +1,54 @@
+<Scene name="s1">
+	<GameObjects>
+		<GameObject name="Box001">
+			<Transform position="-0.488036,-0.000001,-0.905305" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box001" material="Material #26" />
+		</GameObject>
+		<GameObject name="Box002">
+			<Transform position="0.285782,-0.000001,-0.905305" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box002" material="Material #27" />
+		</GameObject>
+		<GameObject name="Box003">
+			<Transform position="1.059601,-0.000001,-0.905305" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box003" material="Material #28" />
+		</GameObject>
+		<GameObject name="Box004">
+			<Transform position="-1.261854,-0.000001,-0.905305" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box004" material="Material #25" />
+		</GameObject>
+		<GameObject name="Omni001">
+			<Transform position="0.926603,48.529697,41.772015" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Light type="point" color="1.000000,1.000000,1.000000" brightness="1.000000" />
+		</GameObject>
+		<GameObject name="Camera001">
+			<Transform position="33.567455,-28.219473,16.689205" rotation="0.769924,-0.840194,-0.513355,0.174760" scale="1.000002,1.000003,1.000001" />
+			<Camera fov="0.785398" near_plane="1.000000" far_plane="1000.000000" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Material #25" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.815686,0.000000,0.847059" />
+			</Parameters>
+		</Material>
+		<Material name="Material #26" shader="TexDiff">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="wall1" />
+			</Parameters>
+		</Material>
+		<Material name="Material #27" shader="TexDiffSpec">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="ceiling" />
+				<Parameter name="u_glossiness" type="float" value="30.719999" />
+				<Parameter name="u_specularLevel" type="float" value="0.610000" />
+			</Parameters>
+		</Material>
+		<Material name="Material #28" shader="SolidDiffSpec">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.000000,0.545098,0.113725" />
+				<Parameter name="u_glossiness" type="float" value="39.040001" />
+				<Parameter name="u_specularLevel" type="float" value="0.800000" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

@@ -18,6 +18,9 @@ void SceneController::Awake()
 	SynchManager::GetInstance()->RegisterObserver(this);
 
 	m_sphere = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
+
+	GameObject* clone = GameObject::Instantiate(m_sphere->GetGameObject());
+	clone->GetTransform().SetPosition(sm::Vec3(20, 0, 0));
 }
 
 void SceneController::Update()

@@ -1,0 +1,33 @@
+<Scene name="SphereTest">
+	<IncludeScene name="Sphere" />
+	<IncludeScene name="mecharm" />
+	<GameObjects>
+		<GameObject name="SceneController">
+			<Behaviour name="SceneController" />
+		</GameObject>
+	
+		<GameObject name="kamerka">
+			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
+			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" />
+			<Light />
+			<Behaviour name="FppCamera">
+				<Parameters>
+					<Parameter name="move_sensitivity" type="float" value="20.0" />
+					<Parameter name="rotate_sensitivity" type="float" value="0.005" />
+				</Parameters>
+			</Behaviour>
+		</GameObject>
+		
+	<GameObject name="Sphere">
+		<Behaviour name="Sphere" />
+	</GameObject>
+		
+	</GameObjects>
+	<Materials>
+		<Material name="ErrorMaterial" shader="Solid">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="1.0,0.0,1.0" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

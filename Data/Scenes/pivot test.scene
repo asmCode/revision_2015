@@ -1,0 +1,24 @@
+<Scene name="pivot test">
+	<GameObjects>
+		<GameObject name="Box001">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="3.141593,-0.923880,-0.382683,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box001" material="Blue" />
+		</GameObject>
+		<GameObject name="Box002" parent="Box001">
+			<Transform position="2.000000,-0.200000,0.000000" rotation="1.570796,-0.000000,0.000000,1.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box002" material="Red" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Blue" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.000000,0.047059,1.000000" />
+			</Parameters>
+		</Material>
+		<Material name="Red" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="1.000000,0.000000,0.000000" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

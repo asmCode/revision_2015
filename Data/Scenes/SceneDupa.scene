@@ -1,0 +1,297 @@
+<Scene name="SceneDupa">
+	<Ribbons>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.rib1" stay="0" material_name="_ludekinitialShadingGroup" />
+			<Path spread="0.4" triangle_scale="0.5" delay="0.5" dont_render="1">
+				<RibbonWeights>
+					<Key time="0" value="0" />
+					<Key time="82.594" value="1" />
+					<Key time="84.3956" value="1" />
+					<Key time="87.5727" value="0" />
+					<Key time="89.2377" value="0" />
+					<Key time="89.939" value="1" />
+					<Key time="96.3333" value="1" />
+					<Key time="104.133" value="0" />
+				</RibbonWeights>
+				<Key time="82.594" position="-84.537399;6.576451;26.974241" />
+				<Key time="83.3723" position="-89.058327;7.273686;21.718996" />
+				<Key time="84.1431" position="-92.781982;6.576451;17.247211" />
+				<Key time="85.2721" position="-95.304329;6.807433;13.547911" />
+				<Key time="86.241" position="-96.422455;6.576451;10.325159" />
+				<Key time="87.1721" position="-98.357124;6.576451;8.104735" />
+				<Key time="88.236" position="-99.820221;6.335609;4.624988" />
+				<Key time="89.1006" position="-101.499733;7.105549;1.108925" />
+				<Key time="90.5" position="-104.885422;6.576451;-4.078359" />
+				<Key time="91.6667" position="-110.248917;9.015941;-4.311666" />
+				<Key time="92.6" position="-107.826889;9.082636;0.804755" />
+				<Key time="93.6333" position="-104.124718;8.326654;-1.171786" />
+				<Key time="94.4" position="-107.827156;6.576451;-9.867920" />
+				<Key time="95.1171" position="-111.289185;6.426899;-14.190763" />
+				<Key time="95.8892" position="-112.212715;6.576451;-17.286346" />
+				<Key time="97.4777" position="-116.137459;5.783021;-21.872797" />
+				<Key time="99.4063" position="-119.069672;6.212454;-28.258980" />
+				<Key time="101.22" position="-122.957428;5.925081;-33.214401" />
+				<Key time="105.192" position="-128.150848;6.576451;-43.502190" />
+			</Path>
+		</Ribbon>
+	</Ribbons>
+	<StaticMeshes>
+		<Static mesh_name="teren" material_name="budynki" />
+		<Static mesh_name="droga1" material_name="budynki" />
+		<Static mesh_name="droga2" material_name="budynki" />
+		<Static mesh_name="makieta110" material_name="budynki" />
+		<Static mesh_name="makieta109" material_name="budynki" />
+		<Static mesh_name="makieta108" material_name="budynki" />
+		<Static mesh_name="makieta103" material_name="budynki" />
+		<Static mesh_name="makieta101" material_name="budynki" />
+		<Static mesh_name="makieta098" material_name="budynki" />
+		<Static mesh_name="makieta091" material_name="budynki" />
+		<Static mesh_name="makieta088" material_name="budynki" />
+		<Static mesh_name="makieta087" material_name="budynki" />
+		<Static mesh_name="makieta069" material_name="budynki" />
+		<Static mesh_name="makieta068" material_name="budynki" />
+		<Static mesh_name="makieta067" material_name="budynki" />
+		<Static mesh_name="makieta066" material_name="budynki" />
+		<Static mesh_name="makieta065" material_name="budynki" />
+		<Static mesh_name="makieta064" material_name="budynki" />
+		<Static mesh_name="makieta063" material_name="budynki" />
+		<Static mesh_name="makieta062" material_name="budynki" />
+		<Static mesh_name="makieta40" material_name="budynki" />
+		<Static mesh_name="makieta39" material_name="budynki" />
+		<Static mesh_name="makieta38" material_name="budynki" />
+		<Static mesh_name="makieta37" material_name="budynki" />
+		<Static mesh_name="makieta36" material_name="Default" />
+		<Static mesh_name="makieta35" material_name="budynki" />
+		<Static mesh_name="makieta34" material_name="budynki" />
+		<Static mesh_name="makieta33" material_name="budynki" />
+		<Static mesh_name="makieta28" material_name="budynki" />
+		<Static mesh_name="makieta25" material_name="budynki" />
+		<Static mesh_name="makieta24" material_name="budynki" />
+		<Static mesh_name="makieta23" material_name="budynki" />
+		<Static mesh_name="makieta22" material_name="budynki" />
+		<Static mesh_name="makieta21" material_name="budynki" />
+		<Static mesh_name="makieta20" material_name="budynki" />
+		<Static mesh_name="makieta19" material_name="budynki" />
+		<Static mesh_name="makieta15" material_name="budynki" />
+		<Static mesh_name="makieta14" material_name="budynki" />
+		<Static mesh_name="makieta10" material_name="budynki" />
+		<Static mesh_name="makieta09" material_name="budynki" />
+		<Static mesh_name="makieta06" material_name="budynki" />
+		<Static mesh_name="makieta05" material_name="budynki" />
+		<Static mesh_name="box286" material_name="budynki" />
+		<Static mesh_name="box289" material_name="budynki" />
+		<Static mesh_name="box293" material_name="budynki" />
+		<Static mesh_name="box298" material_name="budynki" />
+		<Static mesh_name="box299" material_name="budynki" />
+		<Static mesh_name="box300" material_name="budynki" />
+		<Static mesh_name="box301" material_name="budynki" />
+		<Static mesh_name="box303" material_name="budynki" />
+		<Static mesh_name="box305" material_name="budynki" />
+		<Static mesh_name="box306" material_name="budynki" />
+		<Static mesh_name="box307" material_name="budynki" />
+		<Static mesh_name="box308" material_name="budynki" />
+		<Static mesh_name="makieta111" material_name="budynki" />
+		<Static mesh_name="makieta113" material_name="budynki" />
+		<Static mesh_name="makieta114" material_name="budynki" />
+		<Static mesh_name="makieta115" material_name="budynki" />
+		<Static mesh_name="makieta116" material_name="budynki" />
+		<Static mesh_name="makieta117" material_name="budynki" />
+		<Static mesh_name="makieta118" material_name="budynki" />
+		<Static mesh_name="makieta119" material_name="budynki" />
+		<Static mesh_name="makieta120" material_name="budynki" />
+		<Static mesh_name="makieta121" material_name="budynki" />
+		<Static mesh_name="makieta123" material_name="budynki" />
+		<Static mesh_name="box355" material_name="budynki" />
+		<Static mesh_name="box356" material_name="budynki" />
+		<Static mesh_name="box357" material_name="budynki" />
+		<Static mesh_name="box358" material_name="budynki" />
+		<Static mesh_name="box359" material_name="budynki" />
+		<Static mesh_name="box360" material_name="budynki" />
+		<Static mesh_name="box361" material_name="budynki" />
+		<Static mesh_name="box362" material_name="budynki" />
+		<Static mesh_name="box363" material_name="budynki" />
+		<Static mesh_name="box364" material_name="budynki" />
+		<Static mesh_name="box365" material_name="budynki" />
+		<Static mesh_name="box366" material_name="budynki" />
+		<Static mesh_name="box367" material_name="budynki" />
+		<Static mesh_name="box368" material_name="budynki" />
+		<Static mesh_name="box369" material_name="budynki" />
+		<Static mesh_name="box370" material_name="budynki" />
+		<Static mesh_name="box371" material_name="budynki" />
+		<Static mesh_name="box372" material_name="budynki" />
+		<Static mesh_name="makieta125" material_name="budynki" />
+		<Static mesh_name="makieta126" material_name="budynki" />
+		<Static mesh_name="makieta128" material_name="budynki" />
+		<Static mesh_name="makieta130" material_name="budynki" />
+		<Static mesh_name="makieta131" material_name="budynki" />
+		<Static mesh_name="makieta132" material_name="budynki" />
+		<Static mesh_name="makieta133" material_name="budynki" />
+		<Static mesh_name="makieta137" material_name="budynki" />
+		<Static mesh_name="makieta140" material_name="budynki" />
+		<Static mesh_name="makieta141" material_name="budynki" />
+		<Static mesh_name="makieta142" material_name="budynki" />
+		<Static mesh_name="makieta144" material_name="budynki" />
+		<Static mesh_name="makieta145" material_name="budynki" />
+		<Static mesh_name="box1252" material_name="budynki" />
+		<Static mesh_name="box462" material_name="budynki" />
+		<Static mesh_name="box1290" material_name="budynki" />
+		<Static mesh_name="box1292" material_name="budynki" />
+		<Static mesh_name="box1293" material_name="budynki" />
+		<Static mesh_name="box1297" material_name="budynki" />
+		<Static mesh_name="box1301" material_name="budynki" />
+		<Static mesh_name="box2233" material_name="budynki" />
+		<Static mesh_name="box2234" material_name="budynki" />
+		<Static mesh_name="box2235" material_name="budynki" />
+		<Static mesh_name="box2236" material_name="budynki" />
+		<Static mesh_name="box2237" material_name="budynki" />
+		<Static mesh_name="box2238" material_name="budynki" />
+		<Static mesh_name="box2239" material_name="budynki" />
+		<Static mesh_name="box2240" material_name="budynki" />
+		<Static mesh_name="box2241" material_name="budynki" />
+		<Static mesh_name="box2242" material_name="budynki" />
+		<Static mesh_name="box2243" material_name="budynki" />
+		<Static mesh_name="box2245" material_name="budynki" />
+		<Static mesh_name="box2248" material_name="budynki" />
+		<Static mesh_name="Box138" material_name="budynki" />
+		<Static mesh_name="Box139" material_name="budynki" />
+		<Static mesh_name="tablica002" material_name="budynki" />
+		<Static mesh_name="tablica003" material_name="budynki" />
+		<Static mesh_name="tablica004" material_name="budynki" />
+		<Static mesh_name="latarnia009" material_name="budynki" />
+		<Static mesh_name="latarnia010" material_name="budynki" />
+		<Static mesh_name="latarnia011" material_name="budynki" />
+		<Static mesh_name="latarnia012" material_name="budynki" />
+		<Static mesh_name="latarnia013" material_name="budynki" />
+		<Static mesh_name="latarnia014" material_name="budynki" />
+		<Static mesh_name="latarnia017" material_name="budynki" />
+		<Static mesh_name="latarnia018" material_name="budynki" />
+		<Static mesh_name="latarnia027" material_name="budynki" />
+		<Static mesh_name="latarnia028" material_name="budynki" />
+		<Static mesh_name="latarnia029" material_name="budynki" />
+		<Static mesh_name="latarnia030" material_name="budynki" />
+		<Static mesh_name="latarnia031" material_name="budynki" />
+		<Static mesh_name="latarnia032" material_name="budynki" />
+		<Static mesh_name="latarnia033" material_name="budynki" />
+		<Static mesh_name="latarnia034" material_name="budynki" />
+		<Static mesh_name="latarnia035" material_name="budynki" />
+		<Static mesh_name="latarnia036" material_name="budynki" />
+		<Static mesh_name="pCube020" material_name="budynki" />
+		<Static mesh_name="pCylinder002" material_name="budynki" />
+		<Static mesh_name="pCube021" material_name="budynki" />
+		<Static mesh_name="pCylinder003" material_name="budynki" />
+		<Static mesh_name="pCube023" material_name="budynki" />
+		<Static mesh_name="pCylinder005" material_name="budynki" />
+		<Static mesh_name="pCube024" material_name="budynki" />
+		<Static mesh_name="pCylinder006" material_name="budynki" />
+		<Static mesh_name="pCube025" material_name="budynki" />
+		<Static mesh_name="pCylinder007" material_name="budynki" />
+		<Static mesh_name="pCube026" material_name="budynki" />
+		<Static mesh_name="pCylinder008" material_name="budynki" />
+		<Static mesh_name="pCube028" material_name="budynki" />
+		<Static mesh_name="pCylinder010" material_name="budynki" />
+		<Static mesh_name="reklama001" material_name="budynki" />
+		<Static mesh_name="reklama002" material_name="budynki" />
+		<Static mesh_name="przystane0" material_name="budynki" />
+		<Static mesh_name="przystan18" material_name="budynki" />
+		<Static mesh_name="przystan17" material_name="budynki" />
+		<Static mesh_name="przystan16" material_name="budynki" />
+		<Static mesh_name="przystane5" material_name="budynki" />
+		<Static mesh_name="przystan14" material_name="budynki" />
+		<Static mesh_name="przystane6" material_name="budynki" />
+		<Static mesh_name="przystane7" material_name="budynki" />
+		<Static mesh_name="przystane3" material_name="budynki" />
+		<Static mesh_name="przystane8" material_name="budynki" />
+		<Static mesh_name="przystan10" material_name="budynki" />
+		<Static mesh_name="przystan12" material_name="budynki" />
+		<Static mesh_name="przystan13" material_name="budynki" />
+		<Static mesh_name="przystan15" material_name="budynki" />
+		<Static mesh_name="przystane4" material_name="budynki" />
+		<Static mesh_name="przystan11" material_name="budynki" />
+		<Static mesh_name="przystane9" material_name="budynki" />
+		<Static mesh_name="przystane2" material_name="budynki" />
+		<Static mesh_name="przystane1" material_name="budynki" />
+		<Static mesh_name="przystane010" material_name="budynki" />
+		<Static mesh_name="przystane011" material_name="budynki" />
+		<Static mesh_name="przystan019" material_name="budynki" />
+		<Static mesh_name="przystan020" material_name="budynki" />
+		<Static mesh_name="przystan021" material_name="budynki" />
+		<Static mesh_name="przystane012" material_name="budynki" />
+		<Static mesh_name="przystan022" material_name="budynki" />
+		<Static mesh_name="przystane013" material_name="budynki" />
+		<Static mesh_name="przystane014" material_name="budynki" />
+		<Static mesh_name="przystane015" material_name="budynki" />
+		<Static mesh_name="przystan023" material_name="budynki" />
+		<Static mesh_name="przystan024" material_name="budynki" />
+		<Static mesh_name="przystan025" material_name="budynki" />
+		<Static mesh_name="przystan026" material_name="budynki" />
+		<Static mesh_name="przystane016" material_name="budynki" />
+		<Static mesh_name="przystan027" material_name="budynki" />
+		<Static mesh_name="przystane017" material_name="budynki" />
+		<Static mesh_name="przystane018" material_name="budynki" />
+		<Static mesh_name="przystane019" material_name="budynki" />
+		<Static mesh_name="hydrant" material_name="budynki" />
+		<Static mesh_name="hydrant001" material_name="budynki" />
+		<Static mesh_name="slup" material_name="budynki" />
+		<Static mesh_name="slup001" material_name="budynki" />
+		<Static mesh_name="slup002" material_name="budynki" />
+		<Static mesh_name="slup006" material_name="budynki" />
+		<Static mesh_name="slup007" material_name="budynki" />
+		<Static mesh_name="slup008" material_name="budynki" />
+		<Static mesh_name="slup009" material_name="budynki" />
+	</StaticMeshes>
+	<Guys>
+		<Guy id="1" ribbon_name="rib1" material_name="green">
+			<Path spread="1" triangle_scale="0.5" delay="4">
+				<Key time="82.6333" position="-90.254120;5.745838;20.739618" />
+				<Key time="105.033" position="-128.123032;4.532310;-43.539562" />
+			</Path>
+			<AnimationIndex />
+		</Guy>
+	</Guys>
+	<Materials>
+		<Material>
+			<Name value="Default" />
+			<Diffuse value="0.700000;0.700000;0.700000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="_ludekinitialShadingGroup" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="budynki" />
+			<Diffuse value="0.700000;0.700000;0.700000" />
+			<Opacity value="0.05" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="0.8" />
+			<SolidGlowMultiplier value="0" />
+			<WireGlowPower value="0.2" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="green" />
+			<Diffuse value="0.529412;0.917647;0.000000" />
+			<Opacity value="0.4" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="0.8" />
+			<SolidGlowMultiplier value="0.8" />
+			<WireGlowPower value="0.8" />
+			<WireGlowMultiplier value="1.2" />
+		</Material>
+	</Materials>
+</Scene>

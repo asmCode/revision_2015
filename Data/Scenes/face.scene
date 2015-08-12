@@ -1,0 +1,37 @@
+<Scene name="face">
+	<GameObjects>
+		<GameObject name="object0" layer="1">
+			<Transform position="0.000000,-0.000001,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="0.022209,0.022209,0.022209" />
+			<Mesh name="object0" material="_male headMaterial0" />
+		</GameObject>
+		<GameObject name="Sphere001" layer="1">
+			<Transform position="0.122031,0.034195,0.201679" rotation="1.570796,-1.000000,-0.000000,-0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Sphere001" material="_male headMaterial0" />
+		</GameObject>
+		<GameObject name="Sphere002" layer="1">
+			<Transform position="-0.122000,0.034195,0.201679" rotation="1.570796,-1.000000,-0.000000,-0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Sphere002" material="_male headMaterial0" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="_male headMaterial0" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.588000,0.588000,0.588000" />
+			</Parameters>
+		</Material>
+		<Material name="Replace1" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="1,0,0" />
+			</Parameters>
+		</Material>
+		<Material name="Replace2" shader="SolidDiff">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0,1,0" />
+			</Parameters>
+		</Material>
+		<Material name="DepthByZ" shader="DepthByZ">
+			<Parameters>
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

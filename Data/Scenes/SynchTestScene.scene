@@ -1,0 +1,31 @@
+<Scene name="SynchTestScene">
+	<Ribbons />
+	<StaticMeshes />
+	<Guys />
+	<Elements>
+		<BlinkStatic id="6" mesh_name="scene.BlinkStatic.6" material_name="01 - Default" />
+		<BlinkStatic id="2" mesh_name="scene.BlinkStatic.2" material_name="01 - Default" />
+		<BlinkStatic id="3" mesh_name="scene.BlinkStatic.3" material_name="01 - Default" />
+		<BlinkStatic id="9" mesh_name="scene.BlinkStatic.9" material_name="01 - Default" />
+		<BlinkStatic id="11" mesh_name="scene.BlinkStatic.11" material_name="01 - Default" />
+		<BlinkStatic id="7" mesh_name="scene.BlinkStatic.7" material_name="01 - Default" />
+		<BlinkStatic id="10" mesh_name="scene.BlinkStatic.10" material_name="01 - Default" />
+		<BlinkStatic id="1" mesh_name="scene.BlinkStatic.1" material_name="01 - Default" />
+		<BlinkStatic id="4" mesh_name="scene.BlinkStatic.4" material_name="01 - Default" />
+		<BlinkStatic id="5" mesh_name="scene.BlinkStatic.5" material_name="01 - Default" />
+		<BlinkStatic id="8" mesh_name="scene.BlinkStatic.8" material_name="01 - Default" />
+	</Elements>
+	<Materials>
+		<Material>
+			<Name value="01 - Default" />
+			<Diffuse value="0.588235;0.588235;0.588235" />
+			<Opacity value="0.2" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="0.5" />
+			<SolidGlowMultiplier value="0.5" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+	</Materials>
+</Scene>
