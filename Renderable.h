@@ -28,8 +28,6 @@ public:
 	void SetMaterial(Material* material);
 	Material* GetMaterial() const;
 
-	sm::Matrix Transform;
-
 	void SetActive(bool active);
 	bool IsActive() const;
 	int GetOrder() const;
