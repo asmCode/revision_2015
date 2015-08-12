@@ -18,6 +18,7 @@ public:
 
 	void RollSpherePart(int index);
 	void BlinkSpherePart(int index, const sm::Vec3& color);
+	void OpenWithMechArms();
 
 private:
 	std::vector<SpherePart*> m_parts;

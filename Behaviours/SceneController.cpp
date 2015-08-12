@@ -51,5 +51,9 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 		for (int i = 0; i < subCount; i++)
 			m_sphere->RollSpherePart(elements[i]);
 	}
+	else if (synchEvent->GetId() == "open_mech1")
+	{
+		m_sphere->OpenWithMechArms();
+	}
 }
 

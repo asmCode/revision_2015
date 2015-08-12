@@ -14,6 +14,7 @@
 #include "SpherePartCommands/RollOut.h"
 #include "SpherePartCommands/RollIn.h"
 #include "SpherePartCommands/Blink.h"
+#include "SpherePartCommands/PullOutWithNoise.h"
 #include "../DemoUtils.h"
 #include <Graphics/Material.h>
 #include <UserInput/Input.h>
@@ -88,26 +89,39 @@ void Sphere::BlinkSpherePart(int index, const sm::Vec3& color)
 	m_parts[index]->QueueCommand(blink);
 }
 
+void Sphere::OpenWithMechArms()
+{
+	for (uint32_t i = 0; i < m_parts.size(); i++)
+	{
+		PullOutWithNoise* pullOutWithNoise = new PullOutWithNoise(0.32f, 1.0f);
+		m_parts[i]->QueueCommand(pullOutWithNoise);
+	}
+}
+
 float angle;
 
 void Sphere::Update()
 {
-	/*
+	for (uint32_t i = 0; i < m_parts.size(); i++)
+	{
+		m_mechArms[i]->SetTarget(m_parts[i]->GetGameObject()->GetTransform().GetPosition());
+	}
+
 	angle += Time::DeltaTime * 0.4f;
 
 	GetGameObject()->GetTransform().SetLocalRotation(
 		sm::Quat::FromAngleAxis(MathUtils::PI / -6, sm::Vec3(1, 0, 0)) *
 		sm::Quat::FromAngleAxis(angle, sm::Vec3(0, 1, 0)));
 	GetGameObject()->GetTransform().SetLocalPosition(sm::Vec3(0, 0, -45));
-	*/
 
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];
 		renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(0.9f, 0.9f, 0.9f));
 	}
-	else if (Input::GetKey(KeyCode_K))
+	else if (Input::GetKeyDown(KeyCode_K))
 	{
+		OpenWithMechArms();
 	}
 }
 
@@ -119,9 +133,11 @@ void Sphere::CreateMechArms()
 	{
 		GameObject* clone = GameObject::Instantiate(prefab);
 
-		clone->GetTransform().SetPosition(m_parts[i]->GetGameObject()->GetTransform().GetPosition());
+		clone->GetTransform().SetPosition(m_parts[i]->GetGameObject()->GetTransform().GetPosition() * 0.3f);
 		clone->GetTransform().SetForward(m_parts[i]->GetDirection());
 
 		m_mechArms.push_back(dynamic_cast<MechArm*>(clone->GetComponent("MechArm")));
+
+		clone->GetTransform().SetParent(&GetGameObject()->GetTransform());
 	}
 }

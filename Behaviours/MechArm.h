@@ -16,6 +16,7 @@ public:
 	void Update();
 	void Awake();
 
+	void SetTarget(const sm::Vec3& target);
 
 private:
 	Transform* m_base;
@@ -26,6 +27,8 @@ private:
 
 	float m_arm1Length;
 	float m_arm2Length;
+
+	sm::Vec3 m_target;
 
 	void MechArm::ArmResolver(
 		const sm::Vec3 &basePosition,

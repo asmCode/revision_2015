@@ -8,7 +8,8 @@
 #include <Math/MathUtils.h>
 
 MechArm::MechArm(GameObject* gameObject, const std::string& name) :
-	Behaviour(gameObject, name)
+Behaviour(gameObject, name),
+m_target(0, 0, 0)
 {
 }
 
@@ -26,6 +27,11 @@ void MechArm::Awake()
 	m_arm2Length = (m_arrow->GetPosition() - m_arm2->GetPosition()).GetLength();
 
 	endPos = m_end->GetPosition();
+}
+
+void MechArm::SetTarget(const sm::Vec3& target)
+{
+	m_target = target;
 }
 
 void MechArm::Update()
@@ -62,6 +68,8 @@ void MechArm::Update()
 		endPos.z += moveValue;
 	}
 
+	endPos = m_target;
+
 	float baseAngle;
 	sm::Vec3 arm1Direction;
 	sm::Vec3 arm2Direction;
@@ -79,7 +87,7 @@ void MechArm::Update()
 	m_arm2->SetRotation(sm::Quat::LookRotation(arm2Direction));
 	
 	
-	GraphicsLog::AddSegment(endPos, endPos + sm::Vec3(0, 0.2f, 0.0f));
+	//GraphicsLog::AddSegment(endPos, endPos + sm::Vec3(0, 0.2f, 0.0f));
 	//GraphicsLog::AddSegment(m_arm1->GetPosition(), m_arm1->GetPosition() + arm1Direction, sm::Vec3(1, 0, 0));
 	//GraphicsLog::AddSegment(m_arm2->GetPosition(), m_arm2->GetPosition() + arm2Direction, sm::Vec3(0, 1, 0));	
 }

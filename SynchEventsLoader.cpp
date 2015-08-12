@@ -33,8 +33,10 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {
+
+
 	float time = 0.0f;
-	
+	/*
 	///////////
 	static const float BlinkBeatFirst = 11.34f;
 	static const float BlinkBeatLast = 32.0f;
@@ -50,7 +52,7 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 		time += BlinkBeatSingle;
 	}
 	//////////
-
+	*/
 	static const float RollBeatFirst = 33.0f;
 	static const float RollBeatLast = 53.55f;
 	static const float RollBeatCount = 15.0f; // w kazdym z nich sa 4 beaty
@@ -64,6 +66,23 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 		synchManager->Addevent(new SynchEvent("beat1", time));
 		time += RollBeatSingle;
 	}
+	
+
+	///////////
+	static const float OpenMechArmBeatFirst = 54.88f;
+	static const float OpenMechArmBeatLast = 65.8f;
+	static const float OpenMechArmBeatCount = 8;
+
+	static const float OpenMechArmBeatLength = OpenMechArmBeatLast - OpenMechArmBeatFirst;
+	static const float OpenMechArmBeatSingle = OpenMechArmBeatLength / (OpenMechArmBeatCount - 0.0f);
+
+	time = OpenMechArmBeatFirst;
+	for (uint32_t i = 0; i < (uint32_t)OpenMechArmBeatCount; i++)
+	{
+		synchManager->Addevent(new SynchEvent("open_mech1", time));
+		time += OpenMechArmBeatSingle;
+	}
+	//////////
 
 	return true;
 }

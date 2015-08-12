@@ -21,6 +21,8 @@ class SpherePart : public Behaviour
 	friend class RollIn;
 	friend class CommandBase;
 	friend class Blink;
+	friend class PullOutWithNoise;
+
 
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);
