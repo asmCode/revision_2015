@@ -124,6 +124,8 @@ namespace sm
 			}
 		}
 
+		Quat GetNormalized() const;
+
 		float GetLength() const
 		{
 			return sqrtf((s * s) + Vec3::Dot(v, v));

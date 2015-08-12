@@ -90,7 +90,10 @@ void Sphere::Update()
 {
 	angle += Time::DeltaTime * 0.4f;
 
-	GetGameObject()->GetTransform().SetLocalRotation(sm::Quat::FromAngleAxis(angle, sm::Vec3(0, 1, 0)));
+	GetGameObject()->GetTransform().SetLocalRotation(
+		sm::Quat::FromAngleAxis(MathUtils::PI / -6, sm::Vec3(1, 0, 0)) *
+		sm::Quat::FromAngleAxis(angle, sm::Vec3(0, 1, 0)));
+	GetGameObject()->GetTransform().SetLocalPosition(sm::Vec3(0, 0, -45));
 
 	if (Input::GetKeyDown(KeyCode_O))
 	{

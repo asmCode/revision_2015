@@ -81,4 +81,11 @@ namespace sm
 
 		return quat;
 	}
+
+	Quat Quat::GetNormalized() const
+	{
+		Quat ret = *this;
+		ret.Normalize();
+		return ret;
+	}
 }

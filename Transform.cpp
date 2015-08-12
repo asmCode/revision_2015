@@ -77,7 +77,7 @@ void Transform::SetRotation(const sm::Quat& rotation)
 	if (m_parent == NULL)
 		SetLocalRotation(rotation);
 	else
-		SetLocalRotation(rotation * m_parent->GetRotation().GetCoupleQuat());
+		SetLocalRotation(m_parent->GetRotation().GetCoupleQuat() * rotation);
 }
 
 sm::Vec3 Transform::GetPosition() const
@@ -93,7 +93,7 @@ sm::Quat Transform::GetRotation() const
 	if (m_parent == NULL)
 		return m_localRotation;
 
-	return m_localRotation * m_parent->GetRotation();
+	return m_parent->GetRotation() * m_localRotation;
 }
 
 sm::Vec3 Transform::GetScale() const
