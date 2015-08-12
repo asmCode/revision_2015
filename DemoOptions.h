@@ -1,5 +1,5 @@
 #define TIME_SCALE 1.0f
-#define TIME_SHIFT 30.0f
+#define TIME_SHIFT 00.0f
 //#define TIME_SHIFT 118.0f
 //#define TIME_SHIFT 60 * 4 + 20 // greetz
 //#define TIME_SHIFT 60 * 3 + 30 // po greetz

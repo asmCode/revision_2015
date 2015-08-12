@@ -49,13 +49,13 @@ void SynchEventsLoader::SetBunchEvents(
 	int count)
 {
 	float length = timeEnd - timeStart;
-	static const float OpenMechArmBeatSingle = length / (float)count;
+	float beatLength = length / (float)count;
 
 	float time = timeStart;
 	for (int i = 0; i < count; i++)
 	{
 		synchManager->Addevent(new SynchEvent(eventName, time));
-		time += OpenMechArmBeatSingle;
+		time += beatLength;
 	}
 }
 
