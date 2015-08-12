@@ -33,9 +33,16 @@ const std::vector<Renderable*>& GameObject::GetRenderables() const
 	return m_renderables;
 }
 
+void GameObject::SetActive(bool active)
+{
+	m_isActive = active;
+}
+
 bool GameObject::IsActive() const
 {
-	return m_isActive;
+	bool isParentActive = (GetTransform().GetParent() != nullptr) ? GetTransform().GetParent()->GetGameObject()->IsActive() : true;
+
+	return m_isActive && isParentActive;
 }
 
 const std::string& GameObject::GetName() const

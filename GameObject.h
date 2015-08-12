@@ -17,6 +17,7 @@ public:
 
 	const std::vector<Renderable*>& GetRenderables() const;
 
+	void SetActive(bool active);
 	bool IsActive() const;
 
 	const std::string& GetName() const;

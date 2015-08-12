@@ -98,6 +98,12 @@ void Sphere::OpenWithMechArms()
 	}
 }
 
+void Sphere::ShowMechArms(bool show)
+{
+	for (size_t i = 0; i < m_mechArms.size(); i++)
+		m_mechArms[i]->GetGameObject()->SetActive(show);
+}
+
 float angle;
 
 void Sphere::Update()
@@ -121,7 +127,7 @@ void Sphere::Update()
 	}
 	else if (Input::GetKeyDown(KeyCode_K))
 	{
-		OpenWithMechArms();
+		ShowMechArms(false);
 	}
 }
 

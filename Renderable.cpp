@@ -1,5 +1,6 @@
 #include "Renderable.h"
 #include "BaseMesh.h"
+#include "GameObject.h"
 #include <Graphics/Material.h>
 
 Renderable::Renderable(GameObject* gameObject, BaseMesh *mesh, Material* material, int order, LayerId layerId) :
@@ -52,7 +53,7 @@ void Renderable::SetActive(bool active)
 
 bool Renderable::IsActive() const
 {
-	return m_isActive;
+	return m_gameObject->IsActive();
 }
 
 int Renderable::GetOrder() const
