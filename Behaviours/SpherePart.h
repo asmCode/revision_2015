@@ -33,6 +33,7 @@ public:
 	void QueueCommand(CommandBase* command);
 
 	Transform* GetPivot() const;
+	const sm::Vec3& GetDirection() const;
 
 private:
 	enum State

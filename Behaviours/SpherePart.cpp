@@ -25,6 +25,8 @@ SpherePart::SpherePart(GameObject* gameObject, const std::string& name) :
 
 	m_rotatePivot = new GameObject("RotatePivot");
 	GetGameObject()->GetTransform().SetParent(&m_rotatePivot->GetTransform());
+
+	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
 }
 
 void SpherePart::Awake()
@@ -32,7 +34,6 @@ void SpherePart::Awake()
 	m_basePosition = GetGameObject()->GetTransform().GetLocalPosition();
 	m_baseRotation = GetGameObject()->GetTransform().GetLocalRotation();
 	m_basePivotRotation = m_rotatePivot->GetTransform().GetLocalRotation();
-	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
 	m_material = m_gameObject->GetRenderables()[0]->GetMaterial();
 	m_baseColor = m_material->GetParameterVec3("u_color");
 }
@@ -67,4 +68,9 @@ void SpherePart::QueueCommand(CommandBase* command)
 Transform* SpherePart::GetPivot() const
 {
 	return &m_rotatePivot->GetTransform();
+}
+
+const sm::Vec3& SpherePart::GetDirection() const
+{
+	return m_direction;
 }

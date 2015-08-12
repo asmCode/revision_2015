@@ -4,6 +4,7 @@
 #include "../GameObject.h"
 #include "../SynchManager.h"
 #include "../SynchEvent.h"
+#include "../Transform.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 

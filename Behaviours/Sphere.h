@@ -6,6 +6,7 @@
 
 class GameObject;
 class SpherePart;
+class MechArm;
 
 class Sphere : public Behaviour
 {
@@ -20,4 +21,7 @@ public:
 
 private:
 	std::vector<SpherePart*> m_parts;
+	std::vector<MechArm*> m_mechArms;
+
+	void CreateMechArms();
 };

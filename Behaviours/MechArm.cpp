@@ -75,38 +75,13 @@ void MechArm::Update()
 		arm1Direction,
 		arm2Direction);
 
-	//m_end->SetPosition(endPos);
-
-	//m_arm2->SetForward(arm2Direction);
-
+	m_arm1->SetRotation(sm::Quat::LookRotation(arm1Direction));
+	m_arm2->SetRotation(sm::Quat::LookRotation(arm2Direction));
 	
-	m_base->SetRotation(
-		sm::Quat::LookRotation(sm::Vec3(0, -1, 0)));
-
-	/*
-	m_arm1->SetRotation(
-		sm::Quat::LookRotation(arm1Direction) *
-		sm::Quat::FromAngleAxis(-MathUtils::PI / 2, sm::Vec3(1, 0, 0)) 
-		);
-
-	*/
-
-	m_arm1->SetRotation(
-		sm::Quat::LookRotation(-arm1Direction)
-		);
-
-	m_arm2->SetRotation(sm::Quat::LookRotation(-arm2Direction));
-	//m_arm2->SetRotation(sm::Quat::LookRotation(sm::Vec3(0, 1, 0)));
-	/*m_arm2->SetLocalRotation(
-		sm::Quat::FromAngleAxis(-MathUtils::PI / 2, sm::Vec3(1, 0, 0)) *
-		m_arm2->GetLocalRotation()
-		
-		);*/
-
+	
 	GraphicsLog::AddSegment(endPos, endPos + sm::Vec3(0, 0.2f, 0.0f));
-
-	GraphicsLog::AddSegment(m_arm1->GetPosition(), m_arm1->GetPosition() + arm1Direction, sm::Vec3(1, 0, 0));
-	GraphicsLog::AddSegment(m_arm2->GetPosition(), m_arm2->GetPosition() + arm2Direction, sm::Vec3(0, 1, 0));
+	//GraphicsLog::AddSegment(m_arm1->GetPosition(), m_arm1->GetPosition() + arm1Direction, sm::Vec3(1, 0, 0));
+	//GraphicsLog::AddSegment(m_arm2->GetPosition(), m_arm2->GetPosition() + arm2Direction, sm::Vec3(0, 1, 0));	
 }
 
 void MechArm::ArmResolver(
@@ -119,7 +94,7 @@ void MechArm::ArmResolver(
 	sm::Vec3& arm2Direction)
 {
 	//float targetDistance = MathUtils::Clamp((targetPosition - basePosition).GetLength(), 0.0f, arm1Length + arm2Length);
-	float targetDistance = MathUtils::Clamp((targetPosition - basePosition).GetLength(), 0.0f, arm1Length + arm2Length);
+	float targetDistance = MathUtils::Clamp((targetPosition - basePosition).GetLength(), 0.0f, (arm1Length + arm2Length) * 0.999f);
 
 	float d2 = ((arm2Length * arm2Length) - (arm1Length * arm1Length) + (targetDistance * targetDistance)) / (2 * targetDistance);
 	float h = sqrt((arm2Length * arm2Length) - (d2 * d2));

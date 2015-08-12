@@ -6,6 +6,7 @@
 #include "../Renderable.h"
 #include "../FuturisEngine/Graphics/Mesh.h"
 #include "SpherePart.h"
+#include "MechArm.h"
 #include "SpherePartCommands/PullOut.h"
 #include "SpherePartCommands/PullIn.h"
 #include "SpherePartCommands/SlideOut.h"
@@ -35,6 +36,7 @@ Sphere::Sphere(GameObject* gameObject, const std::string& name) :
 void Sphere::Awake()
 {
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", "SpherePart", m_parts);
+	//DemoUtils::GetAllGameObjectsAsComponent<MechArm>("MechArm", "MechArm", m_mechArms);
 
 	Material* commonMaterial = m_parts[0]->GetGameObject()->GetRenderables()[0]->GetMaterial();
 
@@ -50,6 +52,8 @@ void Sphere::Awake()
 
 		m_parts[i]->GetPivot()->SetParent(&GetGameObject()->GetTransform());
 	}
+
+	CreateMechArms();
 }
 
 void Sphere::RollSpherePart(int index)
@@ -88,12 +92,14 @@ float angle;
 
 void Sphere::Update()
 {
+	/*
 	angle += Time::DeltaTime * 0.4f;
 
 	GetGameObject()->GetTransform().SetLocalRotation(
 		sm::Quat::FromAngleAxis(MathUtils::PI / -6, sm::Vec3(1, 0, 0)) *
 		sm::Quat::FromAngleAxis(angle, sm::Vec3(0, 1, 0)));
 	GetGameObject()->GetTransform().SetLocalPosition(sm::Vec3(0, 0, -45));
+	*/
 
 	if (Input::GetKeyDown(KeyCode_O))
 	{
@@ -105,3 +111,17 @@ void Sphere::Update()
 	}
 }
 
+void Sphere::CreateMechArms()
+{
+	GameObject* prefab = ScenesManager::GetInstance()->FindGameObject("MechArm");
+
+	for (uint32_t i = 0; i < m_parts.size(); i++)
+	{
+		GameObject* clone = GameObject::Instantiate(prefab);
+
+		clone->GetTransform().SetPosition(m_parts[i]->GetGameObject()->GetTransform().GetPosition());
+		clone->GetTransform().SetForward(m_parts[i]->GetDirection());
+
+		m_mechArms.push_back(dynamic_cast<MechArm*>(clone->GetComponent("MechArm")));
+	}
+}

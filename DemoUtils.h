@@ -38,4 +38,17 @@ public:
 			components.push_back(component);
 		}
 	}
+
+	template <typename T>
+	static void GetAllGameObjectsAsComponent(const std::string& namePrefix, const std::string& componentName, std::vector<T*>& components)
+	{
+		std::vector<GameObject*> gameObjects;
+		GetAllObjects(namePrefix, gameObjects);
+
+		for (uint32_t i = 0; i < gameObjects.size(); i++)
+		{
+			components.push_back(dynamic_cast<T*>(gameObjects[i]->GetComponent(componentName)));
+		}
+	}
+
 };
