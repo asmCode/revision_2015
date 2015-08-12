@@ -132,3 +132,7 @@ const std::vector<Component*>& GameObject::GetComponents() const
 	return m_components;
 }
 
+GameObject* GameObject::Instantiate(GameObject* prefab)
+{
+	return nullptr;
+}

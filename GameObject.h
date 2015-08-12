@@ -34,6 +34,8 @@ public:
 	Component* GetComponent(const std::string& componentName) const;
 	const std::vector<Component*>& GetComponents() const;
 
+	static GameObject* Instantiate(GameObject* prefab);
+
 protected:
 	Transform* m_transform;
 	std::vector<Renderable*> m_renderables;
