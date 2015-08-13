@@ -54,4 +54,5 @@ private:
 
 	void UpdateMatrix();
 	void AddChild(Transform* transform);
+	void RemoveChild(Transform* transform);
 };

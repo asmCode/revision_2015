@@ -27,6 +27,10 @@ void Transform::SetParent(Transform* parent)
 	sm::Vec3 position = GetPosition();
 	sm::Quat rotation = GetRotation();
 
+	// If this transform already had a parent, then remove it from that parent
+	if (m_parent != nullptr)
+		m_parent->RemoveChild(this);
+
 	m_parent = parent;
 
 	SetPosition(position);
@@ -176,4 +180,18 @@ void Transform::AddChild(Transform* transform)
 	assert(transform != NULL);
 
 	m_children.push_back(transform);
+}
+
+void Transform::RemoveChild(Transform* transform)
+{
+	assert(transform != NULL);
+
+	for (size_t i = 0; i < m_children.size(); i++)
+	{
+		if (m_children[i] == transform)
+		{
+			m_children.erase(m_children.begin() + i);
+			return;
+		}
+	}
 }
