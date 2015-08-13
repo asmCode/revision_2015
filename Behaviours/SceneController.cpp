@@ -1,5 +1,6 @@
 #include "SceneController.h"
 #include "Sphere.h"
+#include "ExplosionsSequence.h"
 #include "../Camera.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
@@ -10,7 +11,8 @@
 #include <UserInput/Input.h>
 
 SceneController::SceneController(GameObject* gameObject, const std::string& name) :
-	Behaviour(gameObject, name)
+	Behaviour(gameObject, name),
+	m_explosionsSequence(nullptr)
 {
 }
 
@@ -23,12 +25,7 @@ void SceneController::Awake()
 
 	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("Camera");
 
-	/*
-	GameObject* clone = GameObject::Instantiate(m_sphere->GetGameObject());
-	clone->GetTransform().SetPosition(sm::Vec3(30, 0, 0));
-
-	m_sphere = (Sphere*)clone->GetComponent("Sphere");
-	*/
+	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mainCamera);
 }
 
 void SceneController::Update()
@@ -36,6 +33,9 @@ void SceneController::Update()
 	if (Input::GetKeyDown(KeyCode_L))
 	{
 	}
+
+	if (m_explosionsSequence != nullptr)
+		m_explosionsSequence->Update();
 }
 
 void SceneController::SynchEventFired(SynchEvent* synchEvent)
@@ -74,11 +74,6 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 
 void SceneController::PrepareForExplosions()
 {
-	GameObject::Instantiate(m_spherePrefab->GetGameObject());
-
-	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
-
-	m_mainCamera->GetGameObject()->GetTransform().SetPosition(cameraTransform->GetPosition());
-	m_mainCamera->GetGameObject()->GetTransform().SetRotation(cameraTransform->GetRotation());
-	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
+	m_explosionsSequence->Initialize();
+	m_explosionsSequence->Prepare();
 }

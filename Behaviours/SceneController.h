@@ -8,6 +8,7 @@ class GameObject;
 class Sphere;
 class SynchEvent;
 class Camera;
+class ExplosionsSequence;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -22,6 +23,8 @@ private:
 	Camera* m_mainCamera;
 	Sphere* m_spherePrefab;
 	Sphere* m_sphere;
+
+	ExplosionsSequence* m_explosionsSequence;
 
 	void SynchEventFired(SynchEvent* synchEvent);
 	void PrepareForExplosions();
