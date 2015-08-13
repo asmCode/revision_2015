@@ -138,9 +138,11 @@ exit /B 0
     <ClCompile Include="Behaviours\SpherePart.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\Blink.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\CommandBase.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\Explode.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\PullIn.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\PullOut.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\PullOutWithNoise.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\Reset.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\RollIn.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\RollOut.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\SlideIn.cpp" />
@@ -292,9 +294,11 @@ exit /B 0
     <ClInclude Include="Behaviours\SpherePart.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\Blink.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\CommandBase.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\Explode.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\PullIn.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\PullOut.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\PullOutWithNoise.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\Reset.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\RollIn.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\RollOut.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\SlideIn.h" />

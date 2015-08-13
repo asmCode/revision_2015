@@ -108,6 +108,11 @@ void Sphere::ShowMechArms(bool show)
 		m_mechArms[i]->GetGameObject()->SetActive(show);
 }
 
+const std::vector<SpherePart*>& Sphere::GetSphereParts() const
+{
+	return m_parts;
+}
+
 float angle;
 
 void Sphere::Update()

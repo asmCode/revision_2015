@@ -7,6 +7,7 @@
 class GameObject;
 class SpherePart;
 class MechArm;
+class CommandBase;
 
 class Sphere : public Behaviour
 {
@@ -21,6 +22,8 @@ public:
 	void BlinkSpherePart(int index, const sm::Vec3& color);
 	void OpenWithMechArms();
 	void ShowMechArms(bool show);
+
+	const std::vector<SpherePart*>& GetSphereParts() const;
 
 private:
 	std::vector<SpherePart*> m_parts;

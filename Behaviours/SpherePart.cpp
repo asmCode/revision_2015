@@ -69,6 +69,16 @@ void SpherePart::QueueCommand(CommandBase* command)
 	m_commands.push(command);
 }
 
+void SpherePart::SetCommand(CommandBase* command)
+{
+	m_currentCommand = nullptr;
+
+	while (!m_commands.empty())
+		m_commands.pop();
+
+	m_commands.push(command);
+}
+
 Transform* SpherePart::GetPivot() const
 {
 	return &m_rotatePivot->GetTransform();

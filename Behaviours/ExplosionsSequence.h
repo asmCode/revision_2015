@@ -16,6 +16,8 @@ public:
 	void Prepare();
 	void Update();
 
+	void ExplodeSphere();
+
 private:
 	Sphere* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
@@ -24,4 +26,5 @@ private:
 	Camera* m_mainCamera;
 
 	void SwapSpheres();
+	void ResetSphere(Sphere* sphere);
 };

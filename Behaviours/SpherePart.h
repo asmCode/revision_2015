@@ -22,7 +22,7 @@ class SpherePart : public Behaviour
 	friend class CommandBase;
 	friend class Blink;
 	friend class PullOutWithNoise;
-
+	friend class Reset;
 
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);
@@ -33,6 +33,7 @@ public:
 	void Open();
 
 	void QueueCommand(CommandBase* command);
+	void SetCommand(CommandBase* command);
 
 	Transform* GetPivot() const;
 	const sm::Vec3& GetDirection() const;
