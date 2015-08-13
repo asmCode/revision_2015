@@ -18,7 +18,9 @@ public:
 	void Update();
 
 private:
+	Sphere* m_spherePrefab;
 	Sphere* m_sphere;
 
 	void SynchEventFired(SynchEvent* synchEvent);
+	void PrepareForExplosions();
 };

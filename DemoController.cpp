@@ -476,6 +476,9 @@ bool DemoController::Update(float time, float seconds)
 	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::SaveCamera(ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0], 0);
 
+	if (Input::GetKey(KeyCode_LCtrl) && Input::GetKeyDown(KeyCode_C))
+		DemoUtils::CopyTransformToClipboard(&ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0]->GetGameObject()->GetTransform());
+
 	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_1))
 		DemoUtils::LoadCamera(ScenesManager::GetInstance()->GetActiveScene()->GetCameras()[0], 0);
 

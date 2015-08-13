@@ -7,6 +7,7 @@
 #include "../Transform.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
+#include <Utils/SystemUtils.h>
 
 SceneController::SceneController(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name)
@@ -17,12 +18,15 @@ void SceneController::Awake()
 {
 	SynchManager::GetInstance()->RegisterObserver(this);
 
-	m_sphere = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
+	m_spherePrefab = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
+	m_spherePrefab->GetGameObject()->SetActive(false);
 
+	/*
 	GameObject* clone = GameObject::Instantiate(m_sphere->GetGameObject());
 	clone->GetTransform().SetPosition(sm::Vec3(30, 0, 0));
 
 	m_sphere = (Sphere*)clone->GetComponent("Sphere");
+	*/
 }
 
 void SceneController::Update()
@@ -60,5 +64,13 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	{
 		m_sphere->OpenWithMechArms();
 	}
+	else if (synchEvent->GetId() == "prepare_for_explosions")
+	{
+		PrepareForExplosions();
+	}
 }
 
+void SceneController::PrepareForExplosions()
+{
+	GameObject::Instantiate(m_spherePrefab->GetGameObject());
+}

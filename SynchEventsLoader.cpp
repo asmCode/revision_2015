@@ -33,9 +33,10 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {
-	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
-	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
-	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
+//	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
+//	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
+//	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
+	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 37.0f));
 
 	return true;
 }
