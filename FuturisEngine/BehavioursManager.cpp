@@ -1,5 +1,6 @@
 #include "BehavioursManager.h"
 #include "../Behaviour.h"
+#include "../GameObject.h"
 #include "../IBehaviourFactory.h"
 #include <Utils/MapUtils.h>
 #include <stddef.h>
@@ -54,7 +55,10 @@ Behaviour* BehavioursManager::CreateBehaviour(const std::string& name, GameObjec
 void BehavioursManager::UpdateBehaviours()
 {
 	for (uint32_t i = 0; i < m_behaviours.size(); i++)
-		m_behaviours[i]->Update();
+	{
+		if (m_behaviours[i]->GetGameObject()->IsActive())
+			m_behaviours[i]->Update();
+	}
 }
 
 void BehavioursManager::AwakeBehaviours()
