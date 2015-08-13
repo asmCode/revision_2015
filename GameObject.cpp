@@ -159,6 +159,9 @@ GameObject* GameObject::Instantiate(GameObject* prefab)
 	const std::vector<Component*>& components = prefab->GetComponents();
 	for (uint32_t i = 0; i < components.size(); i++)
 	{
+		if (components[i]->GetComponentName() == "Transform")
+			continue;
+
 		clone->AddComponent(components[i]->GetComponentName());
 	}
 

@@ -12,7 +12,7 @@ public:
 	Transform(GameObject* gameObject);
 
 	void SetParent(Transform* parent);
-	const Transform* GetParent() const;
+	Transform* GetParent() const;
 	const std::vector<Transform*>& GetChildren() const;
 
 	void SetLocalPosition(const sm::Vec3& position);

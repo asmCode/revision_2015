@@ -17,11 +17,7 @@
 				</Parameters>
 			</Behaviour>
 		</GameObject>
-		
-	<GameObject name="Sphere">
-		<Behaviour name="Sphere" />
-	</GameObject>
-		
+	
 	</GameObjects>
 	<Materials>
 		<Material name="ErrorMaterial" shader="Solid">

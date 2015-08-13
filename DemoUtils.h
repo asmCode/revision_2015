@@ -24,12 +24,32 @@ public:
 	static void SaveCamera(Camera* camera, int slot);
 	static void LoadCamera(Camera* camera, int slot);
 	static void GetAllObjects(const std::string& namePrefix, std::vector<GameObject*>& gameObjects);
+	static void GetAllChildren(const GameObject* parent, std::vector<GameObject*>& children);
+	static void GetAllChildrenWitchPrefix(const GameObject* parent, const std::string& namePrefix, std::vector<GameObject*>& children);
 	template <typename T>
-	static void AttachComponentBunch(const std::string& namePrefix, const std::string& componentName, std::vector<T*>& components)
+	static void AttachComponentBunch(
+		const std::string& namePrefix,
+		const std::string& componentName,
+		std::vector<T*>& components)
 	{
 		std::vector<GameObject*> gameObjects;
 		GetAllObjects(namePrefix, gameObjects);
 
+		for (uint32_t i = 0; i < gameObjects.size(); i++)
+		{
+			T* component = (T*)gameObjects[i]->AddComponent(componentName);
+			assert(component != NULL);
+
+			components.push_back(component);
+		}
+	}
+
+	template <typename T>
+	static void AttachComponentBunch(
+		const std::string& componentName,
+		std::vector<GameObject*>& gameObjects,
+		std::vector<T*>& components)
+	{
 		for (uint32_t i = 0; i < gameObjects.size(); i++)
 		{
 			T* component = (T*)gameObjects[i]->AddComponent(componentName);

@@ -36,7 +36,7 @@ void Transform::SetParent(Transform* parent)
 		m_parent->AddChild(this);
 }
 
-const Transform* Transform::GetParent() const
+Transform* Transform::GetParent() const
 {
 	return m_parent;
 }

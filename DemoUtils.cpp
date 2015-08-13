@@ -147,3 +147,26 @@ void DemoUtils::GetAllObjects(const std::string& namePrefix, std::vector<GameObj
 			gameObjects.push_back(_gameObjects[i]);	
 	}
 }
+
+void DemoUtils::GetAllChildren(const GameObject* parent, std::vector<GameObject*>& children)
+{
+	const std::vector<Transform*>& _children = parent->GetTransform().GetChildren();
+
+	for (uint32_t i = 0; i < _children.size(); i++)
+	{
+		children.push_back(_children[i]->GetGameObject());
+		GetAllChildren(_children[i]->GetGameObject(), children);
+	}
+}
+
+void DemoUtils::GetAllChildrenWitchPrefix(const GameObject* parent, const std::string& namePrefix, std::vector<GameObject*>& children)
+{
+	std::vector<GameObject*> allChildren;
+	GetAllChildren(parent, allChildren);
+
+	for (size_t i = 0; i < allChildren.size(); i++)
+	{
+		if (allChildren[i]->GetName().find(namePrefix) == 0)
+			children.push_back(allChildren[i]);
+	}
+}

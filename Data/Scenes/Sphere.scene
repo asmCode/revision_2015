@@ -1,236 +1,240 @@
 <Scene name="Sphere">
 	<GameObjects>
-		<GameObject name="SpherePart00">
+		<GameObject name="Sphere">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Behaviour name="Sphere" />
+		</GameObject>
+		<GameObject name="SpherePart00" parent="Sphere">
 			<Transform position="8.371052,4.510986,0.811044" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart00" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart01">
+		<GameObject name="SpherePart01" parent="Sphere">
 			<Transform position="6.723272,6.935199,-1.619962" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart01" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart02">
+		<GameObject name="SpherePart02" parent="Sphere">
 			<Transform position="8.840412,2.777851,-2.777867" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart02" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart03">
-			<Transform position="7.096551,2.777851,-5.668427" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="SpherePart03" parent="Sphere">
+			<Transform position="7.096552,2.777851,-5.668427" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart03" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart04">
+		<GameObject name="SpherePart04" parent="Sphere">
 			<Transform position="8.371044,-2.777850,-3.535547" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart04" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart05">
+		<GameObject name="SpherePart05" parent="Sphere">
 			<Transform position="5.858230,-4.510985,-5.858726" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart05" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart06">
+		<GameObject name="SpherePart06" parent="Sphere">
 			<Transform position="3.535052,-0.937965,-8.266414" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart06" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart07">
+		<GameObject name="SpherePart07" parent="Sphere">
 			<Transform position="1.820660,-2.777850,-8.744819" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart07" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart08">
-			<Transform position="0.866084,4.510986,-8.170337" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="SpherePart08" parent="Sphere">
+			<Transform position="0.866083,4.510986,-8.170337" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart08" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart09">
-			<Transform position="3.807853,5.132800,-7.119403" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart09" material="Fiolet" />
+		<GameObject name="SpherePart54" parent="Sphere">
+			<Transform position="-0.000475,-9.523325,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart54" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart10">
-			<Transform position="5.193397,6.532815,-4.329454" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart10" material="Fiolet" />
+		<GameObject name="SpherePart53" parent="Sphere">
+			<Transform position="-0.000475,9.523324,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart53" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart11">
-			<Transform position="-2.724950,1.802400,-8.456709" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="SpherePart11" parent="Sphere">
+			<Transform position="-2.724951,1.802400,-8.456709" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart11" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart12">
+		<GameObject name="SpherePart12" parent="Sphere">
 			<Transform position="-4.347067,-1.802399,-8.277298" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart12" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart13">
+		<GameObject name="SpherePart13" parent="Sphere">
 			<Transform position="-2.566874,-6.070765,-6.929096" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart13" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart14">
-			<Transform position="-6.495349,-4.510985,-4.888524" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="SpherePart14" parent="Sphere">
+			<Transform position="-6.495350,-4.510985,-4.888524" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart14" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart15">
+		<GameObject name="SpherePart15" parent="Sphere">
 			<Transform position="-8.468075,-0.937965,-3.535532" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart15" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart16">
+		<GameObject name="SpherePart16" parent="Sphere">
 			<Transform position="-6.840811,3.535534,-5.668414" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart16" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart17">
-			<Transform position="-3.313452,7.397248,-5.845233" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart17" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart18">
-			<Transform position="1.274011,8.154932,-4.888527" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart18" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart19">
-			<Transform position="-0.000474,-9.903927,0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart19" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart20">
-			<Transform position="-6.298879,6.532815,-2.499999" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart20" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart21">
-			<Transform position="-3.299108,8.776746,-3.298633" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart21" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart22">
-			<Transform position="-5.925589,7.397248,1.958071" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart22" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart23">
-			<Transform position="-6.122056,4.510986,5.620760" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart23" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart24">
-			<Transform position="-8.468073,-0.937965,3.535538" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart24" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart25">
-			<Transform position="-8.076580,-4.510985,1.665204" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart25" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart26">
-			<Transform position="-5.845702,-1.802399,7.185802" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart26" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart27">
-			<Transform position="-4.531108,-6.070765,5.140505" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart27" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart28">
-			<Transform position="-8.468075,3.535534,-0.919940" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart28" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart29">
-			<Transform position="-8.841362,2.777851,1.913421" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart29" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart30">
-			<Transform position="-0.000474,9.903927,0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart30" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart31">
-			<Transform position="0.900731,7.397248,5.668412" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart31" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart32">
-			<Transform position="-0.690215,5.132800,7.470327" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart32" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart33">
-			<Transform position="-2.492615,2.777851,8.266410" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart33" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart34">
-			<Transform position="-1.591415,-2.777850,8.456711" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart34" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart35">
-			<Transform position="5.058073,8.154932,0.420938" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart35" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart36">
-			<Transform position="5.140032,7.397248,3.629430" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart36" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart37">
-			<Transform position="4.651481,4.510986,6.840331" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart37" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart38">
-			<Transform position="8.265938,2.777851,3.467587" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart38" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart39">
-			<Transform position="8.840416,-2.777850,0.937951" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart39" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart40">
-			<Transform position="4.436268,0.000001,8.371521" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart40" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart41">
-			<Transform position="7.185331,-1.802399,5.845223" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart41" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart42">
-			<Transform position="4.077000,-4.510985,7.030633" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart42" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart43">
-			<Transform position="0.237490,-6.532815,6.210344" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart43" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart44">
-			<Transform position="-2.566871,-8.776747,3.510084" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart44" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart45">
-			<Transform position="-5.845706,-7.397249,-0.237956" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart45" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart46">
-			<Transform position="-4.904401,-7.397249,-3.312978" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart46" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart47">
-			<Transform position="0.047175,-7.397249,-5.748296" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart47" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart48">
-			<Transform position="2.682506,-7.397249,-4.903933" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart48" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart49">
-			<Transform position="5.383698,-7.397249,-3.312985" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart49" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart50">
-			<Transform position="6.033524,-7.397249,0.373278" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart50" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart51">
-			<Transform position="6.231534,-6.070765,2.939679" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart51" material="Fiolet" />
-		</GameObject>
-		<GameObject name="SpherePart52">
+		<GameObject name="SpherePart52" parent="Sphere">
 			<Transform position="3.787041,-8.154932,3.639692" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart52" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart53">
-			<Transform position="-0.000474,9.523324,0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart53" material="Fiolet" />
+		<GameObject name="SpherePart51" parent="Sphere">
+			<Transform position="6.231535,-6.070765,2.939678" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart51" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart54">
-			<Transform position="-0.000474,-9.523325,0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="SpherePart54" material="Fiolet" />
+		<GameObject name="SpherePart19" parent="Sphere">
+			<Transform position="-0.000475,-9.903927,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart19" material="Fiolet" />
 		</GameObject>
-		<GameObject name="SpherePart55">
-			<Transform position="-4.189414,7.397248,4.573124" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="SpherePart20" parent="Sphere">
+			<Transform position="-6.298880,6.532815,-2.499999" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart20" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart21" parent="Sphere">
+			<Transform position="-3.299109,8.776746,-3.298633" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart21" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart22" parent="Sphere">
+			<Transform position="-5.925589,7.397248,1.958071" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart22" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart23" parent="Sphere">
+			<Transform position="-6.122057,4.510986,5.620760" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart23" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart24" parent="Sphere">
+			<Transform position="-8.468073,-0.937965,3.535538" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart24" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart25" parent="Sphere">
+			<Transform position="-8.076580,-4.510985,1.665203" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart25" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart26" parent="Sphere">
+			<Transform position="-5.845701,-1.802399,7.185802" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart26" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart50" parent="Sphere">
+			<Transform position="6.033524,-7.397249,0.373279" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart50" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart28" parent="Sphere">
+			<Transform position="-8.468075,3.535534,-0.919940" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart28" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart29" parent="Sphere">
+			<Transform position="-8.841362,2.777851,1.913421" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart29" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart30" parent="Sphere">
+			<Transform position="-0.000475,9.903927,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart30" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart31" parent="Sphere">
+			<Transform position="0.900732,7.397248,5.668412" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart31" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart32" parent="Sphere">
+			<Transform position="-0.690214,5.132800,7.470327" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart32" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart33" parent="Sphere">
+			<Transform position="-2.492615,2.777851,8.266410" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart33" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart34" parent="Sphere">
+			<Transform position="-1.591415,-2.777850,8.456711" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart34" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart35" parent="Sphere">
+			<Transform position="5.058073,8.154932,0.420938" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart35" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart36" parent="Sphere">
+			<Transform position="5.140032,7.397248,3.629430" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart36" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart37" parent="Sphere">
+			<Transform position="4.651481,4.510986,6.840330" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart37" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart49" parent="Sphere">
+			<Transform position="5.383698,-7.397249,-3.312985" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart49" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart39" parent="Sphere">
+			<Transform position="8.840416,-2.777850,0.937950" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart39" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart40" parent="Sphere">
+			<Transform position="4.436268,0.000001,8.371521" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart40" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart41" parent="Sphere">
+			<Transform position="7.185331,-1.802399,5.845223" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart41" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart48" parent="Sphere">
+			<Transform position="2.682507,-7.397249,-4.903933" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart48" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart47" parent="Sphere">
+			<Transform position="0.047174,-7.397249,-5.748296" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart47" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart44" parent="Sphere">
+			<Transform position="-2.566872,-8.776747,3.510084" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart44" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart45" parent="Sphere">
+			<Transform position="-5.845707,-7.397249,-0.237956" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart45" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart46" parent="Sphere">
+			<Transform position="-4.904402,-7.397249,-3.312978" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart46" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart55" parent="Sphere">
+			<Transform position="-4.189413,7.397248,4.573124" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart55" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart42" parent="Sphere">
+			<Transform position="4.077000,-4.510985,7.030633" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart42" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart38" parent="Sphere">
+			<Transform position="8.265938,2.777851,3.467587" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart38" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart27" parent="Sphere">
+			<Transform position="-4.531107,-6.070765,5.140505" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart27" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart18" parent="Sphere">
+			<Transform position="1.274012,8.154932,-4.888527" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart18" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart17" parent="Sphere">
+			<Transform position="-3.313452,7.397248,-5.845233" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart17" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart10" parent="Sphere">
+			<Transform position="5.193398,6.532815,-4.329454" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart10" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart09" parent="Sphere">
+			<Transform position="3.807853,5.132800,-7.119403" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart09" material="Fiolet" />
+		</GameObject>
+		<GameObject name="SpherePart43" parent="Sphere">
+			<Transform position="0.237490,-6.532815,6.210344" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="SpherePart43" material="Fiolet" />
 		</GameObject>
 	</GameObjects>
 	<Materials>
 		<Material name="Fiolet" shader="SolidDiffSpec">
 			<Parameters>
-				<Parameter name="u_color" type="vec3" value="0.2,0.2,0.2" />
-				<Parameter name="u_glossiness" type="float" value="10.840000" />
-				<Parameter name="u_specularLevel" type="float" value="0.290000" />
+				<Parameter name="u_color" type="vec3" value="0.215686,0.215686,0.874510" />
+				<Parameter name="u_glossiness" type="float" value="19.840000" />
+				<Parameter name="u_specularLevel" type="float" value="0.790000" />
 			</Parameters>
 		</Material>
 	</Materials>

@@ -20,7 +20,9 @@ void SceneController::Awake()
 	m_sphere = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
 
 	GameObject* clone = GameObject::Instantiate(m_sphere->GetGameObject());
-	clone->GetTransform().SetPosition(sm::Vec3(20, 0, 0));
+	clone->GetTransform().SetPosition(sm::Vec3(30, 0, 0));
+
+	m_sphere = (Sphere*)clone->GetComponent("Sphere");
 }
 
 void SceneController::Update()

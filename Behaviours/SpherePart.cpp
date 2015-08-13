@@ -24,9 +24,13 @@ SpherePart::SpherePart(GameObject* gameObject, const std::string& name) :
 	m_shiftCurve = new QuadOut<sm::Quat>();
 
 	m_rotatePivot = new GameObject("RotatePivot");
+	m_rotatePivot->GetTransform().SetParent(GetGameObject()->GetTransform().GetParent());
+	m_rotatePivot->GetTransform().SetLocalPosition(sm::Vec3(0, 0, 0));
+	m_rotatePivot->GetTransform().SetLocalRotation(sm::Quat::FromAngleAxis(0.0f, sm::Vec3(0, 0, 0)));
+	m_rotatePivot->GetTransform().SetLocalScale(sm::Vec3(1, 1, 1));
 	GetGameObject()->GetTransform().SetParent(&m_rotatePivot->GetTransform());
 
-	m_direction = GetGameObject()->GetTransform().GetPosition().GetNormalized();
+	m_direction = GetGameObject()->GetTransform().GetLocalPosition().GetNormalized();
 }
 
 void SpherePart::Awake()
