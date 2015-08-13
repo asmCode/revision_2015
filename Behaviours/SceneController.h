@@ -7,6 +7,7 @@
 class GameObject;
 class Sphere;
 class SynchEvent;
+class Camera;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -18,6 +19,7 @@ public:
 	void Update();
 
 private:
+	Camera* m_mainCamera;
 	Sphere* m_spherePrefab;
 	Sphere* m_sphere;
 

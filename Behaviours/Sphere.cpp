@@ -51,8 +51,6 @@ void Sphere::Awake()
 		material->SetParameter("u_specularLevel", commonMaterial->GetParameterFloat("u_specularLevel"));
 
 		m_parts[i]->GetGameObject()->GetRenderables()[0]->SetMaterial(material);
-
-		//m_parts[i]->GetPivot()->SetParent(&GetGameObject()->GetTransform());
 	}
 
 	CreateMechArms();

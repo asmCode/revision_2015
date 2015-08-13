@@ -6,6 +6,7 @@
 			<Behaviour name="SceneController" />
 		</GameObject>
 	
+		<!--
 		<GameObject name="kamerka">
 			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" />
@@ -16,6 +17,16 @@
 					<Parameter name="rotate_sensitivity" type="float" value="0.005" />
 				</Parameters>
 			</Behaviour>
+		</GameObject>
+		-->
+		
+		<GameObject name="MainCamera">
+			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" />
+			<Light />
+		</GameObject>
+		
+		<GameObject name="InitialExplosionCameraPosition">
+			<Transform position="0.000000, 0.000000, 47.863007" rotation="0.000000, 0.000000, 0.000000, 0.000000" scale="1.000000, 1.000000, 1.000000" />
 		</GameObject>
 	
 	</GameObjects>
