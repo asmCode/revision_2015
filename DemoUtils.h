@@ -23,6 +23,7 @@ public:
 	static sm::Quat ParseQuat(const std::string& vectorStr, const std::string& separator = ";");
 	static void SaveCamera(Camera* camera, int slot);
 	static void LoadCamera(Camera* camera, int slot);
+	static void CopyTransformToClipboard(Transform* transform);
 	static void GetAllObjects(const std::string& namePrefix, std::vector<GameObject*>& gameObjects);
 	static void GetAllChildren(const GameObject* parent, std::vector<GameObject*>& children);
 	static void GetAllChildrenWitchPrefix(const GameObject* parent, const std::string& namePrefix, std::vector<GameObject*>& children);

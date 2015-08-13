@@ -156,6 +156,7 @@ exit /B 0
     <ClCompile Include="Framework\Graphics\BuiltInShaderParams.cpp" />
     <ClCompile Include="Framework\Graphics\Model.cpp" />
     <ClCompile Include="Framework\Math\Quat.cpp" />
+    <ClCompile Include="Framework\Utils\SystemUtils.cpp" />
     <ClCompile Include="Framework\XML\XmlWriter.cpp" />
     <ClCompile Include="FuturisEngine\Animation\Animation.cpp" />
     <ClCompile Include="FuturisEngine\Animation\AnimationClip.cpp" />
@@ -304,6 +305,7 @@ exit /B 0
     <ClInclude Include="Framework\Graphics\Model.h" />
     <ClInclude Include="Framework\Math\Animation\QuarticIn.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
+    <ClInclude Include="Framework\Utils\SystemUtils.h" />
     <ClInclude Include="Framework\XML\XmlWriter.h" />
     <ClInclude Include="FuturisEngine\Animation\Animation.h" />
     <ClInclude Include="FuturisEngine\Animation\AnimationClip.h" />

@@ -4,6 +4,7 @@
 #include "../Camera.h"
 #include "../GameObject.h"
 #include "../Transform.h"
+#include <Utils/SystemUtils.h>
 #include <Utils/Random.h>
 #include <Utils/StringUtils.h>
 #include <stdint.h>
@@ -116,6 +117,21 @@ void DemoUtils::SaveCamera(Camera* camera, int slot)
 	xml.CloseElement();
 
 	camFile.close();
+}
+
+void DemoUtils::CopyTransformToClipboard(Transform* transform)
+{
+	float angle;
+	sm::Vec3 axis;
+	transform->GetRotation().QuatToRotate(angle, axis);
+
+	char text[1024];
+	sprintf(text, "<Transform position=\"%f, %f, %f\" rotation=\"%f, %f, %f, %f\" scale=\"%f, %f, %f\" />",
+		transform->GetPosition().x, transform->GetPosition().y, transform->GetPosition().z,
+		angle, axis.x, axis.y, axis.z,
+		transform->GetScale().x, transform->GetScale().y, transform->GetScale().z);
+
+	SystemUtils::CopyToClipboard(text);
 }
 
 void DemoUtils::LoadCamera(Camera* camera, int slot)
