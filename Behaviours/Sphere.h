@@ -13,6 +13,7 @@ class Sphere : public Behaviour
 public:
 	Sphere(GameObject* gameObject, const std::string& name);
 
+	void Initialize(GameObject* mechArmPrefab);
 	void Update();
 	void Awake();
 
@@ -25,5 +26,5 @@ private:
 	std::vector<SpherePart*> m_parts;
 	std::vector<MechArm*> m_mechArms;
 
-	void CreateMechArms();
+	void CreateMechArms(GameObject* mechArmPrefab);
 };

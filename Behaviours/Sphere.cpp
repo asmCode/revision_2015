@@ -36,6 +36,10 @@ Sphere::Sphere(GameObject* gameObject, const std::string& name) :
 
 void Sphere::Awake()
 {
+}
+
+void Sphere::Initialize(GameObject* mechArmPrefab)
+{
 	std::vector<GameObject*> spherePartsGameObjects;
 	DemoUtils::GetAllChildrenWitchPrefix(GetGameObject(), "SpherePart", spherePartsGameObjects);
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", spherePartsGameObjects, m_parts);
@@ -53,7 +57,8 @@ void Sphere::Awake()
 		m_parts[i]->GetGameObject()->GetRenderables()[0]->SetMaterial(material);
 	}
 
-	CreateMechArms();
+	if (mechArmPrefab != nullptr)
+		CreateMechArms(mechArmPrefab);
 }
 
 void Sphere::RollSpherePart(int index)
@@ -107,10 +112,12 @@ float angle;
 
 void Sphere::Update()
 {
-	
-	for (uint32_t i = 0; i < m_parts.size(); i++)
+	if (m_mechArms.size() > 0)
 	{
-		m_mechArms[i]->SetTarget(m_parts[i]->GetGameObject()->GetTransform().GetPosition());
+		for (uint32_t i = 0; i < m_parts.size(); i++)
+		{
+			m_mechArms[i]->SetTarget(m_parts[i]->GetGameObject()->GetTransform().GetPosition());
+		}
 	}
 
 	/*angle += Time::DeltaTime * 0.4f;
@@ -132,13 +139,11 @@ void Sphere::Update()
 	}
 }
 
-void Sphere::CreateMechArms()
+void Sphere::CreateMechArms(GameObject* mechArmPrefab)
 {
-	GameObject* prefab = ScenesManager::GetInstance()->FindGameObject("MechArm");
-
 	for (uint32_t i = 0; i < m_parts.size(); i++)
 	{
-		GameObject* clone = GameObject::Instantiate(prefab);
+		GameObject* clone = GameObject::Instantiate(mechArmPrefab);
 
 		clone->GetTransform().SetParent(&GetGameObject()->GetTransform());
 		clone->GetTransform().SetLocalPosition(m_parts[i]->GetGameObject()->GetTransform().GetLocalPosition() * 0.3f);

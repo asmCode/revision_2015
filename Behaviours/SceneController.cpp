@@ -23,9 +23,12 @@ void SceneController::Awake()
 	m_spherePrefab = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
 	m_spherePrefab->GetGameObject()->SetActive(false);
 
+	m_mechArmPrefab = ScenesManager::GetInstance()->FindGameObject("MechArm");
+	m_mechArmPrefab->SetActive(false);
+
 	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("Camera");
 
-	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mainCamera);
+	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 }
 
 void SceneController::Update()

@@ -22,6 +22,7 @@ public:
 private:
 	Camera* m_mainCamera;
 	Sphere* m_spherePrefab;
+	GameObject* m_mechArmPrefab;
 	Sphere* m_sphere;
 
 	ExplosionsSequence* m_explosionsSequence;

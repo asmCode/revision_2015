@@ -6,17 +6,21 @@
 #include "../Camera.h"
 #include "../FuturisEngine/Time.h"
 
-ExplosionsSequence::ExplosionsSequence(Sphere* spherePrefab, Camera* mainCamera) :
+ExplosionsSequence::ExplosionsSequence(Sphere* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera) :
 m_spherePrefab(spherePrefab),
+m_mechArmPrefab(m_mechArmPrefab),
 m_mainCamera(mainCamera)
 {
+
 }
 
 void ExplosionsSequence::Initialize()
 {
 	m_normalSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab->GetGameObject())->GetComponent("Sphere"));
-	m_smallSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab->GetGameObject())->GetComponent("Sphere"));
+	m_normalSphere->Initialize(nullptr);
 
+	m_smallSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab->GetGameObject())->GetComponent("Sphere"));
+	m_smallSphere->Initialize(nullptr);
 	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.1f, 0.1f, 0.1f));
 }
 
