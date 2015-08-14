@@ -24,4 +24,7 @@ private:
 	GameObject* m_mechArmPrefab;
 	Sphere* m_sphere;
 	Camera* m_mainCamera;
+
+	GameObject* m_cameraPivot;
+	float m_cameraAngle;
 };

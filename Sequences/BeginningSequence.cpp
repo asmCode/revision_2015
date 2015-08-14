@@ -4,6 +4,7 @@
 #include "../Camera.h"
 #include "../Transform.h"
 #include "../SynchEvent.h"
+#include "../FuturisEngine/Time.h"
 #include <Utils/Random.h>
 
 
@@ -13,6 +14,12 @@ m_mechArmPrefab(mechArmPrefab),
 m_mainCamera(mainCamera),
 m_sphere(nullptr)
 {
+	m_cameraPivot = new GameObject("CameraPivot");
+
+	m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_cameraPivot->GetTransform());
+	m_cameraAngle = 0.0f;
+
+	//m_cameraPivot->GetTransform().SetRotation(sm::Quat::FromAngleAxis(1.0f, sm::Vec3(1, 0, 0)));
 }
 
 void BeginningSequence::Initialize()
@@ -35,6 +42,11 @@ void BeginningSequence::Clean()
 
 void BeginningSequence::Update()
 {
+	m_cameraAngle += Time::DeltaTime * 0.3f;
+
+	m_cameraPivot->GetTransform().SetRotation(
+		sm::Quat::FromAngleAxis(m_cameraAngle, sm::Vec3(0, 1, 0)) *
+		sm::Quat::FromAngleAxis(0.4f, sm::Vec3(1, 0, 0)));
 }
 
 void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
