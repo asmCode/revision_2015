@@ -6,12 +6,16 @@
 #include "../SynchManager.h"
 #include "../SynchEvent.h"
 #include "../Transform.h"
+#include "../Sequences/SequenceBase.h"
+#include "../Sequences/BeginningSequence.h"
 #include "../Sequences/ExplosionsSequence.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
 SceneController::SceneController(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
+	m_currentSequence(nullptr),
+	m_beginningSequence(nullptr),
 	m_explosionsSequence(nullptr)
 {
 }
@@ -20,13 +24,19 @@ void SceneController::Awake()
 {
 	SynchManager::GetInstance()->RegisterObserver(this);
 
-	m_spherePrefab = (Sphere*)ScenesManager::GetInstance()->FindGameObject("Sphere")->GetComponent("Sphere");
-	m_spherePrefab->GetGameObject()->SetActive(false);
+	m_spherePrefab = ScenesManager::GetInstance()->FindGameObject("Sphere");
+	m_spherePrefab->SetActive(false);
 
 	m_mechArmPrefab = ScenesManager::GetInstance()->FindGameObject("MechArm");
 	m_mechArmPrefab->SetActive(false);
 
 	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("Camera");
+
+	m_beginningSequence = new BeginningSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
+	m_beginningSequence->Initialize();
+
+	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
+	m_explosionsSequence->Initialize();
 }
 
 void SceneController::Update()
@@ -35,63 +45,30 @@ void SceneController::Update()
 	{
 	}
 
-	if (m_explosionsSequence != nullptr)
-		m_explosionsSequence->Update();
+	if (m_currentSequence != nullptr)
+		m_currentSequence->Update();
 }
 
 void SceneController::SynchEventFired(SynchEvent* synchEvent)
 {
-	if (synchEvent->GetId() == "blink1")
+	if (synchEvent->GetId() == "prepare_for_beginning")
 	{
-		const int totalCount = 54;
-		const int subCount = 20;
-
-		int elements[totalCount];
-		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
-
-		for (int i = 0; i < subCount; i++)
-			m_sphere->BlinkSpherePart(elements[i], sm::Vec3(0.9f, 0.9f, 0.9f));
-	}
-	else if (synchEvent->GetId() == "beat1")
-	{
-		const int totalCount = 54;
-		const int subCount = 20;
-
-		int elements[totalCount];
-		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
-
-		for (int i = 0; i < subCount; i++)
-			m_sphere->RollSpherePart(elements[i]);
-	}
-	else if (synchEvent->GetId() == "open_mech1")
-	{
-		m_sphere->OpenWithMechArms();
+		ChangeSequence(m_beginningSequence);
 	}
 	else if (synchEvent->GetId() == "prepare_for_explosions")
 	{
-		PrepareForExplosions();
+		ChangeSequence(m_explosionsSequence);
 	}
-	else if (synchEvent->GetId() == "explode")
-	{
-		m_explosionsSequence->Repeat();
-	}
-	else if (synchEvent->GetId() == "prepare_for_beginning")
-	{
-		PrepareForBeginning();
-	}
-	
+
+	if (m_currentSequence != nullptr)
+		m_currentSequence->NotifySynchEvent(synchEvent);
 }
 
-void SceneController::PrepareForExplosions()
+void SceneController::ChangeSequence(SequenceBase* sequence)
 {
-	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
-	m_explosionsSequence->Initialize();
-	m_explosionsSequence->Prepare();
-}
+	if (m_currentSequence != nullptr)
+		m_currentSequence->Clean();
 
-void SceneController::PrepareForBeginning()
-{
-	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
-	m_explosionsSequence->Initialize();
-	m_explosionsSequence->Prepare();
+	m_currentSequence = sequence;
+	m_currentSequence->Prepare();
 }

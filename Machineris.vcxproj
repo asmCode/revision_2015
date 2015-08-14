@@ -178,7 +178,9 @@ exit /B 0
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="RenderableProxy.cpp" />
+    <ClCompile Include="Sequences\BeginningSequence.cpp" />
     <ClCompile Include="Sequences\ExplosionsSequence.cpp" />
+    <ClCompile Include="Sequences\SequenceBase.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WallFace.cpp" />
     <ClCompile Include="PlaneMesh.cpp" />
@@ -346,7 +348,9 @@ exit /B 0
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
+    <ClInclude Include="Sequences\BeginningSequence.h" />
     <ClInclude Include="Sequences\ExplosionsSequence.h" />
+    <ClInclude Include="Sequences\SequenceBase.h" />
     <ClInclude Include="SynchManagerObserver.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WallFace.h" />

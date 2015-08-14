@@ -8,6 +8,8 @@ class GameObject;
 class Sphere;
 class SynchEvent;
 class Camera;
+class SequenceBase;
+class BeginningSequence;
 class ExplosionsSequence;
 
 class SceneController : public Behaviour,
@@ -21,13 +23,13 @@ public:
 
 private:
 	Camera* m_mainCamera;
-	Sphere* m_spherePrefab;
+	GameObject* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
-	Sphere* m_sphere;
 
+	SequenceBase* m_currentSequence;
+	BeginningSequence* m_beginningSequence;
 	ExplosionsSequence* m_explosionsSequence;
 
 	void SynchEventFired(SynchEvent* synchEvent);
-	void PrepareForExplosions();
-	void PrepareForBeginning();
+	void ChangeSequence(SequenceBase* sequence);
 };

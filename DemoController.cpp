@@ -721,9 +721,7 @@ bool DemoController::Draw(float time, float seconds)
 	DrawText(fpsText, 4, height - 20, 255, 0, 0);
 
 	sprintf(fpsText, "time: %.2f", time);
-	DrawText(fpsText, 4, height - 160, 255, 0, 0);
-	sprintf(fpsText, "fade: %.2f", fade);
-	DrawText(fpsText, 4, height - 180, 255, 0, 0);
+	DrawText(fpsText, 4, height - 40, 255, 0, 0);
 #endif
 
 	VectorGraphics::SetViewProjMatrix(BuiltInShaderParams::m_paramViewProj);
