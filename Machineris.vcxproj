@@ -121,7 +121,6 @@ exit /B 0
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Behaviours\AnimationTest.cpp" />
     <ClCompile Include="Behaviours\CustomMesh.cpp" />
-    <ClCompile Include="Behaviours\ExplosionsSequence.cpp" />
     <ClCompile Include="Behaviours\Face.cpp" />
     <ClCompile Include="Behaviours\FppCamera.cpp" />
     <ClCompile Include="Behaviours\FppCameraFactory.cpp" />
@@ -179,6 +178,7 @@ exit /B 0
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="RenderableProxy.cpp" />
+    <ClCompile Include="Sequences\ExplosionsSequence.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WallFace.cpp" />
     <ClCompile Include="PlaneMesh.cpp" />
@@ -278,7 +278,6 @@ exit /B 0
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Behaviours\AnimationTest.h" />
     <ClInclude Include="Behaviours\CustomMesh.h" />
-    <ClInclude Include="Behaviours\ExplosionsSequence.h" />
     <ClInclude Include="Behaviours\Face.h" />
     <ClInclude Include="Behaviours\FppCamera.h" />
     <ClInclude Include="Behaviours\FppCameraFactory.h" />
@@ -347,6 +346,7 @@ exit /B 0
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
+    <ClInclude Include="Sequences\ExplosionsSequence.h" />
     <ClInclude Include="SynchManagerObserver.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WallFace.h" />

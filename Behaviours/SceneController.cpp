@@ -1,12 +1,12 @@
 #include "SceneController.h"
 #include "Sphere.h"
-#include "ExplosionsSequence.h"
 #include "../Camera.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
 #include "../SynchManager.h"
 #include "../SynchEvent.h"
 #include "../Transform.h"
+#include "../Sequences/ExplosionsSequence.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
@@ -75,9 +75,21 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	{
 		m_explosionsSequence->Repeat();
 	}
+	else if (synchEvent->GetId() == "prepare_for_beginning")
+	{
+		PrepareForBeginning();
+	}
+	
 }
 
 void SceneController::PrepareForExplosions()
+{
+	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
+	m_explosionsSequence->Initialize();
+	m_explosionsSequence->Prepare();
+}
+
+void SceneController::PrepareForBeginning()
 {
 	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 	m_explosionsSequence->Initialize();

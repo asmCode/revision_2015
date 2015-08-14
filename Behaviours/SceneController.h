@@ -29,4 +29,5 @@ private:
 
 	void SynchEventFired(SynchEvent* synchEvent);
 	void PrepareForExplosions();
+	void PrepareForBeginning();
 };
