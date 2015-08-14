@@ -27,8 +27,6 @@ void SceneController::Awake()
 	m_mechArmPrefab->SetActive(false);
 
 	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("Camera");
-
-	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 }
 
 void SceneController::Update()
@@ -73,10 +71,15 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	{
 		PrepareForExplosions();
 	}
+	else if (synchEvent->GetId() == "explode")
+	{
+		m_explosionsSequence->Repeat();
+	}
 }
 
 void SceneController::PrepareForExplosions()
 {
+	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 	m_explosionsSequence->Initialize();
 	m_explosionsSequence->Prepare();
 }

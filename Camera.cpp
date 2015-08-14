@@ -16,7 +16,7 @@ const Camera::ProjectionType Camera::DefaultProjectionType = Camera::ProjectionT
 const float Camera::DefaultFov = 3.1415f / 3.0f; // 60 degrees
 const float Camera::DefaultOrthoSize = 100.0f;
 const float Camera::DefaultNearPlane = 1.0f;
-const float Camera::DefaultFarPlane = 1000.0f;
+const float Camera::DefaultFarPlane = 100.0f;
 const sm::Rect<float> Camera::DefaultViewport = sm::Rect<float>(0, 0, 1, 1);
 const sm::Vec4 Camera::DefaultClearColor = sm::Vec4(0.2f, 0.1f, 0.1f, 0.0f);
 

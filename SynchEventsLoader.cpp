@@ -36,7 +36,8 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 //	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
 //	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
 //	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
-	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 37.0f));
+	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 39.79f - 1.379f));
+	SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);
 
 	return true;
 }

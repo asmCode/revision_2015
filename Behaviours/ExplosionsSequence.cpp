@@ -9,11 +9,13 @@
 #include "SpherePartCommands/Explode.h"
 #include "SpherePartCommands/Reset.h"
 #include <UserInput/Input.h>
+#include <Utils/Log.h>
 
 ExplosionsSequence::ExplosionsSequence(Sphere* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera) :
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
-m_mainCamera(mainCamera)
+m_mainCamera(mainCamera),
+m_speed(0.0f)
 {
 
 }
@@ -25,38 +27,50 @@ void ExplosionsSequence::Initialize()
 
 	m_smallSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab->GetGameObject())->GetComponent("Sphere"));
 	m_smallSphere->Initialize(nullptr);
-	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.02f, 0.02f, 0.02f));
-}
-
-void ExplosionsSequence::Prepare()
-{
-	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
-
-	m_mainCamera->GetGameObject()->GetTransform().SetPosition(cameraTransform->GetPosition());
-	m_mainCamera->GetGameObject()->GetTransform().SetRotation(cameraTransform->GetRotation());
-	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
+	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.1f, 0.1f, 0.1f));
 }
 
 void ExplosionsSequence::Update()
 {
+	const float explodeDistance = 20.0f;
+
 	sm::Vec3 position = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition();
-	position.z -= Time::DeltaTime * position.GetLength() * 0.5f;
+	position.z -= Time::DeltaTime * m_speed;
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalPosition(position);
 
+	/*
 	if (Input::GetKeyDown(KeyCode_S))
 		SwapSpheres();
 
 	if (Input::GetKeyDown(KeyCode_E))
 		ExplodeSphere();
+	*/
 }
 
-void ExplosionsSequence::ExplodeSphere()
+void ExplosionsSequence::Prepare()
 {
-	const std::vector<SpherePart*>& parts = m_normalSphere->GetSphereParts();
+	m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
+
+	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
+
+	m_mainCamera->GetGameObject()->GetTransform().SetLocalPosition(cameraTransform->GetPosition());
+	m_mainCamera->GetGameObject()->GetTransform().SetLocalRotation(cameraTransform->GetRotation());
+	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
+
+	m_normalSphere->GetGameObject()->SetActive(false);
+
+	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
+	//m_speed = distance / 1.379f;
+	m_speed = 0.0f;
+}
+
+void ExplosionsSequence::ExplodeSphere(Sphere* sphere)
+{
+	const std::vector<SpherePart*>& parts = sphere->GetSphereParts();
 	for (uint32_t i = 0; i < parts.size(); i++)
 	{
 		Explode* command = new Explode();
-		parts[i]->QueueCommand(command);
+		parts[i]->SetCommand(command);
 	}
 }
 
@@ -69,8 +83,6 @@ void ExplosionsSequence::SwapSpheres()
 	Sphere* tmp = m_smallSphere;
 	m_smallSphere = m_normalSphere;
 	m_normalSphere = tmp;
-
-	ResetSphere(m_smallSphere);
 }
 
 void ExplosionsSequence::ResetSphere(Sphere* sphere)
@@ -81,4 +93,17 @@ void ExplosionsSequence::ResetSphere(Sphere* sphere)
 		Reset* command = new Reset();
 		parts[i]->SetCommand(command);
 	}
+}
+
+void ExplosionsSequence::Repeat()
+{
+	m_normalSphere->GetGameObject()->SetActive(true);
+	m_smallSphere->GetGameObject()->SetActive(true);
+
+	ExplodeSphere(m_smallSphere);
+	ResetSphere(m_normalSphere);
+	SwapSpheres();
+
+	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
+	m_speed = distance / 1.379f;
 }

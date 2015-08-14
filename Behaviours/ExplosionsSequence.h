@@ -16,7 +16,7 @@ public:
 	void Prepare();
 	void Update();
 
-	void ExplodeSphere();
+	void Repeat();
 
 private:
 	Sphere* m_spherePrefab;
@@ -25,6 +25,9 @@ private:
 	Sphere* m_smallSphere;
 	Camera* m_mainCamera;
 
+	float m_speed;
+
 	void SwapSpheres();
 	void ResetSphere(Sphere* sphere);
+	void ExplodeSphere(Sphere* sphere);
 };
