@@ -180,6 +180,7 @@ exit /B 0
     <ClCompile Include="RenderableProxy.cpp" />
     <ClCompile Include="Sequences\BeginningSequence.cpp" />
     <ClCompile Include="Sequences\ExplosionsSequence.cpp" />
+    <ClCompile Include="Sequences\MagnetSequence.cpp" />
     <ClCompile Include="Sequences\SequenceBase.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WallFace.cpp" />
@@ -350,6 +351,7 @@ exit /B 0
     <ClInclude Include="RenderableProxy.h" />
     <ClInclude Include="Sequences\BeginningSequence.h" />
     <ClInclude Include="Sequences\ExplosionsSequence.h" />
+    <ClInclude Include="Sequences\MagnetSequence.h" />
     <ClInclude Include="Sequences\SequenceBase.h" />
     <ClInclude Include="SynchManagerObserver.h" />
     <ClInclude Include="Transform.h" />

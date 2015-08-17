@@ -8,10 +8,10 @@ class GameObject;
 class Sphere;
 class Camera;
 
-class BeginningSequence : public SequenceBase
+class MagnetSequence : public SequenceBase
 {
 public:
-	BeginningSequence(Sphere* sphere, Camera* mainCamera);
+	MagnetSequence(Sphere* sphere, Camera* mainCamera);
 
 	void Initialize();
 	void Prepare();
@@ -23,10 +23,7 @@ private:
 	Sphere* m_sphere;
 	Camera* m_mainCamera;
 
-	GameObject* m_cameraPivot;
-	float m_cameraAngle;
+	std::vector<GameObject*> m_magnet;
 
-	int m_pullOutLongBaseIndex;
-
-	void PullOutLong();
+	void AddMagnet();
 };

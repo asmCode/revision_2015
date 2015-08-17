@@ -11,11 +11,9 @@
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
-BeginningSequence::BeginningSequence(GameObject* spherePrefab, GameObject* mechArmPrefab, Camera* mainCamera):
-m_spherePrefab(spherePrefab),
-m_mechArmPrefab(mechArmPrefab),
+BeginningSequence::BeginningSequence(Sphere* sphere, Camera* mainCamera):
+m_sphere(sphere),
 m_mainCamera(mainCamera),
-m_sphere(nullptr),
 m_pullOutLongBaseIndex(0)
 {
 	m_cameraPivot = new GameObject("CameraPivot");
@@ -28,9 +26,6 @@ m_pullOutLongBaseIndex(0)
 
 void BeginningSequence::Initialize()
 {
-	m_sphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
-	m_sphere->Initialize(m_mechArmPrefab);
-	m_sphere->GetGameObject()->SetActive(false);
 }
 
 void BeginningSequence::Prepare()

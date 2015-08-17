@@ -2,10 +2,9 @@
 //#define TIME_SHIFT 60 + 37.0f // explosions
 //#define TIME_SHIFT 0.0f
 //#define TIME_SHIFT 118.0f
-//#define TIME_SHIFT 60 + 4.0f
-#define TIME_SHIFT 53.0f // open
-//#define TIME_SHIFT 60 * 3 + 30 // po greetz
-//#define TIME_SHIFT 60 * 5 + 30 // biegacze
+//#define TIME_SHIFT 60 + 4.0f // pull out long
+#define TIME_SHIFT 60 + 10.0f // magnet
+//#define TIME_SHIFT 53.0f // open
 
 #define MAN_CAM 1
 //#define DISABLE_FRUSTUM_CULLING 1

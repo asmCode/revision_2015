@@ -11,6 +11,7 @@ class Camera;
 class SequenceBase;
 class BeginningSequence;
 class ExplosionsSequence;
+class MagnetSequence;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -22,6 +23,7 @@ public:
 	void Update();
 
 private:
+	Sphere* m_commonSphere;
 	Camera* m_mainCamera;
 	GameObject* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
@@ -29,6 +31,7 @@ private:
 	SequenceBase* m_currentSequence;
 	BeginningSequence* m_beginningSequence;
 	ExplosionsSequence* m_explosionsSequence;
+	MagnetSequence* m_magnetSequence;
 
 	void SynchEventFired(SynchEvent* synchEvent);
 	void ChangeSequence(SequenceBase* sequence);
