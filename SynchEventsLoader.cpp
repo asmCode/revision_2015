@@ -34,11 +34,13 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {
 	synchManager->Addevent(new SynchEvent("prepare_for_beginning", 0.0f));
-	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
-	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
+//	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
+//	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
 	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
-	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 39.79f - 1.379f));
-	SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);
+	float shift = -0.1f;
+	SetBunchEvents(synchManager, "pull_put_long", 60 + 5.89f + shift, 60 + 16.85f + shift, 32);
+	/*synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 39.79f - 1.379f));
+	SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);*/
 
 	return true;
 }
@@ -60,4 +62,3 @@ void SynchEventsLoader::SetBunchEvents(
 		time += beatLength;
 	}
 }
-

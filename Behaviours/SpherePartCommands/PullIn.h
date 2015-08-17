@@ -2,6 +2,7 @@
 
 #include "CommandBase.h"
 #include <Math/Vec3.h>
+#include <Math/Quat.h>
 
 class PullIn : public CommandBase
 {
@@ -15,6 +16,7 @@ private:
 	float m_duration;
 
 	sm::Vec3 m_startPosition;
+	sm::Quat m_startRotation;
 
 	float m_time;
 

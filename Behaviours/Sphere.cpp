@@ -26,6 +26,7 @@
 #include <Utils/Log.h>
 #include "../FuturisEngine/Time.h"
 #include "../GraphicsLog.h"
+#include <algorithm>
 
 using namespace FuturisEngine::Graphics;
 
@@ -43,6 +44,8 @@ void Sphere::Initialize(GameObject* mechArmPrefab)
 	std::vector<GameObject*> spherePartsGameObjects;
 	DemoUtils::GetAllChildrenWitchPrefix(GetGameObject(), "SpherePart", spherePartsGameObjects);
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", spherePartsGameObjects, m_parts);
+
+	SortSphereParts();
 
 	Material* commonMaterial = m_parts[0]->GetGameObject()->GetRenderables()[0]->GetMaterial();
 
@@ -157,3 +160,14 @@ void Sphere::CreateMechArms(GameObject* mechArmPrefab)
 		m_mechArms.push_back(dynamic_cast<MechArm*>(clone->GetComponent("MechArm")));
 	}
 }
+
+void Sphere::SortSphereParts()
+{
+	std::sort(m_parts.begin(), m_parts.end(), [](SpherePart* a, SpherePart* b)
+	{
+		return
+			a->GetGameObject()->GetTransform().GetPosition().x >
+			b->GetGameObject()->GetTransform().GetPosition().x;
+	});
+}
+

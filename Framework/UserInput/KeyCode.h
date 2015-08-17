@@ -54,6 +54,7 @@ enum KeyCode
 	KeyCode_NumPad8,
 	KeyCode_NumPad9,
 
+	KeyCode_Space,
 	KeyCode_Escape,
 	KeyCode_LShift,
 	KeyCode_LCtrl,

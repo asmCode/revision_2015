@@ -1,8 +1,9 @@
 #define TIME_SCALE 1.0f
 //#define TIME_SHIFT 60 + 37.0f // explosions
-#define TIME_SHIFT 0.0f
+//#define TIME_SHIFT 0.0f
 //#define TIME_SHIFT 118.0f
-//#define TIME_SHIFT 60 * 4 + 20 // greetz
+//#define TIME_SHIFT 60 + 4.0f
+#define TIME_SHIFT 53.0f // open
 //#define TIME_SHIFT 60 * 3 + 30 // po greetz
 //#define TIME_SHIFT 60 * 5 + 30 // biegacze
 

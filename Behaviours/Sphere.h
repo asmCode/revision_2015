@@ -30,4 +30,6 @@ private:
 	std::vector<MechArm*> m_mechArms;
 
 	void CreateMechArms(GameObject* mechArmPrefab);
+
+	void SortSphereParts();
 };

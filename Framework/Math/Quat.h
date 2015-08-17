@@ -71,6 +71,20 @@ namespace sm
 			return ret;
 		}
 
+		bool operator == (const Quat& comp) const
+		{
+			return
+				s == comp.s &&
+				v == comp.v;
+		}
+
+		bool operator != (const Quat& comp) const
+		{
+			return
+				s != comp.s ||
+				v != comp.v;
+		}
+
 		Quat operator - () const
 		{
 			Quat ret;

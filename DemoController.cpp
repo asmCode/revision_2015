@@ -314,9 +314,6 @@ bool DemoController::LoadContent(const char *basePath)
 
 	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, (float)width, 0, (float)height));
 
-	m_endScreen = Content::Instance->Get<Texture>("end");
-	assert(m_endScreen != NULL);
-
 	m_startScreen = Content::Instance->Get<Texture>("loader");
 	assert(m_startScreen != NULL);
 

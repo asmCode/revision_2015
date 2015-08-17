@@ -64,6 +64,7 @@ bool Input::Constructor()
 	Input::m_keyMap[KeyCode_NumPad8] = VK_NUMPAD8;
 	Input::m_keyMap[KeyCode_NumPad9] = VK_NUMPAD9;
 
+	Input::m_keyMap[KeyCode_Space] = VK_SPACE;
 	Input::m_keyMap[KeyCode_Escape] = VK_ESCAPE;
 	Input::m_keyMap[KeyCode_LShift] = VK_LSHIFT;
 	Input::m_keyMap[KeyCode_LCtrl] = VK_LCONTROL;

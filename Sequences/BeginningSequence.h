@@ -27,4 +27,8 @@ private:
 
 	GameObject* m_cameraPivot;
 	float m_cameraAngle;
+
+	int m_pullOutLongBaseIndex;
+
+	void PullOutLong();
 };
