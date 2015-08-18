@@ -10,6 +10,7 @@
 #include "../Sequences/BeginningSequence.h"
 #include "../Sequences/ExplosionsSequence.h"
 #include "../Sequences/MagnetSequence.h"
+#include "../Sequences/EndlessFlightSequence.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
@@ -18,7 +19,8 @@ SceneController::SceneController(GameObject* gameObject, const std::string& name
 	m_currentSequence(nullptr),
 	m_beginningSequence(nullptr),
 	m_explosionsSequence(nullptr),
-	m_magnetSequence(nullptr)
+	m_magnetSequence(nullptr),
+	m_endlessFlightSequence(nullptr)
 {
 }
 
@@ -34,8 +36,9 @@ void SceneController::Awake()
 
 	m_commonSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
 	m_commonSphere->Initialize(m_mechArmPrefab);
+	m_commonSphere->GetGameObject()->SetActive(false);
 
-	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("Camera");
+	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent("Camera");
 
 	m_beginningSequence = new BeginningSequence(m_commonSphere, m_mainCamera);
 	m_beginningSequence->Initialize();
@@ -45,6 +48,9 @@ void SceneController::Awake()
 
 	m_explosionsSequence = new ExplosionsSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 	m_explosionsSequence->Initialize();
+
+	m_endlessFlightSequence = new EndlessFlightSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
+	m_endlessFlightSequence->Initialize();
 }
 
 void SceneController::Update()
@@ -70,6 +76,10 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	else if (synchEvent->GetId() == "prepare_for_explosions")
 	{
 		ChangeSequence(m_explosionsSequence);
+	}
+	else if (synchEvent->GetId() == "endless_flight")
+	{
+		ChangeSequence(m_endlessFlightSequence);
 	}
 
 	if (m_currentSequence != nullptr)

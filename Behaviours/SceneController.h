@@ -12,6 +12,7 @@ class SequenceBase;
 class BeginningSequence;
 class ExplosionsSequence;
 class MagnetSequence;
+class EndlessFlightSequence;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -32,6 +33,7 @@ private:
 	BeginningSequence* m_beginningSequence;
 	ExplosionsSequence* m_explosionsSequence;
 	MagnetSequence* m_magnetSequence;
+	EndlessFlightSequence* m_endlessFlightSequence;
 
 	void SynchEventFired(SynchEvent* synchEvent);
 	void ChangeSequence(SequenceBase* sequence);

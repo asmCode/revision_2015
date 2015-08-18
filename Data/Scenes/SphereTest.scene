@@ -6,10 +6,9 @@
 			<Behaviour name="SceneController" />
 		</GameObject>
 
-<!--		
 		<GameObject name="kamerka">
 			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
-			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" depth="-1" />
+			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" depth="2" />
 			<Light />
 			<Behaviour name="FppCamera">
 				<Parameters>
@@ -18,7 +17,6 @@
 				</Parameters>
 			</Behaviour>
 		</GameObject>
--->
 		
 		<GameObject name="MainCamera">
 			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" />

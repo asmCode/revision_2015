@@ -181,6 +181,7 @@ exit /B 0
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="RenderableProxy.cpp" />
     <ClCompile Include="Sequences\BeginningSequence.cpp" />
+    <ClCompile Include="Sequences\EndlessFlightSequence.cpp" />
     <ClCompile Include="Sequences\ExplosionsSequence.cpp" />
     <ClCompile Include="Sequences\MagnetSequence.cpp" />
     <ClCompile Include="Sequences\SequenceBase.cpp" />
@@ -354,6 +355,7 @@ exit /B 0
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
     <ClInclude Include="Sequences\BeginningSequence.h" />
+    <ClInclude Include="Sequences\EndlessFlightSequence.h" />
     <ClInclude Include="Sequences\ExplosionsSequence.h" />
     <ClInclude Include="Sequences\MagnetSequence.h" />
     <ClInclude Include="Sequences\SequenceBase.h" />
