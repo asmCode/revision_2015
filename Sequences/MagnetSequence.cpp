@@ -5,6 +5,7 @@
 #include "../Behaviours/Magnet.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
+#include "../Behaviours/SpherePartCommands/MagnetCommand.h"
 #include "../Camera.h"
 #include "../Transform.h"
 #include "../SynchEvent.h"
@@ -26,6 +27,13 @@ void MagnetSequence::Prepare()
 {
 	m_sphere->GetGameObject()->SetActive(true);
 	AddMagnet();
+	AddMagnet();
+
+	const std::vector<SpherePart*>& parts = m_sphere->GetSphereParts();
+	for (size_t i = 0; i < parts.size(); i++)
+	{
+		parts[i]->SetCommand(new MagnetCommand(m_magnets));
+	}
 }
 
 void MagnetSequence::Clean()
@@ -49,4 +57,6 @@ void MagnetSequence::AddMagnet()
 	GameObject* magnetGameObject = new GameObject("Magnet");
 	Magnet* magnet = dynamic_cast<Magnet*>(magnetGameObject->AddComponent("Magnet"));
 	magnet->Initialize(&m_sphere->GetGameObject()->GetTransform());
+
+	m_magnets.push_back(magnet);
 }

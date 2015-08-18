@@ -23,6 +23,7 @@ class SpherePart : public Behaviour
 	friend class Blink;
 	friend class PullOutWithNoise;
 	friend class Reset;
+	friend class MagnetCommand;
 
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);

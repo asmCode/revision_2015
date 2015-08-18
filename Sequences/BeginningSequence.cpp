@@ -43,13 +43,11 @@ int index = 0;
 
 void BeginningSequence::Update()
 {
-	/*
 	m_cameraAngle += Time::DeltaTime * 0.3f;
 
 	m_cameraPivot->GetTransform().SetRotation(
 		sm::Quat::FromAngleAxis(m_cameraAngle, sm::Vec3(0, 1, 0)) *
 		sm::Quat::FromAngleAxis(0.4f, sm::Vec3(1, 0, 0)));
-		*/
 
 	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{

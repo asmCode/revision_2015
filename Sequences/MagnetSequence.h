@@ -7,6 +7,7 @@
 class GameObject;
 class Sphere;
 class Camera;
+class Magnet;
 
 class MagnetSequence : public SequenceBase
 {
@@ -23,7 +24,7 @@ private:
 	Sphere* m_sphere;
 	Camera* m_mainCamera;
 
-	std::vector<GameObject*> m_magnet;
+	std::vector<Magnet*> m_magnets;
 
 	void AddMagnet();
 };
