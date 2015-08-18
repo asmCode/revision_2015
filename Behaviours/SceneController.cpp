@@ -63,6 +63,10 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	{
 		ChangeSequence(m_beginningSequence);
 	}
+	else if (synchEvent->GetId() == "prepare_for_magnet")
+	{
+		ChangeSequence(m_magnetSequence);
+	}
 	else if (synchEvent->GetId() == "prepare_for_explosions")
 	{
 		ChangeSequence(m_explosionsSequence);

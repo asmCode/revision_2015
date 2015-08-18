@@ -33,6 +33,7 @@
 #include "Behaviours/SpherePart.h"
 #include "Behaviours/SceneController.h"
 #include "Behaviours/MechArm.h"
+#include "Behaviours/Magnet.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -263,6 +264,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("SpherePart", new GenericFactory<SpherePart>());
 	behavioursManager->RegisterBehaviour("SceneController", new GenericFactory<SceneController>());
 	behavioursManager->RegisterBehaviour("MechArm", new GenericFactory<MechArm>());
+	behavioursManager->RegisterBehaviour("Magnet", new GenericFactory<Magnet>());
 }
 
 bool DemoController::LoadContent(const char *basePath)

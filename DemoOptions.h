@@ -3,7 +3,7 @@
 //#define TIME_SHIFT 0.0f
 //#define TIME_SHIFT 118.0f
 //#define TIME_SHIFT 60 + 4.0f // pull out long
-#define TIME_SHIFT 60 + 10.0f // magnet
+#define TIME_SHIFT 60 + 15.0f // magnet
 //#define TIME_SHIFT 53.0f // open
 
 #define MAN_CAM 1
