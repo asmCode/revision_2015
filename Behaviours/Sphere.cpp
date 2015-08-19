@@ -116,6 +116,24 @@ const std::vector<SpherePart*>& Sphere::GetSphereParts() const
 	return m_parts;
 }
 
+SpherePart* Sphere::GetClosestPart(const sm::Vec3& position) const
+{
+	float minDistance = 99999;
+	SpherePart* part = nullptr;
+
+	for (size_t i = 0; i < m_parts.size(); i++)
+	{
+		float distance = (m_parts[i]->GetGameObject()->GetTransform().GetPosition() - position).GetLength();
+		if (distance < minDistance)
+		{
+			minDistance = distance;
+			part = m_parts[i];
+		}
+	}
+
+	return part;
+}
+
 float angle;
 
 void Sphere::Update()

@@ -24,6 +24,7 @@ public:
 	void ShowMechArms(bool show);
 
 	const std::vector<SpherePart*>& GetSphereParts() const;
+	SpherePart* GetClosestPart(const sm::Vec3& position) const;
 
 private:
 	std::vector<SpherePart*> m_parts;
