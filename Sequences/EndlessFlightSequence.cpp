@@ -70,12 +70,12 @@ void EndlessFlightSequence::Update()
 		m_mainCamera->GetGameObject()->GetTransform().SetForward(cameraDirection);
 
 		//m_cameraTime += Time::DeltaTime * 0.5f;
-		float multi = 10.0f;
+		float multi = 15.0f;
 		if (Input::GetKey(KeyCode_T))
 			multi *= 0.1f;
 		m_cameraTime += Time::DeltaTime * multi;
 
-		if (m_cameraTime >= 0.7f * m_cameraCurve->GetEndTime() && dd != nullptr)
+		if (m_cameraTime >= 0.5f * m_cameraCurve->GetEndTime() && dd != nullptr)
 		{
 			dd->QueueCommand(new PullOut(0.1f, 0.5f));
 			dd->QueueCommand(new SlideOut(0.5f, 0.6f, sm::Vec3(1, 0, 0)));
@@ -201,8 +201,8 @@ SpherePart* EndlessFlightSequence::GetRandomPart(Sphere* sphere)
 AnimationCurve<sm::Vec3>* EndlessFlightSequence::CreateCurve(const sm::Vec3& start, Sphere* destinationSphere, const sm::Vec3& pivot)
 {
 	//const float approachStep = 0.26f;
-	const float approachStep = 0.4f;
-	const float angleStep = 0.02f;
+	const float approachStep = 0.5f;
+	const float angleStep = 0.03f;
 	const float approachDistanceLimit = 3.0f;
 	const float timeStep = 0.1f;
 
