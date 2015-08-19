@@ -15,7 +15,7 @@ varying vec3 o_eyeDirection;
 void main()
 {
 	vec4 worldPosition = u_builtin_world * vec4(a_position, 1.0);
-	o_normal = mat3(u_builtin_world) * a_normal;
+	o_normal = normalize(mat3(u_builtin_world) * a_normal);
 	
 	o_lightDirection = u_builtin_pointLightPosition - worldPosition.xyz;
 	o_eyeDirection = u_builtin_eyePosition - worldPosition.xyz;

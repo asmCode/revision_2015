@@ -7,7 +7,9 @@
 #include <Utils/SystemUtils.h>
 #include <Utils/Random.h>
 #include <Utils/StringUtils.h>
+#include <Utils/Log.h>
 #include <stdint.h>
+#include <Math/Animation/LinearCurve.h>
 #include <XML/XMLLoader.h>
 #include <XML/XMLNode.h>
 #include <XML/XmlWriter.h>
@@ -231,6 +233,17 @@ void DemoUtils::NormalizeSegments(AnimationCurve<sm::Vec3>*& curve, float timeSt
 	//newCurve->AddKeyframe(time, curve->GetKeyframe(curve->GetKeysCount() - 1).Value);
 	newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Time = time;
 	newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Value = curve->GetKeyframe(curve->GetKeysCount() - 1).Value;
+
+	LinearCurve<float> linear;
+
+	float totalTime = newCurve->GetEndTime();
+	for (size_t i = 0; i < newCurve->GetKeysCount(); i++)
+	{
+		float newmultiplier = linear.Evaluate(1.0f, 10, newCurve->GetKeyframe(i).Time / totalTime);
+		newCurve->GetKeyframe(i).Time *= newmultiplier;
+
+		Log::LogT("multiplier = %f, time = %f", newmultiplier, newCurve->GetKeyframe(i).Time);
+	}
 
 	delete curve;
 	curve = newCurve;

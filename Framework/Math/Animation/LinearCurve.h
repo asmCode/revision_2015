@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IAnimationCurve.h"
+#include "../MathUtils.h"
 
 template <typename T>
 class LinearCurve : public IAnimationCurve<T>

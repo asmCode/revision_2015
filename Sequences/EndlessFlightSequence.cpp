@@ -17,6 +17,9 @@
 #include <Utils/Log.h>
 #include <Utils/Random.h>
 
+SpherePart* dd;
+AnimationCurve<sm::Vec3>* oldCurve = nullptr;
+
 EndlessFlightSequence::EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera) :
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
@@ -38,6 +41,10 @@ void EndlessFlightSequence::Initialize()
 	m_smallSphere->Initialize(nullptr);
 	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.1f, 0.1f, 0.1f));
 	m_smallSphere->GetGameObject()->SetActive(false);
+
+	Sphere* s = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
+	s->Initialize(nullptr);
+	s->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.01f, 0.01f, 0.01f));
 }
 
 void EndlessFlightSequence::Update()
@@ -45,19 +52,37 @@ void EndlessFlightSequence::Update()
 	if (Input::GetKeyDown(KeyCode_Space))
 		Repeat();
 
+	if (oldCurve != nullptr)
+	{
+		//DebugUtils::DrawCurve(*oldCurve, 0.005f, sm::Vec3(0, 1, 0));
+	}
+
 	if (m_cameraCurve != nullptr)
 	{
-		DebugUtils::DrawCurve(*m_cameraCurve, 0.005f, sm::Vec3(1, 0, 0));
+		//DebugUtils::DrawCurve(*m_cameraCurve, 0.005f, sm::Vec3(1, 0, 0));
 
-		sm::Vec3 curvePosition = m_cameraCurve->Evaluate(m_cameraTime * m_cameraCurve->GetEndTime());
-		sm::Vec3 curvePositionAhead = m_cameraCurve->Evaluate(m_cameraTime * m_cameraCurve->GetEndTime() + 0.1f);
+		sm::Vec3 curvePosition = m_cameraCurve->Evaluate(m_cameraTime);
+
+		sm::Vec3 cameraDirection =
+			m_mainCamera->GetGameObject()->GetTransform().GetPosition().GetNormalized();
+
 		m_mainCamera->GetGameObject()->GetTransform().SetPosition(curvePosition);
-		m_mainCamera->GetGameObject()->GetTransform().SetForward(-(m_end - curvePosition).GetNormalized());
-		//m_mainCamera->GetGameObject()->GetTransform().SetForward(-(curvePositionAhead - curvePosition).GetNormalized());
+		m_mainCamera->GetGameObject()->GetTransform().SetForward(cameraDirection);
 
-		m_cameraTime += Time::DeltaTime * 0.3f;
+		//m_cameraTime += Time::DeltaTime * 0.5f;
+		float multi = 10.0f;
+		if (Input::GetKey(KeyCode_T))
+			multi *= 0.1f;
+		m_cameraTime += Time::DeltaTime * multi;
 
-		if (m_cameraTime >= 1.0f)
+		if (m_cameraTime >= 0.7f * m_cameraCurve->GetEndTime() && dd != nullptr)
+		{
+			dd->QueueCommand(new PullOut(0.1f, 0.5f));
+			dd->QueueCommand(new SlideOut(0.5f, 0.6f, sm::Vec3(1, 0, 0)));
+			dd = nullptr;
+		}
+
+		if (m_cameraTime >= 1.0f * m_cameraCurve->GetEndTime())
 		{
 			Repeat();
 		}
@@ -66,14 +91,15 @@ void EndlessFlightSequence::Update()
 
 void EndlessFlightSequence::Prepare()
 {
-	/*
-	m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
+	srand(2);
 
-	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
+	//m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
+
+	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialEndlessCameraPosition")->GetTransform();
 
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalPosition(cameraTransform->GetPosition());
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalRotation(cameraTransform->GetRotation());
-	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());*/
+	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
 
 	m_normalSphere->GetGameObject()->SetActive(true);
 	m_smallSphere->GetGameObject()->SetActive(true);
@@ -82,6 +108,8 @@ void EndlessFlightSequence::Prepare()
 	//m_speed = distance / 1.379f;
 	m_speed = 0.0f;
 	*/
+
+	Repeat();
 }
 
 void EndlessFlightSequence::Clean()
@@ -128,10 +156,20 @@ void EndlessFlightSequence::Repeat()
 
 	SwapSpheres();
 
+	ResetSphere(m_normalSphere);
+	ResetSphere(m_smallSphere);
+
 	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
 	m_speed = distance / 1.379f;
 
-	m_cameraTime = 0.0f;
+	if (m_cameraCurve != nullptr)
+		m_cameraTime = m_cameraTime - m_cameraCurve->GetEndTime();
+	else
+	{
+		m_cameraTime = 0.0f;
+	}
+
+	oldCurve = m_cameraCurve;
 
 	m_cameraCurve = CreateCurve(
 		m_mainCamera->GetGameObject()->GetTransform().GetPosition(),
@@ -162,21 +200,25 @@ SpherePart* EndlessFlightSequence::GetRandomPart(Sphere* sphere)
 
 AnimationCurve<sm::Vec3>* EndlessFlightSequence::CreateCurve(const sm::Vec3& start, Sphere* destinationSphere, const sm::Vec3& pivot)
 {
-	const float approachStep = 0.26f;
+	//const float approachStep = 0.26f;
+	const float approachStep = 0.4f;
 	const float angleStep = 0.02f;
 	const float approachDistanceLimit = 3.0f;
 	const float timeStep = 0.1f;
 
-	sm::Vec3 axis = (start.GetNormalized() * Random::GetUniVector()).GetNormalized();
+	sm::Vec3 axis = (start.GetNormalized() * Random::GetUniVector() + sm::Vec3(0, Random::GetFloat(-1, 1), Random::GetFloat(-0.3f, 0.3f))).GetNormalized();
 	float time = 0.0f;	
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
 
+	//curve->AddKeyframe(time - timeStep, start + start.GetNormalized() * approachStep);
+
 	curve->AddKeyframe(time, start);
-	//curve->AddKeyframe(time += timeStep, start - start.GetNormalized() * approachStep);
 	curve->AddKeyframe(time += timeStep, start - start.GetNormalized() * approachStep);
+	curve->AddKeyframe(time += timeStep, start - start.GetNormalized() * approachStep * 2);
+	curve->AddKeyframe(time += timeStep, start - start.GetNormalized() * approachStep * 3);
 
 	float distance = 0.0f;
-	sm::Vec3 position = start - start.GetNormalized();
+	sm::Vec3 position = start - start.GetNormalized() * approachStep * 3;
 	float angle = 0.0f;
 	do
 	{
@@ -193,12 +235,14 @@ AnimationCurve<sm::Vec3>* EndlessFlightSequence::CreateCurve(const sm::Vec3& sta
 	} while (distance > approachDistanceLimit);
 
 	SpherePart* part = destinationSphere->GetClosestPart(position);
-	part->SetCommand(new PullOut(0.3f, 0.5f));
-	part->QueueCommand(new SlideOut(0.3f, 0.6f, sm::Vec3(1, 0, 0)));
+	dd = part;
+	/*part->QueueCommand(new PullOut(0.3f, 0.5f));
+	part->QueueCommand(new SlideOut(0.3f, 0.6f, sm::Vec3(1, 0, 0)));*/
 	sm::Vec3 end = part->GetGameObject()->GetTransform().GetPosition();
 	m_end = end;
 
 
+	curve->AddKeyframe(time += timeStep, end + end.GetNormalized() * approachStep * 3);
 	curve->AddKeyframe(time += timeStep, end + end.GetNormalized() * approachStep * 2);
 	curve->AddKeyframe(time += timeStep, end + end.GetNormalized() * approachStep * 1);
 	curve->AddKeyframe(time += timeStep, end);
