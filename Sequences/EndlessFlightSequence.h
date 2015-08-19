@@ -33,11 +33,13 @@ private:
 	AnimationCurve<sm::Vec3>* m_cameraCurve;
 
 	float m_speed;
+	float m_cameraTime;
+	sm::Vec3 m_end;
 
 	void SwapSpheres();
 	void ResetSphere(Sphere* sphere);
 	void ExplodeSphere(Sphere* sphere);
 
 	SpherePart* GetRandomPart(Sphere* sphere);
-	AnimationCurve<sm::Vec3>* CreateCurve(const sm::Vec3& start, const sm::Vec3& end, const sm::Vec3& pivot);
+	AnimationCurve<sm::Vec3>* CreateCurve(const sm::Vec3& start, Sphere* destinationSphere, const sm::Vec3& pivot);
 };
