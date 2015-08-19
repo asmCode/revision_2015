@@ -34,7 +34,7 @@ void DebugUtils::DrawCurve(AnimationCurve<sm::Vec3>& curve, float timeStep, cons
 	sm::Vec3 beg = curve.Evaluate(startTime);
 	sm::Vec3 end;
 
-	for (float t = startTime + timeStep; t <= endTime; t += timeStep)
+	for (float t = startTime + timeStep; t <= endTime + 0.0001f; t += timeStep)
 	{
 		end = curve.Evaluate(t);
 
@@ -48,7 +48,7 @@ void DebugUtils::DrawCurve(AnimationCurve<sm::Vec3>& curve, float timeStep, cons
 		Keyframe<sm::Vec3>& k = curve.GetKeyframe(i);
 
 		sm::Vec3 val = k.Value;
-		GraphicsLog::AddSegment(val, val + sm::Vec3(0, 0.5f, 0), color);
-		GraphicsLog::AddSegment(val, val + sm::Vec3(0.5f, 0.0f, 0), color);
+		GraphicsLog::AddSegment(val, val + sm::Vec3(0, 0.2f, 0), color);
+		GraphicsLog::AddSegment(val, val + sm::Vec3(0.2f, 0.0f, 0), color);
 	}
 }

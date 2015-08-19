@@ -186,3 +186,53 @@ void DemoUtils::GetAllChildrenWitchPrefix(const GameObject* parent, const std::s
 			children.push_back(allChildren[i]);
 	}
 }
+
+void DemoUtils::NormalizeSegments(AnimationCurve<sm::Vec3>*& curve, float timeStep, float distance)
+{
+	const float sampleTime = 0.01f;
+
+	AnimationCurve<sm::Vec3>* newCurve = new AnimationCurve<sm::Vec3>();
+
+	float segmendDistance = 0.0f;
+	sm::Vec3 lastPosition;
+	float totalDistance = 0.0f;
+	float time = 0.0f;
+	for (time = curve->GetStartTime(); time <= curve->GetEndTime() + 0.00001f; time += sampleTime)
+	{
+		if (time == curve->GetStartTime())
+		{
+			lastPosition = curve->Evaluate(time);
+			newCurve->AddKeyframe(time, lastPosition);
+			continue;
+		}
+
+		sm::Vec3 position = curve->Evaluate(time);
+
+		segmendDistance += (position - lastPosition).GetLength();
+		totalDistance += segmendDistance;
+
+		lastPosition = position;
+
+		if (segmendDistance >= distance)
+		{
+			segmendDistance = 0.0f;
+
+			newCurve->AddKeyframe(time, position);
+		}
+	}
+
+	/*
+	float lastSegDuration = newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Time - newCurve->GetKeyframe(newCurve->GetKeysCount() - 2).Time;
+
+	float d = (curve->GetKeyframe(curve->GetKeysCount() - 1).Value - newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Value).GetLength();
+	newCurve->AddKeyframe(curve->GetEndTime())
+	*/
+
+	//newCurve->AddKeyframe(time, curve->GetKeyframe(curve->GetKeysCount() - 1).Value);
+	newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Time = time;
+	newCurve->GetKeyframe(newCurve->GetKeysCount() - 1).Value = curve->GetKeyframe(curve->GetKeysCount() - 1).Value;
+
+	delete curve;
+	curve = newCurve;
+	curve->SmoothTangents();
+}

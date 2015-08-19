@@ -5,6 +5,7 @@
 #include <Math/Vec4.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
+#include <Math/Animation/AnimationCurve.h>
 #include <vector>
 
 class Camera;
@@ -72,4 +73,5 @@ public:
 		}
 	}
 
+	static void NormalizeSegments(AnimationCurve<sm::Vec3>*& curve, float timeStep, float distance);
 };
