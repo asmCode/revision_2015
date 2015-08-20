@@ -171,7 +171,7 @@ void EndlessFlightSequence::Repeat()
 	SwapSpheres();
 
 	ResetSphere(m_normalSphere);
-	ResetSphere(m_smallSphere);
+	//ResetSphere(m_smallSphere);
 
 	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
 	m_speed = distance / 1.379f;
