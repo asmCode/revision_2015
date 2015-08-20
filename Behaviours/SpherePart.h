@@ -35,6 +35,7 @@ public:
 
 	void QueueCommand(CommandBase* command);
 	void SetCommand(CommandBase* command);
+	void SetCommandParaller(CommandBase* command);
 
 	Transform* GetPivot() const;
 	const sm::Vec3& GetDirection() const;
@@ -69,5 +70,6 @@ private:
 	GameObject* m_rotatePivot;
 
 	std::queue<CommandBase*> m_commands;
+	std::vector<CommandBase*> m_commandsParaller;
 	CommandBase* m_currentCommand;
 };

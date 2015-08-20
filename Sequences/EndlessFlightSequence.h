@@ -42,4 +42,6 @@ private:
 
 	SpherePart* GetRandomPart(Sphere* sphere);
 	AnimationCurve<sm::Vec3>* CreateCurve(const sm::Vec3& start, Sphere* destinationSphere, const sm::Vec3& pivot);
+	void Beat1();
+	void BlinkSphere(Sphere* sphere);
 };

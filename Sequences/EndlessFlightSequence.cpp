@@ -2,7 +2,9 @@
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
+#include "../Behaviours/SpherePartCommands/PullIn.h"
 #include "../Behaviours/SpherePartCommands/SlideOut.h"
+#include "../Behaviours/SpherePartCommands/Blink.h"
 #include "../Transform.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
@@ -31,6 +33,8 @@ m_cameraTime(0.0f)
 
 }
 
+float rollAngle;
+
 void EndlessFlightSequence::Initialize()
 {
 	m_normalSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
@@ -50,7 +54,11 @@ void EndlessFlightSequence::Initialize()
 void EndlessFlightSequence::Update()
 {
 	if (Input::GetKeyDown(KeyCode_Space))
-		Repeat();
+	{
+		Beat1();
+		//m_smallSphere->
+	}
+		//Repeat();
 
 	if (oldCurve != nullptr)
 	{
@@ -69,13 +77,19 @@ void EndlessFlightSequence::Update()
 		m_mainCamera->GetGameObject()->GetTransform().SetPosition(curvePosition);
 		m_mainCamera->GetGameObject()->GetTransform().SetForward(cameraDirection);
 
+		rollAngle += Time::DeltaTime * 4.0f;
+
+		m_mainCamera->GetGameObject()->GetTransform().SetRotation(
+			sm::Quat::FromAngleAxis(rollAngle, cameraDirection) *
+			m_mainCamera->GetGameObject()->GetTransform().GetRotation());
+
 		//m_cameraTime += Time::DeltaTime * 0.5f;
 		float multi = 15.0f;
 		if (Input::GetKey(KeyCode_T))
 			multi *= 0.1f;
 		m_cameraTime += Time::DeltaTime * multi;
 
-		if (m_cameraTime >= 0.5f * m_cameraCurve->GetEndTime() && dd != nullptr)
+		if (m_cameraTime >= 0.1f * m_cameraCurve->GetEndTime() && dd != nullptr)
 		{
 			dd->QueueCommand(new PullOut(0.1f, 0.5f));
 			dd->QueueCommand(new SlideOut(0.5f, 0.6f, sm::Vec3(1, 0, 0)));
@@ -251,4 +265,30 @@ AnimationCurve<sm::Vec3>* EndlessFlightSequence::CreateCurve(const sm::Vec3& sta
 	DemoUtils::NormalizeSegments(curve, 0.1f, 1.0f);
 
 	return curve;
+}
+
+void EndlessFlightSequence::Beat1()
+{
+	BlinkSphere(m_smallSphere);
+	BlinkSphere(m_normalSphere);
+}
+
+void EndlessFlightSequence::BlinkSphere(Sphere* sphere)
+{
+	const std::vector<SpherePart*>& parts = sphere->GetSphereParts();
+	int count = parts.size();
+
+	int* elements = new int[count];
+
+	Random::GetRandomUniqueArray(elements, 0, count - 1);
+
+	for (int i = 0; i < count / 1; i++)
+	{
+		//parts[elements[i]]->QueueCommand(new PullOut(0.05f, 7.0f));
+		//parts[elements[i]]->QueueCommand(new PullIn(0.2f));
+
+		parts[elements[i]]->SetCommandParaller(new Blink(0.2f, sm::Vec3(0.0f, 0.0f, 1)));
+	}
+
+	delete[] elements;
 }

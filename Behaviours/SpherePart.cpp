@@ -56,6 +56,17 @@ void SpherePart::Update()
 		if (m_currentCommand->Update())
 			m_currentCommand = nullptr;
 	}
+
+	std::vector<CommandBase*> commands;
+	commands.insert(commands.begin(), m_commandsParaller.begin(), m_commandsParaller.end());
+	m_commandsParaller.clear();
+	for (size_t i = 0; i < commands.size(); i++)
+	{
+		CommandBase* command = commands[i];
+		command->SetSpherePart(this);
+		if (!command->Update())
+			m_commandsParaller.push_back(command);
+	}
 }
 
 void SpherePart::Open()
@@ -77,6 +88,11 @@ void SpherePart::SetCommand(CommandBase* command)
 		m_commands.pop();
 
 	m_commands.push(command);
+}
+
+void SpherePart::SetCommandParaller(CommandBase* command)
+{
+	m_commandsParaller.push_back(command);
 }
 
 Transform* SpherePart::GetPivot() const
