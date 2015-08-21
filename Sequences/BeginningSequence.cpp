@@ -2,6 +2,7 @@
 #include "../GameObject.h"
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
+#include "../Behaviours/Noise.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
 #include "../Camera.h"
@@ -28,10 +29,15 @@ void BeginningSequence::Initialize()
 {
 }
 
+Noise* noise;
+
 void BeginningSequence::Prepare()
 {
 	m_mainCamera->GetGameObject()->GetTransform().SetPosition(sm::Vec3(0, 0, 40));
 	m_sphere->GetGameObject()->SetActive(true);
+	noise = (Noise*)m_sphere->GetGameObject()->AddComponent("Noise");
+	noise->TranslationNoise(20.0f, 0.5f);
+	noise->RotationNoise(1.0f, 0.05f);
 }
 
 void BeginningSequence::Clean()
@@ -43,11 +49,13 @@ int index = 0;
 
 void BeginningSequence::Update()
 {
+	/*
 	m_cameraAngle += Time::DeltaTime * 0.3f;
 
 	m_cameraPivot->GetTransform().SetRotation(
 		sm::Quat::FromAngleAxis(m_cameraAngle, sm::Vec3(0, 1, 0)) *
 		sm::Quat::FromAngleAxis(0.4f, sm::Vec3(1, 0, 0)));
+		*/
 
 	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{

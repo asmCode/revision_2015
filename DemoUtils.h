@@ -74,4 +74,53 @@ public:
 	}
 
 	static void NormalizeSegments(AnimationCurve<sm::Vec3>*& curve, float timeStep, float distance);
+
+	static bool StepTo(float& from, const float& to, float step)
+	{
+		if (from == to)
+			return true;
+
+		float dir = to - from;
+		if (step >= dir)
+		{
+			from = to;
+			return true;
+		}
+
+		from += step;
+		return false;
+	}
+
+	static bool StepTo(sm::Vec3& from, const sm::Vec3& to, float step)
+	{
+		if (from == to)
+			return true;
+
+		sm::Vec3 dir = to - from;
+		if (step >= dir.GetLength())
+		{
+			from = to;
+			return true;
+		}
+
+		from += dir.GetNormalized() * step;
+		return false;
+	}
+
+	static bool StepTo(sm::Quat& from, const sm::Quat& to, float step)
+	{
+		if (from == to)
+			return true;
+
+		sm::Quat dir = to - from;
+		if (step >= dir.GetLength())
+		{
+			from = to;
+			return true;
+		}
+
+		from = from + dir.GetNormalized() * step;
+		from.Normalize();
+		return false;
+	}
 };
