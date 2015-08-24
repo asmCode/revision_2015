@@ -35,6 +35,7 @@
 #include "Behaviours/MechArm.h"
 #include "Behaviours/Magnet.h"
 #include "Behaviours/Noise.h"
+#include "Behaviours/DemoCamera.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -267,6 +268,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("MechArm", new GenericFactory<MechArm>());
 	behavioursManager->RegisterBehaviour("Magnet", new GenericFactory<Magnet>());
 	behavioursManager->RegisterBehaviour("Noise", new GenericFactory<Noise>());
+	behavioursManager->RegisterBehaviour("DemoCamera", new GenericFactory<DemoCamera>());
 }
 
 bool DemoController::LoadContent(const char *basePath)
