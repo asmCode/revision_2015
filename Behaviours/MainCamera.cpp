@@ -6,6 +6,7 @@
 #include "../GraphicsLog.h"
 #include "../CommandBase.h"
 #include "MainCameraCommands/HeadBang.h"
+#include "MainCameraCommands/Orbit.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -21,6 +22,7 @@ MainCamera::MainCamera(GameObject* gameObject, const std::string& name) :
 void MainCamera::Awake()
 {
 	m_camera = dynamic_cast<Camera*>(GetGameObject()->GetComponent("Camera"));
+	m_pivotTransform = GetGameObject()->GetTransform().GetParent();
 	m_lookTransform = &GetGameObject()->FindChild("MainCamera.Look")->GetTransform();
 	m_noiseTransform = &m_lookTransform->GetGameObject()->FindChild("MainCamera.Noise")->GetTransform();
 }
@@ -37,6 +39,11 @@ void MainCamera::Update()
 	{
 		Orbit();
 	}
+}
+
+Transform* MainCamera::GetPivotTransform()
+{
+	return m_pivotTransform;
 }
 
 Transform* MainCamera::GetRootTransform()
@@ -66,5 +73,5 @@ void MainCamera::HeadBang()
 
 void MainCamera::Orbit()
 {
-
+	SetCommandParaller(new MainCameraCommands::Orbit(0.3f, 2));
 }

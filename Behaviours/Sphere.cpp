@@ -156,8 +156,8 @@ void Sphere::Update()
 
 	if (Input::GetKeyDown(KeyCode_O))
 	{
-		Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];
-		renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(0.9f, 0.9f, 0.9f));
+		//Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];
+		//renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(0.9f, 0.9f, 0.9f));
 	}
 	else if (Input::GetKeyDown(KeyCode_K))
 	{

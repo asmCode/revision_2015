@@ -17,6 +17,7 @@ public:
 	void Awake();
 	void Update();
 
+	Transform* GetPivotTransform();
 	Transform* GetRootTransform();
 	Transform* GetLookTransform();
 	Transform* GetNoiseTransform();
@@ -26,6 +27,7 @@ public:
 	void Orbit();
 
 private:
+	Transform* m_pivotTransform;
 	Transform* m_lookTransform;
 	Transform* m_noiseTransform;
 	Camera* m_camera;

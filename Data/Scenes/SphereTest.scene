@@ -20,7 +20,8 @@
 		</GameObject>
 		-->
 		
-		<GameObject name="MainCamera">
+		<GameObject name="MainCamera.Pivot" />
+		<GameObject name="MainCamera" parent="MainCamera.Pivot" >
 			<Behaviour name="MainCamera" />
 		</GameObject>
 		<GameObject name="MainCamera.Look" parent="MainCamera" />

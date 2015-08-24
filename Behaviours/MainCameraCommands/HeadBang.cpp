@@ -23,7 +23,8 @@ namespace MainCameraCommands
 
 	void HeadBang::Enter()
 	{
-		m_forward = -m_subject->GetLookTransform()->GetForward();
+		//m_forward = -m_subject->GetLookTransform()->GetForward();
+		m_forward = sm::Vec3(0, 0, -1.0f);
 		m_dstPos = m_forward * m_distance;
 	}
 

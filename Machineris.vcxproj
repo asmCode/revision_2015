@@ -130,6 +130,7 @@ exit /B 0
     <ClCompile Include="Behaviours\JumpFactory.cpp" />
     <ClCompile Include="Behaviours\Magnet.cpp" />
     <ClCompile Include="Behaviours\MainCameraCommands\HeadBang.cpp" />
+    <ClCompile Include="Behaviours\MainCameraCommands\Orbit.cpp" />
     <ClCompile Include="Behaviours\MechArm.cpp" />
     <ClCompile Include="Behaviours\Noise.cpp" />
     <ClCompile Include="Behaviours\PassageController.cpp" />
@@ -295,6 +296,7 @@ exit /B 0
     <ClInclude Include="Behaviours\HierarchyTest.h" />
     <ClInclude Include="Behaviours\Magnet.h" />
     <ClInclude Include="Behaviours\MainCameraCommands\HeadBang.h" />
+    <ClInclude Include="Behaviours\MainCameraCommands\Orbit.h" />
     <ClInclude Include="Behaviours\MechArm.h" />
     <ClInclude Include="Behaviours\Noise.h" />
     <ClInclude Include="Behaviours\PassageController.h" />
