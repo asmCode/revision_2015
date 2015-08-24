@@ -35,9 +35,9 @@ void BeginningSequence::Prepare()
 {
 	m_mainCamera->GetGameObject()->GetTransform().SetPosition(sm::Vec3(0, 0, 40));
 	m_sphere->GetGameObject()->SetActive(true);
-	noise = (Noise*)m_sphere->GetGameObject()->AddComponent("Noise");
-	noise->TranslationNoise(20.0f, 0.5f);
-	noise->RotationNoise(1.0f, 0.05f);
+	//noise = (Noise*)m_sphere->GetGameObject()->AddComponent("Noise");
+	//noise->TranslationNoise(20.0f, 0.5f);
+	//noise->RotationNoise(1.0f, 0.05f);
 }
 
 void BeginningSequence::Clean()
