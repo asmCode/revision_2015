@@ -45,7 +45,7 @@ namespace MainCameraCommands
 		QuarticOut<sm::Quat> curve;
 
 		m_subject->GetPivotTransform()->SetLocalRotation(curve.Evaluate(m_srcRot, m_dstRot, m_time / m_duration));
-		m_subject->GetLookTransform()->SetForward(m_subject->GetRootTransform()->GetPosition().GetNormalized());
+		m_subject->GetLookTransform()->GetLocalRotation().LookRotation(m_subject->GetRootTransform()->GetPosition().GetNormalized(), m_subject->GetRootTransform()->GetUp());
 
 		return m_time == m_duration;
 	}

@@ -8,6 +8,7 @@
 #include "../CommandBase.h"
 #include "MainCameraCommands/HeadBang.h"
 #include "MainCameraCommands/Orbit.h"
+#include "MainCameraCommands/Roll.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -43,10 +44,15 @@ void MainCamera::Update()
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Orbit();
+		SetCommandParaller(new MainCameraCommands::Roll(0.3f, -0.2f, 0.2f));
 	}
 	if (Input::GetKeyDown(KeyCode_I))
 	{
 		SetCommandParaller(new MainCameraCommands::Orbit(0.3f, MathUtils::PI2, MathUtils::PI2, sm::Vec3(0, 1, 0)));
+	}
+	if (Input::GetKeyDown(KeyCode_R))
+	{
+		SetCommandParaller(new MainCameraCommands::Roll(0.3f, -MathUtils::PI2, MathUtils::PI2));
 	}
 }
 
