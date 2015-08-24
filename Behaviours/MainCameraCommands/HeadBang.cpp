@@ -32,7 +32,7 @@ namespace MainCameraCommands
 	{
 		m_time = MathUtils::Min(m_duration, m_time + Time::DeltaTime);
 
-		BlinkCurve < sm::Vec3, LinearCurve<sm::Vec3>, QuarticOut<sm::Vec3> > curve(0.1f);
+		BlinkCurve < sm::Vec3, LinearCurve<sm::Vec3>, QuarticOut<sm::Vec3> > curve(0.05f);
 
 		m_subject->GetLookTransform()->SetLocalPosition(curve.Evaluate(sm::Vec3(0, 0, 0), m_dstPos, m_time / m_duration));
 

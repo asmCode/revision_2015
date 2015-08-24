@@ -10,12 +10,22 @@
 
 namespace MainCameraCommands
 {
-	Orbit::Orbit(float duration, float maxAngle) :
+	Orbit::Orbit(float duration, float minAngle, float maxAngle) :
 		m_duration(duration),
+		m_minAngle(minAngle),
 		m_maxAngle(maxAngle),
 		m_time(0.0f)
 	{
+		m_axis = Random::GetUniVector();
+	}
 
+	Orbit::Orbit(float duration, float minAngle, float maxAngle, const sm::Vec3& axis) :
+		m_duration(duration),
+		m_minAngle(minAngle),
+		m_maxAngle(maxAngle),
+		m_axis(axis),
+		m_time(0.0f)
+	{
 	}
 
 	Orbit::~Orbit()
@@ -25,7 +35,7 @@ namespace MainCameraCommands
 	void Orbit::Enter()
 	{
 		m_srcRot = m_subject->GetPivotTransform()->GetLocalRotation();
-		m_dstRot = sm::Quat::FromAngleAxis(Random::GetFloat(0.5f, m_maxAngle), Random::GetUniVector()) * m_srcRot;
+		m_dstRot = sm::Quat::FromAngleAxis(Random::GetFloat(m_minAngle, m_maxAngle), m_axis) * m_srcRot;
 	}
 
 	bool Orbit::Update()

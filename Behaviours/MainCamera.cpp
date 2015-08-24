@@ -1,4 +1,5 @@
 #include "MainCamera.h"
+#include "Noise.h"
 #include "../GameObject.h"
 #include "../Transform.h"
 #include "../Camera.h"
@@ -10,6 +11,7 @@
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
+#include <Math/MathUtils.h>
 
 MainCamera::MainCamera(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
@@ -25,6 +27,9 @@ void MainCamera::Awake()
 	m_pivotTransform = GetGameObject()->GetTransform().GetParent();
 	m_lookTransform = &GetGameObject()->FindChild("MainCamera.Look")->GetTransform();
 	m_noiseTransform = &m_lookTransform->GetGameObject()->FindChild("MainCamera.Noise")->GetTransform();
+	m_noise = dynamic_cast<Noise*>(m_noiseTransform->GetGameObject()->GetComponent("Noise"));
+
+	//m_noise->RotationNoise(1.0f, 0.005f);
 }
 
 void MainCamera::Update()
@@ -38,6 +43,10 @@ void MainCamera::Update()
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Orbit();
+	}
+	if (Input::GetKeyDown(KeyCode_I))
+	{
+		SetCommandParaller(new MainCameraCommands::Orbit(0.3f, MathUtils::PI2, MathUtils::PI2, sm::Vec3(0, 1, 0)));
 	}
 }
 
@@ -66,12 +75,17 @@ Camera* MainCamera::GetCamera()
 	return m_camera;
 }
 
+Noise* MainCamera::GetNoise()
+{
+	return m_noise;
+}
+
 void MainCamera::HeadBang()
 {
-	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 2));
+	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 3));
 }
 
 void MainCamera::Orbit()
 {
-	SetCommandParaller(new MainCameraCommands::Orbit(0.3f, 2));
+	SetCommandParaller(new MainCameraCommands::Orbit(0.3f, 0.2f, 0.5f));
 }

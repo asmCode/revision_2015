@@ -8,6 +8,7 @@
 class GameObject;
 class Transform;
 class Camera;
+class Noise;
 
 class MainCamera : public Behaviour, public CommandHandler<MainCamera*>
 {
@@ -22,6 +23,7 @@ public:
 	Transform* GetLookTransform();
 	Transform* GetNoiseTransform();
 	Camera* GetCamera();
+	Noise* GetNoise();
 
 	void HeadBang();
 	void Orbit();
@@ -31,4 +33,5 @@ private:
 	Transform* m_lookTransform;
 	Transform* m_noiseTransform;
 	Camera* m_camera;
+	Noise* m_noise;
 };
