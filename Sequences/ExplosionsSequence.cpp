@@ -71,7 +71,8 @@ void ExplosionsSequence::Prepare()
 
 void ExplosionsSequence::Clean()
 {
-
+	m_normalSphere->GetGameObject()->SetActive(false);
+	m_smallSphere->GetGameObject()->SetActive(false);
 }
 
 void ExplosionsSequence::ExplodeSphere(Sphere* sphere)

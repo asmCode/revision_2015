@@ -17,7 +17,7 @@ public:
 
 	void ProcessCommands()
 	{
-		if (m_commandQueue == nullptr && m_commandQueue.size() > 0)
+		if (m_currentCommand == nullptr && m_commandQueue.size() > 0)
 		{
 			m_currentCommand = m_commandQueue.front();
 			m_currentCommand->Enter();
@@ -40,7 +40,7 @@ public:
 		{
 			CommandBase<T>* command = commands[i];
 			if (!command->Update())
-				m_commandsParaller.push_back(command);
+				m_commandParaller.push_back(command);
 			else
 				command->Leave();
 		}
@@ -49,18 +49,18 @@ public:
 	void QueueCommand(CommandBase<T>* command)
 	{
 		m_commandQueue.push(command);
-		command->SetSubject(this);
+		command->SetSubject(dynamic_cast<T>(this));
 	}
 
 	void SetCommandParaller(CommandBase<T>* command)
 	{
 		m_commandParaller.push_back(command);
-		command->SetSubject(this);
+		command->SetSubject(dynamic_cast<T>(this));
 		command->Enter();
 	}
 
 private:
-	std::queue<CommandBase*> m_commandQueue;
-	std::vector<CommandBase*> m_commandParaller;
-	CommandBase* m_currentCommand;
+	std::queue<CommandBase<T>*> m_commandQueue;
+	std::vector<CommandBase<T>*> m_commandParaller;
+	CommandBase<T>* m_currentCommand;
 };

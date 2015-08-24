@@ -4,18 +4,18 @@ template <typename T>
 class CommandBase
 {
 public:
-	CommandBase();
-	virtual ~CommandBase();
+	CommandBase() {};
+	virtual ~CommandBase() {};
 
-	virtual void SetSubject(T* subject)
+	virtual void SetSubject(T subject)
 	{
 		m_subject = subject;
 	}
 
 	virtual void Enter() {};
-	virtual bool Update() {};
+	virtual bool Update() { return true; };
 	virtual void Leave() {};
 
 protected:
-	T* m_subject;
+	T m_subject;
 };
