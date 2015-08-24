@@ -46,6 +46,6 @@ bool MagnetCommand::Update()
 
 void MagnetCommand::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 }
 

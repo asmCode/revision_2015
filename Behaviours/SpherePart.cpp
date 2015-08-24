@@ -5,7 +5,7 @@
 #include "../Camera.h"
 #include <Graphics/Material.h>
 #include "../Renderable.h"
-#include "SpherePartCommands/CommandBase.h"
+#include "SpherePartCommands/SphereCommandBase.h"
 #include <Math/Animation/QuadOut.h>
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
@@ -57,12 +57,12 @@ void SpherePart::Update()
 			m_currentCommand = nullptr;
 	}
 
-	std::vector<CommandBase*> commands;
+	std::vector<SphereCommandBase*> commands;
 	commands.insert(commands.begin(), m_commandsParaller.begin(), m_commandsParaller.end());
 	m_commandsParaller.clear();
 	for (size_t i = 0; i < commands.size(); i++)
 	{
-		CommandBase* command = commands[i];
+		SphereCommandBase* command = commands[i];
 		command->SetSpherePart(this);
 		if (!command->Update())
 			m_commandsParaller.push_back(command);
@@ -74,13 +74,13 @@ void SpherePart::Open()
 	m_state = State_Opening;
 }
 
-void SpherePart::QueueCommand(CommandBase* command)
+void SpherePart::QueueCommand(SphereCommandBase* command)
 {
 	//command->SetSpherePart(this);
 	m_commands.push(command);
 }
 
-void SpherePart::SetCommand(CommandBase* command)
+void SpherePart::SetCommand(SphereCommandBase* command)
 {
 	m_currentCommand = nullptr;
 
@@ -90,7 +90,7 @@ void SpherePart::SetCommand(CommandBase* command)
 	m_commands.push(command);
 }
 
-void SpherePart::SetCommandParaller(CommandBase* command)
+void SpherePart::SetCommandParaller(SphereCommandBase* command)
 {
 	m_commandsParaller.push_back(command);
 }

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 
-class Blink : public CommandBase
+class Blink : public SphereCommandBase
 {
 public:
 	Blink(float duration, const sm::Vec3& color);

@@ -7,7 +7,7 @@
 class GameObject;
 class SpherePart;
 class MechArm;
-class CommandBase;
+class SphereCommandBase;
 
 class Sphere : public Behaviour
 {

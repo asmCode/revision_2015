@@ -33,7 +33,7 @@ bool PullOutWithNoise::Update()
 
 void PullOutWithNoise::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_initialPosition = m_transform->GetLocalPosition();
 	m_pullOutPosition = m_transform->GetLocalPosition() + m_spherePart->m_direction * Random::GetFloat(m_distance * 0.05f, m_distance) + Random::GetVector() * 0.5f;

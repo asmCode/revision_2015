@@ -34,6 +34,6 @@ bool Blink::Update()
 
 void Blink::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 }
 

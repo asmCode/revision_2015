@@ -7,7 +7,7 @@
 
 class GameObject;
 template <typename T > class IAnimationCurve;
-class CommandBase;
+class SphereCommandBase;
 class Material;
 class Transform;
 
@@ -19,7 +19,7 @@ class SpherePart : public Behaviour
 	friend class SlideOut;
 	friend class RollOut;
 	friend class RollIn;
-	friend class CommandBase;
+	friend class SphereCommandBase;
 	friend class Blink;
 	friend class PullOutWithNoise;
 	friend class Reset;
@@ -33,9 +33,9 @@ public:
 
 	void Open();
 
-	void QueueCommand(CommandBase* command);
-	void SetCommand(CommandBase* command);
-	void SetCommandParaller(CommandBase* command);
+	void QueueCommand(SphereCommandBase* command);
+	void SetCommand(SphereCommandBase* command);
+	void SetCommandParaller(SphereCommandBase* command);
 
 	Transform* GetPivot() const;
 	const sm::Vec3& GetDirection() const;
@@ -69,7 +69,7 @@ private:
 
 	GameObject* m_rotatePivot;
 
-	std::queue<CommandBase*> m_commands;
-	std::vector<CommandBase*> m_commandsParaller;
-	CommandBase* m_currentCommand;
+	std::queue<SphereCommandBase*> m_commands;
+	std::vector<SphereCommandBase*> m_commandsParaller;
+	SphereCommandBase* m_currentCommand;
 };

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-class PullOutWithNoise : public CommandBase
+class PullOutWithNoise : public SphereCommandBase
 {
 public:
 	PullOutWithNoise(float duration, float distance);

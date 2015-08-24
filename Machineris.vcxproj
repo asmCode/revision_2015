@@ -138,7 +138,7 @@ exit /B 0
     <ClCompile Include="Behaviours\Sphere.cpp" />
     <ClCompile Include="Behaviours\SpherePart.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\Blink.cpp" />
-    <ClCompile Include="Behaviours\SpherePartCommands\CommandBase.cpp" />
+    <ClCompile Include="Behaviours\SpherePartCommands\SphereCommandBase.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\Explode.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\MagnetCommand.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\PullIn.cpp" />
@@ -301,7 +301,7 @@ exit /B 0
     <ClInclude Include="Behaviours\Sphere.h" />
     <ClInclude Include="Behaviours\SpherePart.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\Blink.h" />
-    <ClInclude Include="Behaviours\SpherePartCommands\CommandBase.h" />
+    <ClInclude Include="Behaviours\SpherePartCommands\SphereCommandBase.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\Explode.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\MagnetCommand.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\PullIn.h" />
@@ -317,6 +317,8 @@ exit /B 0
     <ClInclude Include="Behaviours\TileFactory.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSort.h" />
+    <ClInclude Include="CommandBase.h" />
+    <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Framework\Graphics\Model.h" />
     <ClInclude Include="Framework\Math\Animation\QuarticIn.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-class SlideOut : public CommandBase
+class SlideOut : public SphereCommandBase
 {
 public:
 	SlideOut(float duration, float angle, const sm::Vec3& axis);

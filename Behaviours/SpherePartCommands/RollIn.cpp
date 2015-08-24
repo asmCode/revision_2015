@@ -29,7 +29,7 @@ bool RollIn::Update()
 
 void RollIn::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_startRotation = m_transform->GetLocalRotation();
 }

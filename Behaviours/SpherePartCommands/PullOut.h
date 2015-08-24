@@ -1,9 +1,9 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 
-class PullOut : public CommandBase
+class PullOut : public SphereCommandBase
 {
 public:
 	PullOut(float duration, float distance);

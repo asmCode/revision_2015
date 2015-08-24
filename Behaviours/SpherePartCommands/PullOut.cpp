@@ -31,7 +31,7 @@ bool PullOut::Update()
 
 void PullOut::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_pullOutPosition = m_transform->GetLocalPosition() + m_spherePart->m_direction * m_distance;
 }

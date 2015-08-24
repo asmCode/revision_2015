@@ -35,7 +35,7 @@ bool PullIn::Update()
 
 void PullIn::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_startPosition = m_transform->GetLocalPosition();
 	m_startRotation = m_transform->GetLocalRotation();

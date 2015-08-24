@@ -1,8 +1,8 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 
-class Reset : public CommandBase
+class Reset : public SphereCommandBase
 {
 public:
 	Reset();

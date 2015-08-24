@@ -1,10 +1,10 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-class PullIn : public CommandBase
+class PullIn : public SphereCommandBase
 {
 public:
 	PullIn(float duration);

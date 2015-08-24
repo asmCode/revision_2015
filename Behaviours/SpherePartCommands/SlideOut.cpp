@@ -30,7 +30,7 @@ bool SlideOut::Update()
 
 void SlideOut::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_axis = (sm::Vec3(0, 1, 0) * m_spherePart->m_direction).GetNormalized();
 	m_destinationRotation = sm::Quat::FromAngleAxis(m_angle, m_axis);

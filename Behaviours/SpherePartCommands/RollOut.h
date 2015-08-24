@@ -1,10 +1,10 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-class RollOut : public CommandBase
+class RollOut : public SphereCommandBase
 {
 public:
 	RollOut(float duration, float angle);

@@ -30,7 +30,7 @@ bool RollOut::Update()
 
 void RollOut::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 
 	m_destinationRotation = sm::Quat::FromAngleAxis(m_angle, m_spherePart->m_direction);
 }

@@ -30,6 +30,6 @@ bool Reset::Update()
 
 void Reset::SetSpherePart(SpherePart* spherePart)
 {
-	this->CommandBase::SetSpherePart(spherePart);
+	this->SphereCommandBase::SetSpherePart(spherePart);
 }
 

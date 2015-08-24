@@ -1,12 +1,12 @@
 #pragma once
 
-#include "CommandBase.h"
+#include "SphereCommandBase.h"
 #include <Math/Vec3.h>
 #include <vector>
 
 class Magnet;
 
-class MagnetCommand : public CommandBase
+class MagnetCommand : public SphereCommandBase
 {
 public:
 	MagnetCommand(std::vector<Magnet*>& magnets);
