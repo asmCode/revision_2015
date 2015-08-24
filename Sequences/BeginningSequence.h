@@ -6,12 +6,12 @@
 
 class GameObject;
 class Sphere;
-class Camera;
+class MainCamera;
 
 class BeginningSequence : public SequenceBase
 {
 public:
-	BeginningSequence(Sphere* sphere, Camera* mainCamera);
+	BeginningSequence(Sphere* sphere, MainCamera* mainCamera);
 
 	void Initialize();
 	void Prepare();
@@ -21,7 +21,7 @@ public:
 
 private:
 	Sphere* m_sphere;
-	Camera* m_mainCamera;
+	MainCamera* m_mainCamera;
 
 	GameObject* m_cameraPivot;
 	float m_cameraAngle;

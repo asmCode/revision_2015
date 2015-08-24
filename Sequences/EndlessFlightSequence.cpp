@@ -1,6 +1,7 @@
 #include "EndlessFlightSequence.h"
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
+#include "../Behaviours/MainCamera.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
 #include "../Behaviours/SpherePartCommands/SlideOut.h"
@@ -22,7 +23,7 @@
 SpherePart* dd;
 AnimationCurve<sm::Vec3>* oldCurve = nullptr;
 
-EndlessFlightSequence::EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera) :
+EndlessFlightSequence::EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
 m_mainCamera(mainCamera),

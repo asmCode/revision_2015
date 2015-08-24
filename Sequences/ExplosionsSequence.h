@@ -6,12 +6,12 @@
 
 class GameObject;
 class Sphere;
-class Camera;
+class MainCamera;
 
 class ExplosionsSequence : public SequenceBase
 {
 public:
-	ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera);
+	ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera);
 
 	void Initialize();
 	void Prepare();
@@ -26,7 +26,7 @@ private:
 	GameObject* m_mechArmPrefab;
 	Sphere* m_normalSphere;
 	Sphere* m_smallSphere;
-	Camera* m_mainCamera;
+	MainCamera* m_mainCamera;
 
 	float m_speed;
 

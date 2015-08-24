@@ -13,6 +13,7 @@ class BeginningSequence;
 class ExplosionsSequence;
 class MagnetSequence;
 class EndlessFlightSequence;
+class MainCamera;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -25,7 +26,7 @@ public:
 
 private:
 	Sphere* m_commonSphere;
-	Camera* m_mainCamera;
+	MainCamera* m_mainCamera;
 	GameObject* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
 

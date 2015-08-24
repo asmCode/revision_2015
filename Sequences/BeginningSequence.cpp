@@ -3,6 +3,7 @@
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
 #include "../Behaviours/Noise.h"
+#include "../Behaviours/MainCamera.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
 #include "../Camera.h"
@@ -12,7 +13,7 @@
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
-BeginningSequence::BeginningSequence(Sphere* sphere, Camera* mainCamera):
+BeginningSequence::BeginningSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
 m_mainCamera(mainCamera),
 m_pullOutLongBaseIndex(0)

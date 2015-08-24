@@ -6,6 +6,7 @@
 			<Behaviour name="SceneController" />
 		</GameObject>
 
+		<!--
 		<GameObject name="kamerka">
 			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.01" depth="2" fov="2.0" />
@@ -17,8 +18,16 @@
 				</Parameters>
 			</Behaviour>
 		</GameObject>
+		-->
 		
 		<GameObject name="MainCamera">
+			<Behaviour name="MainCamera" />
+		</GameObject>
+		<GameObject name="MainCamera.Look" parent="MainCamera" />
+		<GameObject name="MainCamera.Noise" parent="MainCamera.Look">
+			<Behaviour name="Noise" />
+		</GameObject>
+		<GameObject name="MainCamera.Camera" parent="MainCamera.Noise" >
 			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" />
 			<Light />
 		</GameObject>

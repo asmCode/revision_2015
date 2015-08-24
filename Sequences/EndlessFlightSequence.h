@@ -9,12 +9,12 @@
 class GameObject;
 class Sphere;
 class SpherePart;
-class Camera;
+class MainCamera;
 
 class EndlessFlightSequence : public SequenceBase
 {
 public:
-	EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera);
+	EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera);
 
 	void Initialize();
 	void Prepare();
@@ -29,7 +29,7 @@ private:
 	GameObject* m_mechArmPrefab;
 	Sphere* m_normalSphere;
 	Sphere* m_smallSphere;
-	Camera* m_mainCamera;
+	MainCamera* m_mainCamera;
 	AnimationCurve<sm::Vec3>* m_cameraCurve;
 
 	float m_speed;

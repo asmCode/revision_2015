@@ -6,10 +6,10 @@
 
 class GameObject;
 
-class DemoCamera : public Behaviour
+class MainCamera : public Behaviour
 {
 public:
-	DemoCamera(GameObject* gameObject, const std::string& name);
+	MainCamera(GameObject* gameObject, const std::string& name);
 
 	void Update();
 

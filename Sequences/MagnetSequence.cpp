@@ -13,7 +13,7 @@
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
-MagnetSequence::MagnetSequence(Sphere* sphere, Camera* mainCamera):
+MagnetSequence::MagnetSequence(Sphere* sphere, MainCamera* mainCamera) :
 m_mainCamera(mainCamera),
 m_sphere(sphere)
 {

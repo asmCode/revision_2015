@@ -6,13 +6,13 @@
 
 class GameObject;
 class Sphere;
-class Camera;
+class MainCamera;
 class Magnet;
 
 class MagnetSequence : public SequenceBase
 {
 public:
-	MagnetSequence(Sphere* sphere, Camera* mainCamera);
+	MagnetSequence(Sphere* sphere, MainCamera* mainCamera);
 
 	void Initialize();
 	void Prepare();
@@ -22,7 +22,7 @@ public:
 
 private:
 	Sphere* m_sphere;
-	Camera* m_mainCamera;
+	MainCamera* m_mainCamera;
 
 	std::vector<Magnet*> m_magnets;
 

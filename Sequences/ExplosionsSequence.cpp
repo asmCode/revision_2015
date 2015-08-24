@@ -1,6 +1,7 @@
 #include "ExplosionsSequence.h"
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
+#include "../Behaviours/MainCamera.h"
 #include "../Transform.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
@@ -12,7 +13,7 @@
 #include <UserInput/Input.h>
 #include <Utils/Log.h>
 
-ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, Camera* mainCamera) :
+ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
 m_mainCamera(mainCamera),

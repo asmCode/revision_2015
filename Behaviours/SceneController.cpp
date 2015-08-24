@@ -38,7 +38,7 @@ void SceneController::Awake()
 	m_commonSphere->Initialize(m_mechArmPrefab);
 	m_commonSphere->GetGameObject()->SetActive(false);
 
-	m_mainCamera = (Camera*)ScenesManager::GetInstance()->FindGameObject("kamerka")->GetComponent("Camera");
+	m_mainCamera = (MainCamera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("MainCamera");
 
 	m_beginningSequence = new BeginningSequence(m_commonSphere, m_mainCamera);
 	m_beginningSequence->Initialize();
