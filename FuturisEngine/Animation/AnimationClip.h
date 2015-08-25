@@ -14,6 +14,7 @@ public:
 	void AddPropertyAnimation(PropertyAnimationData* propertyAnimationData);
 
 	int GetPropertyAnimationsCount() const;
+	float GetDuration() const;
 	const PropertyAnimationData* GetPropertyAnimation(int index) const;
 
 private:

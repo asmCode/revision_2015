@@ -1,7 +1,7 @@
 #define TIME_SCALE 1.0f
 //#define TIME_SHIFT 60 + 37.0f // explosions
-//#define TIME_SHIFT 0.0f
-#define TIME_SHIFT 31.0f
+#define TIME_SHIFT 0.0f
+//#define TIME_SHIFT 31.0f
 //#define TIME_SHIFT 60 + 4.0f // pull out long
 //#define TIME_SHIFT 60 + 15.0f // magnet
 //#define TIME_SHIFT 53.0f // open

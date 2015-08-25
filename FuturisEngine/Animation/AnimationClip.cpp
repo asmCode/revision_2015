@@ -27,6 +27,11 @@ int AnimationClip::GetPropertyAnimationsCount() const
 	return (int)m_propertyAnimations.size();
 }
 
+float AnimationClip::GetDuration() const
+{
+	return m_duration;
+}
+
 const PropertyAnimationData* AnimationClip::GetPropertyAnimation(int index) const
 {
 	assert(m_propertyAnimations.size() > (uint32_t)index);

@@ -1,0 +1,12 @@
+<AnimationClip name="cam01-04">
+	<Anim type="vec3" target="MainCamera" component="Transform" property="Position">
+		<Key t="0.000000" v="0.508886,19.791548,0.271414" />
+		<Key t="5.535625" v="-3.211694,16.850624,12.724936" />
+		<Key t="12.000000" v="-7.556500,13.416281,27.267874" />
+	</Anim>
+	<Anim type="quat" target="MainCamera" component="Transform" property="Rotation">
+		<Key t="0.000000" v="1.829928,0.672274,0.480376,-0.563282" />
+		<Key t="5.535625" v="0.864129,0.978357,0.193822,0.072463" />
+		<Key t="12.000000" v="0.539488,0.836428,-0.201686,0.509619" />
+	</Anim>
+</AnimationClip>

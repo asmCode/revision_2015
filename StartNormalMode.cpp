@@ -123,8 +123,11 @@ void StartNormalMode()
 	scrHeight = 540;
 	*/
 	
-	scrWidth = 1440;
-	scrHeight = 810;
+	/*scrWidth = 1440;
+	scrHeight = 810;*/
+
+	scrWidth = 1920 / 2;
+	scrHeight = 1080 / 2;
 	
 	scrBpp = 32;
 	scrFreq = 60;

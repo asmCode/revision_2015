@@ -19,10 +19,13 @@ public:
 
 	void Update();
 
+	bool Finished() const; // tymczasowa metoda do sprawdzania czy czas przekroczyl czas clipu. Zrefaktoruj to jakos
+
 private:
 	AnimationClip* m_animationClip;
 
 	float m_time;
+	bool m_isPlaying;
 
 	AnimationClipAttachement* m_attachement;
 };

@@ -4,11 +4,13 @@
 #include "../Transform.h"
 #include "../Camera.h"
 #include "../FuturisEngine/Time.h"
+#include "../FuturisEngine/Animation/Animation.h"
 #include "../GraphicsLog.h"
 #include "../CommandBase.h"
 #include "MainCameraCommands/HeadBang.h"
 #include "MainCameraCommands/Orbit.h"
 #include "MainCameraCommands/Roll.h"
+#include "MainCameraCommands/Animation.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
@@ -29,6 +31,7 @@ void MainCamera::Awake()
 	m_lookTransform = &GetGameObject()->FindChild("MainCamera.Look")->GetTransform();
 	m_noiseTransform = &m_lookTransform->GetGameObject()->FindChild("MainCamera.Noise")->GetTransform();
 	m_noise = dynamic_cast<Noise*>(m_noiseTransform->GetGameObject()->GetComponent("Noise"));
+	m_animation = dynamic_cast<Animation*>(GetGameObject()->GetComponent("Animation"));
 
 	//m_noise->RotationNoise(1.0f, 0.005f);
 }
@@ -37,6 +40,13 @@ void MainCamera::Update()
 {
 	ProcessCommands();
 
+	if (Input::GetKeyDown(KeyCode_A))
+	{
+		QueueCommand(new MainCameraCommands::Animation("cam01-01"));
+		QueueCommand(new MainCameraCommands::Animation("cam01-02"));
+		QueueCommand(new MainCameraCommands::Animation("cam01-03"));
+		QueueCommand(new MainCameraCommands::Animation("cam01-04"));
+	}
 	if (Input::GetKeyDown(KeyCode_H))
 	{
 		HeadBang();
@@ -54,6 +64,8 @@ void MainCamera::Update()
 	{
 		SetCommandParaller(new MainCameraCommands::Roll(0.3f, -MathUtils::PI2, MathUtils::PI2));
 	}
+
+	m_animation->Update();
 }
 
 Transform* MainCamera::GetPivotTransform()
@@ -88,7 +100,7 @@ Noise* MainCamera::GetNoise()
 
 void MainCamera::HeadBang()
 {
-	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 3));
+	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 1.4f));
 }
 
 void MainCamera::Orbit()
