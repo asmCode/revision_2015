@@ -28,6 +28,7 @@
 		<GameObject name="MainCamera.Look" parent="MainCamera" />
 		<GameObject name="MainCamera.Noise" parent="MainCamera.Look">
 			<Behaviour name="Noise" />
+			<Behaviour name="SmoothNoise" />
 		</GameObject>
 		<GameObject name="MainCamera.Camera" parent="MainCamera.Noise" >
 			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" />

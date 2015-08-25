@@ -109,6 +109,11 @@ public:
 		return m_keyframesVector[index];
 	}
 
+	void Clear()
+	{
+		m_keyframesVector.clear();
+	}
+
 private:
 	std::vector<Keyframe<T>> m_keyframesVector;
 

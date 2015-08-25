@@ -1,5 +1,6 @@
 #include "MainCamera.h"
 #include "Noise.h"
+#include "SmoothNoise.h"
 #include "../GameObject.h"
 #include "../Transform.h"
 #include "../Camera.h"
@@ -20,7 +21,9 @@ MainCamera::MainCamera(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
 	m_lookTransform(nullptr),
 	m_noiseTransform(nullptr),
-	m_camera(nullptr)
+	m_camera(nullptr),
+	m_noise(nullptr),
+	m_smoothNoise(nullptr)
 {
 }
 
@@ -31,9 +34,11 @@ void MainCamera::Awake()
 	m_lookTransform = &GetGameObject()->FindChild("MainCamera.Look")->GetTransform();
 	m_noiseTransform = &m_lookTransform->GetGameObject()->FindChild("MainCamera.Noise")->GetTransform();
 	m_noise = dynamic_cast<Noise*>(m_noiseTransform->GetGameObject()->GetComponent("Noise"));
+	m_smoothNoise = dynamic_cast<SmoothNoise*>(m_noiseTransform->GetGameObject()->GetComponent("SmoothNoise"));
 	m_animation = dynamic_cast<Animation*>(GetGameObject()->GetComponent("Animation"));
 
-	//m_noise->RotationNoise(1.0f, 0.005f);
+	m_smoothNoise->RotationNoise(0.3f, 0.04f);
+	m_smoothNoise->TranslationNoise(0.3f, 3.04f);
 }
 
 void MainCamera::Update()
@@ -115,6 +120,8 @@ void MainCamera::OrbitFast()
 
 void MainCamera::OrbitSequence()
 {
+	return;
+
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));

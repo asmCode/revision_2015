@@ -35,6 +35,7 @@
 #include "Behaviours/MechArm.h"
 #include "Behaviours/Magnet.h"
 #include "Behaviours/Noise.h"
+#include "Behaviours/SmoothNoise.h"
 #include "Behaviours/MainCamera.h"
 
 #include "Behaviours/RttTest.h"
@@ -268,6 +269,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("MechArm", new GenericFactory<MechArm>());
 	behavioursManager->RegisterBehaviour("Magnet", new GenericFactory<Magnet>());
 	behavioursManager->RegisterBehaviour("Noise", new GenericFactory<Noise>());
+	behavioursManager->RegisterBehaviour("SmoothNoise", new GenericFactory<SmoothNoise>());
 	behavioursManager->RegisterBehaviour("MainCamera", new GenericFactory<MainCamera>());
 }
 

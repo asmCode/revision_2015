@@ -9,6 +9,7 @@ class GameObject;
 class Transform;
 class Camera;
 class Noise;
+class SmoothNoise;
 class Animation;
 
 class MainCamera : public Behaviour, public CommandHandler<MainCamera*>
@@ -37,5 +38,6 @@ private:
 	Transform* m_noiseTransform;
 	Camera* m_camera;
 	Noise* m_noise;
+	SmoothNoise* m_smoothNoise;
 	Animation* m_animation;
 };
