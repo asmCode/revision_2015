@@ -29,7 +29,7 @@ MainCamera::MainCamera(GameObject* gameObject, const std::string& name) :
 
 void MainCamera::Awake()
 {
-	m_camera = dynamic_cast<Camera*>(GetGameObject()->GetComponent("Camera"));
+	m_camera = dynamic_cast<Camera*>(GetGameObject()->FindChild("MainCamera.Camera", true)->GetComponent("Camera"));
 	m_pivotTransform = GetGameObject()->GetTransform().GetParent();
 	m_lookTransform = &GetGameObject()->FindChild("MainCamera.Look")->GetTransform();
 	m_noiseTransform = &m_lookTransform->GetGameObject()->FindChild("MainCamera.Noise")->GetTransform();
@@ -136,8 +136,18 @@ void MainCamera::EnableSmoothNoise(bool enable)
 
 void MainCamera::PlayBeginningAnim()
 {
+	return;
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-01"));
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-02"));
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-03"));
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-04"));
+}
+
+void MainCamera::PlayOpenAnim()
+{
+	m_camera->SetFov(120.0f * MathUtils::Deg2Rad);
+	//QueueCommand(new MainCameraCommands::Animation(this, "cam02-01"));
+	//QueueCommand(new MainCameraCommands::Animation(this, "cam02-02"));
+	QueueCommand(new MainCameraCommands::Animation(this, "cam02-03"));
+	//QueueCommand(new MainCameraCommands::Animation(this, "cam02-04"));
 }

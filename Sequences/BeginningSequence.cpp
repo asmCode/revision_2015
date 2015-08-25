@@ -90,6 +90,10 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 
 		m_mainCamera->OrbitSequence();
 	}
+	else if (synchEvent->GetId() == "beat1_end")
+	{
+		m_mainCamera->PlayOpenAnim();
+	}
 	else if (synchEvent->GetId() == "open_mech1")
 	{
 		m_sphere->OpenWithMechArms();

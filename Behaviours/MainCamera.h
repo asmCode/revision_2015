@@ -34,6 +34,7 @@ public:
 	void EnableSmoothNoise(bool enable);
 
 	void PlayBeginningAnim();
+	void PlayOpenAnim();
 
 private:
 	Transform* m_pivotTransform;
