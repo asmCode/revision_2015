@@ -138,6 +138,8 @@ float angle;
 
 void Sphere::Update()
 {
+	ProcessCommands();
+
 	if (m_mechArms.size() > 0)
 	{
 		for (uint32_t i = 0; i < m_parts.size(); i++)

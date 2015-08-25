@@ -1,15 +1,15 @@
 #pragma once
 
-#include "../../CommandBase.h"
+#include "MainCameraCommandBase.h"
 #include "../MainCamera.h"
 #include <Math/Vec3.h>
 
 namespace MainCameraCommands
 {
-	class HeadBang : public CommandBase<MainCamera*>
+	class HeadBang : public MainCameraCommandBase
 	{
 	public:
-		HeadBang(float duration, float distance);
+		HeadBang(MainCamera* mainCamera, float duration, float distance);
 		~HeadBang();
 
 		void Enter();

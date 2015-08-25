@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Behaviour.h"
+#include "../CommandHandler.h"
 #include <string>
 #include <vector>
 
@@ -9,7 +10,7 @@ class SpherePart;
 class MechArm;
 class SphereCommandBase;
 
-class Sphere : public Behaviour
+class Sphere : public Behaviour, public CommandHandler<Sphere>
 {
 public:
 	Sphere(GameObject* gameObject, const std::string& name);

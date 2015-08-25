@@ -33,12 +33,12 @@ public:
 			}
 		}
 
-		std::vector<CommandBase<T>*> commands;
+		std::vector<CommandBase*> commands;
 		commands.insert(commands.begin(), m_commandParaller.begin(), m_commandParaller.end());
 		m_commandParaller.clear();
 		for (size_t i = 0; i < commands.size(); i++)
 		{
-			CommandBase<T>* command = commands[i];
+			CommandBase* command = commands[i];
 			if (!command->Update())
 				m_commandParaller.push_back(command);
 			else
@@ -46,21 +46,19 @@ public:
 		}
 	}
 
-	void QueueCommand(CommandBase<T>* command)
+	void QueueCommand(CommandBase* command)
 	{
 		m_commandQueue.push(command);
-		command->SetSubject(dynamic_cast<T>(this));
 	}
 
-	void SetCommandParaller(CommandBase<T>* command)
+	void SetCommandParaller(CommandBase* command)
 	{
 		m_commandParaller.push_back(command);
-		command->SetSubject(dynamic_cast<T>(this));
 		command->Enter();
 	}
 
 private:
-	std::queue<CommandBase<T>*> m_commandQueue;
-	std::vector<CommandBase<T>*> m_commandParaller;
-	CommandBase<T>* m_currentCommand;
+	std::queue<CommandBase*> m_commandQueue;
+	std::vector<CommandBase*> m_commandParaller;
+	CommandBase* m_currentCommand;
 };

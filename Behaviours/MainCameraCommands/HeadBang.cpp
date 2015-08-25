@@ -9,7 +9,8 @@
 
 namespace MainCameraCommands
 {
-	HeadBang::HeadBang(float duration, float distance) :
+	HeadBang::HeadBang(MainCamera* mainCamera, float duration, float distance) :
+		MainCameraCommandBase(mainCamera),
 		m_duration(duration),
 		m_distance(distance),
 		m_time(0.0f)

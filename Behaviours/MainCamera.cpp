@@ -42,10 +42,10 @@ void MainCamera::Update()
 
 	if (Input::GetKeyDown(KeyCode_A))
 	{
-		QueueCommand(new MainCameraCommands::Animation("cam01-01"));
-		QueueCommand(new MainCameraCommands::Animation("cam01-02"));
-		QueueCommand(new MainCameraCommands::Animation("cam01-03"));
-		QueueCommand(new MainCameraCommands::Animation("cam01-04"));
+		QueueCommand(new MainCameraCommands::Animation(this, "cam01-01"));
+		QueueCommand(new MainCameraCommands::Animation(this, "cam01-02"));
+		QueueCommand(new MainCameraCommands::Animation(this, "cam01-03"));
+		QueueCommand(new MainCameraCommands::Animation(this, "cam01-04"));
 	}
 	if (Input::GetKeyDown(KeyCode_H))
 	{
@@ -54,15 +54,15 @@ void MainCamera::Update()
 	if (Input::GetKeyDown(KeyCode_O))
 	{
 		Orbit();
-		SetCommandParaller(new MainCameraCommands::Roll(0.3f, -0.2f, 0.2f));
+		SetCommandParaller(new MainCameraCommands::Roll(this, 0.3f, -0.2f, 0.2f));
 	}
 	if (Input::GetKeyDown(KeyCode_I))
 	{
-		SetCommandParaller(new MainCameraCommands::Orbit(0.3f, MathUtils::PI2, MathUtils::PI2, sm::Vec3(0, 1, 0)));
+		SetCommandParaller(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI2, MathUtils::PI2, sm::Vec3(0, 1, 0)));
 	}
 	if (Input::GetKeyDown(KeyCode_R))
 	{
-		SetCommandParaller(new MainCameraCommands::Roll(0.3f, -MathUtils::PI2, MathUtils::PI2));
+		SetCommandParaller(new MainCameraCommands::Roll(this, 0.3f, -MathUtils::PI2, MathUtils::PI2));
 	}
 
 	m_animation->Update();
@@ -100,10 +100,10 @@ Noise* MainCamera::GetNoise()
 
 void MainCamera::HeadBang()
 {
-	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 0.5f));
+	SetCommandParaller(new MainCameraCommands::HeadBang(this, 0.4f, 0.5f));
 }
 
 void MainCamera::Orbit()
 {
-	SetCommandParaller(new MainCameraCommands::Orbit(0.3f, 0.2f, 0.5f));
+	SetCommandParaller(new MainCameraCommands::Orbit(this, 0.3f, 0.2f, 0.5f));
 }

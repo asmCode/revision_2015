@@ -14,7 +14,8 @@
 
 namespace MainCameraCommands
 {
-	Animation::Animation(const std::string& clipName)
+	Animation::Animation(MainCamera* mainCamera, const std::string& clipName) :
+		MainCameraCommandBase(mainCamera)
 	{
 		m_clip = Content::Instance->Get<AnimationClip>(clipName);
 	}

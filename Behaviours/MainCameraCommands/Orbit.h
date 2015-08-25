@@ -1,17 +1,17 @@
 #pragma once
 
-#include "../../CommandBase.h"
+#include "MainCameraCommandBase.h"
 #include "../MainCamera.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
 namespace MainCameraCommands
 {
-	class Orbit : public CommandBase<MainCamera*>
+	class Orbit : public MainCameraCommandBase
 	{
 	public:
-		Orbit(float duration, float minAngle, float maxAngle);
-		Orbit(float duration, float minAngle, float maxAngle, const sm::Vec3& axis);
+		Orbit(MainCamera* mainCamera, float duration, float minAngle, float maxAngle);
+		Orbit(MainCamera* mainCamera, float duration, float minAngle, float maxAngle, const sm::Vec3& axis);
 		~Orbit();
 
 		void Enter();

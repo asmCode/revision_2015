@@ -300,6 +300,7 @@ exit /B 0
     <ClInclude Include="Behaviours\Magnet.h" />
     <ClInclude Include="Behaviours\MainCameraCommands\Animation.h" />
     <ClInclude Include="Behaviours\MainCameraCommands\HeadBang.h" />
+    <ClInclude Include="Behaviours\MainCameraCommands\MainCameraCommandBase.h" />
     <ClInclude Include="Behaviours\MainCameraCommands\Orbit.h" />
     <ClInclude Include="Behaviours\MainCameraCommands\Roll.h" />
     <ClInclude Include="Behaviours\MechArm.h" />

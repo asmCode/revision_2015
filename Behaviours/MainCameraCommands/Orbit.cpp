@@ -10,7 +10,8 @@
 
 namespace MainCameraCommands
 {
-	Orbit::Orbit(float duration, float minAngle, float maxAngle) :
+	Orbit::Orbit(MainCamera* mainCamera, float duration, float minAngle, float maxAngle) :
+		MainCameraCommandBase(mainCamera),
 		m_duration(duration),
 		m_minAngle(minAngle),
 		m_maxAngle(maxAngle),
@@ -19,7 +20,8 @@ namespace MainCameraCommands
 		m_axis = Random::GetUniVector();
 	}
 
-	Orbit::Orbit(float duration, float minAngle, float maxAngle, const sm::Vec3& axis) :
+	Orbit::Orbit(MainCamera* mainCamera, float duration, float minAngle, float maxAngle, const sm::Vec3& axis) :
+		MainCameraCommandBase(mainCamera),
 		m_duration(duration),
 		m_minAngle(minAngle),
 		m_maxAngle(maxAngle),

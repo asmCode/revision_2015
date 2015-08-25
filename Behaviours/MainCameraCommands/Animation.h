@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../CommandBase.h"
+#include "MainCameraCommandBase.h"
 #include "../MainCamera.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
@@ -11,10 +11,10 @@ class AnimationClip;
 
 namespace MainCameraCommands
 {
-	class Animation : public CommandBase<MainCamera*>
+	class Animation : public MainCameraCommandBase
 	{
 	public:
-		Animation(const std::string& clipName);
+		Animation(MainCamera* mainCamera, const std::string& clipName);
 
 		void Enter();
 		bool Update();

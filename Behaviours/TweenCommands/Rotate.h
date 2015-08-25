@@ -1,16 +1,16 @@
 #pragma once
 
-#include "MainCameraCommandBase.h"
+#include "../../CommandBase.h"
 #include "../MainCamera.h"
 #include <Math/Vec3.h>
 #include <Math/Quat.h>
 
-namespace MainCameraCommands
+namespace SphereCommands
 {
-	class Roll : public MainCameraCommandBase
+	class Roll : public CommandBase<MainCamera*>
 	{
 	public:
-		Roll(MainCamera* mainCamera, float duration, float minAngle, float maxAngle);
+		Roll(float duration, float minAngle, float maxAngle);
 		~Roll();
 
 		void Enter();

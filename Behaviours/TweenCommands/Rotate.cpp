@@ -10,8 +10,7 @@
 
 namespace MainCameraCommands
 {
-	Roll::Roll(MainCamera* mainCamera, float duration, float minAngle, float maxAngle) :
-		MainCameraCommandBase(mainCamera),
+	Roll::Roll(float duration, float minAngle, float maxAngle) :
 		m_duration(duration),
 		m_minAngle(minAngle),
 		m_maxAngle(maxAngle),
