@@ -37,6 +37,8 @@ void BeginningSequence::Prepare()
 {
 	m_mainCamera->GetGameObject()->GetTransform().SetPosition(sm::Vec3(0, 0, 40));
 	m_sphere->GetGameObject()->SetActive(true);
+
+	m_mainCamera->PlayBeginningAnim();
 	//noise = (Noise*)m_sphere->GetGameObject()->AddComponent("Noise");
 	//noise->TranslationNoise(20.0f, 0.5f);
 	//noise->RotationNoise(1.0f, 0.05f);
@@ -82,9 +84,9 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	{
 		m_sphere->SpinFast();
 	}
-	else if (synchEvent->GetId() == "spin_end")
+	else if (synchEvent->GetId() == "spin_fast_end")
 	{
-		
+		m_mainCamera->EnableSmoothNoise(true);
 	}
 	else if (synchEvent->GetId() == "beat1")
 	{

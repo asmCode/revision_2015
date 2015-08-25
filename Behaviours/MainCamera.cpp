@@ -36,9 +36,6 @@ void MainCamera::Awake()
 	m_noise = dynamic_cast<Noise*>(m_noiseTransform->GetGameObject()->GetComponent("Noise"));
 	m_smoothNoise = dynamic_cast<SmoothNoise*>(m_noiseTransform->GetGameObject()->GetComponent("SmoothNoise"));
 	m_animation = dynamic_cast<Animation*>(GetGameObject()->GetComponent("Animation"));
-
-	m_smoothNoise->RotationNoise(0.3f, 0.04f);
-	m_smoothNoise->TranslationNoise(0.3f, 3.04f);
 }
 
 void MainCamera::Update()
@@ -47,10 +44,7 @@ void MainCamera::Update()
 
 	if (Input::GetKeyDown(KeyCode_A))
 	{
-		QueueCommand(new MainCameraCommands::Animation(this, "cam01-01"));
-		QueueCommand(new MainCameraCommands::Animation(this, "cam01-02"));
-		QueueCommand(new MainCameraCommands::Animation(this, "cam01-03"));
-		QueueCommand(new MainCameraCommands::Animation(this, "cam01-04"));
+		PlayBeginningAnim();
 	}
 	if (Input::GetKeyDown(KeyCode_H))
 	{
@@ -120,11 +114,30 @@ void MainCamera::OrbitFast()
 
 void MainCamera::OrbitSequence()
 {
-	return;
-
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
 }
 
+void MainCamera::EnableSmoothNoise(bool enable)
+{
+	if (enable)
+	{
+		m_smoothNoise->RotationNoise(0.3f, 0.04f);
+		//m_smoothNoise->TranslationNoise(0.3f, 3.04f);
+	}
+	else
+	{
+		m_smoothNoise->RotationNoise(0, 0);
+		//m_smoothNoise->TranslationNoise(0, 0);
+	}
+}
+
+void MainCamera::PlayBeginningAnim()
+{
+	QueueCommand(new MainCameraCommands::Animation(this, "cam01-01"));
+	QueueCommand(new MainCameraCommands::Animation(this, "cam01-02"));
+	QueueCommand(new MainCameraCommands::Animation(this, "cam01-03"));
+	QueueCommand(new MainCameraCommands::Animation(this, "cam01-04"));
+}

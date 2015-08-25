@@ -19,8 +19,9 @@ public:
 	void RotationNoise(float speed, float angle);
 
 private:
-	float m_time;
+	float m_posTime;
 	float m_posSpeed;
+	float m_rotTime;
 	float m_rotSpeed;
 
 	AnimationCurve<sm::Vec3> m_posCurve;

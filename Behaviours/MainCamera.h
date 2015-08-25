@@ -31,6 +31,9 @@ public:
 	void Orbit();
 	void OrbitFast();
 	void OrbitSequence();
+	void EnableSmoothNoise(bool enable);
+
+	void PlayBeginningAnim();
 
 private:
 	Transform* m_pivotTransform;
