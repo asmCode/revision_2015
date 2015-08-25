@@ -118,6 +118,6 @@ void MainCamera::OrbitSequence()
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
-	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
+	QueueCommand(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
 }
 
