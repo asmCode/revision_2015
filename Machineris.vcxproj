@@ -158,6 +158,8 @@ exit /B 0
     <ClCompile Include="Behaviours\TextureImage.cpp" />
     <ClCompile Include="Behaviours\Tile.cpp" />
     <ClCompile Include="Behaviours\TileFactory.cpp" />
+    <ClCompile Include="Behaviours\TweenCommands\Rotate.cpp" />
+    <ClCompile Include="Behaviours\TweenCommands\TweenProperty.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraSort.cpp" />
@@ -327,6 +329,8 @@ exit /B 0
     <ClInclude Include="Behaviours\TextureImage.h" />
     <ClInclude Include="Behaviours\Tile.h" />
     <ClInclude Include="Behaviours\TileFactory.h" />
+    <ClInclude Include="Behaviours\TweenCommands\Rotate.h" />
+    <ClInclude Include="Behaviours\TweenCommands\TweenProperty.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSort.h" />
     <ClInclude Include="CommandBase.h" />

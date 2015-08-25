@@ -17,3 +17,13 @@ public:
 		return c * time * time + begin;
 	};
 };
+
+template <>
+sm::Quat QuadIn<sm::Quat>::Evaluate(const sm::Quat& begin, const sm::Quat& end, float time)
+{
+	QuadIn<float> timeCurve;
+
+	float quatTime = timeCurve.Evaluate(0.0f, 1.0f, time);
+
+	return sm::Quat::Slerp(begin, end, quatTime);
+}

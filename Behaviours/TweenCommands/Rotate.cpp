@@ -1,4 +1,4 @@
-#include "Roll.h"
+#include "Rotate.h"
 #include "../../Transform.h"
 #include "../../FuturisEngine/Time.h"
 #include <Math/MathUtils.h>
@@ -8,33 +8,34 @@
 #include <Math/Animation/Custom/BlinkCurve.h>
 #include <Utils/Random.h>
 
-namespace MainCameraCommands
+namespace TweenCommands
 {
-	Roll::Roll(float duration, float minAngle, float maxAngle) :
+	Rotate::Rotate(Transform* transform, IAnimationCurve<float>* curve, float duration, float angle, const sm::Vec3& axis) :
+		m_transform(transform),
+		m_curve(curve),
 		m_duration(duration),
-		m_minAngle(minAngle),
-		m_maxAngle(maxAngle),
+		m_angle(angle),
+		m_axis(axis),
 		m_time(0.0f)
 	{
 	}
 
-	Roll::~Roll()
+	Rotate::~Rotate()
 	{
 	}
 
-	void Roll::Enter()
+	void Rotate::Enter()
 	{
-		m_srcRot = m_subject->GetLookTransform()->GetLocalRotation();
-		m_dstRot = sm::Quat::FromAngleAxis(Random::GetFloat(m_minAngle, m_maxAngle), sm::Vec3(0, 0, 1)) * m_srcRot;
+		m_baseRotation = m_transform->GetLocalRotation();
 	}
 
-	bool Roll::Update()
+	bool Rotate::Update()
 	{
 		m_time = MathUtils::Min(m_duration, m_time + Time::DeltaTime);
 
-		QuarticOut<sm::Quat> curve;
+		float angle = m_curve->Evaluate(0.0f, m_angle, m_time / m_duration);
 
-		m_subject->GetLookTransform()->SetLocalRotation(curve.Evaluate(m_srcRot, m_dstRot, m_time / m_duration));
+		m_transform->SetLocalRotation(sm::Quat::FromAngleAxis(angle, m_axis) * m_baseRotation);
 
 		return m_time == m_duration;
 	}

@@ -34,7 +34,11 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {
 	synchManager->Addevent(new SynchEvent("prepare_for_beginning", 0.0f));
-	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
+	//SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
+
+	synchManager->Addevent(new SynchEvent("spin_fast", 31.489f));
+	synchManager->Addevent(new SynchEvent("spin_fast_end", 33.0f));
+
 	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
 	/*SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
 	float shift = -0.1f;

@@ -28,6 +28,8 @@ public:
 
 	void HeadBang();
 	void Orbit();
+	void OrbitFast();
+	void OrbitSequence();
 
 private:
 	Transform* m_pivotTransform;

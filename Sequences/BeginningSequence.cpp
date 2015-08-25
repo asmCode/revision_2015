@@ -16,7 +16,8 @@
 BeginningSequence::BeginningSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
 m_mainCamera(mainCamera),
-m_pullOutLongBaseIndex(0)
+m_pullOutLongBaseIndex(0),
+m_beat1Count(0)
 {
 	m_cameraPivot = new GameObject("CameraPivot");
 
@@ -77,16 +78,28 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 		for (int i = 0; i < subCount; i++)
 			m_sphere->BlinkSpherePart(elements[i], sm::Vec3(0.9f, 0.9f, 0.9f));
 	}
+	else if (synchEvent->GetId() == "spin_fast")
+	{
+		m_sphere->SpinFast();
+	}
+	else if (synchEvent->GetId() == "spin_end")
+	{
+		
+	}
 	else if (synchEvent->GetId() == "beat1")
 	{
 		const int totalCount = 54;
 		const int subCount = 20;
+
+		m_beat1Count++;
 
 		int elements[totalCount];
 		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
 
 		for (int i = 0; i < subCount; i++)
 			m_sphere->RollSpherePart(elements[i]);
+
+		m_mainCamera->OrbitSequence();
 	}
 	else if (synchEvent->GetId() == "open_mech1")
 	{

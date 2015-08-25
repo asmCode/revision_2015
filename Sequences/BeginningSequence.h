@@ -23,6 +23,8 @@ private:
 	Sphere* m_sphere;
 	MainCamera* m_mainCamera;
 
+	int m_beat1Count;
+
 	GameObject* m_cameraPivot;
 	float m_cameraAngle;
 

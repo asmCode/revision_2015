@@ -58,7 +58,7 @@ void MainCamera::Update()
 	}
 	if (Input::GetKeyDown(KeyCode_I))
 	{
-		SetCommandParaller(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI2, MathUtils::PI2, sm::Vec3(0, 1, 0)));
+		OrbitFast();
 	}
 	if (Input::GetKeyDown(KeyCode_R))
 	{
@@ -107,3 +107,17 @@ void MainCamera::Orbit()
 {
 	SetCommandParaller(new MainCameraCommands::Orbit(this, 0.3f, 0.2f, 0.5f));
 }
+
+void MainCamera::OrbitFast()
+{
+	SetCommandParaller(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
+}
+
+void MainCamera::OrbitSequence()
+{
+	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
+	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
+	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, 0.2f, 0.5f));
+	QueueCommand(new MainCameraCommands::Orbit(this, 0.32f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
+}
+

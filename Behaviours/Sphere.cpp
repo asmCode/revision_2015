@@ -14,6 +14,8 @@
 #include "SpherePartCommands/RollOut.h"
 #include "SpherePartCommands/RollIn.h"
 #include "SpherePartCommands/Blink.h"
+#include "TweenCommands/TweenProperty.h"
+#include "TweenCommands/Rotate.h"
 #include "SpherePartCommands/PullOutWithNoise.h"
 #include "../DemoUtils.h"
 #include <Graphics/Material.h>
@@ -22,6 +24,9 @@
 #include <Math/Matrix.h>
 #include <Math/MathUtils.h>
 #include <Math/Animation/QuadOut.h>
+#include <Math/Animation/QuadIn.h>
+#include <Math/Animation/QuarticIn.h>
+#include <Math/Animation/LinearCurve.h>
 #include <Utils/Random.h>
 #include <Utils/Log.h>
 #include "../FuturisEngine/Time.h"
@@ -156,10 +161,9 @@ void Sphere::Update()
 	GetGameObject()->GetTransform().SetLocalPosition(sm::Vec3(0, 0, -45));
 	*/
 
-	if (Input::GetKeyDown(KeyCode_O))
+	if (Input::GetKeyDown(KeyCode_X))
 	{
-		//Renderable* renderable = m_parts[33]->GetGameObject()->GetRenderables()[0];
-		//renderable->GetMaterial()->SetParameter("u_color", sm::Vec3(0.9f, 0.9f, 0.9f));
+		SpinFast();
 	}
 	else if (Input::GetKeyDown(KeyCode_K))
 	{
@@ -191,3 +195,22 @@ void Sphere::SortSphereParts()
 	});
 }
 
+void Sphere::SpinFast()
+{
+	/*
+	TweenCommands::TweenProperty<sm::Quat>* tween = new TweenCommands::TweenProperty<sm::Quat>(
+		new PropertyWrapperT<Transform, sm::Quat>(&GetGameObject()->GetTransform(), &Transform::SetLocalRotation, &Transform::GetLocalRotation),
+		new QuadIn<sm::Quat>(),
+		3.0f,
+		sm::Quat::FromAngleAxis(1.0f, sm::Vec3(0, 1, 0)));
+		*/
+
+	TweenCommands::Rotate* command = new TweenCommands::Rotate(
+		&GetGameObject()->GetTransform(),
+		new QuarticIn<float>(),
+		1.511f,
+		10.0f,
+		sm::Vec3(0, 1, 0));
+
+	QueueCommand(command);
+}
