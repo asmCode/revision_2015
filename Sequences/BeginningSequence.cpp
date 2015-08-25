@@ -16,8 +16,7 @@
 BeginningSequence::BeginningSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
 m_mainCamera(mainCamera),
-m_pullOutLongBaseIndex(0),
-m_beat1Count(0)
+m_pullOutLongBaseIndex(0)
 {
 	m_cameraPivot = new GameObject("CameraPivot");
 
@@ -49,18 +48,8 @@ void BeginningSequence::Clean()
 	m_sphere->GetGameObject()->SetActive(false);
 }
 
-int index = 0;
-
 void BeginningSequence::Update()
 {
-	/*
-	m_cameraAngle += Time::DeltaTime * 0.3f;
-
-	m_cameraPivot->GetTransform().SetRotation(
-		sm::Quat::FromAngleAxis(m_cameraAngle, sm::Vec3(0, 1, 0)) *
-		sm::Quat::FromAngleAxis(0.4f, sm::Vec3(1, 0, 0)));
-		*/
-
 	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{
 		PullOutLong();
@@ -92,8 +81,6 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	{
 		const int totalCount = 54;
 		const int subCount = 20;
-
-		m_beat1Count++;
 
 		int elements[totalCount];
 		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
