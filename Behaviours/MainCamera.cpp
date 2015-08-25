@@ -100,7 +100,7 @@ Noise* MainCamera::GetNoise()
 
 void MainCamera::HeadBang()
 {
-	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 1.4f));
+	SetCommandParaller(new MainCameraCommands::HeadBang(0.4f, 0.5f));
 }
 
 void MainCamera::Orbit()
