@@ -188,6 +188,12 @@ void GraphicsEngine::RenderGameObjects()
 			if (!m_transparentRenderables[i]->IsActive())
 				continue;
 
+			if ((m_cameras[cameraIndex]->GetCullLayers() & m_transparentRenderables[i]->GetLayerId()) == 0)
+				continue;
+
+			BuiltInShaderParams::m_paramWorld = m_transparentRenderables[i]->GetGameObject()->GetTransform().GetMatrix();
+			BuiltInShaderParams::m_paramWorldViewProj = BuiltInShaderParams::m_paramViewProj * BuiltInShaderParams::m_paramWorld;
+
 			Material* material = m_transparentRenderables[i]->GetMaterial();
 			material->SetupMaterial();
 			m_transparentRenderables[i]->Draw();

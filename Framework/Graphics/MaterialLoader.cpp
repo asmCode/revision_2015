@@ -42,6 +42,7 @@ Material *MaterialLoader::LoadMatarial(XMLNode *rootNode)
 
 bool MaterialLoader::LoadMaterialParam(Material *mat, XMLNode &node)
 {
+	/*
 	std::string type = node.GetAttribAsString("Type");
 	
 	if (type == "Diffuse")
@@ -68,6 +69,7 @@ bool MaterialLoader::LoadMaterialParam(Material *mat, XMLNode &node)
 		mat ->specularLevel = node.GetAttribAsFloat("Value");
 	}
 
+	*/
 	return true;
 }
 
@@ -83,6 +85,7 @@ bool MaterialLoader::LoadTextures(Material *material, XMLNode &node)
 
 bool MaterialLoader::LoadTexture(Material *material, XMLNode &node)
 {
+	/*
 	std::string type = node.GetAttribAsString("Type");
 	std::string file = node.GetAttribAsString("File");
 
@@ -109,6 +112,7 @@ bool MaterialLoader::LoadTexture(Material *material, XMLNode &node)
 		material->environmentTexName = assetFilename.GetFilename();
 		material->reflectionValue = node.GetAttribAsFloat("Reflection");
 	}
+	*/
 
 	return true;
 }

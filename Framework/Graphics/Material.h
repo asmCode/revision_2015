@@ -24,41 +24,19 @@ public:
 	std::string name;
 
 	const std::string& GetName() const;
-	
-	sm::Vec4 diffuseColor;
-	sm::Vec3 specularColor;
-
-	float glossiness;
-	float specularLevel;
-	float reflectionValue; // for evironment mapping
-
-	std::string diffuseTexName;
-	Texture *diffuseTex;
-
-	std::string opacityTexName;
-	Texture *opacityTex;
-
-	std::string normalTexName;
-	Texture *normalTex;
-
-	std::string environmentTexName;
-	//CubeTexture *environmentTex;
-
-	std::string lightmapTexName;
-	Texture *lightmapTex;
 
 	Material(void);
 	~Material(void);
 
-	float& Opacity();
-
 	void SetupMaterial();
 
+	void SetOpacity(bool opacity);
 	virtual bool IsOpacity() const;
 
 	void SetShader(Shader* shader);
 	Shader* GetShader() const;
 	sm::Vec3 GetParameterVec3(const std::string& name);
+	sm::Vec4 GetParameterVec4(const std::string& name);
 	float GetParameterFloat(const std::string& name);
 	void SetParameter(const std::string& name, float value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
@@ -73,6 +51,8 @@ protected:
 	uint32_t m_builtInShaderParams;
 
 	ParametersMap m_parameters;
+
+	bool m_isOpacity;
 
 	virtual void SetupRenderState() {};
 	virtual void SetupShader();

@@ -9,7 +9,7 @@ public:
 	enum Wrap
 	{
 		Wrap_Repeat					= GL_REPEAT,
-		Wrap_ClampToEdge			= GL_CLAMP_TO_EDGE
+		Wrap_ClampToEdge			= GL_CLAMP
 	};
 
 	enum Filter

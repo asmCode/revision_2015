@@ -3,34 +3,23 @@
 #include "BuiltInShaderParams.h"
 
 Material::Material() :
-	m_builtInShaderParams(0)
-{	
-	diffuseColor.Set(0.6f, 0.6f, 0.6f, 1.0f);
-	specularColor.Set(1.0f, 1.0f, 1.0f);
-
-	glossiness = 0.3f;
-	specularLevel = 1.0f;
-	reflectionValue = 0.0f;
-
-	diffuseTex = NULL;
-	opacityTex = NULL;
-	normalTex = NULL;
-	lightmapTex = NULL;
-	//environmentTex = NULL;
+	m_builtInShaderParams(0),
+	m_isOpacity(false)
+{
 }
 
 Material::~Material(void)
 {
 }
 
-float& Material::Opacity()
+void Material::SetOpacity(bool opacity)
 {
-	return diffuseColor.w;
+	m_isOpacity = opacity;
 }
 
 bool Material::IsOpacity() const
 {
-	return diffuseColor.w < 1.0f;
+	return m_isOpacity;
 }
 
 void Material::SetShader(Shader* shader)
@@ -53,6 +42,11 @@ void Material::SetParameter(const std::string& name, float value)
 sm::Vec3 Material::GetParameterVec3(const std::string& name)
 {
 	return m_parameters[name].GetVec3();
+}
+
+sm::Vec4 Material::GetParameterVec4(const std::string& name)
+{
+	return m_parameters[name].GetVec4();
 }
 
 float Material::GetParameterFloat(const std::string& name)
@@ -83,6 +77,18 @@ void Material::SetupMaterial()
 
 void Material::SetupShader()
 {
+	if (IsOpacity())
+	{
+		glEnable(GL_BLEND);
+		glDepthMask(false);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+	else
+	{
+		glDepthMask(true);
+		glDisable(GL_BLEND);
+	}
+
 	m_shader->UseProgram();
 
 	BuiltInShaderParams::SetShaderBuiltInParams(m_shader, m_builtInShaderParams);

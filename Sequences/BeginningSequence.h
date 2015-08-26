@@ -3,12 +3,14 @@
 #include "SequenceBase.h"
 #include <string>
 #include <vector>
+#include "../../CommandHandler.h"
 
 class GameObject;
 class Sphere;
 class MainCamera;
+class PlaneObject;
 
-class BeginningSequence : public SequenceBase
+class BeginningSequence : public SequenceBase, public CommandHandler<BeginningSequence>
 {
 public:
 	BeginningSequence(Sphere* sphere, MainCamera* mainCamera);
@@ -22,6 +24,8 @@ public:
 private:
 	Sphere* m_sphere;
 	MainCamera* m_mainCamera;
+	PlaneObject* m_groupPlane;
+	PlaneObject* m_titlePlane;
 
 	GameObject* m_cameraPivot;
 	float m_cameraAngle;

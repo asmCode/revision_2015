@@ -2,21 +2,27 @@
 #include "../GameObject.h"
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
+#include "../Behaviours/PlaneObject.h"
 #include "../Behaviours/Noise.h"
 #include "../Behaviours/MainCamera.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
+#include "../Behaviours/TweenCommands/TweenProperty.h"
 #include "../Camera.h"
 #include "../Transform.h"
 #include "../SynchEvent.h"
 #include "../FuturisEngine/Time.h"
+#include "../PropertyWrapper.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
+#include <Math/Animation/LinearCurve.h>
 
 BeginningSequence::BeginningSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
 m_mainCamera(mainCamera),
-m_pullOutLongBaseIndex(0)
+m_pullOutLongBaseIndex(0),
+m_groupPlane(nullptr),
+m_titlePlane(nullptr)
 {
 	m_cameraPivot = new GameObject("CameraPivot");
 
@@ -28,9 +34,22 @@ m_pullOutLongBaseIndex(0)
 
 void BeginningSequence::Initialize()
 {
-}
+	m_groupPlane = PlaneObject::Create("futuris_presents");
+	m_groupPlane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(-25, 0, 0));
+	m_groupPlane->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(10, 10, 1));
+	m_groupPlane->SetSpriteColor(sm::Vec4(1, 1, 1, 0));
+	m_titlePlane = PlaneObject::Create("title");
+	m_titlePlane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(-11, 0, 0));
+	m_titlePlane->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(5, 5, 1));
+	m_titlePlane->GetGameObject()->GetTransform().SetLocalRotation(sm::Quat::FromAngleAxis(3.1415, sm::Vec3(0, 1, 0)));
+	m_titlePlane->SetSpriteColor(sm::Vec4(1, 1, 1, 0));
 
-Noise* noise;
+	GameObject* p = new GameObject("TitlePivot");
+	m_titlePlane->GetGameObject()->GetTransform().SetParent(&p->GetTransform());
+	p->GetTransform().SetRotation(
+		sm::Quat::FromAngleAxis(1.3, sm::Vec3(0, 1, 0)) *
+		sm::Quat::FromAngleAxis(0.3, sm::Vec3(0, 0, 1)));
+}
 
 void BeginningSequence::Prepare()
 {
@@ -38,9 +57,6 @@ void BeginningSequence::Prepare()
 	m_sphere->GetGameObject()->SetActive(true);
 
 	m_mainCamera->PlayBeginningAnim();
-	//noise = (Noise*)m_sphere->GetGameObject()->AddComponent("Noise");
-	//noise->TranslationNoise(20.0f, 0.5f);
-	//noise->RotationNoise(1.0f, 0.05f);
 }
 
 void BeginningSequence::Clean()
@@ -50,6 +66,8 @@ void BeginningSequence::Clean()
 
 void BeginningSequence::Update()
 {
+	ProcessCommands();
+
 	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{
 		PullOutLong();
@@ -68,6 +86,46 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 
 		for (int i = 0; i < subCount; i++)
 			m_sphere->BlinkSpherePart(elements[i], sm::Vec3(0.9f, 0.9f, 0.9f));
+	}
+	else if (synchEvent->GetId() == "show_group")
+	{
+		PropertyWrapperT<PlaneObject, sm::Vec4>* prop = new PropertyWrapperT<PlaneObject, sm::Vec4>(
+			m_groupPlane, &PlaneObject::SetSpriteColor, &PlaneObject::GetSpriteColor);
+
+		TweenCommands::TweenProperty<sm::Vec4>* command = new TweenCommands::TweenProperty<sm::Vec4>(
+			prop, new LinearCurve<sm::Vec4>(), 2.0f, sm::Vec4(1, 1, 1, 1));
+
+		SetCommandParaller(command);
+	}
+	else if (synchEvent->GetId() == "hide_group")
+	{
+		PropertyWrapperT<PlaneObject, sm::Vec4>* prop = new PropertyWrapperT<PlaneObject, sm::Vec4>(
+			m_groupPlane, &PlaneObject::SetSpriteColor, &PlaneObject::GetSpriteColor);
+
+		TweenCommands::TweenProperty<sm::Vec4>* command = new TweenCommands::TweenProperty<sm::Vec4>(
+			prop, new LinearCurve<sm::Vec4>(), 1.0f, sm::Vec4(1, 1, 1, 0));
+
+		SetCommandParaller(command);
+	}
+	else if (synchEvent->GetId() == "show_title")
+	{
+		PropertyWrapperT<PlaneObject, sm::Vec4>* prop = new PropertyWrapperT<PlaneObject, sm::Vec4>(
+			m_titlePlane, &PlaneObject::SetSpriteColor, &PlaneObject::GetSpriteColor);
+
+		TweenCommands::TweenProperty<sm::Vec4>* command = new TweenCommands::TweenProperty<sm::Vec4>(
+			prop, new LinearCurve<sm::Vec4>(), 2.0f, sm::Vec4(1, 1, 1, 1));
+
+		SetCommandParaller(command);
+	}
+	else if (synchEvent->GetId() == "hide_title")
+	{
+		PropertyWrapperT<PlaneObject, sm::Vec4>* prop = new PropertyWrapperT<PlaneObject, sm::Vec4>(
+			m_titlePlane, &PlaneObject::SetSpriteColor, &PlaneObject::GetSpriteColor);
+
+		TweenCommands::TweenProperty<sm::Vec4>* command = new TweenCommands::TweenProperty<sm::Vec4>(
+			prop, new LinearCurve<sm::Vec4>(), 2.0f, sm::Vec4(1, 1, 1, 0));
+
+		SetCommandParaller(command);
 	}
 	else if (synchEvent->GetId() == "spin_fast")
 	{

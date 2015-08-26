@@ -6,6 +6,7 @@
 			<Behaviour name="SceneController" />
 		</GameObject>
 
+		
 		<!--
 		<GameObject name="kamerka">
 			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
@@ -24,6 +25,12 @@
 		<GameObject name="MainCamera" parent="MainCamera.Pivot" >
 			<Animation />
 			<Behaviour name="MainCamera" />
+			<Behaviour name="FppCamera">
+				<Parameters>
+					<Parameter name="move_sensitivity" type="float" value="20.0" />
+					<Parameter name="rotate_sensitivity" type="float" value="0.005" />
+				</Parameters>
+			</Behaviour>
 		</GameObject>
 		<GameObject name="MainCamera.Look" parent="MainCamera" />
 		<GameObject name="MainCamera.Noise" parent="MainCamera.Look">

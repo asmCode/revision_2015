@@ -31,7 +31,7 @@ namespace TweenCommands
 		void Enter()
 		{
 			m_srcValue = m_property->Get();
-			m_dstValue = m_dstValue * m_srcValue;
+			m_dstValue = m_dstValue;
 		}
 
 		bool Update()

@@ -8,6 +8,8 @@
 #include "../FuturisEngine/Animation/Animation.h"
 #include "../GraphicsLog.h"
 #include "../CommandBase.h"
+#include "../../FuturisEngine/Graphics/Mesh.h"
+#include "../../Renderable.h"
 #include "MainCameraCommands/HeadBang.h"
 #include "MainCameraCommands/Orbit.h"
 #include "MainCameraCommands/Roll.h"
@@ -44,7 +46,6 @@ void MainCamera::Update()
 
 	if (Input::GetKeyDown(KeyCode_A))
 	{
-		PlayBeginningAnim();
 	}
 	if (Input::GetKeyDown(KeyCode_H))
 	{
@@ -137,7 +138,7 @@ void MainCamera::EnableSmoothNoise(bool enable, bool hard)
 	else
 	{
 		m_smoothNoise->RotationNoise(0, 0);
-		//m_smoothNoise->TranslationNoise(0, 0);
+		m_smoothNoise->TranslationNoise(0, 0);
 	}
 }
 

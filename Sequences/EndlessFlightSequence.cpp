@@ -117,6 +117,7 @@ void EndlessFlightSequence::Prepare()
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
 	
 	m_mainCamera->GetCamera()->SetFov(2.0f);
+	m_mainCamera->EnableSmoothNoise(false, true);
 
 	m_normalSphere->GetGameObject()->SetActive(true);
 	m_smallSphere->GetGameObject()->SetActive(true);
