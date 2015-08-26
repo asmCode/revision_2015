@@ -1,6 +1,9 @@
 #include "ExplosionsSequence.h"
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
+#include "../Behaviours/SpherePartCommands/PullOut.h"
+#include "../Behaviours/SpherePartCommands/PullIn.h"
+#include "../Behaviours/SpherePartCommands/SlideOut.h"
 #include "../Behaviours/MainCamera.h"
 #include "../FuturisEngine/Animation/Animation.h"
 #include "../Transform.h"
@@ -14,6 +17,11 @@
 #include <UserInput/Input.h>
 #include <Utils/Log.h>
 #include <Math/MathUtils.h>
+#include <Math/Animation/LinearCurve.h>
+
+bool m_isBreaking;
+float m_speedBase;
+float m_breakTime;
 
 ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
@@ -38,7 +46,13 @@ void ExplosionsSequence::Initialize()
 
 void ExplosionsSequence::Update()
 {
-	const float explodeDistance = 20.0f;
+	if (m_isBreaking)
+	{
+		m_breakTime += Time::DeltaTime;
+
+		LinearCurve<float> curve;
+		m_speed = curve.Evaluate(m_speedBase, 0.0f, m_breakTime / 1.8f);
+	}
 
 	sm::Vec3 position = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition();
 	position.z -= Time::DeltaTime * m_speed;
@@ -130,5 +144,17 @@ void ExplosionsSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	if (synchEvent->GetId() == "explode")
 	{
 		Repeat();
+	}
+	else if (synchEvent->GetId() == "break")
+	{
+		m_isBreaking = true;
+		m_speedBase = m_speed;
+		m_mainCamera->EnableSmoothNoise(false);
+	}
+	else if (synchEvent->GetId() == "open_gate")
+	{
+		SpherePart* dd = m_smallSphere->GetClosestPart(m_mainCamera->GetRootTransform()->GetPosition());
+		dd->QueueCommand(new PullOut(0.4f, 0.5f));
+		dd->QueueCommand(new SlideOut(0.8f, 0.6f, sm::Vec3(1, 0, 0)));
 	}
 }
