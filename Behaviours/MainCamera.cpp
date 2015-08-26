@@ -125,13 +125,14 @@ void MainCamera::OrbitSequence()
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
 }
 
-void MainCamera::EnableSmoothNoise(bool enable)
+void MainCamera::EnableSmoothNoise(bool enable, bool hard)
 {
 	if (enable)
 	{
-		//m_smoothNoise->RotationNoise(0.3f, 0.04f);
-		m_smoothNoise->RotationNoise(1.0f, 0.3f);
-		//m_smoothNoise->TranslationNoise(0.3f, 3.04f);
+		if (!hard)
+			m_smoothNoise->RotationNoise(0.6f, 0.1f);
+		else
+			m_smoothNoise->RotationNoise(1.0f, 0.3f);
 	}
 	else
 	{
@@ -142,7 +143,6 @@ void MainCamera::EnableSmoothNoise(bool enable)
 
 void MainCamera::PlayBeginningAnim()
 {
-	return;
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-01"));
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-02"));
 	QueueCommand(new MainCameraCommands::Animation(this, "cam01-03"));

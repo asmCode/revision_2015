@@ -32,7 +32,7 @@ public:
 	void Orbit();
 	void OrbitFast();
 	void OrbitSequence();
-	void EnableSmoothNoise(bool enable);
+	void EnableSmoothNoise(bool enable, bool hard);
 
 	void PlayBeginningAnim();
 	void PlayOpenAnim();

@@ -75,7 +75,7 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	}
 	else if (synchEvent->GetId() == "spin_fast_end")
 	{
-		m_mainCamera->EnableSmoothNoise(true);
+		m_mainCamera->EnableSmoothNoise(true, false);
 	}
 	else if (synchEvent->GetId() == "beat1")
 	{
