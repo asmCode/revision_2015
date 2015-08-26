@@ -123,7 +123,7 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 			m_titlePlane, &PlaneObject::SetSpriteColor, &PlaneObject::GetSpriteColor);
 
 		TweenCommands::TweenProperty<sm::Vec4>* command = new TweenCommands::TweenProperty<sm::Vec4>(
-			prop, new LinearCurve<sm::Vec4>(), 2.0f, sm::Vec4(1, 1, 1, 0));
+			prop, new LinearCurve<sm::Vec4>(), 1.0f, sm::Vec4(1, 1, 1, 0));
 
 		SetCommandParaller(command);
 	}

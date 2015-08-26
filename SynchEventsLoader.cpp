@@ -35,9 +35,9 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {	
 	synchManager->Addevent(new SynchEvent("prepare_for_beginning", 0.0f));
 	synchManager->Addevent(new SynchEvent("show_group", 3.0f));
+	synchManager->Addevent(new SynchEvent("hide_group", 6.5f));
 	synchManager->Addevent(new SynchEvent("show_title", 8.5f));
 	synchManager->Addevent(new SynchEvent("hide_title", 10.0f));
-	synchManager->Addevent(new SynchEvent("hide_group", 10.0f));
 	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
 
 	/*synchManager->Addevent(new SynchEvent("spin_fast", 31.489f));
