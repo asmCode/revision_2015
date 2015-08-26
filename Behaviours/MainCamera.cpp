@@ -97,6 +97,11 @@ Noise* MainCamera::GetNoise()
 	return m_noise;
 }
 
+Animation* MainCamera::GetAnimation() const
+{
+	return m_animation;
+}
+
 void MainCamera::HeadBang()
 {
 	SetCommandParaller(new MainCameraCommands::HeadBang(this, 0.4f, 0.5f));
@@ -124,7 +129,8 @@ void MainCamera::EnableSmoothNoise(bool enable)
 {
 	if (enable)
 	{
-		m_smoothNoise->RotationNoise(0.3f, 0.04f);
+		//m_smoothNoise->RotationNoise(0.3f, 0.04f);
+		m_smoothNoise->RotationNoise(1.0f, 0.3f);
 		//m_smoothNoise->TranslationNoise(0.3f, 3.04f);
 	}
 	else

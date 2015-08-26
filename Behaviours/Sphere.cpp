@@ -7,6 +7,7 @@
 #include "../FuturisEngine/Graphics/Mesh.h"
 #include "SpherePart.h"
 #include "MechArm.h"
+#include "Noise.h"
 #include "SpherePartCommands/PullOut.h"
 #include "SpherePartCommands/PullIn.h"
 #include "SpherePartCommands/SlideOut.h"
@@ -42,6 +43,7 @@ Sphere::Sphere(GameObject* gameObject, const std::string& name) :
 
 void Sphere::Awake()
 {
+	m_noise = dynamic_cast<Noise*>(GetGameObject()->GetComponent("Noise"));
 }
 
 void Sphere::Initialize(GameObject* mechArmPrefab)
@@ -137,6 +139,11 @@ SpherePart* Sphere::GetClosestPart(const sm::Vec3& position) const
 	}
 
 	return part;
+}
+
+Noise* Sphere::GetNoise() const
+{
+	return m_noise;
 }
 
 float angle;

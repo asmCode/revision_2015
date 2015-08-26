@@ -26,6 +26,7 @@ public:
 	Transform* GetNoiseTransform();
 	Camera* GetCamera();
 	Noise* GetNoise();
+	Animation* GetAnimation() const;
 
 	void HeadBang();
 	void Orbit();

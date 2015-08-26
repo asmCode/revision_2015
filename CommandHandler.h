@@ -57,6 +57,14 @@ public:
 		command->Enter();
 	}
 
+	void ClearCommands()
+	{
+		m_currentCommand = nullptr;
+
+		while (!m_commandQueue.empty())
+			m_commandQueue.pop();
+	}
+
 private:
 	std::queue<CommandBase*> m_commandQueue;
 	std::vector<CommandBase*> m_commandParaller;

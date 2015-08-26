@@ -111,10 +111,12 @@ void EndlessFlightSequence::Prepare()
 	//m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
 
 	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialEndlessCameraPosition")->GetTransform();
-
+	
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalPosition(cameraTransform->GetPosition());
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalRotation(cameraTransform->GetRotation());
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
+	
+	m_mainCamera->GetCamera()->SetFov(2.0f);
 
 	m_normalSphere->GetGameObject()->SetActive(true);
 	m_smallSphere->GetGameObject()->SetActive(true);

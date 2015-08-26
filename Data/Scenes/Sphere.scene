@@ -3,6 +3,7 @@
 		<GameObject name="Sphere">
 			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Behaviour name="Sphere" />
+			<Behaviour name="Noise" />
 		</GameObject>
 		<GameObject name="SpherePart00" parent="Sphere">
 			<Transform position="8.371052,4.510986,0.811044" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />

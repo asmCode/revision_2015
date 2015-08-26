@@ -2,6 +2,7 @@
 #include "../Behaviours/Sphere.h"
 #include "../Behaviours/SpherePart.h"
 #include "../Behaviours/MainCamera.h"
+#include "../FuturisEngine/Animation/Animation.h"
 #include "../Transform.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
@@ -12,6 +13,7 @@
 #include "../Behaviours/SpherePartCommands/Reset.h"
 #include <UserInput/Input.h>
 #include <Utils/Log.h>
+#include <Math/MathUtils.h>
 
 ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
@@ -54,6 +56,10 @@ void ExplosionsSequence::Update()
 void ExplosionsSequence::Prepare()
 {
 	m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
+	m_mainCamera->ClearCommands();
+	m_mainCamera->GetCamera()->SetFov(90.0f * MathUtils::Deg2Rad);
+	m_mainCamera->EnableSmoothNoise(true);
+	m_mainCamera->GetAnimation()->Stop();
 
 	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
 
@@ -64,9 +70,9 @@ void ExplosionsSequence::Prepare()
 	m_normalSphere->GetGameObject()->SetActive(false);
 	m_smallSphere->GetGameObject()->SetActive(true);
 
-	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
-	//m_speed = distance / 1.379f;
-	m_speed = 0.0f;
+	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 2.0f;
+	m_speed = distance / 1.379f;
+	//m_speed = 0.0f;
 }
 
 void ExplosionsSequence::Clean()
@@ -115,7 +121,7 @@ void ExplosionsSequence::Repeat()
 	ResetSphere(m_normalSphere);
 	SwapSpheres();
 
-	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
+	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 2.0f;
 	m_speed = distance / 1.379f;
 }
 

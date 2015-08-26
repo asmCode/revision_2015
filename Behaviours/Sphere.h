@@ -8,6 +8,7 @@
 class GameObject;
 class SpherePart;
 class MechArm;
+class Noise;
 class SphereCommandBase;
 
 class Sphere : public Behaviour, public CommandHandler<Sphere>
@@ -29,9 +30,12 @@ public:
 	const std::vector<SpherePart*>& GetSphereParts() const;
 	SpherePart* GetClosestPart(const sm::Vec3& position) const;
 
+	Noise* GetNoise() const;
+
 private:
 	std::vector<SpherePart*> m_parts;
 	std::vector<MechArm*> m_mechArms;
+	Noise* m_noise;
 
 	void CreateMechArms(GameObject* mechArmPrefab);
 
