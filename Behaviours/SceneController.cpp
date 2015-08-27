@@ -15,6 +15,8 @@
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
+void FadeOut(float speed, bool white);
+
 SceneController::SceneController(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
 	m_currentSequence(nullptr),
@@ -89,6 +91,10 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	else if (synchEvent->GetId() == "prepare_for_outro")
 	{
 		ChangeSequence(m_outroSequence);
+	}
+	else if (synchEvent->GetId() == "flash")
+	{
+		FadeOut(1.0f / 2.0f, true);
 	}
 
 	if (m_currentSequence != nullptr)

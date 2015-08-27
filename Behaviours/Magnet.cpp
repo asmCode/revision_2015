@@ -55,7 +55,9 @@ void Magnet::Update()
 
 	sm::Vec3 position = GetGameObject()->GetTransform().GetPosition();
 
+	/*
 	GraphicsLog::AddSegment(position, position + sm::Vec3(0, 0.1f, 0));
 	GraphicsLog::AddSegment(position, position + sm::Vec3(0, 0.0f, 0.1f));
 	GraphicsLog::AddSegment(position, position + sm::Vec3(0.1f, 0.0f, 0));
+	*/
 }
