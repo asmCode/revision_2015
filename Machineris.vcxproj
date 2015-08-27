@@ -341,6 +341,7 @@ exit /B 0
     <ClInclude Include="CommandBase.h" />
     <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Framework\Graphics\Model.h" />
+    <ClInclude Include="Framework\Math\Animation\QuadInOut.h" />
     <ClInclude Include="Framework\Math\Animation\QuarticIn.h" />
     <ClInclude Include="Framework\Utils\MapUtils.h" />
     <ClInclude Include="Framework\Utils\SystemUtils.h" />

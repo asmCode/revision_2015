@@ -28,6 +28,8 @@ AnimationCurve<sm::Vec3>* oldCurve = nullptr;
 
 bool endFlight;
 
+Sphere* tinySphere;
+
 EndlessFlightSequence::EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
@@ -56,6 +58,8 @@ void EndlessFlightSequence::Initialize()
 	m_tinySphere->Initialize(nullptr);
 	m_tinySphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.01f, 0.01f, 0.01f));
 	m_tinySphere->GetGameObject()->SetActive(false);
+
+	tinySphere = m_tinySphere;
 }
 
 void EndlessFlightSequence::Update()

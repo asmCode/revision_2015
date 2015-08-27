@@ -51,14 +51,14 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
 	float shift = -0.1f;
 	SetBunchEvents(synchManager, "pull_put_long", 60 + 5.89f + shift, 60 + 16.85f + shift, 32);
-	synchManager->Addevent(new SynchEvent("prepare_for_magnet", 60 + 16.85f));
-	*/
-	//synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 38.79f));
-	//SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);
-	/*
+	synchManager->Addevent(new SynchEvent("prepare_for_magnet", 60 + 16.85f));*/
+	
+	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 38.79f));
+	SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);
+	
 	synchManager->Addevent(new SynchEvent("break", 120 + 0.97f));
 	synchManager->Addevent(new SynchEvent("open_gate", 120 + 3.443f));
-	*/
+	
 
 	synchManager->Addevent(new SynchEvent("endless_flight", 120 + 4.829f));
 	synchManager->Addevent(new SynchEvent("end_flight", 120 + 36.0f));

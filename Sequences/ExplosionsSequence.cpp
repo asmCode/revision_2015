@@ -5,6 +5,7 @@
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
 #include "../Behaviours/SpherePartCommands/SlideOut.h"
+#include "../Behaviours/TweenCommands/TweenProperty.h"
 #include "../Behaviours/MainCamera.h"
 #include "../FuturisEngine/Animation/Animation.h"
 #include "../Transform.h"
@@ -19,10 +20,15 @@
 #include <Utils/Log.h>
 #include <Math/MathUtils.h>
 #include <Math/Animation/LinearCurve.h>
+#include <Math/Animation/QuadOut.h>
+#include <Math/Animation/QuadIn.h>
+#include <Math/Animation/QuadInOut.h>
 
 bool m_isBreaking;
 float m_speedBase;
 float m_breakTime;
+
+extern Sphere* tinySphere;
 
 ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
@@ -51,7 +57,7 @@ void ExplosionsSequence::Initialize()
 		sprintf(name, "greetz%d", i);
 		PlaneObject* plane = PlaneObject::Create(name);
 		//plane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(1.2, 0, 0));
-		plane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(-1.0f, -0.0f, 1.2));
+		plane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(-1.0f, -0.0f, 1.2f));
 		plane->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(2, 2, 1));
 		m_greetz.push_back(plane);
 
@@ -185,6 +191,31 @@ void ExplosionsSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	}
 	else if (synchEvent->GetId() == "break")
 	{
+		//m_mainCamera->GetLookTransform()->SetLocalRotation(sm::Quat(1, 0, 0, 0));
+
+		PropertyWrapperT<Transform, sm::Quat>* prop = new PropertyWrapperT<Transform, sm::Quat>(
+			m_mainCamera->GetNoiseTransform(), &Transform::SetLocalRotation, &Transform::GetLocalRotation);
+
+		TweenCommands::TweenProperty<sm::Quat>* command = new TweenCommands::TweenProperty<sm::Quat>(
+			prop, new QuadInOut<sm::Quat>(), 1.0f, sm::Quat(1, 0, 0, 0));
+
+		m_mainCamera->SetCommandParaller(command);
+
+		////////////////
+		prop = new PropertyWrapperT<Transform, sm::Quat>(
+			&m_smallSphere->GetGameObject()->GetTransform(), &Transform::SetLocalRotation, &Transform::GetLocalRotation);
+
+		command = new TweenCommands::TweenProperty<sm::Quat>(
+			prop, new QuadInOut<sm::Quat>(), 1.0f,
+			sm::Quat::FromAngleAxis(0.5f, sm::Vec3(0, 1, 0)) *
+			sm::Quat::FromAngleAxis(-0.0f, sm::Vec3(1, 0, 0)));
+
+		m_smallSphere->SetCommandParaller(command);
+		////////////////
+
+		//m_mainCamera->GetNoiseTransform()->SetLocalRotation(sm::Quat(1, 0, 0, 0));
+
+		tinySphere->GetGameObject()->SetActive(true);
 		m_isBreaking = true;
 		m_speedBase = m_speed;
 		m_mainCamera->EnableSmoothNoise(false, true);
