@@ -20,8 +20,13 @@
 #include <Utils/Log.h>
 #include <Utils/Random.h>
 
+void FadeIn(float speed);
+void FadeOut(float speed);
+
 SpherePart* dd;
 AnimationCurve<sm::Vec3>* oldCurve = nullptr;
+
+bool endFlight;
 
 EndlessFlightSequence::EndlessFlightSequence(GameObject* spherePrefab, GameObject* m_mechArmPrefab, MainCamera* mainCamera) :
 m_spherePrefab(spherePrefab),
@@ -47,9 +52,10 @@ void EndlessFlightSequence::Initialize()
 	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.1f, 0.1f, 0.1f));
 	m_smallSphere->GetGameObject()->SetActive(false);
 
-	Sphere* s = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
-	s->Initialize(nullptr);
-	s->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.01f, 0.01f, 0.01f));
+	m_tinySphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
+	m_tinySphere->Initialize(nullptr);
+	m_tinySphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.01f, 0.01f, 0.01f));
+	m_tinySphere->GetGameObject()->SetActive(false);
 }
 
 void EndlessFlightSequence::Update()
@@ -57,6 +63,7 @@ void EndlessFlightSequence::Update()
 	if (Input::GetKeyDown(KeyCode_Space))
 	{
 		Beat1();
+		endFlight = true;
 		//m_smallSphere->
 	}
 		//Repeat();
@@ -121,6 +128,7 @@ void EndlessFlightSequence::Prepare()
 
 	m_normalSphere->GetGameObject()->SetActive(true);
 	m_smallSphere->GetGameObject()->SetActive(true);
+	m_tinySphere->GetGameObject()->SetActive(true);
 
 	/*float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
 	//m_speed = distance / 1.379f;
@@ -132,7 +140,9 @@ void EndlessFlightSequence::Prepare()
 
 void EndlessFlightSequence::Clean()
 {
-
+	m_normalSphere->GetGameObject()->SetActive(false);
+	m_smallSphere->GetGameObject()->SetActive(false);
+	m_tinySphere->GetGameObject()->SetActive(false);
 }
 
 void EndlessFlightSequence::ExplodeSphere(Sphere* sphere)
@@ -172,43 +182,48 @@ void EndlessFlightSequence::Repeat()
 //	m_normalSphere->GetGameObject()->SetActive(true);
 //	m_smallSphere->GetGameObject()->SetActive(true);
 
-	SwapSpheres();
-
-	ResetSphere(m_normalSphere);
-	//ResetSphere(m_smallSphere);
-
-	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
-	m_speed = distance / 1.379f;
-
-	if (m_cameraCurve != nullptr)
-		m_cameraTime = m_cameraTime - m_cameraCurve->GetEndTime();
+	if (endFlight)
+	{
+		SwapSpheres();
+		ExplodeSphere(m_smallSphere);
+		ExplodeSphere(m_normalSphere);
+		m_cameraCurve = nullptr;
+		//m_normalSphere->GetGameObject()->SetActive(false);
+		m_tinySphere->GetGameObject()->SetActive(false);
+	}
 	else
 	{
-		m_cameraTime = 0.0f;
+		SwapSpheres();
+
+		ResetSphere(m_normalSphere);
+		//ResetSphere(m_smallSphere);
+
+		float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
+		m_speed = distance / 1.379f;
+
+		if (m_cameraCurve != nullptr)
+			m_cameraTime = m_cameraTime - m_cameraCurve->GetEndTime();
+		else
+		{
+			m_cameraTime = 0.0f;
+		}
+
+		oldCurve = m_cameraCurve;
+
+		m_cameraCurve = CreateCurve(
+			m_mainCamera->GetGameObject()->GetTransform().GetPosition(),
+			m_smallSphere,
+			m_smallSphere->GetGameObject()->GetTransform().GetPosition());
 	}
-
-	oldCurve = m_cameraCurve;
-
-	m_cameraCurve = CreateCurve(
-		m_mainCamera->GetGameObject()->GetTransform().GetPosition(),
-		m_smallSphere,
-		m_smallSphere->GetGameObject()->GetTransform().GetPosition());
-
-	/*
-	m_normalSphere->GetGameObject()->SetActive(true);
-	m_smallSphere->GetGameObject()->SetActive(true);
-
-	ExplodeSphere(m_smallSphere);
-	ResetSphere(m_normalSphere);
-	SwapSpheres();
-
-	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
-	m_speed = distance / 1.379f;
-	*/
 }
 
 void EndlessFlightSequence::NotifySynchEvent(SynchEvent* synchEvent)
 {
+	if (synchEvent->GetId() == "end_flight")
+	{
+		FadeIn(1.0f / 3.0);
+		endFlight = true;
+	}
 }
 
 SpherePart* EndlessFlightSequence::GetRandomPart(Sphere* sphere)

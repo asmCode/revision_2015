@@ -22,7 +22,6 @@
 #include <Math/Animation/Custom/BlinkCurve.h>
 
 extern bool showOutro;
-extern float fade;
 void FadeIn(float speed);
 void FadeOut(float speed);
 

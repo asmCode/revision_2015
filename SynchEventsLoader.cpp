@@ -60,7 +60,8 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	synchManager->Addevent(new SynchEvent("open_gate", 120 + 3.443f));
 	*/
 
-	//synchManager->Addevent(new SynchEvent("endless_flight", 120 + 4.829f));
+	synchManager->Addevent(new SynchEvent("endless_flight", 120 + 4.829f));
+	synchManager->Addevent(new SynchEvent("end_flight", 120 + 36.0f));
 	synchManager->Addevent(new SynchEvent("prepare_for_outro", 120 + 39.0f));
 
 	return true;

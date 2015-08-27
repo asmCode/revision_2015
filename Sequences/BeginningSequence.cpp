@@ -17,6 +17,9 @@
 #include <UserInput/Input.h>
 #include <Math/Animation/LinearCurve.h>
 
+void FadeIn(float speed);
+void FadeOut(float speed);
+
 BeginningSequence::BeginningSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
 m_mainCamera(mainCamera),
@@ -57,6 +60,8 @@ void BeginningSequence::Prepare()
 	m_sphere->GetGameObject()->SetActive(true);
 
 	m_mainCamera->PlayBeginningAnim();
+
+	FadeOut(1.0f / 2.0f);
 }
 
 void BeginningSequence::Clean()

@@ -29,6 +29,7 @@ private:
 	GameObject* m_mechArmPrefab;
 	Sphere* m_normalSphere;
 	Sphere* m_smallSphere;
+	Sphere* m_tinySphere;
 	MainCamera* m_mainCamera;
 	AnimationCurve<sm::Vec3>* m_cameraCurve;
 
