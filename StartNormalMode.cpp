@@ -116,11 +116,11 @@ void StartNormalMode()
 	if (!ShowStartDialog(scrWidth, scrHeight, scrBpp, scrFreq))
 		return;
 #else
+	
 	/*
 	scrWidth = 1024;
 	scrHeight = 768;
 	*/
-
 	
 	//scrWidth = 960;
 	//scrHeight = 540;
@@ -183,7 +183,7 @@ void StartNormalMode()
 	TimeControl tc;
 
 	float time = 0;
-	float lastTime = 0;
+	float lastTime = TIME_SHIFT;
 
 	MSG msg;
 	BOOL done = false;

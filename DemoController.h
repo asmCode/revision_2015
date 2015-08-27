@@ -111,8 +111,6 @@ public:
 	ICamera *currentCamera;
 	ICamera *m_currentLightCamera;
 
-	float fade;
-
 	float CalcFlash(float time, float ms);
 
 	bool isPlaying;

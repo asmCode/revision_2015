@@ -14,6 +14,7 @@
 #include "Utils/Stopwatch.h"
 #include "SynchManager.h"
 #include "SynchEvent.h"
+#include <Math/Animation/LinearCurve.h>
 #include "Light.h"
 #include "FuturisEngine/Engine.h"
 #include "FuturisEngine/BehavioursManager.h"
@@ -74,6 +75,57 @@ const float DemoController::GlowBufferHeightRatio = 0.5f;
 
 Texture *blackTex;
 LinearInterpolator<float> fadeAnim;
+
+bool showOutro;
+
+float fade = 0.0f;
+float fadeTime;
+float fadeFrom;
+float fadeTo;
+float fadeSpeed;
+//BlinkCurve<float, LinearCurve<float>, LinearCurve<float> > fadeCurve;
+LinearCurve<float>* fadeCurve;
+
+/*
+void FadeInOut(float inSpeed, float outSpeed)
+{
+duringFade = true;
+fadeTime = 0.0f;
+}
+*/
+
+void FadeIn(float speed)
+{
+	fadeCurve = new LinearCurve<float>();
+	fadeTime = 0.0f;
+	fadeFrom = 0.0f;
+	fadeTo = 1.0f;
+	fadeSpeed = speed;
+}
+
+void FadeOut(float speed)
+{
+	fadeCurve = new LinearCurve<float>();
+	fadeTime = 0.0f;
+	fadeFrom = 1.0f;
+	fadeTo = 0.0f;
+	fadeSpeed = speed;
+}
+
+void UpdateFade()
+{
+	if (fadeCurve == nullptr)
+		return;
+
+	fade = fadeCurve->Evaluate(fadeFrom, fadeTo, fadeTime * fadeSpeed);
+	if (fade == fadeTo)
+	{
+		delete fadeCurve;
+		fadeCurve = nullptr;
+	}
+
+	fadeTime += Time::DeltaTime;
+}
 
 DemoController* GenericSingleton<DemoController>::instance;
 
@@ -357,6 +409,8 @@ bool DemoController::LoadContent(const char *basePath)
 	m_fadeTex = new Texture(
 		2, 2, 32, (void*)texData, BaseTexture::Wrap_ClampToEdge, BaseTexture::Filter_Nearest, BaseTexture::Filter_Nearest, false);
 
+	m_endScreen = dc->Get<Texture>("outro");
+
 	/*
 	blackTex = dc->Get<Texture>("black");
 	assert(blackTex != NULL);
@@ -595,23 +649,14 @@ bool DemoController::Draw(float time, float seconds)
 
 	//m_graphicsEngine->RenderFullScreenTexture(m_mask, 0.5f);
 
-	float fade = CalcFlash(time, seconds);
+	//float fade = CalcFlash(time, seconds);
 
-	fade = 0.5f;
+	if (showOutro)
+		m_graphicsEngine->RenderFullScreenTexture(m_endScreen, 1);
+
+	UpdateFade();
 	if (fade > 0.0f)
 		m_graphicsEngine->RenderFullScreenTexture(m_fadeTex, fade);
-
-	/*
-	if (time >= m_endScreenAnim.GetStartTime())
-	{
-		m_graphicsEngine->RenderFullScreenTexture(m_endScreen, m_endScreenAnim.Evaluate(time));
-	}
-
-	if (time <= m_startScreenAnim.GetEndTime())
-	{
-		m_graphicsEngine->RenderFullScreenTexture(m_startScreen, m_startScreenAnim.Evaluate(time));
-	}
-	*/
 
 #if 0
 

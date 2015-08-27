@@ -19,6 +19,12 @@
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 #include <Math/Animation/LinearCurve.h>
+#include <Math/Animation/Custom/BlinkCurve.h>
+
+extern bool showOutro;
+extern float fade;
+void FadeIn(float speed);
+void FadeOut(float speed);
 
 OutroSequence::OutroSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
@@ -48,6 +54,9 @@ void OutroSequence::Prepare()
 
 	m_smoothNoise->RotationNoise(0.1f, MathUtils::PI);
 	PullOutLong();
+
+	FadeOut(1.0f / 3.0f);
+	showOutro = true;
 }
 
 void OutroSequence::Clean()
