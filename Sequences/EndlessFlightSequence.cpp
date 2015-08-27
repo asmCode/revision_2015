@@ -63,7 +63,7 @@ void EndlessFlightSequence::Initialize()
 }
 
 
-float multi = 5.0f;
+float multi = 3.0f;
 
 void EndlessFlightSequence::Update()
 {
