@@ -48,6 +48,9 @@
 		<GameObject name="InitialEndlessCameraPosition">
 			<Transform position="0.000000, 0.000000, 0.953712" rotation="0.011368, 0.438781, 0.897766, 0.022861" scale="1.000000, 1.000000, 1.000000" />
 		</GameObject>
+		<GameObject name="InitialOutroCameraPosition">
+			<Transform position="-8.342590, 0.000000, 76.264954" rotation="0.115012, 0.000000, -0.999890, 0.000000" scale="1.000000, 1.000000, 1.000000" />
+		</GameObject>
 	
 	</GameObjects>
 	<Materials>

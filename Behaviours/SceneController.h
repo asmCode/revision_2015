@@ -13,6 +13,7 @@ class BeginningSequence;
 class ExplosionsSequence;
 class MagnetSequence;
 class EndlessFlightSequence;
+class OutroSequence;
 class MainCamera;
 
 class SceneController : public Behaviour,
@@ -35,6 +36,7 @@ private:
 	ExplosionsSequence* m_explosionsSequence;
 	MagnetSequence* m_magnetSequence;
 	EndlessFlightSequence* m_endlessFlightSequence;
+	OutroSequence* m_outroSequence;
 
 	void SynchEventFired(SynchEvent* synchEvent);
 	void ChangeSequence(SequenceBase* sequence);

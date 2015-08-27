@@ -116,12 +116,15 @@ void StartNormalMode()
 	if (!ShowStartDialog(scrWidth, scrHeight, scrBpp, scrFreq))
 		return;
 #else
-	/*scrWidth = 1024;
-	scrHeight = 768;*/
 	/*
-	scrWidth = 960;
-	scrHeight = 540;
+	scrWidth = 1024;
+	scrHeight = 768;
 	*/
+
+	
+	//scrWidth = 960;
+	//scrHeight = 540;
+	
 	
 	/*scrWidth = 1440;
 	scrHeight = 810;*/

@@ -11,6 +11,7 @@
 #include "../Sequences/ExplosionsSequence.h"
 #include "../Sequences/MagnetSequence.h"
 #include "../Sequences/EndlessFlightSequence.h"
+#include "../Sequences/OutroSequence.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
@@ -20,7 +21,8 @@ SceneController::SceneController(GameObject* gameObject, const std::string& name
 	m_beginningSequence(nullptr),
 	m_explosionsSequence(nullptr),
 	m_magnetSequence(nullptr),
-	m_endlessFlightSequence(nullptr)
+	m_endlessFlightSequence(nullptr),
+	m_outroSequence(nullptr)
 {
 }
 
@@ -51,6 +53,9 @@ void SceneController::Awake()
 
 	m_endlessFlightSequence = new EndlessFlightSequence(m_spherePrefab, m_mechArmPrefab, m_mainCamera);
 	m_endlessFlightSequence->Initialize();
+
+	m_outroSequence = new OutroSequence(m_commonSphere, m_mainCamera);
+	m_outroSequence->Initialize();
 }
 
 void SceneController::Update()
@@ -80,6 +85,10 @@ void SceneController::SynchEventFired(SynchEvent* synchEvent)
 	else if (synchEvent->GetId() == "endless_flight")
 	{
 		ChangeSequence(m_endlessFlightSequence);
+	}
+	else if (synchEvent->GetId() == "prepare_for_outro")
+	{
+		ChangeSequence(m_outroSequence);
 	}
 
 	if (m_currentSequence != nullptr)

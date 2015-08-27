@@ -5,8 +5,9 @@
 //#define TIME_SHIFT 53.0f // open
 //#define TIME_SHIFT 60 + 4.0f // pull out long
 //#define TIME_SHIFT 60 + 15.0f // magnet
-#define TIME_SHIFT 60 + 38.0f // explosions
+//#define TIME_SHIFT 60 + 38.0f // explosions
 //#define TIME_SHIFT 120 + 3.2f // endless flight
+#define TIME_SHIFT 120 + 39.0 // outro
 
 #define MAN_CAM 1
 //#define DISABLE_FRUSTUM_CULLING 1

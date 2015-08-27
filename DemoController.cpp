@@ -346,6 +346,17 @@ bool DemoController::LoadContent(const char *basePath)
 	m_startScreenAnim.AddKeyframe(1.5f, 0);
 	m_startScreenAnim.SmoothTangents();
 
+	byte texData[] = 
+	{
+		0, 0, 0, 255,
+		0, 0, 0, 255,
+		0, 0, 0, 255,
+		0, 0, 0, 255,
+	};
+
+	m_fadeTex = new Texture(
+		2, 2, 32, (void*)texData, BaseTexture::Wrap_ClampToEdge, BaseTexture::Filter_Nearest, BaseTexture::Filter_Nearest, false);
+
 	/*
 	blackTex = dc->Get<Texture>("black");
 	assert(blackTex != NULL);
@@ -580,17 +591,17 @@ bool DemoController::Draw(float time, float seconds)
 	glDepthMask(true);
 	glColorMask(true, true, true, true);
 
-	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
-
 	m_graphicsEngine->RenderGameObjects();
 
-	m_graphicsEngine->RenderFullScreenTexture(m_mask, 0.5f);
+	//m_graphicsEngine->RenderFullScreenTexture(m_mask, 0.5f);
 
 	float fade = CalcFlash(time, seconds);
 
+	fade = 0.5f;
 	if (fade > 0.0f)
 		m_graphicsEngine->RenderFullScreenTexture(m_fadeTex, fade);
 
+	/*
 	if (time >= m_endScreenAnim.GetStartTime())
 	{
 		m_graphicsEngine->RenderFullScreenTexture(m_endScreen, m_endScreenAnim.Evaluate(time));
@@ -600,6 +611,7 @@ bool DemoController::Draw(float time, float seconds)
 	{
 		m_graphicsEngine->RenderFullScreenTexture(m_startScreen, m_startScreenAnim.Evaluate(time));
 	}
+	*/
 
 #if 0
 

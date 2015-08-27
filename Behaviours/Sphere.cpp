@@ -8,6 +8,7 @@
 #include "SpherePart.h"
 #include "MechArm.h"
 #include "Noise.h"
+#include "SpherePartCommands/Reset.h"
 #include "SpherePartCommands/PullOut.h"
 #include "SpherePartCommands/PullIn.h"
 #include "SpherePartCommands/SlideOut.h"
@@ -220,4 +221,16 @@ void Sphere::SpinFast()
 		sm::Vec3(0, 1, 0));
 
 	QueueCommand(command);
+}
+
+void Sphere::Reset()
+{
+	for (uint32_t i = 0; i < m_parts.size(); i++)
+	{
+		m_parts[i]->SetCommand(new ::Reset());
+	}
+
+	GetGameObject()->GetTransform().SetPosition(sm::Vec3(0, 0, 0));
+	GetGameObject()->GetTransform().SetRotation(sm::Quat(1, 0, 0, 0));
+	GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(1, 1, 1));
 }

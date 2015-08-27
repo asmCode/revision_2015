@@ -330,7 +330,7 @@ void GraphicsEngine::SortRenderables(
 
 void GraphicsEngine::RenderFullScreenTexture(Texture* texture, float opacity)
 {
-	return;
+	//return;
 
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

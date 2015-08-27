@@ -32,6 +32,8 @@ public:
 
 	Noise* GetNoise() const;
 
+	void Reset();
+
 private:
 	std::vector<SpherePart*> m_parts;
 	std::vector<MechArm*> m_mechArms;

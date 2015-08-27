@@ -33,7 +33,7 @@ void SmoothNoise::Update()
 		float rotTime = m_rotTime * m_rotSpeed;
 		rotTime = fmodf(rotTime, m_rotCurve.GetEndTime());
 
-		sm::Quat rot = m_rotCurve.Evaluate(rotTime);
+		sm::Quat rot = m_rotCurve.Evaluate(rotTime).GetNormalized();
 		GetGameObject()->GetTransform().SetLocalRotation(rot);
 	}
 }
