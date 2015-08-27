@@ -7,6 +7,7 @@
 class GameObject;
 class Sphere;
 class MainCamera;
+class PlaneObject;
 
 class ExplosionsSequence : public SequenceBase
 {
@@ -33,4 +34,7 @@ private:
 	void SwapSpheres();
 	void ResetSphere(Sphere* sphere);
 	void ExplodeSphere(Sphere* sphere);
+
+	int m_greetzIndex;
+	std::vector<PlaneObject*> m_greetz;
 };

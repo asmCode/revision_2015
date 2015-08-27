@@ -1,5 +1,6 @@
 #include "ExplosionsSequence.h"
 #include "../Behaviours/Sphere.h"
+#include "../Behaviours/PlaneObject.h"
 #include "../Behaviours/SpherePart.h"
 #include "../Behaviours/SpherePartCommands/PullOut.h"
 #include "../Behaviours/SpherePartCommands/PullIn.h"
@@ -27,7 +28,8 @@ ExplosionsSequence::ExplosionsSequence(GameObject* spherePrefab, GameObject* m_m
 m_spherePrefab(spherePrefab),
 m_mechArmPrefab(m_mechArmPrefab),
 m_mainCamera(mainCamera),
-m_speed(0.0f)
+m_speed(0.0f),
+m_greetzIndex(0)
 {
 
 }
@@ -42,6 +44,24 @@ void ExplosionsSequence::Initialize()
 	m_smallSphere->Initialize(nullptr);
 	m_smallSphere->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(0.1f, 0.1f, 0.1f));
 	m_smallSphere->GetGameObject()->SetActive(false);
+
+	for (int i = 0; i < 16; i++)
+	{
+		char name[12];
+		sprintf(name, "greetz%d", i);
+		PlaneObject* plane = PlaneObject::Create(name);
+		//plane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(1.2, 0, 0));
+		plane->GetGameObject()->GetTransform().SetPosition(sm::Vec3(-1.0f, -0.0f, 1.2));
+		plane->GetGameObject()->GetTransform().SetLocalScale(sm::Vec3(2, 2, 1));
+		m_greetz.push_back(plane);
+
+		GameObject* p = new GameObject("GreetzParent");
+		plane->GetGameObject()->GetTransform().SetParent(&p->GetTransform());
+		//p->GetTransform().SetLocalRotation(
+//			sm::Quat::FromAngleAxis((float)(i % 3 - 1) * 0.3f, sm::Vec3(0, 0, 1)));
+
+		plane->GetGameObject()->SetActive(false);
+	}
 }
 
 void ExplosionsSequence::Update()
@@ -66,6 +86,7 @@ void ExplosionsSequence::Update()
 		ExplodeSphere();
 	*/
 }
+int explodeIndex;
 
 void ExplosionsSequence::Prepare()
 {
@@ -87,6 +108,10 @@ void ExplosionsSequence::Prepare()
 	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 2.0f;
 	m_speed = distance / 1.379f;
 	//m_speed = 0.0f;
+
+	m_greetz[explodeIndex * 3 + 0]->GetGameObject()->SetActive(true);
+	//m_greetz[explodeIndex * 3 + 1]->GetGameObject()->SetActive(true);
+	//m_greetz[explodeIndex * 3 + 2]->GetGameObject()->SetActive(true);
 }
 
 void ExplosionsSequence::Clean()
@@ -137,6 +162,19 @@ void ExplosionsSequence::Repeat()
 
 	float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 2.0f;
 	m_speed = distance / 1.379f;
+
+	for (size_t i = 0; i < m_greetz.size(); i++)
+	{
+		m_greetz[i]->GetGameObject()->SetActive(false);
+	}
+
+	explodeIndex++;
+
+	if (explodeIndex < m_greetz.size())
+		m_greetz[explodeIndex * 1 + 0]->GetGameObject()->SetActive(true);
+	//m_greetz[explodeIndex * 3 + 0]->GetGameObject()->SetActive(true);
+	//m_greetz[explodeIndex * 3 + 1]->GetGameObject()->SetActive(true);
+	//m_greetz[explodeIndex * 3 + 2]->GetGameObject()->SetActive(true);
 }
 
 void ExplosionsSequence::NotifySynchEvent(SynchEvent* synchEvent)
