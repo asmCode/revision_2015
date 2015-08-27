@@ -117,10 +117,10 @@ void StartNormalMode()
 		return;
 #else
 	
-	/*
-	scrWidth = 1024;
-	scrHeight = 768;
-	*/
+
+	//scrWidth = 1024;
+	//scrHeight = 768;
+	
 	
 	//scrWidth = 960;
 	//scrHeight = 540;
