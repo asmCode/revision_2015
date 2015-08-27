@@ -83,6 +83,7 @@ float fadeTime;
 float fadeFrom;
 float fadeTo;
 float fadeSpeed;
+bool whiteFade;
 //BlinkCurve<float, LinearCurve<float>, LinearCurve<float> > fadeCurve;
 LinearCurve<float>* fadeCurve;
 
@@ -103,8 +104,10 @@ void FadeIn(float speed)
 	fadeSpeed = speed;
 }
 
-void FadeOut(float speed)
+void FadeOut(float speed, bool white)
 {
+	whiteFade = white;
+
 	fadeCurve = new LinearCurve<float>();
 	fadeTime = 0.0f;
 	fadeFrom = 1.0f;
@@ -409,6 +412,17 @@ bool DemoController::LoadContent(const char *basePath)
 	m_fadeTex = new Texture(
 		2, 2, 32, (void*)texData, BaseTexture::Wrap_ClampToEdge, BaseTexture::Filter_Nearest, BaseTexture::Filter_Nearest, false);
 
+	byte whiteTexData[] =
+	{
+		255, 255, 255, 255,
+		255, 255, 255, 255,
+		255, 255, 255, 255,
+		255, 255, 255, 255,
+	};
+
+	m_whiteFadeTex = new Texture(
+		2, 2, 32, (void*)whiteTexData, BaseTexture::Wrap_ClampToEdge, BaseTexture::Filter_Nearest, BaseTexture::Filter_Nearest, false);
+
 	m_endScreen = dc->Get<Texture>("outro");
 
 	/*
@@ -656,7 +670,12 @@ bool DemoController::Draw(float time, float seconds)
 
 	UpdateFade();
 	if (fade > 0.0f)
-		m_graphicsEngine->RenderFullScreenTexture(m_fadeTex, fade);
+	{
+		if (!whiteFade)
+			m_graphicsEngine->RenderFullScreenTexture(m_fadeTex, fade);
+		else
+			m_graphicsEngine->RenderFullScreenTexture(m_whiteFadeTex, fade);
+	}
 
 #if 0
 

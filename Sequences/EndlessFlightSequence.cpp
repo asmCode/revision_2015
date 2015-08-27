@@ -21,7 +21,7 @@
 #include <Utils/Random.h>
 
 void FadeIn(float speed);
-void FadeOut(float speed);
+void FadeOut(float speed, bool white);
 
 SpherePart* dd;
 AnimationCurve<sm::Vec3>* oldCurve = nullptr;
@@ -140,6 +140,8 @@ void EndlessFlightSequence::Prepare()
 	*/
 
 	Repeat();
+
+	FadeOut(1.0f / 2.0f, true);
 }
 
 void EndlessFlightSequence::Clean()

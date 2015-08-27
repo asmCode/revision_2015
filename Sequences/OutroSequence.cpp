@@ -23,7 +23,7 @@
 
 extern bool showOutro;
 void FadeIn(float speed);
-void FadeOut(float speed);
+void FadeOut(float speed, bool white);
 
 OutroSequence::OutroSequence(Sphere* sphere, MainCamera* mainCamera):
 m_sphere(sphere),
@@ -54,7 +54,7 @@ void OutroSequence::Prepare()
 	m_smoothNoise->RotationNoise(0.1f, MathUtils::PI);
 	PullOutLong();
 
-	FadeOut(1.0f / 3.0f);
+	FadeOut(1.0f / 3.0f, false);
 	showOutro = true;
 }
 
