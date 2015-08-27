@@ -97,6 +97,7 @@ fadeTime = 0.0f;
 
 void FadeIn(float speed)
 {
+	whiteFade = false;
 	fadeCurve = new LinearCurve<float>();
 	fadeTime = 0.0f;
 	fadeFrom = 0.0f;

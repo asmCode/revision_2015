@@ -99,7 +99,7 @@ void ExplosionsSequence::Prepare()
 	m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
 	m_mainCamera->ClearCommands();
 	m_mainCamera->GetCamera()->SetFov(90.0f * MathUtils::Deg2Rad);
-	m_mainCamera->EnableSmoothNoise(true, true);
+	m_mainCamera->EnableSmoothNoise(1.0f, 0.3f);
 	m_mainCamera->GetAnimation()->Stop();
 
 	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialExplosionCameraPosition")->GetTransform();
@@ -218,7 +218,7 @@ void ExplosionsSequence::NotifySynchEvent(SynchEvent* synchEvent)
 		tinySphere->GetGameObject()->SetActive(true);
 		m_isBreaking = true;
 		m_speedBase = m_speed;
-		m_mainCamera->EnableSmoothNoise(false, true);
+		m_mainCamera->EnableSmoothNoise(0.0f, 0.0f);
 	}
 	else if (synchEvent->GetId() == "open_gate")
 	{

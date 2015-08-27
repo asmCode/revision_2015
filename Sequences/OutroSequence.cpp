@@ -43,13 +43,17 @@ void OutroSequence::Prepare()
 
 	m_mainCamera->ClearCommands();
 	m_mainCamera->GetCamera()->SetFov(60.0f * MathUtils::Deg2Rad);
-	m_mainCamera->EnableSmoothNoise(false, false);
+	m_mainCamera->EnableSmoothNoise(0.0f, 0.0f);
 
 	Transform* cameraTransform = &ScenesManager::GetInstance()->FindGameObject("InitialOutroCameraPosition")->GetTransform();
 
-	m_mainCamera->GetGameObject()->GetTransform().SetLocalPosition(cameraTransform->GetPosition());
-	m_mainCamera->GetGameObject()->GetTransform().SetLocalRotation(cameraTransform->GetRotation());
+	m_mainCamera->GetGameObject()->GetTransform().SetPosition(cameraTransform->GetPosition());
+	m_mainCamera->GetGameObject()->GetTransform().SetRotation(cameraTransform->GetRotation());
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
+	m_mainCamera->GetLookTransform()->SetLocalRotation(sm::Quat(1, 0, 0, 0));
+	m_mainCamera->GetLookTransform()->SetLocalPosition(sm::Vec3(0, 0, 0));
+	m_mainCamera->GetNoiseTransform()->SetLocalRotation(sm::Quat(1, 0, 0, 0));
+	m_mainCamera->GetNoiseTransform()->SetLocalPosition(sm::Vec3(0, 0, 0));
 
 	m_smoothNoise->RotationNoise(0.1f, MathUtils::PI);
 	PullOutLong();

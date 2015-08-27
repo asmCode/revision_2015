@@ -62,6 +62,9 @@ void EndlessFlightSequence::Initialize()
 	tinySphere = m_tinySphere;
 }
 
+
+float multi = 5.0f;
+
 void EndlessFlightSequence::Update()
 {
 	if (Input::GetKeyDown(KeyCode_Space))
@@ -87,18 +90,19 @@ void EndlessFlightSequence::Update()
 			m_mainCamera->GetGameObject()->GetTransform().GetPosition().GetNormalized();
 
 		m_mainCamera->GetGameObject()->GetTransform().SetPosition(curvePosition);
-		m_mainCamera->GetGameObject()->GetTransform().SetForward(cameraDirection);
+		m_mainCamera->GetLookTransform()->SetForward(cameraDirection);
 
-		rollAngle += Time::DeltaTime * 4.0f;
+		rollAngle += Time::DeltaTime * 3.0f;
 
-		m_mainCamera->GetGameObject()->GetTransform().SetRotation(
+		m_mainCamera->GetLookTransform()->SetRotation(
 			sm::Quat::FromAngleAxis(rollAngle, cameraDirection) *
-			m_mainCamera->GetGameObject()->GetTransform().GetRotation());
+			m_mainCamera->GetLookTransform()->GetRotation());
 
 		//m_cameraTime += Time::DeltaTime * 0.5f;
-		float multi = 15.0f;
+		multi += Time::DeltaTime * 1.1f;
 		if (Input::GetKey(KeyCode_T))
-			multi *= 0.1f;
+			multi *= 0.5f;
+
 		m_cameraTime += Time::DeltaTime * multi;
 
 		if (m_cameraTime >= 0.1f * m_cameraCurve->GetEndTime() && dd != nullptr)
@@ -117,7 +121,7 @@ void EndlessFlightSequence::Update()
 
 void EndlessFlightSequence::Prepare()
 {
-	srand(2);
+	srand(3);
 
 	//m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
 
@@ -128,7 +132,7 @@ void EndlessFlightSequence::Prepare()
 	m_mainCamera->GetGameObject()->GetTransform().SetLocalScale(cameraTransform->GetLocalScale());
 	
 	m_mainCamera->GetCamera()->SetFov(2.0f);
-	m_mainCamera->EnableSmoothNoise(false, true);
+	m_mainCamera->EnableSmoothNoise(1.2f, 0.4f);
 
 	m_normalSphere->GetGameObject()->SetActive(true);
 	m_smallSphere->GetGameObject()->SetActive(true);

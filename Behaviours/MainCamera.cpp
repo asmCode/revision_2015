@@ -126,14 +126,18 @@ void MainCamera::OrbitSequence()
 	QueueCommand(new MainCameraCommands::Orbit(this, 0.3f, MathUtils::PI - 0.1f, MathUtils::PI - 0.1f, sm::Vec3(0, 1, 0)));
 }
 
-void MainCamera::EnableSmoothNoise(bool enable, bool hard)
+void MainCamera::EnableSmoothNoise(float speed, float angle)
 {
-	if (enable)
+	if (speed > 0.0f)
 	{
+		/*
 		if (!hard)
 			m_smoothNoise->RotationNoise(0.6f, 0.1f);
 		else
 			m_smoothNoise->RotationNoise(1.0f, 0.3f);
+		*/
+
+		m_smoothNoise->RotationNoise(speed, angle);
 	}
 	else
 	{
