@@ -31,6 +31,7 @@ public:
 	void SetActive(bool active);
 	bool IsActive() const;
 	int GetOrder() const;
+	void SetLayerId(LayerId layerId);
 	LayerId GetLayerId() const;
 
 private:

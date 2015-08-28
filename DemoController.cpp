@@ -39,6 +39,7 @@
 #include "Behaviours/SmoothNoise.h"
 #include "Behaviours/MainCamera.h"
 #include "Behaviours/PlaneObject.h"
+#include "Behaviours/BackCamera.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -329,6 +330,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("SmoothNoise", new GenericFactory<SmoothNoise>());
 	behavioursManager->RegisterBehaviour("MainCamera", new GenericFactory<MainCamera>());
 	behavioursManager->RegisterBehaviour("PlaneObject", new GenericFactory<PlaneObject>());
+	behavioursManager->RegisterBehaviour("BackCamera", new GenericFactory<BackCamera>());
 }
 
 bool DemoController::LoadContent(const char *basePath)

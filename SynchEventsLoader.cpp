@@ -33,7 +33,6 @@ bool SynchEventsLoader::LoadFromFile(const std::string& path, SynchManager* sync
 
 bool SynchEventsLoader::Generate(SynchManager* synchManager)
 {	
-	
 	synchManager->Addevent(new SynchEvent("prepare_for_beginning", 0.0f));
 	synchManager->Addevent(new SynchEvent("show_group", 3.0f));
 	synchManager->Addevent(new SynchEvent("hide_group", 6.5f));
@@ -75,6 +74,7 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 
 	synchManager->Addevent(new SynchEvent("end_flight", 120 + 36.0f));
 	synchManager->Addevent(new SynchEvent("prepare_for_outro", 120 + 39.0f));
+
 
 	return true;
 }

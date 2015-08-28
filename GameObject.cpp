@@ -50,9 +50,22 @@ const std::string& GameObject::GetName() const
 	return m_name;
 }
 
-void GameObject::SetLayerId(LayerId layerId)
+void GameObject::SetLayerId(LayerId layerId, bool recursively)
 {
 	m_layerId = layerId;
+
+	//HACK TODO
+	for (size_t i = 0; i < m_renderables.size(); i++)
+	{
+		m_renderables[i]->SetLayerId(layerId);
+	}
+
+	if (recursively)
+	{
+		const std::vector<Transform*>& children = GetTransform().GetChildren();
+		for (uint32_t i = 0; i < children.size(); i++)
+			children[i]->GetGameObject()->SetLayerId(layerId, recursively);
+	}
 }
 
 LayerId GameObject::GetLayerId() const
@@ -151,6 +164,7 @@ GameObject* GameObject::Instantiate(GameObject* prefab)
 	assert(prefab != nullptr);
 
 	GameObject* clone = new GameObject(prefab->GetName() + nameSurfix);
+	clone->SetLayerId(prefab->GetLayerId());
 
 	clone->GetTransform().SetPosition(prefab->GetTransform().GetPosition());
 	clone->GetTransform().SetRotation(prefab->GetTransform().GetRotation());

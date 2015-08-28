@@ -22,7 +22,7 @@ public:
 
 	const std::string& GetName() const;
 
-	void SetLayerId(LayerId layerId);
+	void SetLayerId(LayerId layerId, bool recursively = false);
 	LayerId GetLayerId() const;
 
 	void AddRenderable(Renderable* renderable);

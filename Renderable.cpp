@@ -61,6 +61,11 @@ int Renderable::GetOrder() const
 	return m_order;
 }
 
+void Renderable::SetLayerId(LayerId layerId)
+{
+	m_layerId = layerId;
+}
+
 LayerId Renderable::GetLayerId() const
 {
 	return m_layerId;

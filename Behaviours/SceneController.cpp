@@ -1,5 +1,7 @@
 #include "SceneController.h"
 #include "Sphere.h"
+#include "BackCamera.h"
+#include "MainCamera.h"
 #include "../Camera.h"
 #include "../ScenesManager.h"
 #include "../GameObject.h"
@@ -34,9 +36,11 @@ void SceneController::Awake()
 
 	m_spherePrefab = ScenesManager::GetInstance()->FindGameObject("Sphere");
 	m_spherePrefab->SetActive(false);
+//	m_spherePrefab->SetLayerId(LayerId_1, true);
 
 	m_mechArmPrefab = ScenesManager::GetInstance()->FindGameObject("MechArm");
 	m_mechArmPrefab->SetActive(false);
+//	m_mechArmPrefab->SetLayerId(LayerId_1, true);
 
 	m_commonSphere = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
 	m_commonSphere->Initialize(m_mechArmPrefab);
@@ -58,6 +62,9 @@ void SceneController::Awake()
 
 	m_outroSequence = new OutroSequence(m_commonSphere, m_mainCamera);
 	m_outroSequence->Initialize();
+
+	BackCamera* backCamera = dynamic_cast<BackCamera*>(ScenesManager::GetInstance()->FindGameObject("BackCamera")->GetComponent("BackCamera"));
+	backCamera->Initialize(m_mainCamera, m_spherePrefab);
 }
 
 void SceneController::Update()
