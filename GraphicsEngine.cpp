@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "RenderableSort.h"
 #include "CameraSort.h"
+#include "PostProcess.h"
 #include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
 #include <Graphics/Framebuffer.h>
@@ -37,7 +38,8 @@ GraphicsEngine::GraphicsEngine(int screenWidth, int screenHeight) :
 	m_blitOpacityShader(NULL),
 	m_horiBlurShader(NULL),
 	m_vertBlurShader(NULL),
-	m_addShader(NULL)
+	m_addShader(NULL),
+	m_postProcess(nullptr)
 {
 }
 
@@ -200,6 +202,9 @@ void GraphicsEngine::RenderGameObjects()
 		}
 	}
 
+	if (m_postProcess != nullptr)
+		m_postProcess->DrawImage();
+
 	return;
 
 	/*
@@ -286,6 +291,11 @@ void GraphicsEngine::Blur(BaseTexture* srcTexture, BaseTexture* interTexture, Ba
 	Quad::Setup();
 	m_quad->Draw();
 	Quad::Clean();
+}
+
+void GraphicsEngine::SetPostProcess(IPostProcess* postProcess)
+{
+	m_postProcess = postProcess;
 }
 
 void GraphicsEngine::DrawGlow(

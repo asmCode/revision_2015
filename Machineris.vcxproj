@@ -191,6 +191,7 @@ exit /B 0
     <ClCompile Include="FuturisEngine\Time.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="RenderableProxy.cpp" />
     <ClCompile Include="Sequences\BeginningSequence.cpp" />
     <ClCompile Include="Sequences\EndlessFlightSequence.cpp" />
@@ -380,6 +381,7 @@ exit /B 0
     <ClInclude Include="Framework\Graphics\BuiltInShaderParams.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Parameter.h" />
+    <ClInclude Include="PostProcess.h" />
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
     <ClInclude Include="Sequences\BeginningSequence.h" />

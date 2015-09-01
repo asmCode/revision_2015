@@ -12,6 +12,7 @@ class Texture;
 class BaseTexture;
 class Quad;
 class Shader;
+class IPostProcess;
 
 class GraphicsEngine
 {
@@ -31,6 +32,7 @@ public:
 
 	void Downsample(Texture* srcTexture);
 	void Blur(BaseTexture* srcTexture, BaseTexture* interTexture, BaseTexture* dstTexture);
+	void SetPostProcess(IPostProcess* postProcess);
 
 private:
 	int m_screenWidth;
@@ -46,6 +48,8 @@ private:
 	Texture* m_blurTextureStep2;
 
 	Quad* m_quad;
+
+	IPostProcess* m_postProcess;
 
 	Shader* m_downsampleShader;
 	Shader* m_blitShader;

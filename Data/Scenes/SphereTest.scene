@@ -48,7 +48,7 @@
 		
 		<GameObject name="BackCamera" >
 			<Behaviour name="BackCamera" />
-			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" fov="2.0" clear_color="0,0,0,1" depth="0" clear_flag="color_and_depth" cull_layers="2" />
+			<Camera viewport="0.0,0.0,1.0,1.0" far_plane="100.0" near_plane="0.1" fov="2.0" clear_color="0,0,0,1" depth="0" clear_flag="color_and_depth" cull_layers="2" />
 		</GameObject>
 		
 		<GameObject name="Gui">
