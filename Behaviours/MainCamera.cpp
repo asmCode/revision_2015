@@ -90,6 +90,8 @@ Transform* MainCamera::GetNoiseTransform()
 
 Camera* MainCamera::GetCamera()
 {
+	if (m_camera == nullptr)
+		m_camera = dynamic_cast<Camera*>(GetGameObject()->FindChild("MainCamera.Camera", true)->GetComponent("Camera"));
 	return m_camera;
 }
 

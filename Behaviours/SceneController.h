@@ -15,6 +15,7 @@ class MagnetSequence;
 class EndlessFlightSequence;
 class OutroSequence;
 class MainCamera;
+class Texture;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -25,11 +26,14 @@ public:
 	void Awake();
 	void Update();
 
+	Texture* GetRenderTarget() const;
+
 private:
 	Sphere* m_commonSphere;
 	MainCamera* m_mainCamera;
 	GameObject* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
+	Texture* m_renderTarget;
 
 	SequenceBase* m_currentSequence;
 	BeginningSequence* m_beginningSequence;

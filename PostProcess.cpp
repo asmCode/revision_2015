@@ -9,8 +9,9 @@
 #include <Math/Vec2.h>
 #include <GL/glew.h>
 
-void PostProcess::Init(Texture* backCameraRT)
+void PostProcess::Init(Texture* mainCameraRT, Texture* backCameraRT)
 {
+	m_mainCameraRT = mainCameraRT;
 	m_backCameraRT = backCameraRT;
 
 	m_quad = new Quad();
@@ -68,6 +69,7 @@ void PostProcess::Init(Texture* backCameraRT)
 
 	Shader* blit = Content::Instance->Get<Shader>("Blit");
 	m_blitMaterial = new Material();
+	m_blitMaterial->SetOpacity(true);
 	m_blitMaterial->SetShader(blit);
 	m_blitMaterial->SetParameter("u_tex", backCameraRT);
 
@@ -103,8 +105,9 @@ void PostProcess::DrawImage()
 	m_blurVertFramebuffer->AttachColorTexture(m_blurVertTexture->GetId());
 	Draw(m_blurVertMaterial, m_blurVertFramebuffer);
 
-
 	m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
+	Draw(m_blitMaterial, Framebuffer::Default);
+	m_blitMaterial->SetParameter("u_tex", m_mainCameraRT);
 	Draw(m_blitMaterial, Framebuffer::Default);
 
 	//m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);

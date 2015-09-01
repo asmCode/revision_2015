@@ -562,9 +562,10 @@ bool DemoController::Update(float time, float seconds)
 		firstUpdate = false;
 
 		BackCamera* backCamera = dynamic_cast<BackCamera*>(ScenesManager::GetInstance()->FindGameObject("BackCamera")->GetComponent("BackCamera"));
+		SceneController* sceneController = dynamic_cast<SceneController*>(ScenesManager::GetInstance()->FindGameObject("SceneController")->GetComponent("SceneController"));
 	
 		PostProcess* postProcess = new PostProcess();
-		postProcess->Init(backCamera->GetRenderTarget());
+		postProcess->Init(sceneController->GetRenderTarget(), backCamera->GetRenderTarget());
 
 		m_graphicsEngine->SetPostProcess(postProcess);
 	}

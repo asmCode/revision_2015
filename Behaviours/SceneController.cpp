@@ -14,6 +14,8 @@
 #include "../Sequences/MagnetSequence.h"
 #include "../Sequences/EndlessFlightSequence.h"
 #include "../Sequences/OutroSequence.h"
+#include "../FuturisEngine/Screen.h"
+#include "Graphics/Texture.h"
 #include <Utils/Random.h>
 #include <UserInput/Input.h>
 
@@ -26,7 +28,8 @@ SceneController::SceneController(GameObject* gameObject, const std::string& name
 	m_explosionsSequence(nullptr),
 	m_magnetSequence(nullptr),
 	m_endlessFlightSequence(nullptr),
-	m_outroSequence(nullptr)
+	m_outroSequence(nullptr),
+	m_renderTarget(nullptr)
 {
 }
 
@@ -47,6 +50,18 @@ void SceneController::Awake()
 	m_commonSphere->GetGameObject()->SetActive(false);
 
 	m_mainCamera = (MainCamera*)ScenesManager::GetInstance()->FindGameObject("MainCamera")->GetComponent("MainCamera");
+
+	m_renderTarget = new Texture(
+		Screen::Width,
+		Screen::Height,
+		32,
+		NULL,
+		BaseTexture::Wrap_ClampToEdge,
+		BaseTexture::Filter_Linear,
+		BaseTexture::Filter_Linear,
+		false);
+
+	m_mainCamera->GetCamera()->SetRenderToTexture(m_renderTarget, nullptr);
 
 	m_beginningSequence = new BeginningSequence(m_commonSphere, m_mainCamera);
 	m_beginningSequence->Initialize();
@@ -75,6 +90,11 @@ void SceneController::Update()
 
 	if (m_currentSequence != nullptr)
 		m_currentSequence->Update();
+}
+
+Texture* SceneController::GetRenderTarget() const
+{
+	return m_renderTarget;
 }
 
 void SceneController::SynchEventFired(SynchEvent* synchEvent)

@@ -42,7 +42,7 @@
 			<Behaviour name="SmoothNoise" />
 		</GameObject>
 		<GameObject name="MainCamera.Camera" parent="MainCamera.Noise" >
-			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" depth="2" clear_flag="depth" cull_layers="0"/>
+			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" depth="2" clear_color="0,0,0,0" clear_flag="color_and_depth" cull_layers="0"/>
 			<Light />
 		</GameObject>
 		
