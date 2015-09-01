@@ -50,6 +50,7 @@ void Camera::SetCullLayers(Layers cullLayers)
 
 void Camera::Clear()
 {
+	m_framebuffer->SetClearColor(m_clearColor);
 	m_framebuffer->Clear(
 		m_clearFlag == ClearFlag_Color || m_clearFlag == ClearFlag_ColorAndDepth,
 		m_clearFlag == ClearFlag_Depth || m_clearFlag == ClearFlag_ColorAndDepth);

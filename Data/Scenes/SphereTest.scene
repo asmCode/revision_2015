@@ -21,6 +21,8 @@
 		</GameObject>
 		-->
 		
+		
+		
 		<GameObject name="MainCamera.Pivot" />
 		<GameObject name="MainCamera" parent="MainCamera.Pivot" >
 			<Animation />
@@ -40,13 +42,27 @@
 			<Behaviour name="SmoothNoise" />
 		</GameObject>
 		<GameObject name="MainCamera.Camera" parent="MainCamera.Noise" >
-			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" depth="1" clear_flag="depth" cull_layers="0"/>
+			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" depth="2" clear_flag="depth" cull_layers="0"/>
 			<Light />
 		</GameObject>
 		
 		<GameObject name="BackCamera" >
 			<Behaviour name="BackCamera" />
-			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" fov="2.0" depth="0" clear_flag="color" cull_layers="2" />
+			<Camera viewport="0.0,0.0,1,1" far_plane="100.0" near_plane="0.1" fov="2.0" clear_color="0,0,0,1" depth="0" clear_flag="color_and_depth" cull_layers="2" />
+		</GameObject>
+		
+		<GameObject name="Gui">
+			<Camera depth="1" projection="orthographics" cull_layers="20" clear_color="1,1,0,0" clear_flag="depth" />
+		</GameObject>
+		
+		<GameObject name="Background" layer="20" >
+			<Behaviour name="TextureImage">
+				<Parameters>
+					<Parameter name="texture" type="string" value="tv_noise1" />
+					<Parameter name="bounds" type="vec4" value="0.0,0.0,1.0,1.0" />
+					<Parameter name="coords" type="vec4" value="0.0,0.0,1.0,1.0" />
+				</Parameters>
+			</Behaviour>
 		</GameObject>
 		
 		<GameObject name="InitialExplosionCameraPosition">

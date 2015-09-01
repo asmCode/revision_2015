@@ -61,7 +61,7 @@ void TextureImage::Awake()
 	assert(shader != NULL);
 
 	m_material->SetShader(shader);
-	//m_material->SetParameter("u_tex", texture);
+	m_material->SetParameter("u_tex", texture);
 
 	m_gameObject->AddRenderable(new Renderable(m_gameObject, mesh, m_material, 0, m_gameObject->GetLayerId()));
 }

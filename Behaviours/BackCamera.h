@@ -11,6 +11,8 @@ class Noise;
 class SmoothNoise;
 class Animation;
 class Sphere;
+class Texture;
+class TextureImage;
 
 class BackCamera : public Behaviour
 {
@@ -25,6 +27,9 @@ public:
 private:
 	GameObject* m_spherePrefab;
 	MainCamera* m_mainCamera;
+	Camera* m_camera;
+	Texture* m_renderTarget;
+	TextureImage* m_textureImage;
 
 	Sphere* m_sphere1;
 	Sphere* m_sphere2;

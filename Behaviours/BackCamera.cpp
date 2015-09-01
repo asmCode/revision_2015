@@ -2,15 +2,20 @@
 #include "../Camera.h"
 #include "Sphere.h"
 #include "SpherePart.h"
+#include "TextureImage.h"
 #include "MainCamera.h"
 #include "SmoothNoise.h"
 #include "../GameObject.h"
+#include "../ScenesManager.h"
 #include "../Transform.h"
 #include "../FuturisEngine/Time.h"
 #include <UserInput/Input.h>
 #include <Math/Quat.h>
 #include <Math/Matrix.h>
 #include <Math/MathUtils.h>
+#include <Graphics/Texture.h>
+#include <Graphics/Material.h>
+#include "../../FuturisEngine/Screen.h"
 
 BackCamera::BackCamera(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name),
@@ -27,6 +32,23 @@ void BackCamera::Initialize(MainCamera* mainCamera, GameObject* spherePrefab)
 
 void BackCamera::Awake()
 {
+	m_camera = dynamic_cast<Camera*>(GetGameObject()->GetComponent("Camera"));
+
+	m_renderTarget = new Texture(
+		Screen::Width / 4,
+		Screen::Height / 4,
+		32,
+		NULL,
+		BaseTexture::Wrap_ClampToEdge,
+		BaseTexture::Filter_Linear,
+		BaseTexture::Filter_Linear,
+		false);
+
+	m_textureImage = dynamic_cast<TextureImage*>(ScenesManager::GetInstance()->FindGameObject("Background")->GetComponent("TextureImage"));
+	m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
+
+	m_camera->SetRenderToTexture(m_renderTarget, nullptr);
+
 	m_sphere1 = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
 	m_sphere1->GetGameObject()->SetLayerId(LayerId_2, true);
 	m_sphere1->Initialize(nullptr);
@@ -40,6 +62,7 @@ void BackCamera::Awake()
 void BackCamera::Update()
 {
 	GetGameObject()->GetTransform().SetRotation(m_mainCamera->GetCamera()->GetGameObject()->GetTransform().GetRotation());
+	m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
 }
 
 void BackCamera::PrepareBg()
