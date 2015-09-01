@@ -1,6 +1,7 @@
 #pragma once
 
 #include "FuturisEngine/PropertyType.h"
+#include <Math/Vec2.h>
 #include <Math/Vec3.h>
 #include <Math/Vec4.h>
 #include <string>
@@ -17,6 +18,7 @@ public:
 
 	void SetFloat(float value);
 	void SetInt(int value);
+	void SetVec2(sm::Vec2 value);
 	void SetVec3(sm::Vec3 value);
 	void SetVec4(sm::Vec4 value);
 	void SetString(const std::string& value);
@@ -24,6 +26,7 @@ public:
 
 	float GetFloat() const;
 	int GetInt() const;
+	const sm::Vec2& GetVec2() const;
 	const sm::Vec3& GetVec3() const;
 	const sm::Vec4& GetVec4() const;
 	const std::string& GetString() const;
@@ -43,6 +46,7 @@ private:
 		BaseTexture* Texture;
 		struct
 		{
+			sm::Vec2 Vec2;
 			sm::Vec3 Vec3;
 			sm::Vec4 Vec4;
 			std::string String;

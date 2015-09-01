@@ -54,6 +54,11 @@ float Material::GetParameterFloat(const std::string& name)
 	return m_parameters[name].GetFloat();
 }
 
+void Material::SetParameter(const std::string& name, const sm::Vec2& value)
+{
+	m_parameters[name].SetVec2(value);
+}
+
 void Material::SetParameter(const std::string& name, const sm::Vec3& value)
 {
 	m_parameters[name].SetVec3(value);

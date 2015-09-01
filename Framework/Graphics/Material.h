@@ -1,6 +1,7 @@
 #ifndef MATERIAL
 #define MATERIAL
 
+#include <Math\Vec2.h>
 #include <Math\Vec3.h>
 #include <Math\Vec4.h>
 #include <string>
@@ -39,6 +40,7 @@ public:
 	sm::Vec4 GetParameterVec4(const std::string& name);
 	float GetParameterFloat(const std::string& name);
 	void SetParameter(const std::string& name, float value);
+	void SetParameter(const std::string& name, const sm::Vec2& value);
 	void SetParameter(const std::string& name, const sm::Vec3& value);
 	void SetParameter(const std::string& name, const sm::Vec4& value);
 	void SetParameter(const std::string& name, BaseTexture* value);

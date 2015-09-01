@@ -58,6 +58,12 @@ void Parameter::SetInt(int value)
 	Value.Int = value;
 }
 
+void Parameter::SetVec2(sm::Vec2 value)
+{
+	m_type = PropertyType_Vec2;
+	Value.Vec2 = value;
+}
+
 void Parameter::SetVec3(sm::Vec3 value)
 {
 	m_type = PropertyType_Vec3;
@@ -92,6 +98,12 @@ int Parameter::GetInt() const
 {
 	assert(m_type == PropertyType_Int);
 	return Value.Int;
+}
+
+const sm::Vec2& Parameter::GetVec2() const
+{
+	assert(m_type == PropertyType_Vec2);
+	return Value.Vec2;
 }
 
 const sm::Vec3& Parameter::GetVec3() const

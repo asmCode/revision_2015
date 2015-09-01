@@ -191,6 +191,7 @@ exit /B 0
     <ClCompile Include="FuturisEngine\Time.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="IPostProcess.cpp" />
     <ClCompile Include="PostProcess.cpp" />
     <ClCompile Include="RenderableProxy.cpp" />
     <ClCompile Include="Sequences\BeginningSequence.cpp" />
@@ -381,6 +382,7 @@ exit /B 0
     <ClInclude Include="Framework\Graphics\BuiltInShaderParams.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Parameter.h" />
+    <ClInclude Include="IPostProcess.h" />
     <ClInclude Include="PostProcess.h" />
     <ClInclude Include="PropertyWrapper.h" />
     <ClInclude Include="RenderableProxy.h" />
@@ -540,6 +542,10 @@ exit /B 0
     <None Include="Data\effects\Blit.vpr" />
     <None Include="Data\effects\BlitOpacity.fpr" />
     <None Include="Data\effects\BlitOpacity.vpr" />
+    <None Include="Data\effects\BlurHori7.fpr" />
+    <None Include="Data\effects\BlurHori7.vpr" />
+    <None Include="Data\effects\BlurVert7.fpr" />
+    <None Include="Data\effects\BlurVert7.vpr" />
     <None Include="Data\effects\Color.fpr" />
     <None Include="Data\effects\Color.vpr" />
     <None Include="Data\effects\DepthByZ.fpr" />

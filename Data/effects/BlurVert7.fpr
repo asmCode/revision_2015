@@ -1,0 +1,20 @@
+#version 400
+
+layout (location = 0) out vec4 FragColor;
+
+uniform sampler2D u_tex;
+
+varying vec2 v_coords[9];
+
+void main()
+{
+	FragColor  = texture2D(u_tex, v_coords[ 0]) * 0.002480056000;
+	FragColor += texture2D(u_tex, v_coords[ 1]) * 0.020566850000;
+	FragColor += texture2D(u_tex, v_coords[ 2]) * 0.092922110000;
+	FragColor += texture2D(u_tex, v_coords[ 3]) * 0.229389400000;
+	FragColor += texture2D(u_tex, v_coords[ 4]) * 0.309963300000;
+	FragColor += texture2D(u_tex, v_coords[ 5]) * 0.229389700000;
+	FragColor += texture2D(u_tex, v_coords[ 6]) * 0.092915440000;
+	FragColor += texture2D(u_tex, v_coords[ 7]) * 0.020562440000;
+	FragColor += texture2D(u_tex, v_coords[ 8]) * 0.002480057000;
+}

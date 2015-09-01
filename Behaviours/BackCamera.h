@@ -24,6 +24,8 @@ public:
 	void Awake();
 	void Update();
 
+	Texture* GetRenderTarget() const;
+
 private:
 	GameObject* m_spherePrefab;
 	MainCamera* m_mainCamera;

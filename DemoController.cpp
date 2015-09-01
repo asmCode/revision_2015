@@ -69,6 +69,8 @@
 #include <Graphics/SpriteBatch.h>
 #include <Graphics/FontRenderer.h>
 
+#include "PostProcess.h"
+
 #include <algorithm>
 
 const float DemoController::GlowBufferWidthRatio = 0.5f;
@@ -545,6 +547,8 @@ void DemoController::Release()
 	Billboard::Release();
 }
 
+bool firstUpdate = true;
+
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
@@ -552,6 +556,18 @@ bool DemoController::Update(float time, float seconds)
 	Time::DeltaTime = seconds;
 
 	BehavioursManager::GetInstance()->AwakeBehaviours();
+	
+	if (firstUpdate)
+	{
+		firstUpdate = false;
+
+		BackCamera* backCamera = dynamic_cast<BackCamera*>(ScenesManager::GetInstance()->FindGameObject("BackCamera")->GetComponent("BackCamera"));
+	
+		PostProcess* postProcess = new PostProcess();
+		postProcess->Init(backCamera->GetRenderTarget());
+
+		m_graphicsEngine->SetPostProcess(postProcess);
+	}
 
 	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
 	if (activeScene->HasSceneChanged())

@@ -35,8 +35,8 @@ void BackCamera::Awake()
 	m_camera = dynamic_cast<Camera*>(GetGameObject()->GetComponent("Camera"));
 
 	m_renderTarget = new Texture(
-		Screen::Width / 4,
-		Screen::Height / 4,
+		Screen::Width / 1,
+		Screen::Height / 1,
 		32,
 		NULL,
 		BaseTexture::Wrap_ClampToEdge,
@@ -44,9 +44,9 @@ void BackCamera::Awake()
 		BaseTexture::Filter_Linear,
 		false);
 
-	m_textureImage = dynamic_cast<TextureImage*>(ScenesManager::GetInstance()->FindGameObject("Background")->GetComponent("TextureImage"));
-	m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
-
+	//m_textureImage = dynamic_cast<TextureImage*>(ScenesManager::GetInstance()->FindGameObject("Background")->GetComponent("TextureImage"));
+	//m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
+	
 	m_camera->SetRenderToTexture(m_renderTarget, nullptr);
 
 	m_sphere1 = dynamic_cast<Sphere*>(GameObject::Instantiate(m_spherePrefab)->GetComponent("Sphere"));
@@ -62,7 +62,12 @@ void BackCamera::Awake()
 void BackCamera::Update()
 {
 	GetGameObject()->GetTransform().SetRotation(m_mainCamera->GetCamera()->GetGameObject()->GetTransform().GetRotation());
-	m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
+	//m_textureImage->GetMaterial()->SetParameter("u_tex", m_renderTarget);
+}
+
+Texture* BackCamera::GetRenderTarget() const
+{
+	return m_renderTarget;
 }
 
 void BackCamera::PrepareBg()
