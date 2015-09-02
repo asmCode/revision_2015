@@ -584,6 +584,8 @@ exit /B 0
     <None Include="Data\effects\StaticSpecularBlur.vpr" />
     <None Include="Data\effects\TexDiff.fpr" />
     <None Include="Data\effects\TexDiff.vpr" />
+    <None Include="Data\effects\TexDiffNorm.fpr" />
+    <None Include="Data\effects\TexDiffNorm.vpr" />
     <None Include="Data\effects\TexDiffSpec.fpr" />
     <None Include="Data\effects\TexDiffSpec.vpr" />
     <None Include="Data\effects\TextureImage.fpr" />

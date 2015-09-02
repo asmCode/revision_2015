@@ -63,6 +63,7 @@ void Sphere::Initialize(GameObject* mechArmPrefab)
 		material->SetShader(commonMaterial->GetShader());
 		//material->SetParameter("u_color", commonMaterial->GetParameterVec3("u_color"));
 		material->SetParameter("u_diffTex", commonMaterial->GetParameterTexture("u_diffTex"));
+		material->SetParameter("u_normTex", commonMaterial->GetParameterTexture("u_normTex"));
 		material->SetParameter("u_glossiness", commonMaterial->GetParameterFloat("u_glossiness"));
 		material->SetParameter("u_specularLevel", commonMaterial->GetParameterFloat("u_specularLevel"));
 

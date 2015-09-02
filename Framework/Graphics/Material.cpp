@@ -105,6 +105,8 @@ void Material::SetupShader()
 
 	ParametersMap::iterator it;
 
+	int textureChannel = 0;
+
 	for (it = m_parameters.begin(); it != m_parameters.end(); ++it)
 	{
 		Parameter& parameter = it->second;
@@ -124,7 +126,8 @@ void Material::SetupShader()
 			break;
 
 		case PropertyType_Texture:
-			m_shader->SetTextureParameter(it->first.c_str(), 0, parameter.GetTexture()->GetId());
+			m_shader->SetTextureParameter(it->first.c_str(), textureChannel, parameter.GetTexture()->GetId());
+			textureChannel++;
 			break;
 		}
 	}

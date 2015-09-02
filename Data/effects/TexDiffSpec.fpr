@@ -23,6 +23,6 @@ void main()
 	float specValue = pow(max(dot(half, normal), 0), u_glossiness) * u_specularLevel;
 
 	FragColor = texture(u_diffTex, o_coordsDiff) * diffValue + specValue;
-	FragColor.w = 1.0;
+	FragColor.w = 1.0f;
 }
 
