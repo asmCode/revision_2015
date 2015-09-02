@@ -14,6 +14,7 @@ namespace FuturisEngine
 			m_indexBuffer(NULL),
 			m_vertexBuffer(NULL),
 			m_normalBuffer(NULL),
+			m_tangentBuffer(NULL),
 			m_coord1Buffer(NULL)
 		{
 
@@ -29,6 +30,9 @@ namespace FuturisEngine
 
 			if (m_normalBuffer != NULL)
 				delete m_normalBuffer;
+
+			if (m_tangentBuffer != NULL)
+				delete m_tangentBuffer;
 
 			if (m_coord1Buffer != NULL)
 				delete m_coord1Buffer;
@@ -62,6 +66,16 @@ namespace FuturisEngine
 			m_dirtyFlag |= DirtyFlagNormal;
 		}
 
+		void Mesh::SetTangents(const sm::Vec3* tangents, int count)
+		{
+			if (m_tangentBuffer == NULL)
+				m_tangentBuffer = new VertexBufferVec3();
+
+			m_tangentBuffer->SetData(tangents, count);
+
+			m_dirtyFlag |= DirtyFlagTangent;
+		}
+
 		void Mesh::SetCoords1(const sm::Vec2* coords, int count)
 		{
 			if (m_coord1Buffer == NULL)
@@ -82,6 +96,11 @@ namespace FuturisEngine
 			return m_normalBuffer != NULL ? m_normalBuffer->GetData() : NULL;
 		}
 
+		const sm::Vec3* Mesh::GetTangents() const
+		{
+			return m_tangentBuffer != NULL ? m_tangentBuffer->GetData() : NULL;
+		}
+
 		const sm::Vec2* Mesh::GetCoords1() const
 		{
 			return m_coord1Buffer != NULL ? m_coord1Buffer->GetData() : NULL;
@@ -94,6 +113,9 @@ namespace FuturisEngine
 
 			if ((m_dirtyFlag & DirtyFlagNormal) && m_normalBuffer != NULL)
 				m_normalBuffer->Apply(keepReadable);
+
+			if ((m_dirtyFlag & DirtyFlagTangent) && m_tangentBuffer != NULL)
+				m_tangentBuffer->Apply(keepReadable);
 
 			if ((m_dirtyFlag & DirtyFlagCoord1) && m_coord1Buffer != NULL)
 				m_coord1Buffer->Apply(keepReadable);
@@ -115,6 +137,9 @@ namespace FuturisEngine
 
 			if (m_normalBuffer != NULL)
 				m_normalBuffer->Setup(NormalBufferIndex);
+
+			if (m_tangentBuffer != NULL)
+				m_tangentBuffer->Setup(TangentBufferIndex);
 
 			if (m_coord1Buffer != NULL)
 				m_coord1Buffer->Setup(Coord1BufferIndex);

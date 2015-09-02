@@ -49,6 +49,11 @@ sm::Vec4 Material::GetParameterVec4(const std::string& name)
 	return m_parameters[name].GetVec4();
 }
 
+BaseTexture* Material::GetParameterTexture(const std::string& name)
+{
+	return m_parameters[name].GetTexture();
+}
+
 float Material::GetParameterFloat(const std::string& name)
 {
 	return m_parameters[name].GetFloat();

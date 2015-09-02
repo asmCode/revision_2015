@@ -102,6 +102,7 @@ Model* ModelLoader::LoadFromFile(const std::string &path)
 ModelLoader::MeshLoader::MeshLoader() :
 	m_positions(NULL),
 	m_normals(NULL),
+	m_tangents(NULL),
 	m_coords1(NULL),
 	m_triangles(NULL)
 {
@@ -134,6 +135,13 @@ Mesh* ModelLoader::MeshLoader::LoadMesh(BinaryReader &br, std::string& meshName)
 		br.ReadBuffer((char*)m_normals, sizeof(sm::Vec3) * m_normalCount);
 	}
 
+	if (m_vertexChannel & FlagVertexChannelTangents)
+	{
+		m_tangentCount = br.Read<uint16_t>();
+		m_tangents = new sm::Vec3[m_tangentCount];
+		br.ReadBuffer((char*)m_tangents, sizeof(sm::Vec3) * m_tangentCount);
+	}
+
 	if (m_vertexChannel & FlagVertexChannelCoords1)
 	{
 		m_coord1Count = br.Read<uint16_t>();
@@ -152,6 +160,9 @@ Mesh* ModelLoader::MeshLoader::LoadMesh(BinaryReader &br, std::string& meshName)
 		if (m_vertexChannel & FlagVertexChannelNormals)
 			br.ReadBuffer((char*)m_triangles[i].m_normalIndex, sizeof(uint16_t) * 3);
 
+		if (m_vertexChannel & FlagVertexChannelTangents)
+			br.ReadBuffer((char*)m_triangles[i].m_tangentIndex, sizeof(uint16_t) * 3);
+
 		if (m_vertexChannel & FlagVertexChannelCoords1)
 			br.ReadBuffer((char*)m_triangles[i].m_coord1Index, sizeof(uint16_t) * 3);
 	}
@@ -165,6 +176,7 @@ FuturisEngine::Graphics::Mesh* ModelLoader::MeshLoader::BuildMesh()
 
 	std::vector<sm::Vec3> positions;
 	std::vector<sm::Vec3> normals;
+	std::vector<sm::Vec3> tangents;
 	std::vector<sm::Vec2> coords1;
 	std::vector<uint32_t> indices;
 
@@ -180,6 +192,9 @@ FuturisEngine::Graphics::Mesh* ModelLoader::MeshLoader::BuildMesh()
 			if (m_vertexChannel & FlagVertexChannelNormals)
 				normals.push_back(m_normals[m_triangles[i].m_normalIndex[triangleEdge]]);
 
+			if (m_vertexChannel & FlagVertexChannelTangents)
+				tangents.push_back(m_tangents[m_triangles[i].m_tangentIndex[triangleEdge]]);
+
 			if (m_vertexChannel & FlagVertexChannelCoords1)
 				coords1.push_back(m_coords1[m_triangles[i].m_coord1Index[triangleEdge]]);
 
@@ -191,6 +206,8 @@ FuturisEngine::Graphics::Mesh* ModelLoader::MeshLoader::BuildMesh()
 		mesh->SetVertices(positions.data(), (int)positions.size());
 	if (normals.size() > 0)
 		mesh->SetNormals(normals.data(), (int)normals.size());
+	if (tangents.size() > 0)
+		mesh->SetTangents(tangents.data(), (int)tangents.size());
 	if (coords1.size() > 0)
 		mesh->SetCoords1(coords1.data(), (int)coords1.size());
 
@@ -215,6 +232,12 @@ void ModelLoader::MeshLoader::Dispose()
 		m_normals = NULL;
 	}
 
+	if (m_tangents != NULL)
+	{
+		delete[] m_tangents;
+		m_tangents = NULL;
+	}
+
 	if (m_coords1 != NULL)
 	{
 		delete[] m_coords1;
@@ -229,6 +252,7 @@ void ModelLoader::MeshLoader::Dispose()
 
 	m_positionCount = 0;
 	m_normalCount = 0;
+	m_tangentCount = 0;
 	m_coord1Count = 0;
 	m_triangleCount = 0;
 }

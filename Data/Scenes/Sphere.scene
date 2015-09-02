@@ -232,9 +232,9 @@
 		</GameObject>
 	</GameObjects>
 	<Materials>
-		<Material name="Fiolet" shader="SolidDiffSpec">
+		<Material name="Fiolet" shader="TexDiffSpec">
 			<Parameters>
-				<Parameter name="u_color" type="vec3" value="0.2,0.2,0.2" />
+				<Parameter name="u_diffTex" type="texture" value="sphere_diff" />
 				<Parameter name="u_glossiness" type="float" value="10.840000" />
 				<Parameter name="u_specularLevel" type="float" value="0.290000" />
 			</Parameters>

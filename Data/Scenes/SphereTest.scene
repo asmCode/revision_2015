@@ -55,6 +55,7 @@
 			<Camera depth="1" projection="orthographics" cull_layers="20" clear_color="1,1,0,0" clear_flag="depth" />
 		</GameObject>
 		
+		<!--
 		<GameObject name="Background" layer="20" >
 			<Behaviour name="TextureImage">
 				<Parameters>
@@ -64,6 +65,7 @@
 				</Parameters>
 			</Behaviour>
 		</GameObject>
+		-->
 		
 		<GameObject name="InitialExplosionCameraPosition">
 			<Transform position="0.000000, 0.000000, 53.0" rotation="0.000000, 0.000000, 0.000000, 0.000000" scale="1.000000, 1.000000, 1.000000" />

@@ -38,6 +38,7 @@ public:
 	Shader* GetShader() const;
 	sm::Vec3 GetParameterVec3(const std::string& name);
 	sm::Vec4 GetParameterVec4(const std::string& name);
+	BaseTexture* GetParameterTexture(const std::string& name);
 	float GetParameterFloat(const std::string& name);
 	void SetParameter(const std::string& name, float value);
 	void SetParameter(const std::string& name, const sm::Vec2& value);
