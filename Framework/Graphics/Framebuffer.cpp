@@ -1,5 +1,6 @@
 #include "Framebuffer.h"
 
+#include <Math/MathUtils.h>
 #include <GL/glew.h>
 #include <assert.h>
 #include <stddef.h>
@@ -9,7 +10,8 @@ Framebuffer* Framebuffer::Default = new Framebuffer();
 Framebuffer::Framebuffer() :
 	m_isColorBufferEnabled(true),
 	m_isDepthBufferEnabled(true),
-	m_clearColor(0, 0, 0, 0)
+	m_clearColor(0, 0, 0, 0),
+	m_renderBuffersCount(1)
 {
 	m_colorBufferType = (Default == NULL) ? GL_BACK : GL_COLOR_ATTACHMENT0;
 
@@ -52,8 +54,22 @@ void Framebuffer::Setup()
 {
 	BindFramebuffer();
 
-	glDrawBuffer(m_isColorBufferEnabled ? m_colorBufferType : GL_NONE);
-	glDepthMask(m_isDepthBufferEnabled);
+	if (m_isColorBufferEnabled)
+	{
+		if (IsDefault())
+		{
+			glDrawBuffer(GL_BACK);
+		}
+		else
+		{
+			GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
+			glDrawBuffers(m_renderBuffersCount, buffers);
+		}
+	}
+	else
+	{
+		glDrawBuffer(GL_NONE);
+	}
 }
 
 void Framebuffer::Validate()
@@ -75,6 +91,8 @@ void Framebuffer::Validate()
 void Framebuffer::AttachColorTexture(unsigned textureId, uint32_t index)
 {
 	assert(!IsDefault());
+
+	m_renderBuffersCount = MathUtils::Max<int>(m_renderBuffersCount, index + 1);
 
 	BindFramebuffer();
 	glFramebufferTexture2D(

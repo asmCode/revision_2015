@@ -197,6 +197,14 @@ void Camera::SetRenderToTexture(Texture* texture, DepthTexture* depthTexture)
 	}
 }
 
+void Camera::SetRenderToTexture(Texture* texture1, Texture* texture2, DepthTexture* depthTexture)
+{
+	SetRenderToTexture(texture1, depthTexture);
+
+	m_framebuffer->AttachColorTexture(texture2->GetId(), 1);
+	m_framebuffer->Validate();
+}
+
 void Camera::Setup()
 {
 	int width = GetTargetWidth();

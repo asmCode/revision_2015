@@ -27,6 +27,7 @@ public:
 	void Update();
 
 	Texture* GetRenderTarget() const;
+	Texture* GetRenderTargetGlow() const;
 
 private:
 	Sphere* m_commonSphere;
@@ -34,6 +35,7 @@ private:
 	GameObject* m_spherePrefab;
 	GameObject* m_mechArmPrefab;
 	Texture* m_renderTarget;
+	Texture* m_renderTargetGlow;
 
 	SequenceBase* m_currentSequence;
 	BeginningSequence* m_beginningSequence;

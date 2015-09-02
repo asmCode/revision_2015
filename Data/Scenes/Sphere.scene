@@ -1,4 +1,4 @@
-<Scene name="Sphere">
+<Scene name="Sphere_with_glow">
 	<GameObjects>
 		<GameObject name="Sphere">
 			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -22,6 +22,10 @@
 			<Transform position="7.096552,2.777851,-5.668427" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart03" material="Fiolet" />
 		</GameObject>
+		<GameObject name="Object004" parent="SpherePart03">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object004" material="Glow" />
+		</GameObject>
 		<GameObject name="SpherePart04" parent="Sphere">
 			<Transform position="8.371044,-2.777850,-3.535547" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart04" material="Fiolet" />
@@ -33,6 +37,10 @@
 		<GameObject name="SpherePart06" parent="Sphere">
 			<Transform position="3.535052,-0.937965,-8.266414" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart06" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Object007" parent="SpherePart06">
+			<Transform position="-1.714393,-1.839886,-0.478405" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object007" material="Glow" />
 		</GameObject>
 		<GameObject name="SpherePart07" parent="Sphere">
 			<Transform position="1.820660,-2.777850,-8.744819" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -53,6 +61,10 @@
 		<GameObject name="SpherePart11" parent="Sphere">
 			<Transform position="-2.724951,1.802400,-8.456709" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart11" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Object006" parent="SpherePart11">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object006" material="Glow" />
 		</GameObject>
 		<GameObject name="SpherePart12" parent="Sphere">
 			<Transform position="-4.347067,-1.802399,-8.277298" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -110,9 +122,17 @@
 			<Transform position="-8.076580,-4.510985,1.665203" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart25" material="Fiolet" />
 		</GameObject>
+		<GameObject name="Object001" parent="SpherePart25">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object001" material="Glow" />
+		</GameObject>
 		<GameObject name="SpherePart26" parent="Sphere">
 			<Transform position="-5.845701,-1.802399,7.185802" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart26" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Object002" parent="SpherePart26">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object002" material="Glow" />
 		</GameObject>
 		<GameObject name="SpherePart50" parent="Sphere">
 			<Transform position="6.033524,-7.397249,0.373279" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -121,6 +141,10 @@
 		<GameObject name="SpherePart28" parent="Sphere">
 			<Transform position="-8.468075,3.535534,-0.919940" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart28" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Object008" parent="SpherePart28">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object008" material="Glow" />
 		</GameObject>
 		<GameObject name="SpherePart29" parent="Sphere">
 			<Transform position="-8.841362,2.777851,1.913421" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -166,9 +190,17 @@
 			<Transform position="8.840416,-2.777850,0.937950" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart39" material="Fiolet" />
 		</GameObject>
+		<GameObject name="Object005" parent="SpherePart39">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object005" material="Glow" />
+		</GameObject>
 		<GameObject name="SpherePart40" parent="Sphere">
 			<Transform position="4.436268,0.000001,8.371521" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="SpherePart40" material="Fiolet" />
+		</GameObject>
+		<GameObject name="Object003" parent="SpherePart40">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Object003" material="Glow" />
 		</GameObject>
 		<GameObject name="SpherePart41" parent="Sphere">
 			<Transform position="7.185331,-1.802399,5.845223" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -236,8 +268,15 @@
 			<Parameters>
 				<Parameter name="u_diffTex" type="texture" value="sphere_diff" />
 				<Parameter name="u_normTex" type="texture" value="sphere_norm" />
-				<Parameter name="u_glossiness" type="float" value="32.0000" />
-				<Parameter name="u_specularLevel" type="float" value="0.60000" />
+				<Parameter name="u_glossiness" type="float" value="19.840000" />
+				<Parameter name="u_specularLevel" type="float" value="0.790000" />
+			</Parameters>
+		</Material>
+		<Material name="Glow" shader="SolidDiffSpecGlow">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.756863,0.160784,0.000000" />
+				<Parameter name="u_glossiness" type="float" value="21.119999" />
+				<Parameter name="u_specularLevel" type="float" value="0.740000" />
 			</Parameters>
 		</Material>
 	</Materials>

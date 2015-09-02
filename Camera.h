@@ -66,6 +66,7 @@ public:
 	void EnableColorBuffer(bool enable);
 	void EnableDepthBuffer(bool enable);
 	void SetRenderToTexture(Texture* texture, DepthTexture* depthTexture);
+	void SetRenderToTexture(Texture* texture1, Texture* texture2, DepthTexture* depthTexture);
 	void SetReplacementMaterial(Material* material);
 	Material* GetReplacementMaterial() const;
 

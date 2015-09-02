@@ -9,9 +9,10 @@
 #include <Math/Vec2.h>
 #include <GL/glew.h>
 
-void PostProcess::Init(Texture* mainCameraRT, Texture* backCameraRT)
+void PostProcess::Init(Texture* mainCameraRT, Texture* mainCameraGlowRT, Texture* backCameraRT)
 {
 	m_mainCameraRT = mainCameraRT;
+	m_mainCameraGlowRT = mainCameraGlowRT;
 	m_backCameraRT = backCameraRT;
 
 	m_quad = new Quad();
@@ -72,7 +73,6 @@ void PostProcess::Init(Texture* mainCameraRT, Texture* backCameraRT)
 	m_blitMaterial->SetOpacity(true);
 	m_blitMaterial->SetShader(blit);
 	m_blitMaterial->SetParameter("u_tex", backCameraRT);
-
 }
 
 void PostProcess::DrawImage()
@@ -106,16 +106,57 @@ void PostProcess::DrawImage()
 	Draw(m_blurVertMaterial, m_blurVertFramebuffer);
 
 	m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
+	m_blitMaterial->SetOpacity(false);
 	Draw(m_blitMaterial, Framebuffer::Default);
 	m_blitMaterial->SetParameter("u_tex", m_mainCameraRT);
+	m_blitMaterial->SetOpacity(true);
 	Draw(m_blitMaterial, Framebuffer::Default);
+
+	Blur(m_mainCameraGlowRT, 3);
+
+	m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
+	m_blitMaterial->SetOpacity(true);
+	Draw(m_blitMaterial, Framebuffer::Default, true);
+	Draw(m_blitMaterial, Framebuffer::Default, true);
+	Draw(m_blitMaterial, Framebuffer::Default, true);
 
 	//m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
 	////m_blitMaterial->SetParameter("u_tex", m_backCameraRT);
 	//Draw(m_blitMaterial, Framebuffer::Default);
 }
 
-void PostProcess::Draw(Material* material, Framebuffer* framebuffer)
+void PostProcess::Blur(Texture* texture, int iterations)
+{
+	m_downsampleX2->SetParameter("u_tex", texture);
+	m_blurVertFramebuffer->AttachColorTexture(m_blurVertTexture->GetId());
+	Draw(m_downsampleX2, m_blurVertFramebuffer);
+
+	m_blurHoriMaterial->SetParameter("u_tex", m_blurVertTexture);
+	m_blurHoriFramebuffer->AttachColorTexture(m_blurHoriTexture->GetId());
+	Draw(m_blurHoriMaterial, m_blurHoriFramebuffer);
+
+	m_blurVertMaterial->SetParameter("u_tex", m_blurHoriTexture);
+	m_blurVertFramebuffer->AttachColorTexture(m_blurVertTexture->GetId());
+	Draw(m_blurVertMaterial, m_blurVertFramebuffer);
+
+	m_blurHoriMaterial->SetParameter("u_tex", m_blurVertTexture);
+	m_blurHoriFramebuffer->AttachColorTexture(m_blurHoriTexture->GetId());
+	Draw(m_blurHoriMaterial, m_blurHoriFramebuffer);
+
+	m_blurVertMaterial->SetParameter("u_tex", m_blurHoriTexture);
+	m_blurVertFramebuffer->AttachColorTexture(m_blurVertTexture->GetId());
+	Draw(m_blurVertMaterial, m_blurVertFramebuffer);
+
+	m_blurHoriMaterial->SetParameter("u_tex", m_blurVertTexture);
+	m_blurHoriFramebuffer->AttachColorTexture(m_blurHoriTexture->GetId());
+	Draw(m_blurHoriMaterial, m_blurHoriFramebuffer);
+
+	m_blurVertMaterial->SetParameter("u_tex", m_blurHoriTexture);
+	m_blurVertFramebuffer->AttachColorTexture(m_blurVertTexture->GetId());
+	Draw(m_blurVertMaterial, m_blurVertFramebuffer);
+}
+
+void PostProcess::Draw(Material* material, Framebuffer* framebuffer, bool additive)
 {
 	int width = framebuffer == Framebuffer::Default ? Screen::Width : framebuffer->GetWidth();
 	int height = framebuffer == Framebuffer::Default ? Screen::Height : framebuffer->GetHeight();
@@ -130,6 +171,9 @@ void PostProcess::Draw(Material* material, Framebuffer* framebuffer)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	material->SetupMaterial();
+
+	if (additive)
+		glBlendFunc(GL_ONE, GL_ONE);
 
 	Quad::Setup();
 	m_quad->Draw();

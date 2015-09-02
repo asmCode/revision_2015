@@ -29,7 +29,8 @@ SceneController::SceneController(GameObject* gameObject, const std::string& name
 	m_magnetSequence(nullptr),
 	m_endlessFlightSequence(nullptr),
 	m_outroSequence(nullptr),
-	m_renderTarget(nullptr)
+	m_renderTarget(nullptr),
+	m_renderTargetGlow(nullptr)
 {
 }
 
@@ -61,7 +62,17 @@ void SceneController::Awake()
 		BaseTexture::Filter_Linear,
 		false);
 
-	m_mainCamera->GetCamera()->SetRenderToTexture(m_renderTarget, nullptr);
+	m_renderTargetGlow = new Texture(
+		Screen::Width,
+		Screen::Height,
+		32,
+		NULL,
+		BaseTexture::Wrap_ClampToEdge,
+		BaseTexture::Filter_Linear,
+		BaseTexture::Filter_Linear,
+		false);
+
+	m_mainCamera->GetCamera()->SetRenderToTexture(m_renderTarget, m_renderTargetGlow, nullptr);
 
 	m_beginningSequence = new BeginningSequence(m_commonSphere, m_mainCamera);
 	m_beginningSequence->Initialize();
@@ -95,6 +106,11 @@ void SceneController::Update()
 Texture* SceneController::GetRenderTarget() const
 {
 	return m_renderTarget;
+}
+
+Texture* SceneController::GetRenderTargetGlow() const
+{
+	return m_renderTargetGlow;
 }
 
 void SceneController::SynchEventFired(SynchEvent* synchEvent)

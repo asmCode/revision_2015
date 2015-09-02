@@ -1,0 +1,34 @@
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+layout( location = 1 ) out vec4 FragColorGlow;
+
+uniform sampler2D u_diffTex;
+uniform sampler2D u_normTex;
+uniform float u_specularLevel;
+uniform float u_glossiness;
+
+in vec2 o_coordsDiff;
+in vec3 o_lightDirection;
+in vec3 o_eyeDirection;
+
+void main()
+{
+	vec3 lightDirection = normalize(o_lightDirection);
+	vec3 eyeDirection = normalize(o_eyeDirection);
+
+	vec3 bumpNormal = texture(u_normTex, o_coordsDiff).xyz;
+	bumpNormal = (bumpNormal - 0.5f) * 2.0f;
+	bumpNormal = normalize(bumpNormal);
+	
+	vec3 half = normalize(lightDirection + eyeDirection);
+	
+	float diffValue = max(dot(lightDirection, bumpNormal), 0.0);
+	float specValue = pow(max(dot(half, bumpNormal), 0), u_glossiness) * u_specularLevel;
+
+	FragColor = texture(u_diffTex, o_coordsDiff) * diffValue + specValue;
+	FragColor.w = 1.0;
+
+	FragColorGlow = vec4(0, 0, 0, 1);
+}
+

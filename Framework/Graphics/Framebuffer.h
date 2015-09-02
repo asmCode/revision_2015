@@ -41,6 +41,8 @@ private:
 	int m_width;
 	int m_height;
 
+	int m_renderBuffersCount;
+
 	bool m_isColorBufferEnabled;
 	bool m_isDepthBufferEnabled;
 	sm::Vec4 m_clearColor;
