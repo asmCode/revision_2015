@@ -24,6 +24,7 @@ class SpherePart : public Behaviour
 	friend class PullOutWithNoise;
 	friend class Reset;
 	friend class MagnetCommand;
+	friend class Explode;
 
 public:
 	SpherePart(GameObject* gameObject, const std::string& name);

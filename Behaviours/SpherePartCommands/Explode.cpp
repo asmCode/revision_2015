@@ -38,7 +38,7 @@ void Explode::SetSpherePart(SpherePart* spherePart)
 {
 	this->SphereCommandBase::SetSpherePart(spherePart);
 
-	m_startRotation = m_transform->GetLocalRotation();
+	m_startRotation = m_spherePart->m_baseRotation;
 	
 	m_angle = 0.0f;
 

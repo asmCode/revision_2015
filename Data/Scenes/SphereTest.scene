@@ -43,6 +43,9 @@
 		</GameObject>
 		<GameObject name="MainCamera.Camera" parent="MainCamera.Noise" >
 			<Camera viewport="0.0,0.0,1,1" far_plane="1000.0" near_plane="0.1" fov="1.04" depth="2" clear_color="0,0,0,0" clear_flag="color_and_depth" cull_layers="0"/>
+		</GameObject>
+		<GameObject name="Light" parent="MainCamera.Noise">
+			<Transform position="0,0,0" rotation="0.0,0,1,0" scale="1,1,1" />
 			<Light />
 		</GameObject>
 		
@@ -82,6 +85,14 @@
 		<Material name="ErrorMaterial" shader="Solid">
 			<Parameters>
 				<Parameter name="u_color" type="vec3" value="1.0,0.0,1.0" />
+			</Parameters>
+		</Material>
+		<Material name="Fiolet" shader="TexDiffNorm">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="Axiom04" />
+				<Parameter name="u_normTex" type="texture" value="Axiom04_NRM" />
+				<Parameter name="u_glossiness" type="float" value="10.840000" />
+				<Parameter name="u_specularLevel" type="float" value="0.590000" />
 			</Parameters>
 		</Material>
 	</Materials>

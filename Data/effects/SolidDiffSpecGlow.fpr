@@ -20,8 +20,8 @@ void main()
 
 	vec3 half = normalize(lightDirection + eyeDirection);
 		
-	float diffValue = max(dot(lightDirection, normal), 0.0);
-	float specValue = pow(max(dot(half, normal), 0), u_glossiness) * u_specularLevel;
+	float diffValue = abs(dot(lightDirection, normal));
+	float specValue = pow(abs(dot(half, normal)), u_glossiness) * u_specularLevel;
 	
 	vec4 finalColor = vec4(u_color * diffValue + specValue, 1.0);
 	finalColor.w = 1.0f;

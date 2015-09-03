@@ -32,6 +32,7 @@ void RollOut::SetSpherePart(SpherePart* spherePart)
 {
 	this->SphereCommandBase::SetSpherePart(spherePart);
 
-	m_destinationRotation = sm::Quat::FromAngleAxis(m_angle, m_spherePart->m_direction);
+	sm::Quat initialRotation = m_transform->GetLocalRotation();
+	m_destinationRotation = sm::Quat::FromAngleAxis(m_angle, m_spherePart->m_direction) * initialRotation;
 }
 

@@ -92,16 +92,17 @@ void EndlessFlightSequence::Update()
 		m_mainCamera->GetGameObject()->GetTransform().SetPosition(curvePosition);
 		m_mainCamera->GetLookTransform()->SetForward(cameraDirection);
 
-		rollAngle += Time::DeltaTime * 3.0f;
-
+		rollAngle += Time::DeltaTime * 2.0f;
+		
 		m_mainCamera->GetLookTransform()->SetRotation(
 			sm::Quat::FromAngleAxis(rollAngle, cameraDirection) *
 			m_mainCamera->GetLookTransform()->GetRotation());
+			
 
 		//m_cameraTime += Time::DeltaTime * 0.5f;
 		multi += Time::DeltaTime * 1.1f;
 		if (Input::GetKey(KeyCode_T))
-			multi *= 0.5f;
+			multi *= 0.8f;
 
 		m_cameraTime += Time::DeltaTime * multi;
 

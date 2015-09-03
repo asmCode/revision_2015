@@ -23,8 +23,8 @@ void main()
 	
 	vec3 half = normalize(lightDirection + eyeDirection);
 	
-	float diffValue = max(dot(lightDirection, bumpNormal), 0.0);
-	float specValue = pow(max(dot(half, bumpNormal), 0), u_glossiness) * u_specularLevel;
+	float diffValue = abs(dot(lightDirection, bumpNormal));
+	float specValue = pow(abs(dot(half, bumpNormal)), u_glossiness) * u_specularLevel;
 
 	FragColor = texture(u_diffTex, o_coordsDiff) * diffValue + specValue;
 	FragColor.w = 1.0;

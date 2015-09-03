@@ -39,6 +39,6 @@ void PullOutWithNoise::SetSpherePart(SpherePart* spherePart)
 	m_pullOutPosition = m_transform->GetLocalPosition() + m_spherePart->m_direction * Random::GetFloat(m_distance * 0.05f, m_distance) + Random::GetVector() * 0.5f;
 
 	m_initialRotation = m_transform->GetLocalRotation();
-	m_destinationRotation = sm::Quat::FromAngleAxis(Random::GetFloat(0.1f, 0.3f), Random::GetUniVector());
+	m_destinationRotation = sm::Quat::FromAngleAxis(Random::GetFloat(0.1f, 0.3f), Random::GetUniVector()) * m_initialRotation;
 }
 

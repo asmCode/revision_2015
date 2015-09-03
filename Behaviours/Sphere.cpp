@@ -50,25 +50,25 @@ void Sphere::Awake()
 void Sphere::Initialize(GameObject* mechArmPrefab)
 {
 	std::vector<GameObject*> spherePartsGameObjects;
-	DemoUtils::GetAllChildrenWitchPrefix(GetGameObject(), "SpherePart", spherePartsGameObjects);
+	DemoUtils::GetAllChildrenWitchPrefix(GetGameObject(), "Group", spherePartsGameObjects);
 	DemoUtils::AttachComponentBunch<SpherePart>("SpherePart", spherePartsGameObjects, m_parts);
 
 	SortSphereParts();
 
-	Material* commonMaterial = m_parts[0]->GetGameObject()->GetRenderables()[0]->GetMaterial();
+	//Material* commonMaterial = m_parts[0]->GetGameObject()->GetRenderables()[0]->GetMaterial();
 
-	for (uint32_t i = 0; i < m_parts.size(); i++)
-	{
-		Material* material = new Material();
-		material->SetShader(commonMaterial->GetShader());
-		//material->SetParameter("u_color", commonMaterial->GetParameterVec3("u_color"));
-		material->SetParameter("u_diffTex", commonMaterial->GetParameterTexture("u_diffTex"));
-		material->SetParameter("u_normTex", commonMaterial->GetParameterTexture("u_normTex"));
-		material->SetParameter("u_glossiness", commonMaterial->GetParameterFloat("u_glossiness"));
-		material->SetParameter("u_specularLevel", commonMaterial->GetParameterFloat("u_specularLevel"));
+	//for (uint32_t i = 0; i < m_parts.size(); i++)
+	//{
+	//	Material* material = new Material();
+	//	material->SetShader(commonMaterial->GetShader());
+	//	//material->SetParameter("u_color", commonMaterial->GetParameterVec3("u_color"));
+	//	material->SetParameter("u_diffTex", commonMaterial->GetParameterTexture("u_diffTex"));
+	//	material->SetParameter("u_normTex", commonMaterial->GetParameterTexture("u_normTex"));
+	//	material->SetParameter("u_glossiness", commonMaterial->GetParameterFloat("u_glossiness"));
+	//	material->SetParameter("u_specularLevel", commonMaterial->GetParameterFloat("u_specularLevel"));
 
-		m_parts[i]->GetGameObject()->GetRenderables()[0]->SetMaterial(material);
-	}
+	//	m_parts[i]->GetGameObject()->GetRenderables()[0]->SetMaterial(material);
+	//}
 
 	if (mechArmPrefab != nullptr)
 		CreateMechArms(mechArmPrefab);

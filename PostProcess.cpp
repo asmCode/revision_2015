@@ -135,8 +135,9 @@ void PostProcess::DrawImage()
 	Draw(m_blitMaterial, Framebuffer::Default, true);
 
 	//m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
-	////m_blitMaterial->SetParameter("u_tex", m_backCameraRT);
-	//Draw(m_blitMaterial, Framebuffer::Default);
+	/*m_blitMaterial->SetParameter("u_tex", m_mainCameraRT);
+	m_blitMaterial->SetOpacity(false);
+	Draw(m_blitMaterial, Framebuffer::Default);*/
 }
 
 void PostProcess::Blur(Texture* texture, int iterations)

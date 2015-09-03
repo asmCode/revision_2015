@@ -299,7 +299,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	Billboard::Initialize();
 
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 
 	m_engine = new Engine();
 	m_engine->Initialize();

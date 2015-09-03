@@ -27,7 +27,7 @@ bool Blink::Update()
 
 	QuadIn<sm::Vec3> curve;
 
-	m_spherePart->m_material->SetParameter("u_color", curve.Evaluate(m_color, m_spherePart->m_baseColor, m_time / m_duration));
+	//m_spherePart->m_material->SetParameter("u_color", curve.Evaluate(m_color, m_spherePart->m_baseColor, m_time / m_duration));
 
 	return m_time == m_duration;
 }

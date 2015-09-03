@@ -38,7 +38,7 @@ void SpherePart::Awake()
 	m_basePosition = GetGameObject()->GetTransform().GetLocalPosition();
 	m_baseRotation = GetGameObject()->GetTransform().GetLocalRotation();
 	m_basePivotRotation = m_rotatePivot->GetTransform().GetLocalRotation();
-	m_material = m_gameObject->GetRenderables()[0]->GetMaterial();
+	//m_material = m_gameObject->GetRenderables()[0]->GetMaterial();
 	//m_baseColor = m_material->GetParameterVec3("u_color");
 }
 

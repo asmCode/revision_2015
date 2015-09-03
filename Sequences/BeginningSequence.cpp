@@ -75,7 +75,8 @@ void BeginningSequence::Update()
 
 	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{
-		PullOutLong();
+		m_sphere->OpenWithMechArms();
+		m_sphere->ShowMechArms(false);
 	}
 }
 
@@ -83,14 +84,16 @@ void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
 {
 	if (synchEvent->GetId() == "blink1")
 	{
-		const int totalCount = 54;
+		int totalCount = m_sphere->GetSphereParts().size();
 		const int subCount = 20;
 
-		int elements[totalCount];
+		int* elements = new int[totalCount];
 		Random::GetRandomUniqueArray(elements, 0, totalCount - 1);
 
 		for (int i = 0; i < subCount; i++)
 			m_sphere->BlinkSpherePart(elements[i], sm::Vec3(0.9f, 0.9f, 0.9f));
+
+		delete[] elements;
 	}
 	else if (synchEvent->GetId() == "show_group")
 	{
