@@ -24,6 +24,8 @@ void FadeIn(float speed);
 void FadeOut(float speed, bool white);
 
 SpherePart* dd;
+int ddIndex;
+int ddIndexPrev;
 AnimationCurve<sm::Vec3>* oldCurve = nullptr;
 
 bool endFlight;
@@ -111,7 +113,14 @@ void EndlessFlightSequence::Update()
 			dd->QueueCommand(new PullOut(0.1f, 0.5f));
 			dd->QueueCommand(new SlideOut(0.5f, 0.6f, sm::Vec3(1, 0, 0)));
 			dd = nullptr;
+
+			m_normalSphere->GetSphereParts()[ddIndexPrev]->GetGameObject()->SetActive(true);
 		}
+
+		/*if (m_cameraTime >= 0.0f * m_cameraCurve->GetEndTime())
+		{
+			m_normalSphere->GetSphereParts()[ddIndexPrev]->GetGameObject()->SetActive(true);
+		}*/
 
 		if (m_cameraTime >= 1.0f * m_cameraCurve->GetEndTime())
 		{
@@ -209,6 +218,9 @@ void EndlessFlightSequence::Repeat()
 		ResetSphere(m_normalSphere);
 		//ResetSphere(m_smallSphere);
 
+		ddIndexPrev = ddIndex;
+		m_normalSphere->GetSphereParts()[ddIndex]->GetGameObject()->SetActive(false);
+
 		float distance = m_mainCamera->GetGameObject()->GetTransform().GetLocalPosition().z - 6.0f;
 		m_speed = distance / 1.379f;
 
@@ -278,7 +290,8 @@ AnimationCurve<sm::Vec3>* EndlessFlightSequence::CreateCurve(const sm::Vec3& sta
 		curve->AddKeyframe(time += timeStep, position);
 	} while (distance > approachDistanceLimit);
 
-	SpherePart* part = destinationSphere->GetClosestPart(position);
+	ddIndex = 0;
+	SpherePart* part = destinationSphere->GetClosestPart(position, ddIndex);
 	dd = part;
 	/*part->QueueCommand(new PullOut(0.3f, 0.5f));
 	part->QueueCommand(new SlideOut(0.3f, 0.6f, sm::Vec3(1, 0, 0)));*/

@@ -34,7 +34,7 @@ public:
 	sm::Vec3 GetRight();
 	sm::Vec3 GetUp();
 
-	void SetForward(const sm::Vec3& forward);
+	void SetForward(const sm::Vec3& forward, const sm::Vec3& up = sm::Vec3(0, 1, 0));
 
 	sm::Matrix GetLocalMatrix();
 	sm::Matrix GetMatrix();

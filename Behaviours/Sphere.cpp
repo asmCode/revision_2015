@@ -126,7 +126,7 @@ const std::vector<SpherePart*>& Sphere::GetSphereParts() const
 	return m_parts;
 }
 
-SpherePart* Sphere::GetClosestPart(const sm::Vec3& position) const
+SpherePart* Sphere::GetClosestPart(const sm::Vec3& position, int& index) const
 {
 	float minDistance = 99999;
 	SpherePart* part = nullptr;
@@ -138,6 +138,7 @@ SpherePart* Sphere::GetClosestPart(const sm::Vec3& position) const
 		{
 			minDistance = distance;
 			part = m_parts[i];
+			index = i;
 		}
 	}
 

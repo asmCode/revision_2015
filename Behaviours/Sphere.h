@@ -28,7 +28,7 @@ public:
 	void SpinFast();
 
 	const std::vector<SpherePart*>& GetSphereParts() const;
-	SpherePart* GetClosestPart(const sm::Vec3& position) const;
+	SpherePart* GetClosestPart(const sm::Vec3& position, int& index) const;
 
 	Noise* GetNoise() const;
 

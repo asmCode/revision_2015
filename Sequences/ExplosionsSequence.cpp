@@ -222,7 +222,8 @@ void ExplosionsSequence::NotifySynchEvent(SynchEvent* synchEvent)
 	}
 	else if (synchEvent->GetId() == "open_gate")
 	{
-		SpherePart* dd = m_smallSphere->GetClosestPart(m_mainCamera->GetRootTransform()->GetPosition());
+		int dummy;
+		SpherePart* dd = m_smallSphere->GetClosestPart(m_mainCamera->GetRootTransform()->GetPosition(), dummy);
 		dd->QueueCommand(new PullOut(0.4f, 1.5f));
 		dd->QueueCommand(new SlideOut(0.8f, 0.6f, sm::Vec3(1, 0, 0)));
 	}

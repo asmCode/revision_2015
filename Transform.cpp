@@ -144,9 +144,9 @@ sm::Vec3 Transform::GetUp()
 	return sm::Vec3(matrix.a[4], matrix.a[5], matrix.a[6]);
 }
 
-void Transform::SetForward(const sm::Vec3& forward)
+void Transform::SetForward(const sm::Vec3& forward, const sm::Vec3& up)
 {
-	SetRotation(sm::Quat::LookRotation(forward));
+	SetRotation(sm::Quat::LookRotation(forward, up));
 }
 
 sm::Matrix Transform::GetLocalMatrix()
