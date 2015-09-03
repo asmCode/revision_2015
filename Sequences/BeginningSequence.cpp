@@ -59,7 +59,7 @@ void BeginningSequence::Prepare()
 	m_mainCamera->GetGameObject()->GetTransform().SetPosition(sm::Vec3(0, 0, 40));
 	m_sphere->GetGameObject()->SetActive(true);
 
-	m_mainCamera->PlayBeginningAnim();
+	//m_mainCamera->PlayBeginningAnim();
 
 	FadeOut(1.0f / 2.0f, false);
 }

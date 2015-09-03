@@ -131,7 +131,7 @@ void EndlessFlightSequence::Update()
 
 void EndlessFlightSequence::Prepare()
 {
-	srand(3);
+	srand(5);
 
 	//m_mainCamera->GetGameObject()->GetTransform().SetParent(&m_smallSphere->GetGameObject()->GetTransform());
 
