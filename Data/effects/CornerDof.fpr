@@ -1,0 +1,39 @@
+/*
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+
+uniform sampler2D u_tex1;
+uniform sampler2D u_tex2;
+uniform vec2 u_circle;
+
+varying vec2 v_coords;
+
+void main()
+{
+	float distance = length(vec2(0.5f, 0.5f) - v_coords);
+	float blurValue = 1.0f - smoothstep(u_circle.x, u_circle.y, distance);
+
+	//FragColor = mix(texture2D(u_tex1, v_coords), texture2D(u_tex2, v_coords), blurValue);
+	FragColor = mix(texture2D(u_tex1, v_coords), vec4(1, 0, 0, 1), blurValue);
+}
+*/
+
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+
+uniform sampler2D u_tex;
+uniform vec2 u_circle;
+
+varying vec2 v_coords;
+
+void main()
+{
+	float distance = length(vec2(0.5f, 0.5f) - v_coords);
+	float blurValue = smoothstep(u_circle.x, u_circle.y, distance);
+
+	//FragColor = mix(texture2D(u_tex1, v_coords), texture2D(u_tex2, v_coords), blurValue);
+	FragColor = texture2D(u_tex, v_coords);
+	FragColor.w = blurValue;
+}

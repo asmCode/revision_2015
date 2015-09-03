@@ -117,6 +117,10 @@ void Material::SetupShader()
 			m_shader->SetParameter(it->first.c_str(), parameter.GetFloat());
 			break;
 
+		case PropertyType_Vec2:
+			m_shader->SetParameter(it->first.c_str(), parameter.GetVec2());
+			break;
+
 		case PropertyType_Vec3:
 			m_shader->SetParameter(it->first.c_str(), parameter.GetVec3());
 			break;

@@ -21,6 +21,7 @@ private:
 	Material* m_blurVertMaterial;
 	Material* m_blitMaterial;
 	Material* m_downsampleX2;
+	Material* m_circleDofMaterial;
 
 	Framebuffer* m_blurHoriFramebuffer;
 

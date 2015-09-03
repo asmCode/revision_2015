@@ -89,6 +89,11 @@ void Shader::SetParameter(const char *name, float val1, float val2, float val3, 
 	glUniform4f(uniformParam, val1, val2, val3, val4);
 }
 
+void Shader::SetParameter(const char *name, const sm::Vec2 &val)
+{
+	SetParameter(name, val.x, val.y);
+}
+
 void Shader::SetParameter(const char *name, const sm::Vec3 &val)
 {
 	SetParameter(name, val.x, val.y, val.z);

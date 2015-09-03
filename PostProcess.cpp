@@ -54,19 +54,28 @@ void PostProcess::Init(Texture* mainCameraRT, Texture* mainCameraGlowRT, Texture
 	Shader* downsampleShader = Content::Instance->Get<Shader>("Downsample");
 	m_downsampleX2 = new Material();
 	m_downsampleX2->SetShader(downsampleShader);
-	m_downsampleX2->SetParameter("u_texelSize", sm::Vec2(1.0f / (float)backCameraRT->GetWidth(), 1.0f / (float)backCameraRT->GetHeight()));
+	m_downsampleX2->SetParameter("u_texelSize",
+		sm::Vec2(
+		1.0f / (float)backCameraRT->GetWidth() * 8.0f,
+		1.0f / (float)backCameraRT->GetHeight() * 8.0f));
+
+	Shader* cornerDofShader = Content::Instance->Get<Shader>("CornerDof");
+	m_circleDofMaterial = new Material();
+	m_circleDofMaterial->SetOpacity(true);
+	m_circleDofMaterial->SetShader(cornerDofShader);
+	m_circleDofMaterial->SetParameter("u_circle", sm::Vec2(0.1f, 0.55f));
 
 	Shader* blurHori = Content::Instance->Get<Shader>("BlurHori7");
 	m_blurHoriMaterial = new Material();
 	m_blurHoriMaterial->SetShader(blurHori);
 	//m_blurHoriMaterial->SetParameter("u_tex", backCameraRT);
-	m_blurHoriMaterial->SetParameter("u_texelSize", 1.0f / (float)backCameraRT->GetWidth() * 4.6f);
+	m_blurHoriMaterial->SetParameter("u_texelSize", 1.0f / (float)backCameraRT->GetWidth() * 4.8f);
 
 	Shader* blurVert = Content::Instance->Get<Shader>("BlurVert7");
 	m_blurVertMaterial = new Material();
 	m_blurVertMaterial->SetShader(blurVert);
 	//m_blurVertMaterial->SetParameter("u_tex", m_blurTexture);
-	m_blurVertMaterial->SetParameter("u_texelSize", 1.0f / (float)backCameraRT->GetHeight() * 4.6f);
+	m_blurVertMaterial->SetParameter("u_texelSize", 1.0f / (float)backCameraRT->GetHeight() * 4.8f);
 
 	Shader* blit = Content::Instance->Get<Shader>("Blit");
 	m_blitMaterial = new Material();
@@ -108,9 +117,14 @@ void PostProcess::DrawImage()
 	m_blitMaterial->SetParameter("u_tex", m_blurVertTexture);
 	m_blitMaterial->SetOpacity(false);
 	Draw(m_blitMaterial, Framebuffer::Default);
+
 	m_blitMaterial->SetParameter("u_tex", m_mainCameraRT);
 	m_blitMaterial->SetOpacity(true);
 	Draw(m_blitMaterial, Framebuffer::Default);
+
+	Blur(m_mainCameraRT, 3);
+	m_circleDofMaterial->SetParameter("u_tex", m_blurVertTexture);
+	Draw(m_circleDofMaterial, Framebuffer::Default);
 
 	Blur(m_mainCameraGlowRT, 3);
 

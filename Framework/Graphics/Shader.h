@@ -2,6 +2,7 @@
 #define load_model_test_Shader_h
 
 #include "../Math/Matrix.h"
+#include "../Math/Vec2.h"
 #include "../Math/Vec3.h"
 #include "../Math/Vec4.h"
 #include <string>
@@ -27,6 +28,7 @@ public:
 	void SetParameter(const char *name, float val1, float val2, float val3);
 	void SetParameter(const char *name, float val1, float val2, float val3, float val4);
 	
+	void SetParameter(const char *name, const sm::Vec2 &val);
 	void SetParameter(const char *name, const sm::Vec3 &val);
 	void SetParameter(const char *name, const sm::Vec4 &val);
 	void SetTextureParameter(const char *name, unsigned channel, unsigned texId);

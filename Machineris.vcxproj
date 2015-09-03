@@ -548,6 +548,8 @@ exit /B 0
     <None Include="Data\effects\BlurVert7.vpr" />
     <None Include="Data\effects\Color.fpr" />
     <None Include="Data\effects\Color.vpr" />
+    <None Include="Data\effects\CornerDof.fpr" />
+    <None Include="Data\effects\CornerDof.vpr" />
     <None Include="Data\effects\DepthByZ.fpr" />
     <None Include="Data\effects\DepthByZ.vpr" />
     <None Include="Data\effects\DiffLightMap.fpr" />
