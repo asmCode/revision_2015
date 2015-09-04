@@ -20,11 +20,10 @@ void MechArm::Awake()
 	m_base = &GetGameObject()->GetTransform();
 	m_arm1 = &GetGameObject()->FindChild("Arm1", true)->GetTransform();
 	m_arm2 = &GetGameObject()->FindChild("Arm2", true)->GetTransform();
-	m_arrow = &GetGameObject()->FindChild("Arrow", true)->GetTransform();
 	m_end = &GetGameObject()->FindChild("End", true)->GetTransform();
 
 	m_arm1Length = (m_arm2->GetPosition() - m_arm1->GetPosition()).GetLength();
-	m_arm2Length = (m_arrow->GetPosition() - m_arm2->GetPosition()).GetLength();
+	m_arm2Length = (m_end->GetPosition() - m_arm2->GetPosition()).GetLength();
 
 	endPos = m_end->GetPosition();
 }

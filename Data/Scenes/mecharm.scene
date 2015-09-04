@@ -27,12 +27,8 @@
 			<Transform position="-0.000000,-0.000000,4.519449" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="Arm2" material="Fiolet" />
 		</GameObject>
-		<GameObject name="Arrow" parent="Arm2">
-			<Transform position="0.000001,0.000000,4.510027" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="Arrow" material="Fiolet" />
-		</GameObject>
-		<GameObject name="End" parent="Arrow">
-			<Transform position="0.000000,-0.000001,0.873074" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="End" parent="Arm2">
+			<Transform position="0.000001,-0.000001,5.383101" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
 	</GameObjects>
 	<Materials>
