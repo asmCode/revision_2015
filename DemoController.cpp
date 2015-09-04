@@ -366,8 +366,8 @@ bool DemoController::LoadContent(const char *basePath)
 //	dc->LoadMaterials(m_strBasePath + "materials\\");
 	//Log::LogT("Materials loaded in %.2f s", loadMaterialsStopwatch.GetTime());
 	Stopwatch loadSkinnedMeshesStopwatch(true);
-	dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
-	Log::LogT("Skinned Meshes loaded in %.2f s", loadSkinnedMeshesStopwatch.GetTime());
+	//dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
+	//Log::LogT("Skinned Meshes loaded in %.2f s", loadSkinnedMeshesStopwatch.GetTime());
 
 	Shader* vgShader = m_content->Get<Shader>("VectorGraphics");
 	assert(vgShader != NULL);
@@ -386,9 +386,6 @@ bool DemoController::LoadContent(const char *basePath)
 
 	m_startScreen = Content::Instance->Get<Texture>("loader");
 	assert(m_startScreen != NULL);
-
-	m_mask = Content::Instance->Get<Texture>("super_maska_kurwo");
-	assert(m_mask != NULL);
 
 	m_synchManager = SynchManager::GetInstance();
 	//if (!SynchEventsLoader::LoadFromFile(m_strBasePath + "Synch/Piano.snh", m_synchManager))

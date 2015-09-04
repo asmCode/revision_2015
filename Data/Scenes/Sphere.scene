@@ -1172,9 +1172,9 @@
 				<Parameter name="u_specularLevel" type="float" value="0.380000" />
 			</Parameters>
 		</Material>
-		<Material name="glow" shader="TexDiffSpec">
+		<Material name="glow" shader="SolidDiffSpecGlow">
 			<Parameters>
-				<Parameter name="u_diffTex" type="texture" value="Axiom_glow" />
+				<Parameter name="u_color" type="vec3" value="0,0,0,1" />
 				<Parameter name="u_glossiness" type="float" value="24.320000" />
 				<Parameter name="u_specularLevel" type="float" value="0.550000" />
 			</Parameters>

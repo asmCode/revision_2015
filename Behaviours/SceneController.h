@@ -16,6 +16,7 @@ class EndlessFlightSequence;
 class OutroSequence;
 class MainCamera;
 class Texture;
+class Material;
 
 class SceneController : public Behaviour,
 						public SynchManagerObserver
@@ -36,6 +37,7 @@ private:
 	GameObject* m_mechArmPrefab;
 	Texture* m_renderTarget;
 	Texture* m_renderTargetGlow;
+	//Material* m_glowMaterial;
 
 	SequenceBase* m_currentSequence;
 	BeginningSequence* m_beginningSequence;

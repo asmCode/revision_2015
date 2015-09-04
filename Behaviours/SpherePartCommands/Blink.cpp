@@ -9,12 +9,14 @@
 #include <Math/Animation/QuarticOut.h>
 #include <Math/Animation/QuarticIn.h>
 
+extern bool StopBlink;
+
 Blink::Blink(float duration, const sm::Vec3& color) :
 m_duration(duration),
 m_color(color),
 m_time(0.0f)
 {
-
+	StopBlink = false;
 }
 
 Blink::~Blink()
@@ -27,7 +29,8 @@ bool Blink::Update()
 
 	QuadIn<sm::Vec3> curve;
 
-	//m_spherePart->m_material->SetParameter("u_color", curve.Evaluate(m_color, m_spherePart->m_baseColor, m_time / m_duration));
+	if (!StopBlink)
+		m_spherePart->m_material->SetParameter("u_color", curve.Evaluate(m_color, m_spherePart->m_baseColor, m_time / m_duration));
 
 	return m_time == m_duration;
 }

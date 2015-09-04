@@ -204,7 +204,6 @@ public:
 	Texture* m_whiteFadeTex;
 	Texture* m_endScreen;
 	Texture* m_startScreen;
-	Texture* m_mask;
 
 	void RegisterBehaviours();
 };

@@ -40,6 +40,7 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	synchManager->Addevent(new SynchEvent("hide_title", 11.0f));
 	SetBunchEvents(synchManager, "blink1", 11.34f, 32.0, 30);
 
+	synchManager->Addevent(new SynchEvent("color_orange", 31.489f));
 	synchManager->Addevent(new SynchEvent("spin_fast", 31.489f));
 	synchManager->Addevent(new SynchEvent("spin_fast_end", 33.0f));
 	synchManager->Addevent(new SynchEvent("flash", 33.0f));
@@ -47,9 +48,11 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	SetBunchEvents(synchManager, "beat1", 33.0f, 53.55f, 15);
 	synchManager->Addevent(new SynchEvent("beat1_end", 53.5f));
 
+	synchManager->Addevent(new SynchEvent("color_green", 54.88f));
 	SetBunchEvents(synchManager, "open_mech1", 54.88f, 65.8f, 8);
 	float shift = -0.1f;
 	SetBunchEvents(synchManager, "pull_put_long", 60 + 5.89f + shift, 60 + 16.85f + shift, 32);
+	synchManager->Addevent(new SynchEvent("color_blue", 60 + 16.85f));
 	synchManager->Addevent(new SynchEvent("prepare_for_magnet", 60 + 16.85f));
 	synchManager->Addevent(new SynchEvent("flash", 60 + 16.85f));
 
@@ -58,6 +61,7 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	synchManager->Addevent(new SynchEvent("flash", 60 + 33.3f));
 	
 	
+	synchManager->Addevent(new SynchEvent("color_orange", 60 + 38.79f));
 	synchManager->Addevent(new SynchEvent("prepare_for_explosions", 60 + 38.79f));
 	synchManager->Addevent(new SynchEvent("flash", 60 + 38.79f));
 	SetBunchEvents(synchManager, "explode", 60 + 39.79f, 120 + 1.86f, 16);
@@ -68,8 +72,11 @@ bool SynchEventsLoader::Generate(SynchManager* synchManager)
 	synchManager->Addevent(new SynchEvent("endless_flight", 120 + 4.829f));
 
 	synchManager->Addevent(new SynchEvent("flash", 120 + 10.33f));
+	synchManager->Addevent(new SynchEvent("color_blue", 120 + 10.33f));
 	synchManager->Addevent(new SynchEvent("flash", 120 + 15.82f));
+	synchManager->Addevent(new SynchEvent("color_green", 120 + 15.82f));
 	synchManager->Addevent(new SynchEvent("flash", 120 + 26.79f));
+	synchManager->Addevent(new SynchEvent("color_orange", 120 + 26.79f));
 
 	synchManager->Addevent(new SynchEvent("end_flight", 120 + 36.0f));
 	synchManager->Addevent(new SynchEvent("prepare_for_outro", 120 + 39.0f));

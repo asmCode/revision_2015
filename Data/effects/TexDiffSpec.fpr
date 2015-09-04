@@ -2,6 +2,7 @@
 
 layout( location = 0 ) out vec4 FragColor;
 
+//uniform vec3 u_color;
 uniform sampler2D u_diffTex;
 uniform float u_specularLevel;
 uniform float u_glossiness;
