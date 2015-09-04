@@ -69,12 +69,12 @@ float multi = 3.0f;
 
 void EndlessFlightSequence::Update()
 {
-	if (Input::GetKeyDown(KeyCode_Space))
+	/*if (Input::GetKeyDown(KeyCode_Space))
 	{
 		Beat1();
 		endFlight = true;
 		//m_smallSphere->
-	}
+	}*/
 		//Repeat();
 
 	if (oldCurve != nullptr)

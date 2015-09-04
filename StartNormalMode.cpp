@@ -147,7 +147,7 @@ void StartNormalMode()
 	char tempFolder[MAX_PATH + 1];
 	GetTempPath(MAX_PATH, tempFolder);
 	std::string basePath = tempFolder;
-	baseDataPath = basePath + "futuris_data_citygrid\\";
+	baseDataPath = basePath + "futuris_data_axiom\\";
 	UnzipData(moduleFilename.GetPath() + "demodat", basePath);
 #else
 	baseDataPath = moduleFilename.GetPath() + "Data\\";
@@ -158,7 +158,7 @@ void StartNormalMode()
 	fullscreen = true;
 #endif
 
-	if (!demo ->Initialize(false, NULL, "Burb :: by Futuris",
+	if (!demo ->Initialize(false, NULL, "Axion :: by Futuris :: River Wash 2015",
 		scrWidth, scrHeight, scrBpp, scrFreq, fullscreen, true))
 	{
 		ReleaseDemo();

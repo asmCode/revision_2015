@@ -73,11 +73,11 @@ void BeginningSequence::Update()
 {
 	ProcessCommands();
 
-	if (Input::GetKeyDown(KeyCode::KeyCode_Space))
+	/*if (Input::GetKeyDown(KeyCode::KeyCode_Space))
 	{
 		m_sphere->OpenWithMechArms();
 		m_sphere->ShowMechArms(false);
-	}
+	}*/
 }
 
 void BeginningSequence::NotifySynchEvent(SynchEvent* synchEvent)
