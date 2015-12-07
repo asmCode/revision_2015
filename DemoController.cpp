@@ -384,25 +384,6 @@ bool DemoController::LoadContent(const char *basePath)
 
 	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, (float)width, 0, (float)height));
 
-	m_startScreen = Content::Instance->Get<Texture>("loader");
-	assert(m_startScreen != NULL);
-
-	m_synchManager = SynchManager::GetInstance();
-	//if (!SynchEventsLoader::LoadFromFile(m_strBasePath + "Synch/Piano.snh", m_synchManager))
-	if (!SynchEventsLoader::Generate(m_synchManager))
-	{
-		assert(false);
-	}
-	m_synchManager->SortEventsByTime();
-
-	m_endScreenAnim.AddKeyframe(5 * 60 + 56, 0);
-	m_endScreenAnim.AddKeyframe(5 * 60 + 58, 1);
-	m_endScreenAnim.SmoothTangents();
-
-	m_startScreenAnim.AddKeyframe(0, 1);
-	m_startScreenAnim.AddKeyframe(1.5f, 0);
-	m_startScreenAnim.SmoothTangents();
-
 	byte texData[] = 
 	{
 		0, 0, 0, 255,
@@ -557,7 +538,7 @@ bool DemoController::Update(float time, float seconds)
 	if (firstUpdate)
 	{
 		firstUpdate = false;
-
+		/*
 		BackCamera* backCamera = dynamic_cast<BackCamera*>(ScenesManager::GetInstance()->FindGameObject("BackCamera")->GetComponent("BackCamera"));
 		SceneController* sceneController = dynamic_cast<SceneController*>(ScenesManager::GetInstance()->FindGameObject("SceneController")->GetComponent("SceneController"));
 	
@@ -565,6 +546,7 @@ bool DemoController::Update(float time, float seconds)
 		postProcess->Init(sceneController->GetRenderTarget(), sceneController->GetRenderTargetGlow(), backCamera->GetRenderTarget());
 
 		m_graphicsEngine->SetPostProcess(postProcess);
+		*/
 	}
 
 	BaseScene* activeScene = ScenesManager::GetInstance()->GetActiveScene();
@@ -592,7 +574,7 @@ bool DemoController::Update(float time, float seconds)
 	if (ScenesManager::GetInstance()->IsSceneChanged())
 		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
 	
-	m_synchManager->Update(time);
+	//m_synchManager->Update(time);
 
 	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::Identity, seconds);
 	//m_activeCamera = animCamsMng.GetActiveCamera(time);

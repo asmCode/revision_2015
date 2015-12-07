@@ -13,7 +13,6 @@
 #include <Utils/Log.h>
 #include "GraphicsLibrary\TimeControl.h"
 #include <UserInput/Input.h>
-#include <unzip.h>
 
 std::string baseDataPath;
 

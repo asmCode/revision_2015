@@ -1,0 +1,38 @@
+<Scene name="Zombie">
+	<GameObjects>
+		<GameObject name="Zombie">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Box001" parent="Zombie">
+			<Transform position="0.060000,0.398723,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box001" material="Zombie" />
+		</GameObject>
+		<GameObject name="Box002" parent="Zombie">
+			<Transform position="-0.060755,0.398723,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Box002" material="Zombie" />
+		</GameObject>
+		<GameObject name="Torse" parent="Zombie">
+			<Transform position="0.000000,0.813559,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Torse" material="Zombie" />
+		</GameObject>
+		<GameObject name="RHand" parent="Zombie">
+			<Transform position="0.200000,0.701628,0.036661" rotation="1.570796,-1.000000,-0.000000,-0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="RHand" material="Zombie" />
+		</GameObject>
+		<GameObject name="LHand" parent="Zombie">
+			<Transform position="-0.200000,0.701628,0.036661" rotation="1.570796,-1.000000,-0.000000,-0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="LHand" material="Zombie" />
+		</GameObject>
+		<GameObject name="Head" parent="Zombie">
+			<Transform position="0.000000,0.775718,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Head" material="Zombie" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Zombie" shader="TexDiff">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="zombie" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

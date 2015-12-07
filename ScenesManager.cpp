@@ -1,5 +1,4 @@
 #include "ScenesManager.h"
-#include "Scenes/RevisionTest01.h"
 #include "SceneLoader.h"
 #include "Scenes/BaseScene.h"
 #include "../Environment.h"
@@ -28,7 +27,7 @@ void ScenesManager::Initialize()
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;
 
-	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\SphereTest.scene";
+	std::string sceneFileName = Environment::GetInstance()->GetBasePath() + "Scenes\\Terrain.scene";
 	SceneLoader sceneLoader;
 	sceneLoader.LoadAdditive(sceneFileName);
 	sceneLoader.BuildScene(baseScene);

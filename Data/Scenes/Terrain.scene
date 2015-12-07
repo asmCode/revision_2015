@@ -1,0 +1,46 @@
+<Scene name="Terrain">
+	<GameObjects>
+		<GameObject name="Terrain">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Terrain" material="terrain" />
+		</GameObject>
+		<GameObject name="Bunker">
+			<Transform position="1.053865,-2.348518,6.092834" rotation="0.285043,-0.247086,-0.968385,-0.034335" scale="1.367650,1.367650,1.367650" />
+			<Mesh name="Bunker" material="Material #26" />
+		</GameObject>
+		<GameObject name="Target">
+			<Transform position="1.105140,-1.458677,6.320379" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Source1">
+			<Transform position="41.238117,-1.458677,46.999710" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Source2">
+			<Transform position="-45.936413,-1.458677,19.423553" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Source3">
+			<Transform position="-16.868223,-1.458677,-45.841934" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Source4">
+			<Transform position="45.553047,-1.458677,-9.459427" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+		<GameObject name="Camera001">
+			<Transform position="-70.776154,55.432526,-41.547474" rotation="4.186531,-0.192675,-0.930554,-0.311360" scale="1.000000,1.000000,1.000001" />
+			<Camera fov="0.785398" near_plane="1.000000" far_plane="1000.000000" />
+		</GameObject>
+		<GameObject name="Camera001.Target">
+			<Transform position="-38.110695,27.927475,-25.261116" rotation="4.122276,0.266156,-0.862654,0.430103" scale="1.000000,1.000000,1.000000" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Material #26" shader="TexDiff">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="concret" />
+			</Parameters>
+		</Material>
+		<Material name="terrain" shader="TexDiff">
+			<Parameters>
+				<Parameter name="u_diffTex" type="texture" value="moon" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

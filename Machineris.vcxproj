@@ -62,7 +62,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>D:\stuff\Revision 2015\Code\Framework;d:\stuff\we-can_2013-demo\code\zip\;D:\stuff\Revision 2015\Code\Ext;D:\stuff\Revision 2015\Code\Ext\glew-1.9.0\include;d:\stuff\Revision 2015\Code\zip\contrib\minizip\;d:\stuff\Revision 2015\Code\zip;D:\stuff\Revision 2015\Code\Framework\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Framework;$(ProjectDir)Ext;$(ProjectDir)Ext\glew-1.9.0\include;$(ProjectDir)zip\contrib\minizip\;$(ProjectDir)zip;$(ProjectDir)Framework\Math;$(ProjectDir)Ext\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
@@ -206,7 +206,6 @@ exit /B 0
     <ClCompile Include="WallFace.cpp" />
     <ClCompile Include="PlaneMesh.cpp" />
     <ClCompile Include="SceneElement\CustomSceneElement.cpp" />
-    <ClCompile Include="Scenes\RevisionTest01.cpp" />
     <ClCompile Include="SynchEventsLoader.cpp" />
     <ClCompile Include="SynchEvent.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
@@ -289,11 +288,6 @@ exit /B 0
     <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="VertexDataBufferTransform.cpp" />
     <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="zip\ioapi.c" />
-    <ClCompile Include="zip\iowin32.c" />
-    <ClCompile Include="zip\mztools.c" />
-    <ClCompile Include="zip\unzip.c" />
-    <ClCompile Include="zip\zip.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClips\IAnimationClip.h" />
@@ -400,7 +394,6 @@ exit /B 0
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="PlaneMesh.h" />
     <ClInclude Include="SceneElement\CustomSceneElement.h" />
-    <ClInclude Include="Scenes\RevisionTest01.h" />
     <ClInclude Include="SynchEventsLoader.h" />
     <ClInclude Include="SynchEvent.h" />
     <ClInclude Include="DemoOptions.h" />
