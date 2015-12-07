@@ -1,4 +1,4 @@
-<Scene name="Axiom_final_2013">
+<Scene name="Axiom_final_2013 2">
 	<GameObjects>
 		<GameObject name="Sphere">
 			<Transform position="-0.000001,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -15,11 +15,11 @@
 		</GameObject>
 		<GameObject name="cycki00" parent="Group001">
 			<Transform position="4.162806,-7.705861,-4.777657" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki00" material="dark" />
+			<Mesh name="cycki00" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh11" parent="Group001">
 			<Transform position="0.212638,-1.228425,2.554005" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh11" material="03 - Default" />
+			<Mesh name="riveeeerwashhh11" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow27" parent="Group001">
 			<Transform position="4.162806,-7.705866,-4.777657" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -38,7 +38,7 @@
 		</GameObject>
 		<GameObject name="cycki01" parent="Group002">
 			<Transform position="5.842711,-7.915207,-2.580397" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki01" material="dark" />
+			<Mesh name="cycki01" material="Metal" />
 		</GameObject>
 		<GameObject name="Group003" parent="Sphere">
 			<Transform position="-0.000002,10.688862,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -53,23 +53,23 @@
 		</GameObject>
 		<GameObject name="dupa03" parent="Group003">
 			<Transform position="-0.508629,-2.247347,5.269477" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="dupa03" material="03 - Default" />
+			<Mesh name="dupa03" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh00" parent="Group003">
 			<Transform position="-0.508629,-2.247347,5.269477" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh00" material="03 - Default" />
+			<Mesh name="riveeeerwashhh00" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh15" parent="Group003">
 			<Transform position="0.553993,-2.247347,-5.256752" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh15" material="03 - Default" />
+			<Mesh name="riveeeerwashhh15" material="Metal" />
 		</GameObject>
 		<GameObject name="dupa02" parent="Group003">
 			<Transform position="0.553993,-2.247347,-5.256752" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="dupa02" material="03 - Default" />
+			<Mesh name="dupa02" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki55" parent="Group003">
 			<Transform position="0.000003,-10.688857,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki55" material="dark" />
+			<Mesh name="cycki55" material="Metal" />
 		</GameObject>
 		<GameObject name="Group004" parent="Sphere">
 			<Transform position="-0.661792,5.500257,8.190691" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -80,11 +80,11 @@
 		</GameObject>
 		<GameObject name="cycki20" parent="Group004">
 			<Transform position="0.661793,-5.500253,-8.190691" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki20" material="dark" />
+			<Mesh name="cycki20" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny10" parent="Group004">
 			<Transform position="-0.154313,0.036364,-0.720384" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny10" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny10" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow46" parent="Group004">
 			<Transform position="0.661793,-5.500258,-8.190691" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -99,7 +99,7 @@
 		</GameObject>
 		<GameObject name="cycki19" parent="Group005">
 			<Transform position="-0.911464,-7.915208,-5.732938" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki19" material="dark" />
+			<Mesh name="cycki19" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow45" parent="Group005">
 			<Transform position="-0.911464,-7.915213,-5.732938" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -118,7 +118,7 @@
 		</GameObject>
 		<GameObject name="cycki18" parent="Group006">
 			<Transform position="-5.105946,-7.705861,-3.799793" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki18" material="dark" />
+			<Mesh name="cycki18" material="Metal" />
 		</GameObject>
 		<GameObject name="Group007" parent="Sphere">
 			<Transform position="4.908438,4.817153,7.263187" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -129,11 +129,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh14" parent="Group007">
 			<Transform position="0.367929,1.681607,-0.827463" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh14" material="03 - Default" />
+			<Mesh name="riveeeerwashhh14" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki34" parent="Group007">
 			<Transform position="-4.908437,-4.817149,-7.263187" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki34" material="dark" />
+			<Mesh name="cycki34" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow50" parent="Group007">
 			<Transform position="-4.908437,-4.817153,-7.263187" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -144,7 +144,7 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh13" parent="Group008">
 			<Transform position="4.432949,0.028920,6.272620" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh13" material="03 - Default" />
+			<Mesh name="riveeeerwashhh13" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow47" parent="Group008">
 			<Transform position="3.434178,-2.905138,-3.802269" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -156,7 +156,7 @@
 		</GameObject>
 		<GameObject name="cycki21" parent="Group008">
 			<Transform position="3.434178,-2.905133,-3.802269" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki21" material="dark" />
+			<Mesh name="cycki21" material="Metal" />
 		</GameObject>
 		<GameObject name="chip030_glow" parent="Group008">
 			<Transform position="-1.879593,0.207590,4.257021" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -164,15 +164,15 @@
 		</GameObject>
 		<GameObject name="chip028" parent="Group008">
 			<Transform position="-1.879593,0.207590,4.257021" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip028" material="07 - Defaulth" />
+			<Mesh name="chip028" material="Metal" />
 		</GameObject>
 		<GameObject name="chip031" parent="Group008">
 			<Transform position="-1.802904,0.165198,4.143466" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip031" material="03 - Default" />
+			<Mesh name="chip031" material="Metal" />
 		</GameObject>
 		<GameObject name="chip032" parent="Group008">
 			<Transform position="-1.802904,0.165198,4.143466" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip032" material="03 - Default" />
+			<Mesh name="chip032" material="Metal" />
 		</GameObject>
 		<GameObject name="Group009" parent="Sphere">
 			<Transform position="-6.204879,4.466691,5.845478" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -187,7 +187,7 @@
 		</GameObject>
 		<GameObject name="cycki22" parent="Group009">
 			<Transform position="6.204880,-4.466686,-5.845478" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki22" material="dark" />
+			<Mesh name="cycki22" material="Metal" />
 		</GameObject>
 		<GameObject name="Group010" parent="Sphere">
 			<Transform position="5.144770,8.681520,0.549799" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -198,11 +198,11 @@
 		</GameObject>
 		<GameObject name="cycki14" parent="Group010">
 			<Transform position="-5.144769,-8.681516,-0.549799" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki14" material="dark" />
+			<Mesh name="cycki14" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki15" parent="Group010">
 			<Transform position="-5.144769,-8.681516,-0.549799" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki15" material="dark" />
+			<Mesh name="cycki15" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow43" parent="Group010">
 			<Transform position="-5.144769,-8.681520,-0.549799" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -221,11 +221,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh03" parent="Group011">
 			<Transform position="1.233706,-0.643620,0.868771" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh03" material="03 - Default" />
+			<Mesh name="riveeeerwashhh03" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki16" parent="Group011">
 			<Transform position="-6.920193,-7.195935,1.612606" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki16" material="dark" />
+			<Mesh name="cycki16" material="Metal" />
 		</GameObject>
 		<GameObject name="Group012" parent="Sphere">
 			<Transform position="5.724732,6.885515,-4.452667" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -240,7 +240,7 @@
 		</GameObject>
 		<GameObject name="cycki13" parent="Group012">
 			<Transform position="-5.724731,-6.885510,4.452667" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki13" material="dark" />
+			<Mesh name="cycki13" material="Metal" />
 		</GameObject>
 		<GameObject name="Group013" parent="Sphere">
 			<Transform position="4.365647,5.500258,-7.393715" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -255,7 +255,7 @@
 		</GameObject>
 		<GameObject name="cycki12" parent="Group013">
 			<Transform position="-4.365646,-5.500253,7.393714" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki12" material="dark" />
+			<Mesh name="cycki12" material="Metal" />
 		</GameObject>
 		<GameObject name="chip_main03" parent="Group013">
 			<Transform position="0.051402,-0.523110,-0.851418" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -263,7 +263,7 @@
 		</GameObject>
 		<GameObject name="chip_kable03" parent="Group013">
 			<Transform position="0.051402,-0.523110,-0.851418" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip_kable03" material="03 - Default" />
+			<Mesh name="chip_kable03" material="Metal" />
 		</GameObject>
 		<GameObject name="Group014" parent="Sphere">
 			<Transform position="1.189651,8.426190,-5.085055" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -278,7 +278,7 @@
 		</GameObject>
 		<GameObject name="cycki10" parent="Group014">
 			<Transform position="-1.189651,-8.426186,5.085055" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki10" material="dark" />
+			<Mesh name="cycki10" material="Metal" />
 		</GameObject>
 		<GameObject name="Group015" parent="Sphere">
 			<Transform position="-1.950731,5.414746,-5.512068" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -293,11 +293,11 @@
 		</GameObject>
 		<GameObject name="cycki11" parent="Group015">
 			<Transform position="1.950732,-5.414741,5.512068" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki11" material="dark" />
+			<Mesh name="cycki11" material="Metal" />
 		</GameObject>
 		<GameObject name="chip00" parent="Group015">
 			<Transform position="1.962024,1.108628,-2.274053" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip00" material="07 - Defaulth" />
+			<Mesh name="chip00" material="Metal" />
 		</GameObject>
 		<GameObject name="chip05_glow" parent="Group015">
 			<Transform position="1.962024,1.108628,-2.274053" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -305,11 +305,11 @@
 		</GameObject>
 		<GameObject name="chip03" parent="Group015">
 			<Transform position="1.963146,1.019996,-2.161287" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip03" material="03 - Default" />
+			<Mesh name="chip03" material="Metal" />
 		</GameObject>
 		<GameObject name="chip01" parent="Group015">
 			<Transform position="1.963146,1.019996,-2.161287" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip01" material="03 - Default" />
+			<Mesh name="chip01" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow31" parent="Group015">
 			<Transform position="1.950732,-5.414746,5.512068" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -328,7 +328,7 @@
 		</GameObject>
 		<GameObject name="cycki08" parent="Group016">
 			<Transform position="3.299353,-7.705861,5.886187" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki08" material="dark" />
+			<Mesh name="cycki08" material="Metal" />
 		</GameObject>
 		<GameObject name="Group017" parent="Sphere">
 			<Transform position="-3.262559,9.018855,-3.833664" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -343,34 +343,34 @@
 		</GameObject>
 		<GameObject name="cycki07" parent="Group017">
 			<Transform position="3.262560,-9.018850,3.833664" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki07" material="dark" />
+			<Mesh name="cycki07" material="Metal" />
 		</GameObject>
 		<GameObject name="Group018" parent="Sphere">
 			<Transform position="-0.080028,10.666711,-0.036447" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
 		<GameObject name="podsatwaduza05" parent="Group018">
 			<Transform position="0.074624,0.596795,0.745464" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza05" material="03 - Default" />
+			<Mesh name="podsatwaduza05" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza06" parent="Group018">
 			<Transform position="-0.634762,0.596795,0.053376" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza06" material="03 - Default" />
+			<Mesh name="podsatwaduza06" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza08" parent="Group018">
 			<Transform position="0.067110,0.596795,-0.673083" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza08" material="03 - Default" />
+			<Mesh name="podsatwaduza08" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny00" parent="Group018">
 			<Transform position="0.180540,-0.491940,0.247861" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny00" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny00" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny01" parent="Group018">
 			<Transform position="0.073329,-2.624641,0.014861" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny01" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny01" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki52" parent="Group018">
 			<Transform position="0.080029,-10.666706,0.036447" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki52" material="dark" />
+			<Mesh name="cycki52" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_53" parent="Group018">
 			<Transform position="0.080029,-10.666711,0.036447" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -378,11 +378,11 @@
 		</GameObject>
 		<GameObject name="podsatwaduza03" parent="Group018">
 			<Transform position="0.084854,1.165833,0.043001" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza03" material="07 - Default" />
+			<Mesh name="podsatwaduza03" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza04" parent="Group018">
 			<Transform position="0.795487,0.596795,0.043424" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza04" material="03 - Default" />
+			<Mesh name="podsatwaduza04" material="Metal" />
 		</GameObject>
 		<GameObject name="Group019" parent="Sphere">
 			<Transform position="-6.591904,7.040938,-2.528458" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -393,7 +393,7 @@
 		</GameObject>
 		<GameObject name="cycki06" parent="Group019">
 			<Transform position="6.591905,-7.040934,2.528457" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki06" material="dark" />
+			<Mesh name="cycki06" material="Metal" />
 		</GameObject>
 		<GameObject name="Group020" parent="Sphere">
 			<Transform position="-8.901902,3.814095,-1.163733" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -408,15 +408,15 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh08" parent="Group020">
 			<Transform position="0.770166,2.744903,0.348376" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh08" material="03 - Default" />
+			<Mesh name="riveeeerwashhh08" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny03" parent="Group020">
 			<Transform position="0.208887,-0.593247,0.309930" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny03" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny03" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki03" parent="Group020">
 			<Transform position="8.901903,-3.814091,1.163733" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki03" material="dark" />
+			<Mesh name="cycki03" material="Metal" />
 		</GameObject>
 		<GameObject name="Group021" parent="Sphere">
 			<Transform position="-9.301184,2.988804,2.170496" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -431,7 +431,7 @@
 		</GameObject>
 		<GameObject name="cycki02" parent="Group021">
 			<Transform position="9.301185,-2.988799,-2.170496" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki02" material="dark" />
+			<Mesh name="cycki02" material="Metal" />
 		</GameObject>
 		<GameObject name="Group022" parent="Sphere">
 			<Transform position="-6.121783,-2.062665,7.730297" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -442,11 +442,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh09" parent="Group022">
 			<Transform position="-1.606041,-1.185935,-1.390559" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh09" material="03 - Default" />
+			<Mesh name="riveeeerwashhh09" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki23" parent="Group022">
 			<Transform position="6.121784,2.062669,-7.730297" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki23" material="dark" />
+			<Mesh name="cycki23" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow03" parent="Group022">
 			<Transform position="6.121784,2.062665,-7.730297" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -469,11 +469,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh10" parent="Group023">
 			<Transform position="-0.144600,1.848614,1.039481" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh10" material="03 - Default" />
+			<Mesh name="riveeeerwashhh10" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki24" parent="Group023">
 			<Transform position="9.018435,1.027849,-3.804689" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki24" material="dark" />
+			<Mesh name="cycki24" material="Metal" />
 		</GameObject>
 		<GameObject name="Group026" parent="Sphere">
 			<Transform position="-2.679986,1.941624,-9.192236" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -488,11 +488,11 @@
 		</GameObject>
 		<GameObject name="ssij_wydzieliny05" parent="Group026">
 			<Transform position="-0.092745,1.017280,0.102104" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny05" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny05" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki09" parent="Group026">
 			<Transform position="2.679987,-1.941619,9.192236" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki09" material="dark" />
+			<Mesh name="cycki09" material="Metal" />
 		</GameObject>
 		<GameObject name="Group027" parent="Sphere">
 			<Transform position="-4.850081,-1.944307,-8.593842" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -507,7 +507,7 @@
 		</GameObject>
 		<GameObject name="cycki27" parent="Group027">
 			<Transform position="4.850082,1.944312,8.593842" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki27" material="dark" />
+			<Mesh name="cycki27" material="Metal" />
 		</GameObject>
 		<GameObject name="Group028" parent="Sphere">
 			<Transform position="-6.568808,-4.807117,-4.944172" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -522,7 +522,7 @@
 		</GameObject>
 		<GameObject name="cycki26" parent="Group028">
 			<Transform position="6.568809,4.807122,4.944172" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki26" material="dark" />
+			<Mesh name="cycki26" material="Metal" />
 		</GameObject>
 		<GameObject name="Group029" parent="Sphere">
 			<Transform position="-5.142979,-7.921425,-3.350691" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -537,7 +537,7 @@
 		</GameObject>
 		<GameObject name="cycki44" parent="Group029">
 			<Transform position="5.142979,7.921430,3.350691" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki44" material="dark" />
+			<Mesh name="cycki44" material="Metal" />
 		</GameObject>
 		<GameObject name="Group030" parent="Sphere">
 			<Transform position="-5.866054,-7.921424,-0.317100" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -552,7 +552,7 @@
 		</GameObject>
 		<GameObject name="cycki43" parent="Group030">
 			<Transform position="5.866055,7.921430,0.317100" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki43" material="dark" />
+			<Mesh name="cycki43" material="Metal" />
 		</GameObject>
 		<GameObject name="Group031" parent="Sphere">
 			<Transform position="-8.822458,-4.881277,1.539801" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -563,7 +563,7 @@
 		</GameObject>
 		<GameObject name="cycki25" parent="Group031">
 			<Transform position="8.822460,4.881281,-1.539800" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki25" material="dark" />
+			<Mesh name="cycki25" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_37" parent="Group031">
 			<Transform position="8.822460,4.881277,-1.539800" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -571,7 +571,7 @@
 		</GameObject>
 		<GameObject name="ssij_wydzieliny04" parent="Group031">
 			<Transform position="-0.758478,1.841029,1.675119" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny04" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny04" material="Metal" />
 		</GameObject>
 		<GameObject name="chip037_glow" parent="Group031">
 			<Transform position="-0.103933,0.032903,-1.509834" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -579,15 +579,15 @@
 		</GameObject>
 		<GameObject name="chip036" parent="Group031">
 			<Transform position="-0.103933,0.032903,-1.509834" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip036" material="07 - Defaulth" />
+			<Mesh name="chip036" material="Metal" />
 		</GameObject>
 		<GameObject name="chip039" parent="Group031">
 			<Transform position="0.026773,0.091964,-1.510211" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip039" material="03 - Default" />
+			<Mesh name="chip039" material="Metal" />
 		</GameObject>
 		<GameObject name="chip038" parent="Group031">
 			<Transform position="0.026773,0.091964,-1.510211" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip038" material="03 - Default" />
+			<Mesh name="chip038" material="Metal" />
 		</GameObject>
 		<GameObject name="Group032" parent="Sphere">
 			<Transform position="-4.747479,-6.536115,5.143069" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -602,7 +602,7 @@
 		</GameObject>
 		<GameObject name="cycki40" parent="Group032">
 			<Transform position="4.747480,6.536119,-5.143068" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki40" material="dark" />
+			<Mesh name="cycki40" material="Metal" />
 		</GameObject>
 		<GameObject name="Group033" parent="Sphere">
 			<Transform position="-1.589189,-3.089575,9.170017" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -617,18 +617,18 @@
 		</GameObject>
 		<GameObject name="cycki38" parent="Group033">
 			<Transform position="1.589189,3.089580,-9.170017" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki38" material="dark" />
+			<Mesh name="cycki38" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny07" parent="Group033">
 			<Transform position="-1.268159,0.081409,0.768961" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny07" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny07" material="Metal" />
 		</GameObject>
 		<GameObject name="Group034" parent="Sphere">
 			<Transform position="4.859545,-0.219372,8.763825" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
 		<GameObject name="chip_kable01" parent="Group034">
 			<Transform position="0.068526,1.259969,0.556088" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip_kable01" material="03 - Default" />
+			<Mesh name="chip_kable01" material="Metal" />
 		</GameObject>
 		<GameObject name="chip_main01" parent="Group034">
 			<Transform position="0.068526,1.259969,0.556088" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -636,7 +636,7 @@
 		</GameObject>
 		<GameObject name="cycki35" parent="Group034">
 			<Transform position="-4.859544,0.219376,-8.763825" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki35" material="dark" />
+			<Mesh name="cycki35" material="Metal" />
 		</GameObject>
 		<GameObject name="tu_jest_glow49" parent="Group034">
 			<Transform position="-4.859544,0.219372,-8.763825" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -648,7 +648,7 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh12" parent="Group034">
 			<Transform position="0.117897,-0.931242,0.601853" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh12" material="03 - Default" />
+			<Mesh name="riveeeerwashhh12" material="Metal" />
 		</GameObject>
 		<GameObject name="Group035" parent="Sphere">
 			<Transform position="8.557360,3.087418,4.038962" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -659,7 +659,7 @@
 		</GameObject>
 		<GameObject name="cycki33" parent="Group035">
 			<Transform position="-8.557359,-3.087413,-4.038962" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki33" material="dark" />
+			<Mesh name="cycki33" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_55" parent="Group035">
 			<Transform position="-8.557359,-3.087418,-4.038962" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -667,7 +667,7 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh02" parent="Group035">
 			<Transform position="0.259517,-0.153360,0.748744" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh02" material="03 - Default" />
+			<Mesh name="riveeeerwashhh02" material="Metal" />
 		</GameObject>
 		<GameObject name="Group036" parent="Sphere">
 			<Transform position="8.901906,4.803619,0.908816" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -682,11 +682,11 @@
 		</GameObject>
 		<GameObject name="cycki17" parent="Group036">
 			<Transform position="-8.901905,-4.803615,-0.908816" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki17" material="dark" />
+			<Mesh name="cycki17" material="Metal" />
 		</GameObject>
 		<GameObject name="ssij_wydzieliny08" parent="Group036">
 			<Transform position="-0.060158,0.282863,1.741938" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny08" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny08" material="Metal" />
 		</GameObject>
 		<GameObject name="Group037" parent="Sphere">
 			<Transform position="7.400909,-2.103020,6.121781" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -701,7 +701,7 @@
 		</GameObject>
 		<GameObject name="cycki36" parent="Group037">
 			<Transform position="-7.400908,2.103024,-6.121781" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki36" material="dark" />
+			<Mesh name="cycki36" material="Metal" />
 		</GameObject>
 		<GameObject name="chip016_glow" parent="Group037">
 			<Transform position="0.993203,1.069482,-0.498408" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -709,22 +709,22 @@
 		</GameObject>
 		<GameObject name="chip014" parent="Group037">
 			<Transform position="0.993203,1.069482,-0.498408" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip014" material="07 - Defaulth" />
+			<Mesh name="chip014" material="Metal" />
 		</GameObject>
 		<GameObject name="chip018" parent="Group037">
 			<Transform position="0.874482,1.078480,-0.578393" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip018" material="03 - Default" />
+			<Mesh name="chip018" material="Metal" />
 		</GameObject>
 		<GameObject name="chip017" parent="Group037">
 			<Transform position="0.874482,1.078480,-0.578393" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip017" material="03 - Default" />
+			<Mesh name="chip017" material="Metal" />
 		</GameObject>
 		<GameObject name="Group038" parent="Sphere">
 			<Transform position="0.333684,-7.047150,6.164893" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
 		<GameObject name="cycki39" parent="Group038">
 			<Transform position="-0.333683,7.047155,-6.164893" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki39" material="dark" />
+			<Mesh name="cycki39" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_10" parent="Group038">
 			<Transform position="-0.333683,7.047150,-6.164893" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -747,7 +747,7 @@
 		</GameObject>
 		<GameObject name="cycki37" parent="Group039">
 			<Transform position="-4.045360,4.902768,-7.290529" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki37" material="dark" />
+			<Mesh name="cycki37" material="Metal" />
 		</GameObject>
 		<GameObject name="Group040" parent="Sphere">
 			<Transform position="-2.752891,-9.025068,3.615032" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -762,7 +762,7 @@
 		</GameObject>
 		<GameObject name="cycki41" parent="Group040">
 			<Transform position="2.752892,9.025073,-3.615032" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki41" material="dark" />
+			<Mesh name="cycki41" material="Metal" />
 		</GameObject>
 		<GameObject name="Group041" parent="Sphere">
 			<Transform position="0.024568,-10.571037,0.008993" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -773,23 +773,23 @@
 		</GameObject>
 		<GameObject name="dupa01" parent="Group041">
 			<Transform position="-0.597646,2.362687,5.253710" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="dupa01" material="03 - Default" />
+			<Mesh name="dupa01" material="Metal" />
 		</GameObject>
 		<GameObject name="dupa00" parent="Group041">
 			<Transform position="0.551478,2.362687,-5.263429" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="dupa00" material="03 - Default" />
+			<Mesh name="dupa00" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh17" parent="Group041">
 			<Transform position="0.551478,2.362686,-5.263428" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh17" material="03 - Default" />
+			<Mesh name="riveeeerwashhh17" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh16" parent="Group041">
 			<Transform position="-0.597646,2.362686,5.253711" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh16" material="03 - Default" />
+			<Mesh name="riveeeerwashhh16" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki54" parent="Group041">
 			<Transform position="-0.024567,10.571042,-0.008993" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki54" material="dark" />
+			<Mesh name="cycki54" material="Metal" />
 		</GameObject>
 		<GameObject name="Group042" parent="Sphere">
 			<Transform position="4.017946,-8.687733,3.303584" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -804,7 +804,7 @@
 		</GameObject>
 		<GameObject name="cycki51" parent="Group042">
 			<Transform position="-4.017945,8.687737,-3.303584" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki51" material="dark" />
+			<Mesh name="cycki51" material="Metal" />
 		</GameObject>
 		<GameObject name="Group043" parent="Sphere">
 			<Transform position="6.374647,-6.536115,2.973143" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -819,7 +819,7 @@
 		</GameObject>
 		<GameObject name="cycki50" parent="Group043">
 			<Transform position="-6.374646,6.536119,-2.973143" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki50" material="dark" />
+			<Mesh name="cycki50" material="Metal" />
 		</GameObject>
 		<GameObject name="Group044" parent="Sphere">
 			<Transform position="9.343190,-2.990956,1.306673" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -834,11 +834,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh01" parent="Group044">
 			<Transform position="1.071150,1.840343,-0.276441" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh01" material="03 - Default" />
+			<Mesh name="riveeeerwashhh01" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki32" parent="Group044">
 			<Transform position="-9.343189,2.990961,-1.306673" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki32" material="dark" />
+			<Mesh name="cycki32" material="Metal" />
 		</GameObject>
 		<GameObject name="Group045" parent="Sphere">
 			<Transform position="9.306593,2.988804,-3.266713" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -853,11 +853,11 @@
 		</GameObject>
 		<GameObject name="ssij_wydzieliny09" parent="Group045">
 			<Transform position="0.725543,-1.606936,0.287768" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny09" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny09" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki30" parent="Group045">
 			<Transform position="-9.306592,-2.988799,3.266713" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki30" material="dark" />
+			<Mesh name="cycki30" material="Metal" />
 		</GameObject>
 		<GameObject name="Group046" parent="Sphere">
 			<Transform position="7.234056,3.003752,-5.856612" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -872,7 +872,7 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh05" parent="Group046">
 			<Transform position="-0.859456,-0.069694,-1.879627" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh05" material="03 - Default" />
+			<Mesh name="riveeeerwashhh05" material="Metal" />
 		</GameObject>
 		<GameObject name="Group047" parent="Sphere">
 			<Transform position="8.863133,-2.990956,-3.451645" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -887,7 +887,7 @@
 		</GameObject>
 		<GameObject name="cycki31" parent="Group047">
 			<Transform position="-8.863132,2.990961,3.451645" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki31" material="dark" />
+			<Mesh name="cycki31" material="Metal" />
 		</GameObject>
 		<GameObject name="Group048" parent="Sphere">
 			<Transform position="5.937905,-4.870480,-5.925419" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -902,11 +902,11 @@
 		</GameObject>
 		<GameObject name="cycki46" parent="Group048">
 			<Transform position="-5.937904,4.870484,5.925419" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki46" material="dark" />
+			<Mesh name="cycki46" material="Metal" />
 		</GameObject>
 		<GameObject name="chip007" parent="Group048">
 			<Transform position="0.331751,0.151651,-0.499380" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip007" material="07 - Defaulth" />
+			<Mesh name="chip007" material="Metal" />
 		</GameObject>
 		<GameObject name="chip009_glow" parent="Group048">
 			<Transform position="0.331751,0.151651,-0.499380" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -914,11 +914,11 @@
 		</GameObject>
 		<GameObject name="chip010" parent="Group048">
 			<Transform position="0.244164,0.214103,-0.404504" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip010" material="03 - Default" />
+			<Mesh name="chip010" material="Metal" />
 		</GameObject>
 		<GameObject name="chip011" parent="Group048">
 			<Transform position="0.244164,0.214103,-0.404504" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip011" material="03 - Default" />
+			<Mesh name="chip011" material="Metal" />
 		</GameObject>
 		<GameObject name="Group049" parent="Sphere">
 			<Transform position="4.114599,-1.009302,-8.703159" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -933,11 +933,11 @@
 		</GameObject>
 		<GameObject name="cycki28" parent="Group049">
 			<Transform position="-4.114598,1.009307,8.703159" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki28" material="dark" />
+			<Mesh name="cycki28" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh04" parent="Group049">
 			<Transform position="-3.121370,-0.141311,-1.615442" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh04" material="03 - Default" />
+			<Mesh name="riveeeerwashhh04" material="Metal" />
 		</GameObject>
 		<GameObject name="Group050" parent="Sphere">
 			<Transform position="1.803048,-3.089575,-9.053127" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -948,7 +948,7 @@
 		</GameObject>
 		<GameObject name="ssij_wydzieliny06" parent="Group050">
 			<Transform position="0.912385,0.081409,-0.368435" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny06" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny06" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_24" parent="Group050">
 			<Transform position="-1.803047,3.089575,9.053127" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -956,7 +956,7 @@
 		</GameObject>
 		<GameObject name="cycki29" parent="Group050">
 			<Transform position="-1.803047,3.089580,9.053127" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki29" material="dark" />
+			<Mesh name="cycki29" material="Metal" />
 		</GameObject>
 		<GameObject name="Group051" parent="Sphere">
 			<Transform position="-2.278979,-6.380691,-6.852645" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -971,7 +971,7 @@
 		</GameObject>
 		<GameObject name="cycki42" parent="Group051">
 			<Transform position="2.278979,6.380696,6.852645" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki42" material="dark" />
+			<Mesh name="cycki42" material="Metal" />
 		</GameObject>
 		<GameObject name="Group052" parent="Sphere">
 			<Transform position="0.032354,-7.921425,-6.132593" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -986,7 +986,7 @@
 		</GameObject>
 		<GameObject name="cycki45" parent="Group052">
 			<Transform position="-0.032354,7.921430,6.132593" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki45" material="dark" />
+			<Mesh name="cycki45" material="Metal" />
 		</GameObject>
 		<GameObject name="Group053" parent="Sphere">
 			<Transform position="2.864557,-7.921425,-5.142986" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -997,7 +997,7 @@
 		</GameObject>
 		<GameObject name="cycki48" parent="Group053">
 			<Transform position="-2.864556,7.921430,5.142985" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki48" material="dark" />
+			<Mesh name="cycki48" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_05" parent="Group053">
 			<Transform position="-2.864556,7.921425,5.142985" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1016,7 +1016,7 @@
 		</GameObject>
 		<GameObject name="cycki47" parent="Group054">
 			<Transform position="-5.326852,7.712083,3.298240" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki47" material="dark" />
+			<Mesh name="cycki47" material="Metal" />
 		</GameObject>
 		<GameObject name="Group055" parent="Sphere">
 			<Transform position="6.227069,-7.921425,0.284518" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1027,18 +1027,18 @@
 		</GameObject>
 		<GameObject name="cycki49" parent="Group055">
 			<Transform position="-6.227068,7.921430,-0.284518" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki49" material="dark" />
+			<Mesh name="cycki49" material="Metal" />
 		</GameObject>
 		<GameObject name="Group056" parent="Sphere">
 			<Transform position="0.195405,-10.567703,-0.193045" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
 		<GameObject name="podsatwaduza010" parent="Group056">
 			<Transform position="-0.312540,-0.462639,0.890318" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza010" material="03 - Default" />
+			<Mesh name="podsatwaduza010" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza017" parent="Group056">
 			<Transform position="-0.010258,-0.462639,-0.495668" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza017" material="03 - Default" />
+			<Mesh name="podsatwaduza017" material="Metal" />
 		</GameObject>
 		<GameObject name="szymek_jest_gupi_51" parent="Group056">
 			<Transform position="-0.195404,10.567703,0.193044" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1046,39 +1046,39 @@
 		</GameObject>
 		<GameObject name="ssij_wydzieliny02" parent="Group056">
 			<Transform position="-0.226629,-0.021118,-0.240905" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="ssij_wydzieliny02" material="03 - Default" />
+			<Mesh name="ssij_wydzieliny02" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza013" parent="Group056">
 			<Transform position="0.525237,-0.462639,0.360842" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza013" material="03 - Default" />
+			<Mesh name="podsatwaduza013" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki53" parent="Group056">
 			<Transform position="-0.195404,10.567708,0.193044" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki53" material="dark" />
+			<Mesh name="cycki53" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza015" parent="Group056">
 			<Transform position="-0.395889,0.098808,1.286289" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza015" material="03 - Default" />
+			<Mesh name="podsatwaduza015" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza016" parent="Group056">
 			<Transform position="0.078839,0.098808,-0.890386" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza016" material="03 - Default" />
+			<Mesh name="podsatwaduza016" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza014" parent="Group056">
 			<Transform position="-1.267586,0.098808,-0.030031" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza014" material="03 - Default" />
+			<Mesh name="podsatwaduza014" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza009" parent="Group056">
 			<Transform position="-0.871688,-0.462639,0.053743" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza009" material="03 - Default" />
+			<Mesh name="podsatwaduza009" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza012" parent="Group056">
 			<Transform position="0.920060,0.098808,0.449520" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza012" material="03 - Default" />
+			<Mesh name="podsatwaduza012" material="Metal" />
 		</GameObject>
 		<GameObject name="podsatwaduza011" parent="Group056">
 			<Transform position="-0.176497,-1.031675,0.201078" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="podsatwaduza011" material="07 - Default" />
+			<Mesh name="podsatwaduza011" material="Metal" />
 		</GameObject>
 		<GameObject name="Group057" parent="Sphere">
 			<Transform position="-6.463187,3.912710,-6.064750" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1097,11 +1097,11 @@
 		</GameObject>
 		<GameObject name="riveeeerwashhh07" parent="Group057">
 			<Transform position="0.637196,0.943300,-1.045684" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh07" material="03 - Default" />
+			<Mesh name="riveeeerwashhh07" material="Metal" />
 		</GameObject>
 		<GameObject name="cycki05" parent="Group057">
 			<Transform position="6.463188,-3.912705,6.064750" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki05" material="dark" />
+			<Mesh name="cycki05" material="Metal" />
 		</GameObject>
 		<GameObject name="chip_main02" parent="Group057">
 			<Transform position="-1.665295,-2.868976,-0.629744" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1109,7 +1109,7 @@
 		</GameObject>
 		<GameObject name="chip_kable02" parent="Group057">
 			<Transform position="-1.665295,-2.868976,-0.629743" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="chip_kable02" material="03 - Default" />
+			<Mesh name="chip_kable02" material="Metal" />
 		</GameObject>
 		<GameObject name="Group058" parent="Sphere">
 			<Transform position="-8.896326,-1.009302,-3.920757" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
@@ -1132,14 +1132,22 @@
 		</GameObject>
 		<GameObject name="cycki04" parent="Group058">
 			<Transform position="8.896326,1.009307,3.920757" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="cycki04" material="dark" />
+			<Mesh name="cycki04" material="Metal" />
 		</GameObject>
 		<GameObject name="riveeeerwashhh06" parent="Group058">
 			<Transform position="-0.279913,-0.141311,-1.000046" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
-			<Mesh name="riveeeerwashhh06" material="03 - Default" />
+			<Mesh name="riveeeerwashhh06" material="Metal" />
 		</GameObject>
 	</GameObjects>
 	<Materials>
+		<Material name="Metal" shader="SolidDiffSpecEnv">
+			<Parameters>
+				<Parameter name="u_envTex" type="texture" value="4" />
+				<Parameter name="u_color" type="vec3" value="0.17451,0.17059,0.20588" />
+				<Parameter name="u_glossiness" type="float" value="50.799999" />
+				<Parameter name="u_specularLevel" type="float" value="1.0000" />
+			</Parameters>
+		</Material>
 		<Material name="03 - Default" shader="TexDiffNorm">
 			<Parameters>
 				<Parameter name="u_diffTex" type="texture" value="Axiom05" />

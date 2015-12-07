@@ -578,6 +578,8 @@ exit /B 0
     <None Include="Data\effects\SolidDiff.vpr" />
     <None Include="Data\effects\SolidDiffSpec.fpr" />
     <None Include="Data\effects\SolidDiffSpec.vpr" />
+    <None Include="Data\effects\SolidDiffSpecEnv.fpr" />
+    <None Include="Data\effects\SolidDiffSpecEnv.vpr" />
     <None Include="Data\effects\SolidDiffSpecGlow.fpr" />
     <None Include="Data\effects\SolidDiffSpecGlow.vpr" />
     <None Include="Data\effects\SpecularBlur.fpr" />

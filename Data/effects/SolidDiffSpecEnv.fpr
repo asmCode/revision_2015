@@ -3,6 +3,7 @@
 layout( location = 0 ) out vec4 FragColor;
 layout( location = 1 ) out vec4 FragColorGlow;
 
+uniform sampler2D u_envTex;
 uniform vec3 u_color;
 uniform float u_specularLevel;
 uniform float u_glossiness;
@@ -19,9 +20,14 @@ void main()
 
 	vec3 half = normalize(lightDirection + eyeDirection);
 		
-	float diffValue = max(dot(lightDirection, normal), 0.0);
-	float specValue = pow(max(dot(half, normal), 0), u_glossiness) * u_specularLevel;
+	float diffValue = smoothstep(0.6, 1.0, abs(dot(lightDirection, normal))) * 0.2 + 0.05;
+	float specValue = pow(abs(dot(half, normal)), u_glossiness) * u_specularLevel;
 	
-	FragColor = vec4(u_color * diffValue + specValue, 1.0);
-	FragColorGlow =  vec4(0, 0, 0, 0);
+	vec2 envUV = eyeDirection.xy + 1.0 * 0.5; 
+
+	//FragColor = vec4(u_color * diffValue + specValue, 1.0);
+	FragColor = texture(u_envTex, sin(envUV) * 8.0f) * diffValue + specValue;
+	FragColor.w = 1.0;
+	FragColorGlow = FragColor * 0.4;
+	FragColorGlow.w = 1.0;
 }
