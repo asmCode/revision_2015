@@ -23,6 +23,12 @@ public:
 
 private:
 	Camera* m_camera;
+	GameObject* m_bulletPrefab;
 
 	bool m_isZoom;
+	bool m_isFiring;
+
+	float m_fireCooldown;
+
+	void SpawnBullet();
 };

@@ -1,9 +1,18 @@
 <Scene name="MainScene">
 	<IncludeScene name="Terrain" />
+	<IncludeScene name="Bullet" />
+	<IncludeScene name="Zombie" />
 	
 	<GameObjects>
 		<GameObject name="Gunship">
 			<Behaviour name="Gunship" />
+		</GameObject>
+		<GameObject name="ZombieManager">
+			<Behaviour name="ZombieManager">
+				<Parameters>
+					<Parameter name="zombie_per_second" type="float" value="3" />
+				</Parameters>
+			</Behaviour>
 		</GameObject>
 	</GameObjects>
 </Scene>

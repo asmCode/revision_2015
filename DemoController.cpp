@@ -42,6 +42,9 @@
 #include "Behaviours/BackCamera.h"
 #include "Behaviours/CameraPivot.h"
 #include "Behaviours/Gunship.h"
+#include "Behaviours/Bullet.h"
+#include "Behaviours/ZombieManager.h"
+#include "Behaviours/Zombie.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -337,6 +340,9 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("BackCamera", new GenericFactory<BackCamera>());
 	behavioursManager->RegisterBehaviour("CameraPivot", new GenericFactory<CameraPivot>());
 	behavioursManager->RegisterBehaviour("Gunship", new GenericFactory<Gunship>());
+	behavioursManager->RegisterBehaviour("Bullet", new GenericFactory<Bullet>());
+	behavioursManager->RegisterBehaviour("ZombieManager", new GenericFactory<ZombieManager>());
+	behavioursManager->RegisterBehaviour("Zombie", new GenericFactory<Zombie>());
 }
 
 bool DemoController::LoadContent(const char *basePath)

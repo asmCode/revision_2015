@@ -1,0 +1,18 @@
+<Scene name="Bullet">
+	<GameObjects>
+		<GameObject name="Bullet">
+			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Mesh name="Bullet" material="Bullet" />
+			<Behaviour name="Bullet" />
+		</GameObject>
+	</GameObjects>
+	<Materials>
+		<Material name="Bullet" shader="SolidDiffSpec">
+			<Parameters>
+				<Parameter name="u_color" type="vec3" value="0.588235,0.588235,0.588235" />
+				<Parameter name="u_glossiness" type="float" value="37.119999" />
+				<Parameter name="u_specularLevel" type="float" value="0.760000" />
+			</Parameters>
+		</Material>
+	</Materials>
+</Scene>

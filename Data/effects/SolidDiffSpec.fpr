@@ -17,10 +17,10 @@ void main()
 	vec3 lightDirection = normalize(o_lightDirection);
 	vec3 eyeDirection = normalize(o_eyeDirection);
 
-	vec3 half = normalize(lightDirection + eyeDirection);
+	vec3 _half = normalize(lightDirection + eyeDirection);
 		
 	float diffValue = max(dot(lightDirection, normal), 0.0);
-	float specValue = pow(max(dot(half, normal), 0), u_glossiness) * u_specularLevel;
+	float specValue = pow(max(dot(_half, normal), 0), u_glossiness) * u_specularLevel;
 	
 	FragColor = vec4(u_color * diffValue + specValue, 1.0);
 	FragColorGlow =  vec4(0, 0, 0, 0);

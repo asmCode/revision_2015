@@ -18,10 +18,10 @@ void main()
 	vec3 lightDirection = normalize(o_lightDirection);
 	vec3 eyeDirection = normalize(o_eyeDirection);
 
-	vec3 half = normalize(lightDirection + eyeDirection);
+	vec3 _half = normalize(lightDirection + eyeDirection);
 		
 	float diffValue = smoothstep(0.6, 1.0, abs(dot(lightDirection, normal))) * 0.2 + 0.05;
-	float specValue = pow(abs(dot(half, normal)), u_glossiness) * u_specularLevel;
+	float specValue = pow(abs(dot(_half, normal)), u_glossiness) * u_specularLevel;
 	
 	vec2 envUV = eyeDirection.xy + 1.0 * 0.5; 
 

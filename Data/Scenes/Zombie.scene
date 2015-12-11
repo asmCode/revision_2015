@@ -2,6 +2,7 @@
 	<GameObjects>
 		<GameObject name="Zombie">
 			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
+			<Behaviour name="Zombie" />
 		</GameObject>
 		<GameObject name="Box001" parent="Zombie">
 			<Transform position="0.060000,0.398723,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
