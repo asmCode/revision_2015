@@ -126,6 +126,7 @@ exit /B 0
     <ClCompile Include="Behaviours\BackCamera.cpp" />
     <ClCompile Include="Behaviours\CameraPivot.cpp" />
     <ClCompile Include="Behaviours\CustomMesh.cpp" />
+    <ClCompile Include="Behaviours\Gunship.cpp" />
     <ClCompile Include="Behaviours\MainCamera.cpp" />
     <ClCompile Include="Behaviours\Face.cpp" />
     <ClCompile Include="Behaviours\FppCamera.cpp" />
@@ -298,6 +299,7 @@ exit /B 0
     <ClInclude Include="Behaviours\BackCamera.h" />
     <ClInclude Include="Behaviours\CameraPivot.h" />
     <ClInclude Include="Behaviours\CustomMesh.h" />
+    <ClInclude Include="Behaviours\Gunship.h" />
     <ClInclude Include="Behaviours\MainCamera.h" />
     <ClInclude Include="Behaviours\Face.h" />
     <ClInclude Include="Behaviours\FppCamera.h" />

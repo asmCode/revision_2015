@@ -34,6 +34,12 @@
 		<GameObject name="Camera001" parent="CameraPivot">
 			<Transform position="50.000000,-50.000000,0.000008" rotation="3.537444,-0.337566,0.809255,-0.480786" scale="1.000000,1.000001,1.000000" />
 			<Camera fov="0.623599" near_plane="1.000000" far_plane="1000.000000" />
+			<Behaviour name="FppCamera">
+				<Parameters>
+					<Parameter name="move_sensitivity" type="float" value="20.0" />
+					<Parameter name="rotate_sensitivity" type="float" value="0.002" />
+				</Parameters>
+			</Behaviour>
 		</GameObject>
 		<GameObject name="Omni001" parent="Camera001">
 			<Transform position="0.000008,0.000015,-0.000004" rotation="3.896644,0.100968,0.245485,-0.964128" scale="1.000001,1.000000,1.000000" />

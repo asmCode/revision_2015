@@ -41,6 +41,7 @@
 #include "Behaviours/PlaneObject.h"
 #include "Behaviours/BackCamera.h"
 #include "Behaviours/CameraPivot.h"
+#include "Behaviours/Gunship.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -335,6 +336,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("PlaneObject", new GenericFactory<PlaneObject>());
 	behavioursManager->RegisterBehaviour("BackCamera", new GenericFactory<BackCamera>());
 	behavioursManager->RegisterBehaviour("CameraPivot", new GenericFactory<CameraPivot>());
+	behavioursManager->RegisterBehaviour("Gunship", new GenericFactory<Gunship>());
 }
 
 bool DemoController::LoadContent(const char *basePath)

@@ -1,0 +1,9 @@
+<Scene name="MainScene">
+	<IncludeScene name="Terrain" />
+	
+	<GameObjects>
+		<GameObject name="Gunship">
+			<Behaviour name="Gunship" />
+		</GameObject>
+	</GameObjects>
+</Scene>
