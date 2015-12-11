@@ -3,7 +3,8 @@
 
 Component::Component(const std::string& componentName, GameObject* gameObject) :
 	m_componentName(componentName),
-	m_gameObject(gameObject)
+	m_gameObject(gameObject),
+	m_isDestroyed(false)
 {
 	m_propertyContainer = new PropertyContainer();
 }
@@ -16,6 +17,16 @@ GameObject* Component::GetGameObject() const
 PropertyContainer* Component::GetPropertyContainer() const
 {
 	return m_propertyContainer;
+}
+
+void Component::SetDestroyed()
+{
+	m_isDestroyed = true;
+}
+
+bool Component::IsDestroyed() const
+{
+	return m_isDestroyed;
 }
 
 const std::string& Component::GetComponentName() const

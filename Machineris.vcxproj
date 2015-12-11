@@ -163,6 +163,7 @@ exit /B 0
     <ClCompile Include="Behaviours\SpherePartCommands\RollOut.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\SlideIn.cpp" />
     <ClCompile Include="Behaviours\SpherePartCommands\SlideOut.cpp" />
+    <ClCompile Include="Behaviours\Terrain.cpp" />
     <ClCompile Include="Behaviours\TextureImage.cpp" />
     <ClCompile Include="Behaviours\Tile.cpp" />
     <ClCompile Include="Behaviours\TileFactory.cpp" />
@@ -339,6 +340,7 @@ exit /B 0
     <ClInclude Include="Behaviours\SpherePartCommands\RollOut.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\SlideIn.h" />
     <ClInclude Include="Behaviours\SpherePartCommands\SlideOut.h" />
+    <ClInclude Include="Behaviours\Terrain.h" />
     <ClInclude Include="Behaviours\TextureImage.h" />
     <ClInclude Include="Behaviours\Tile.h" />
     <ClInclude Include="Behaviours\TileFactory.h" />

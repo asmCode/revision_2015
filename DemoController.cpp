@@ -45,6 +45,7 @@
 #include "Behaviours/Bullet.h"
 #include "Behaviours/ZombieManager.h"
 #include "Behaviours/Zombie.h"
+#include "Behaviours/Terrain.h"
 
 #include "Behaviours/RttTest.h"
 #include "Behaviours/CustomMesh.h"
@@ -343,6 +344,7 @@ void DemoController::RegisterBehaviours()
 	behavioursManager->RegisterBehaviour("Bullet", new GenericFactory<Bullet>());
 	behavioursManager->RegisterBehaviour("ZombieManager", new GenericFactory<ZombieManager>());
 	behavioursManager->RegisterBehaviour("Zombie", new GenericFactory<Zombie>());
+	behavioursManager->RegisterBehaviour("Terrain", new GenericFactory<Terrain>());
 }
 
 bool DemoController::LoadContent(const char *basePath)

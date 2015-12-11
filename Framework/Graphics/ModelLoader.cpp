@@ -213,7 +213,7 @@ FuturisEngine::Graphics::Mesh* ModelLoader::MeshLoader::BuildMesh()
 
 	mesh->SetIndices(indices.data(), (int)indices.size());
 
-	mesh->Apply();
+	mesh->Apply(true);
 
 	return mesh;
 }

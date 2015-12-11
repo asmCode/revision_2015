@@ -10,7 +10,8 @@ namespace FuturisEngine
 	{
 		IndexBuffer::IndexBuffer() :
 			m_vboId(0),
-			m_count(0)
+			m_count(0),
+			m_data(nullptr)
 		{
 		}
 
@@ -18,6 +19,8 @@ namespace FuturisEngine
 		{
 			if (m_vboId != 0)
 				glDeleteBuffers(1, &m_vboId);
+
+			DeleteData();
 		}
 
 		void IndexBuffer::SetIndices(const uint32_t* data, int count)
@@ -25,7 +28,15 @@ namespace FuturisEngine
 			if (m_vboId == 0)
 				Initialize();
 
-			m_count = count;
+			if (m_data == NULL || m_count != count)
+			{
+				DeleteData();
+
+				m_count = count;
+				m_data = new uint32_t[m_count];
+			}
+
+			memcpy(m_data, data, m_count * sizeof(uint32_t));
 			
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vboId);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * count, data, GL_STATIC_DRAW);
@@ -45,11 +56,25 @@ namespace FuturisEngine
 			return m_count;
 		}
 
+		const uint32_t* IndexBuffer::GetData() const
+		{
+			return m_data;
+		}
+		
 		void IndexBuffer::Initialize()
 		{
 			assert(m_vboId == 0);
 
 			glGenBuffers(1, &m_vboId);
+		}
+
+		void IndexBuffer::DeleteData()
+		{
+			if (m_data != NULL)
+			{
+				delete[] m_data;
+				m_data = NULL;
+			}
 		}
 	}
 }

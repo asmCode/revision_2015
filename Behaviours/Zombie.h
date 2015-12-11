@@ -7,6 +7,7 @@
 
 class GameObject;
 class Camera;
+class Terrain;
 
 class Zombie : public Behaviour
 {
@@ -14,7 +15,8 @@ public:
 	Zombie(GameObject* gameObject, const std::string& name);
 
 	void Update();
-	void Initialize(const sm::Vec3& startPosition, const sm::Vec3& destination);
+	void Initialize(Terrain* terrain, const sm::Vec3& startPosition, const sm::Vec3& destination);
 
 private:
+	Terrain* m_terrain;
 };

@@ -24,6 +24,8 @@ namespace FuturisEngine
 			void SetCoords1(const sm::Vec2* coords, int count);
 
 
+			const int GetIndicesCount() const;
+			const uint32_t* GetIndices() const;
 			const sm::Vec3* GetVertices() const;
 			const sm::Vec3* GetNormals() const;
 			const sm::Vec3* GetTangents() const;

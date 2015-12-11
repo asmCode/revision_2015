@@ -26,6 +26,15 @@ GameObject::GameObject(const std::string& name) :
 
 GameObject::~GameObject()
 {
+	/*
+	for (int i = 0; i < m_components.size(); i++)
+	{
+		m_components[i]->SetDestroyed();
+	}
+	*/
+
+	BaseScene* scene = ScenesManager::GetInstance()->GetActiveScene();
+	scene->NotifyDestroyedGameObject(this);
 }
 
 const std::vector<Renderable*>& GameObject::GetRenderables() const

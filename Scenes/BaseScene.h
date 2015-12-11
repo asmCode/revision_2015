@@ -33,6 +33,7 @@ public:
 	void ClearSceneChangedFlag();
 
 	void NotifyNewGameObject(GameObject* gameObject);
+	void NotifyDestroyedGameObject(GameObject* gameObject);
 	void NotifyNewComponent(GameObject* gameObject, int componentFlag);
 
 	virtual ICamera* GetCamera() const;

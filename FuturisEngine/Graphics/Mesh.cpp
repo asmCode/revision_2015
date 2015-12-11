@@ -86,6 +86,16 @@ namespace FuturisEngine
 			m_dirtyFlag |= DirtyFlagCoord1;
 		}
 
+		const int Mesh::GetIndicesCount() const
+		{
+			return m_indexBuffer != NULL ? m_indexBuffer->GetCount() : 0;
+		}
+
+		const uint32_t* Mesh::GetIndices() const
+		{
+			return m_indexBuffer != NULL ? m_indexBuffer->GetData() : NULL;
+		}
+		
 		const sm::Vec3* Mesh::GetVertices() const
 		{
 			return m_vertexBuffer != NULL ? m_vertexBuffer->GetData() : NULL;

@@ -56,7 +56,7 @@ void BehavioursManager::UpdateBehaviours()
 {
 	for (uint32_t i = 0; i < m_behaviours.size(); i++)
 	{
-		if (m_behaviours[i]->GetGameObject()->IsActive())
+		if (!m_behaviours[i]->IsDestroyed() && m_behaviours[i]->GetGameObject()->IsActive())
 			m_behaviours[i]->Update();
 	}
 }

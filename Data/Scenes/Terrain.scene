@@ -3,6 +3,7 @@
 		<GameObject name="Terrain">
 			<Transform position="0.000000,0.000000,-0.000000" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 			<Mesh name="Terrain" material="terrain" />
+			<Behaviour name="Terrain" />
 		</GameObject>
 		<GameObject name="Bunker">
 			<Transform position="1.053865,-2.348518,6.092834" rotation="0.285043,-0.247086,-0.968385,-0.034335" scale="1.367650,1.367650,1.367650" />

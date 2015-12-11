@@ -6,6 +6,7 @@
 #include "../FuturisEngine/ComponentFlag.h"
 #include <Graphics/Content/Content.h>
 #include <stdint.h>
+#include <algorithm>
 
 BaseScene::BaseScene() :
 	m_activeCamera(NULL),
@@ -79,6 +80,13 @@ GameObject* BaseScene::FindGameObject(const std::string& name)
 void BaseScene::NotifyNewGameObject(GameObject* gameObject)
 {
 	m_gameObjects.push_back(gameObject);
+
+	m_hasSceneChanged = true;
+}
+
+void BaseScene::NotifyDestroyedGameObject(GameObject* gameObject)
+{
+	m_gameObjects.erase(std::remove(m_gameObjects.begin(), m_gameObjects.end(), gameObject), m_gameObjects.end());
 
 	m_hasSceneChanged = true;
 }

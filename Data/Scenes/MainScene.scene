@@ -10,7 +10,7 @@
 		<GameObject name="ZombieManager">
 			<Behaviour name="ZombieManager">
 				<Parameters>
-					<Parameter name="zombie_per_second" type="float" value="3" />
+					<Parameter name="zombie_per_second" type="float" value="1" />
 				</Parameters>
 			</Behaviour>
 		</GameObject>

@@ -13,6 +13,8 @@ public:
 
 	GameObject* GetGameObject() const;
 	PropertyContainer* GetPropertyContainer() const;
+	void SetDestroyed();
+	bool IsDestroyed() const;
 
 	const std::string& GetComponentName() const;
 
@@ -22,4 +24,5 @@ protected:
 
 private:
 	PropertyContainer* m_propertyContainer;
+	bool m_isDestroyed;
 };
