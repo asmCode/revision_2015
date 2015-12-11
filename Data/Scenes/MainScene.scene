@@ -4,6 +4,7 @@
 	<IncludeScene name="Zombie" />
 	
 	<GameObjects>
+	
 		<GameObject name="Gunship">
 			<Behaviour name="Gunship" />
 		</GameObject>
@@ -14,5 +15,20 @@
 				</Parameters>
 			</Behaviour>
 		</GameObject>
+		
+		<GameObject name="Gui">
+			<Camera depth="1" projection="orthographics" cull_layers="20" clear_color="1,1,0,0" clear_flag="depth" />
+		</GameObject>
+		
+		<GameObject name="Background" layer="20" >
+			<Behaviour name="TextureImage">
+				<Parameters>
+					<Parameter name="texture" type="string" value="target" />
+					<Parameter name="bounds" type="vec4" value="0.44,0.4,0.12,0.2" />
+					<Parameter name="coords" type="vec4" value="0.0,0.0,1.0,1.0" />
+				</Parameters>
+			</Behaviour>
+		</GameObject>
+		
 	</GameObjects>
 </Scene>

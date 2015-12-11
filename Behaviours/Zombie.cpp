@@ -18,7 +18,7 @@ Zombie::Zombie(GameObject* gameObject, const std::string& name) :
 void Zombie::Update()
 {
 	sm::Vec3 position = m_gameObject->GetTransform().GetPosition();
-	position += -m_gameObject->GetTransform().GetForward() * Time::DeltaTime * 3.0f;
+	position += -m_gameObject->GetTransform().GetForward() * Time::DeltaTime * 2.0f;
 	position.y = m_terrain->GetHeight(position);
 	m_gameObject->GetTransform().SetPosition(position);
 }
