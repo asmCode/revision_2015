@@ -23,12 +23,21 @@
 		<GameObject name="Source4">
 			<Transform position="45.553047,-1.458677,-9.459427" rotation="0.000000,0.000000,0.000000,0.000000" scale="1.000000,1.000000,1.000000" />
 		</GameObject>
-		<GameObject name="Camera001">
-			<Transform position="-70.776154,55.432526,-41.547474" rotation="4.186531,-0.192675,-0.930554,-0.311360" scale="1.000000,1.000000,1.000001" />
-			<Camera fov="0.785398" near_plane="1.000000" far_plane="1000.000000" />
+		<GameObject name="CameraPivot">
+			<Transform position="0.000000,40.000000,0.000002" rotation="1.570796,-1.000000,-0.000000,-0.000000" scale="1.000000,1.000000,1.000000" />
+			<Behaviour name="CameraPivot">
+				<Parameters>
+					<Parameter name="speed" type="float" value="0.02" />
+				</Parameters>
+			</Behaviour>
 		</GameObject>
-		<GameObject name="Camera001.Target">
-			<Transform position="-38.110695,27.927475,-25.261116" rotation="4.122276,0.266156,-0.862654,0.430103" scale="1.000000,1.000000,1.000000" />
+		<GameObject name="Camera001" parent="CameraPivot">
+			<Transform position="50.000000,-50.000000,0.000008" rotation="3.537444,-0.337566,0.809255,-0.480786" scale="1.000000,1.000001,1.000000" />
+			<Camera fov="0.623599" near_plane="1.000000" far_plane="1000.000000" />
+		</GameObject>
+		<GameObject name="Omni001" parent="Camera001">
+			<Transform position="0.000008,0.000015,-0.000004" rotation="3.896644,0.100968,0.245485,-0.964128" scale="1.000001,1.000000,1.000000" />
+			<Light type="point" color="1.000000,1.000000,1.000000" brightness="1.000000" />
 		</GameObject>
 	</GameObjects>
 	<Materials>

@@ -124,6 +124,7 @@ exit /B 0
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Behaviours\AnimationTest.cpp" />
     <ClCompile Include="Behaviours\BackCamera.cpp" />
+    <ClCompile Include="Behaviours\CameraPivot.cpp" />
     <ClCompile Include="Behaviours\CustomMesh.cpp" />
     <ClCompile Include="Behaviours\MainCamera.cpp" />
     <ClCompile Include="Behaviours\Face.cpp" />
@@ -295,6 +296,7 @@ exit /B 0
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Behaviours\AnimationTest.h" />
     <ClInclude Include="Behaviours\BackCamera.h" />
+    <ClInclude Include="Behaviours\CameraPivot.h" />
     <ClInclude Include="Behaviours\CustomMesh.h" />
     <ClInclude Include="Behaviours\MainCamera.h" />
     <ClInclude Include="Behaviours\Face.h" />
