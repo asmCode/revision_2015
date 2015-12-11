@@ -10,6 +10,9 @@
 #include "../Camera.h"
 #include "../GraphicsLog.h"
 
+#include "../../FuturisEngine/Animation/AnimationClip.h"
+#include <Graphics/Content/Content.h>
+
 Zombie::Zombie(GameObject* gameObject, const std::string& name) :
 	Behaviour(gameObject, name)
 {
@@ -21,6 +24,8 @@ void Zombie::Update()
 	position += -m_gameObject->GetTransform().GetForward() * Time::DeltaTime * 2.0f;
 	position.y = m_terrain->GetHeight(position);
 	m_gameObject->GetTransform().SetPosition(position);
+
+	animation->Update();
 }
 
 void Zombie::Initialize(Terrain* terrain, const sm::Vec3& startPosition, const sm::Vec3& destination)
@@ -28,4 +33,9 @@ void Zombie::Initialize(Terrain* terrain, const sm::Vec3& startPosition, const s
 	m_terrain = terrain;
 	m_gameObject->GetTransform().SetPosition(startPosition);
 	m_gameObject->GetTransform().SetForward(-(destination - startPosition).GetNormalized());
+
+	AnimationClip* clip = Content::Instance->Get<AnimationClip>("Zombie");
+	animation = dynamic_cast<::Animation*>(m_gameObject->GetComponent("Animation"));
+	animation->SetAnimationClip(clip);
+	animation->Play();
 }

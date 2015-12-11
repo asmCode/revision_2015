@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Behaviour.h"
+#include "../../FuturisEngine/Animation/Animation.h"
 #include <Graphics/Point.h>
 #include <Math/Quat.h>
 #include <string>
@@ -19,4 +20,5 @@ public:
 
 private:
 	Terrain* m_terrain;
+	::Animation* animation;
 };

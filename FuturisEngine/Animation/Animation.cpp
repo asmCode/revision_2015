@@ -46,7 +46,7 @@ void Animation::SetTime(float time)
 {
 	m_time = time;
 
-	m_attachement->SetTime(time);
+	m_attachement->SetTime(fmodf(time, m_animationClip->GetDuration()));
 }
 
 void Animation::SetNormalizedTime(float normalizedTime)
